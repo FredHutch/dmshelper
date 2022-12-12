@@ -1,7 +1,20 @@
-FROM fredhutch/r-shiny-base:latest
+FROM r-base:4.2.2
 RUN apt-get update
 RUN apt-get install -y pandoc
-RUN useradd -u 5555 -m -d /home/shiny -c "shiny user" shiny
+
+# Devtools dependencies
+RUN apt-get install -y libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
+RUN Rscript -e "install.packages('systemfonts')"
+RUN Rscript -e "install.packages('textshaping')"
+RUN Rscript -e "install.packages('ragg')"
+
+RUN apt-get -y install curl libxml2 libxml2-dev libcurl4-openssl-dev libssl-dev r-cran-openssl 
+RUN apt-get -y install libgit2-dev
+
+RUN Rscript -e "install.packages('devtools', dependencies=T)"
+RUN Rscript -e "devtools::install_github('FredHutch/dsmphelper')"
+
+RUN useradd -u 7777 -m -d /home/shiny -c "shiny user" shiny
 ADD app/. /home/shiny/
 RUN chown -R shiny:shiny /home/shiny 
 WORKDIR /home/shiny

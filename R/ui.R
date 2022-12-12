@@ -56,7 +56,16 @@ shiny_ui <- function(){
         textInput("fair_standards", "if it exists, insert FAIR standards for data type from here (see https://www.nature.com/articles/sdata201618)", value = ""),
         textInput("metadata_location", "Location where metadata will be deposited", value = ""),
 
-
+        # TOOLS / SOFTWARE / CODE
+        selectInput(
+          "version_control",
+          label = "Select a version control method",
+          choices =
+            c("GitHub" = "GitHub",
+              "GitLab" = "GitLab"),
+          selected = "short",
+          multiple = TRUE
+        ),
       ),
 
       # ------- Preview
