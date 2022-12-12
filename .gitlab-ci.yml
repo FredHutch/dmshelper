@@ -26,7 +26,7 @@ test:
     - name: sc-registry.fredhutch.org/dsmphelper:test
       alias: dsmphelper
   script:
-    - sleep 15 && curl -sI  http://dsmphelper:7777  |head -1|grep -q "200 OK"
+    - sleep 15 && curl -sI  http://dsmphelper:3838  |head -1|grep -q "200 OK"
   
   
 deploy:

@@ -1,4 +1,4 @@
-FROM r-base:4.2.2
+FROM fredhutch/r-shiny-server-base:4.2.0
 RUN apt-get update
 RUN apt-get install -y pandoc
 
@@ -12,10 +12,12 @@ RUN Rscript -e "install.packages('ragg')"
 RUN Rscript -e "install.packages('devtools', dependencies=T)"
 RUN Rscript -e "library(devtools);install_github('FredHutch/dsmphelper')"
 
-RUN useradd -u 7777 -m -d /home/shiny -c "shiny user" shiny
-ADD app/. /home/shiny/
-RUN chown -R shiny:shiny /home/shiny 
-WORKDIR /home/shiny
-USER shiny
-EXPOSE 7777
-CMD Rscript start.R 
+
+RUN rm -rf /srv/shiny-server/
+RUN mkdir -p /src/shiny-server/
+COPY app/start.R /srv/shiny-server/app.R
+
+RUN chown -R shiny:shiny /srv/shiny-server/
+EXPOSE 3838
+WORKDIR /srv/shiny-server/
+CMD /usr/bin/shiny-server
