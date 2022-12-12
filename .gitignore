@@ -3,3 +3,8 @@
 .Rdata
 .httr-oauth
 .DS_Store
+
+# Rendered files
+outtext.docx
+outtext.html
+outtext.md
