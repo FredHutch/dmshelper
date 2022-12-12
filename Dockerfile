@@ -3,16 +3,14 @@ RUN apt-get update
 RUN apt-get install -y pandoc
 
 # Devtools dependencies
-RUN apt-get install -y libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
+RUN apt-get install -y libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev curl libxml2 libxml2-dev libcurl4-openssl-dev libssl-dev r-cran-openssl  libgit2-dev
 RUN Rscript -e "install.packages('systemfonts')"
 RUN Rscript -e "install.packages('textshaping')"
 RUN Rscript -e "install.packages('ragg')"
 
-RUN apt-get -y install curl libxml2 libxml2-dev libcurl4-openssl-dev libssl-dev r-cran-openssl 
-RUN apt-get -y install libgit2-dev
-
+# Devtools and custom package
 RUN Rscript -e "install.packages('devtools', dependencies=T)"
-RUN Rscript -e "devtools::install_github('FredHutch/dsmphelper')"
+RUN Rscript -e "library(devtools);install_github('FredHutch/dsmphelper')"
 
 RUN useradd -u 7777 -m -d /home/shiny -c "shiny user" shiny
 ADD app/. /home/shiny/
