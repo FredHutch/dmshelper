@@ -19,7 +19,7 @@ flow_cytometry_core_datatype <- function(input, metadata_part) {
     datatype_processed_scaffold(
       "<font color='OA799A'>raw FCS files</font>",
       "<font color='OA799A'>software such as FloJo to yield summary tables of comparable cell groupings</font>",
-      "<font color='OA799A'>tabular data in CSV/TSV format.</font>"
+      "<font color='OA799A'>tabular data in CSV/TSV format</font>"
     ),
     input$avg_processed_file_size,
     input$total_processed_samples_files,
