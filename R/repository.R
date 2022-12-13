@@ -1,5 +1,7 @@
 #' Title
 #'
+#' @param input
+#'
 #' @return
 #' @export
 #'
@@ -66,6 +68,8 @@ repository_dbgap_pub_sra <- function() {
 
 #' Title
 #'
+#' @param input
+#'
 #' @return
 #' @export
 #'
@@ -80,6 +84,12 @@ repository_none <- function(input) {
 }
 
 
+#' Title
+#'
+#' @return
+#' @export
+#'
+#' @examples
 repository_choices <- function(){
   return(
     c(
@@ -96,6 +106,8 @@ repository_choices <- function(){
 
 #' Title
 #'
+#' @param input
+#'
 #' @return
 #' @export
 #'
@@ -111,6 +123,8 @@ fair_description <- function(input) {
 
 
 #' Title
+#'
+#' @param input
 #'
 #' @return
 #' @export

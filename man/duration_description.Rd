@@ -6,6 +6,9 @@
 \usage{
 duration_description(input)
 }
+\arguments{
+\item{input}{}
+}
 \description{
 Title
 }

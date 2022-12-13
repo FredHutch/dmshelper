@@ -6,6 +6,9 @@
 \usage{
 reuse_ns_software(input)
 }
+\arguments{
+\item{input}{}
+}
 \description{
 Title
 }

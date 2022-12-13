@@ -6,6 +6,9 @@
 \usage{
 repository_custom(input)
 }
+\arguments{
+\item{input}{}
+}
 \description{
 Title
 }

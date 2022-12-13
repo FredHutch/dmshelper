@@ -50,7 +50,7 @@ shiny_server <- function(input, output) {
       tools_code_part <- tools_open(input)
     }
 
-    # Choose between options for repository
+    # Choose among some default options for repository
     if(input$repository == "dbgap_3"){
       repository_part <- repository_dbgap_3()
     } else if (input$repository == "gene_3"){
@@ -89,14 +89,10 @@ shiny_server <- function(input, output) {
 
     # Get the text of the datatype part of the plan
     datatype_part <- datatype_txt(
-        input$technology_description,
-        input$raw_file_description,
-        input$avg_file_size,
+        datatype_raw_custom(input),
         input$total_samples_files,
         input$data_volume,
-        input$raw_file_type,
-        input$brief_pipeline_description,
-        input$processsed_file_description,
+        datatype_processed_custom(input),
         input$avg_processed_file_size,
         input$total_processed_samples_files,
         input$data_processed_volume,
@@ -135,11 +131,21 @@ shiny_server <- function(input, output) {
     book <- c(datatype_part, tools_part, standards_part, preservation_part, access_part)
 
     # Create downloads
-    writeLines(book, file.path(paste0(getwd(),"/outtext.md")))
-    rmarkdown::render("outtext.md", output_format = rmarkdown::word_document(reference_docx = "doc/template.docx"), output_file = paste0(getwd(),"/outtext.docx"), quiet = TRUE)
+    writeLines(book, file.path(paste0(getwd(), "/outtext.md")))
+    rmarkdown::render(
+      "outtext.md",
+      output_format = rmarkdown::word_document(reference_docx = "doc/template.docx"),
+      output_file = paste0(getwd(), "/outtext.docx"),
+      quiet = TRUE
+    )
 
     # Render preview
-    rmarkdown::render("outtext.md", output_format = rmarkdown::html_document(), output_file = paste0(getwd(),"/outtext.html"), quiet = TRUE)
+    rmarkdown::render(
+      "outtext.md",
+      output_format = rmarkdown::html_document(),
+      output_file = paste0(getwd(), "/outtext.html"),
+      quiet = TRUE
+    )
     htmltools::HTML(readLines("outtext.html"))
   })
 

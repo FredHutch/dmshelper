@@ -12,8 +12,12 @@ shiny_ui <- function(){
     sidebarLayout(
       sidebarPanel(
 
+        # I
         # DATA TYPE
         h2("Data Type"),
+
+        # Data types and amounts
+        h2("Data Type & Amount"),
         selectInput("core_datatype", "Choose a default Fred Hutch Core:",
                     c("None Selected" = "none",
                       "Flow Cytometry Core" = "flow_cytometry",
@@ -31,7 +35,7 @@ shiny_ui <- function(){
         textInput("data_processed_volume", "Total processed data volume", value = ""),
         textInput("datatype_comment", label = "Add additional text", value = ""),
 
-        # Sharing subection
+        # Sharing
         h4("Sharing"),
         textInput("shared_technologies", "Technologies and processed data to be shared", value = ""),
         selectInput("notshared",
@@ -40,7 +44,7 @@ shiny_ui <- function(){
                     selected = "\nWe anticipate all data will be able to be preserved and shared.",
                     multiple = TRUE),
 
-        # Metadata subsection
+        # Metadata
         h4("Metadata"),
         selectInput(
           "metadata_desc",
@@ -56,6 +60,7 @@ shiny_ui <- function(){
         textInput("fair_standards", "if it exists, insert FAIR standards for data type from here (see https://www.nature.com/articles/sdata201618)", value = ""),
         textInput("metadata_location", "Location where metadata will be deposited", value = ""),
 
+        # II
         # TOOLS / SOFTWARE / CODE
         h2("Tools/Code"),
         selectInput(
@@ -91,15 +96,17 @@ shiny_ui <- function(){
           multiple = TRUE
         ),
 
+        # III
         # STANDARDS
         h2("Standards"),
         textInput("standards_description", "Standard creation organization and description", value = ""),
         textInput("standards_comment", "Insert additional details as appropriate", value = ""),
 
+        # IV
         # PRESERVATION
         h2("Preservation"),
 
-        # Repository subsection
+        # Repository
         h4("Repositories"),
         selectInput(
           "repository",
@@ -112,19 +119,20 @@ shiny_ui <- function(){
         textInput("chosen_repositories", "Custom: list repository", value = ""),
         textInput("sensitive_data_type", "None (sensitive data): list sensitive data types", value = ""),
 
-        # FAIR subsection
+        # FAIR
         h4("Findability"),
         textInput("fair_id_level", "Findable: list the level of ID", value = ""),
 
-        # Timeframe subsection
+        # Timeframe
         h4("Timeframe"),
         textInput("timeframe_to_pub", "Timeframe for depositing (e.g., within X months of data generation / at the time of publication)", value = ""),
         textInput("timeframe_longevity", "Timeframe for availability (e.g., duration of the grant funding)", value = ""),
 
+        # V
         # ACCESS
         h2("Access"),
 
-        # Re-use subsection
+        # Reuse
         h4("Data Reuse"),
         selectInput(
           "reuse",
@@ -142,7 +150,7 @@ shiny_ui <- function(){
           multiple = FALSE
         ),
 
-        # Controls subsection
+        # Controls
         h4("Data Controls"),
         selectInput(
           "controls",
@@ -153,7 +161,7 @@ shiny_ui <- function(){
         ),
         textInput("control_comment", label = "Add additional text", value = "submitted to and processed by the NIH-designated data repository under their 'controlled access' process"),
 
-        # Controls subsection
+        # Human subjects
         h4("Human Subjects"),
         selectInput(
           "human_subjects",
@@ -162,6 +170,11 @@ shiny_ui <- function(){
           selected = "No",
           multiple = FALSE
         ),
+
+        # V
+        # OVERSIGHT
+        h2("Oversight"),
+
       ),
 
       # ------- Preview

@@ -12,6 +12,8 @@ reuse_no_restrictions <- function() {
 
 #' Title
 #'
+#' @param input
+#'
 #' @return
 #' @export
 #'
@@ -28,6 +30,12 @@ reuse_ns_software <- function(input) {
 }
 
 
+#' Title
+#'
+#' @return
+#' @export
+#'
+#' @examples
 reuse_choices <- function(){
   return(
     c(
@@ -55,6 +63,8 @@ control_no_restrictions <- function() {
 
 
 #' Title
+#'
+#' @param input
 #'
 #' @return
 #' @export

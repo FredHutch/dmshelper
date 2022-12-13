@@ -1,5 +1,7 @@
 #' Title
 #'
+#' @param input
+#'
 #' @return
 #' @export
 #'
@@ -19,6 +21,8 @@ tools_open <- function(input) {
 
 
 #' Title
+#'
+#' @param input
 #'
 #' @return
 #' @export
@@ -90,6 +94,12 @@ list_of_tools <- function(){
 }
 
 
+#' Title
+#'
+#' @return
+#' @export
+#'
+#' @examples
 list_of_platforms <- function(){
   return(
     c(

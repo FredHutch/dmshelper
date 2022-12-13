@@ -1,30 +1,26 @@
 #' Title
 #'
-#' @param technology_description
-#' @param raw_file_description
-#' @param avg_file_size
 #' @param total_samples_files
 #' @param data_volume
-#' @param raw_file_type
-#' @param brief_pipeline_description
-#' @param processsed_file_description
 #' @param avg_processed_file_size
 #' @param total_processed_samples_files
 #' @param data_processed_volume
+#' @param raw_part
+#' @param processed_part
+#' @param datatype_comment
+#' @param shared_technologies
+#' @param notshared
+#' @param metadata_part
 #'
 #' @return
 #' @export
 #'
 #' @examples
 datatype_txt <- function(
-    technology_description,
-    raw_file_description,
-    avg_file_size,
+    raw_part,
     total_samples_files,
     data_volume,
-    raw_file_type,
-    brief_pipeline_description,
-    processsed_file_description,
+    processed_part,
     avg_processed_file_size,
     total_processed_samples_files,
     data_processed_volume,
@@ -43,15 +39,12 @@ datatype_txt <- function(
     "",
     "_Our proposal will generate raw data of the following types and sizes:_",
     "",
-    paste0("**Technology:** We will generate data using <font color='OA799A'>", technology_description, "</font>. "),
-    paste0("**File Type:** Data for this study will generate <font color='OA799A'>", raw_file_description, "</font>. "),
-    paste0("The amount of data generated per sample is <font color='OA799A'>", avg_file_size, "</font>. "),
+    raw_part,
     paste0("**Number of Files:** We anticipate collecting data from <font color='OA799A'>", total_samples_files, "</font> for a total data volume of <font color='OA799A'>", data_volume, "</font>. "),
     "",
     "_Our proposal will generate processed data of the following types and sizes:_",
     "",
-    paste0("**Technology:** We process the <font color='OA799A'>", raw_file_type, "</font> using <font color='OA799A'>", brief_pipeline_description, "</font>. "),
-    paste0("**File Type:** The data processing will result in <font color='OA799A'>", processsed_file_description, "</font>. "),
+    processed_part,
     paste0("The amount of data generated per sample is <font color='OA799A'>", avg_processed_file_size, "</font>. "),
     paste0("**Number of Files:** We anticipate generating <font color='OA799A'>", total_processed_samples_files, "</font> for a total data volume of <font color='OA799A'>", data_processed_volume, "</font>. "),
     "",
@@ -74,6 +67,14 @@ datatype_txt <- function(
 }
 
 
+#' Title
+#'
+#' @param tools_code_part
+#'
+#' @return
+#' @export
+#'
+#' @examples
 tools_txt <- function(
     tools_code_part
 ){
@@ -87,6 +88,14 @@ tools_txt <- function(
 }
 
 
+#' Title
+#'
+#' @param input
+#'
+#' @return
+#' @export
+#'
+#' @examples
 standards_txt <- function(input){
   return(c(
     "",
@@ -98,6 +107,16 @@ standards_txt <- function(input){
 }
 
 
+#' Title
+#'
+#' @param repository_part
+#' @param fair_description
+#' @param duration_description
+#'
+#' @return
+#' @export
+#'
+#' @examples
 preservation_txt <- function(
   repository_part,
   fair_description,
@@ -123,6 +142,16 @@ preservation_txt <- function(
 }
 
 
+#' Title
+#'
+#' @param reuse_part
+#' @param control_part
+#' @param hs_part
+#'
+#' @return
+#' @export
+#'
+#' @examples
 access_txt <- function(reuse_part, control_part, hs_part){
   return(c(
     "",
@@ -143,14 +172,19 @@ access_txt <- function(reuse_part, control_part, hs_part){
   ))
 }
 
-oversight_txt <- function(
 
-){
+#' Title
+#'
+#' @return
+#' @export
+#'
+#' @examples
+oversight_txt <- function(){
   return(c(
     "",
     "### Oversight of Data Management and Sharing",
     "",
-    stringi::stri_rand_lipsum(1, start_lipsum = F),
+    "oversight",
     ""
   ))
 }

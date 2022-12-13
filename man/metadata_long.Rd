@@ -6,6 +6,9 @@
 \usage{
 metadata_long(input)
 }
+\arguments{
+\item{input}{}
+}
 \description{
 Title
 }
