@@ -17,6 +17,7 @@ ADD . /src/dsmphelper
 WORKDIR /src/dsmphelper
 RUN R CMD INSTALL .
 WORKDIR /
+RUN rm -rf /src/dsmphelper
 
 RUN rm -rf /srv/shiny-server/
 RUN mkdir -p /src/shiny-server/
