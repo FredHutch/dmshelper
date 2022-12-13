@@ -6,6 +6,9 @@
 \usage{
 tools_open(input)
 }
+\arguments{
+\item{input}{}
+}
 \description{
 Title
 }

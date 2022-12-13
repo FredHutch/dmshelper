@@ -5,14 +5,10 @@
 \title{Title}
 \usage{
 datatype_txt(
-  technology_description,
-  raw_file_description,
-  avg_file_size,
+  raw_part,
   total_samples_files,
   data_volume,
-  raw_file_type,
-  brief_pipeline_description,
-  processsed_file_description,
+  processed_part,
   avg_processed_file_size,
   total_processed_samples_files,
   data_processed_volume,
@@ -23,7 +19,7 @@ datatype_txt(
 )
 }
 \arguments{
-\item{data_processed_volume}{}
+\item{metadata_part}{}
 }
 \description{
 Title

@@ -4,7 +4,7 @@
 \alias{tools_proprietary}
 \title{Title}
 \usage{
-tools_proprietary(input)
+tools_proprietary()
 }
 \description{
 Title

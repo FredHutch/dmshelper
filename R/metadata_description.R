@@ -1,5 +1,7 @@
 #' Title
 #'
+#' @param input
+#'
 #' @return
 #' @export
 #'
@@ -20,6 +22,8 @@ metadata_short <- function(input) {
 
 
 #' Title
+#'
+#' @param input
 #'
 #' @return
 #' @export
