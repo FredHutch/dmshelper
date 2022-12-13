@@ -87,21 +87,21 @@ tools_txt <- function(
 }
 
 
-standards_txt <- function(
-
-){
+standards_txt <- function(input){
   return(c(
     "",
     "### Standards",
     "",
-    stringi::stri_rand_lipsum(1, start_lipsum = F),
+    paste0("The data produced in this project will be collected using the standards established by <font color='OA799A'>", input$standards_description, ". ", input$standards_comment, "</font>. "),
     ""
   ))
 }
 
 
 preservation_txt <- function(
-
+  repository_part,
+  fair_description,
+  duration_description
 ){
   return(c(
     "",
@@ -109,15 +109,15 @@ preservation_txt <- function(
     "",
     "#### Repository where scientific data and metadata will be archived",
     "",
-    stringi::stri_rand_lipsum(1, start_lipsum = F),
+    repository_part,
     "",
     "#### How scientific data will be findable and identifiable",
     "",
-    stringi::stri_rand_lipsum(1, start_lipsum = F),
+    fair_description,
     "",
     "#### When and how long the scientific data will be made available",
     "",
-    stringi::stri_rand_lipsum(1, start_lipsum = F),
+    duration_description,
     "",
     "#### Access, Distribution, or Reuse Considerations",
     "",

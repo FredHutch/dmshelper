@@ -57,11 +57,13 @@ shiny_ui <- function(){
         textInput("metadata_location", "Location where metadata will be deposited", value = ""),
 
         # TOOLS / SOFTWARE / CODE
+        h2("Tools/Code"),
         selectInput(
           "open_source_level",
           label = "Select a level of development transparency",
           choices =
-            c("Open Source" = "opensource",
+            c("Microsoft Office" = "office",
+              "Open Source" = "opensource",
               "Semi-Open Source" = "semiopen",
               "Proprietary" = "proprietary"),
           selected = "opensource",
@@ -88,6 +90,37 @@ shiny_ui <- function(){
           selected = "CRAN",
           multiple = TRUE
         ),
+
+        # STANDARDS
+        h2("Standards"),
+        textInput("standards_description", "Standard creation organization and description", value = ""),
+        textInput("standards_comment", "Insert additional details as appropriate", value = ""),
+
+        # PRESERVATION
+        h2("Preservation and Access"),
+
+        # Repository subsection
+        h4("Repositories"),
+        selectInput(
+          "repository",
+          label = "Select a repository where scientific data and metadata",
+          choices = repository_choices(),
+          selected = "custom",
+          multiple = FALSE
+        ),
+        textInput("repository_data_type", "Custom: repository data type", value = ""),
+        textInput("chosen_repositories", "Custom: list repository", value = ""),
+        textInput("sensitive_data_type", "None (sensitive data): list sensitive data types", value = ""),
+
+        # FAIR subsection
+        h4("Findability"),
+        textInput("fair_id_level", "Findable: list the level of ID", value = ""),
+
+        # Timeframe subsection
+        h4("Timeframe"),
+        textInput("timeframe_to_pub", "Timeframe for depositing (e.g., within X months of data generation / at the time of publication)", value = ""),
+        textInput("timeframe_longevity", "Timeframe for availability (e.g., duration of the grant funding)", value = ""),
+
       ),
 
       # ------- Preview

@@ -43,9 +43,26 @@ shiny_server <- function(input, output) {
     if(input$open_source_level == "semiopen"){
       tools_code_part <- tools_semiopen(input)
     } else if (input$open_source_level == "proprietary"){
-      tools_code_part <- tools_proprietary(input)
+      tools_code_part <- tools_proprietary()
+    } else if (input$open_source_level == "office"){
+      tools_code_part <- tools_office()
     } else {
       tools_code_part <- tools_open(input)
+    }
+
+    # Choose between options for repository
+    if(input$repository == "dbgap_3"){
+      repository_part <- repository_dbgap_3()
+    } else if (input$repository == "gene_3"){
+      repository_part <- repository_gene_3()
+    } else if (input$repository == "dbgap_pub"){
+      repository_part <- repository_dbgap_pub()
+    } else if (input$repository == "dbgap_pub_sra"){
+      repository_part <- repository_dbgap_pub_sra()
+    } else if (input$repository == "none"){
+      repository_part <- repository_none(input)
+    } else {
+      repository_part <- repository_custom(input)
     }
 
     # Get the text of the datatype part of the plan
@@ -72,14 +89,26 @@ shiny_server <- function(input, output) {
       tools_code_part
     )
 
+    # Get the text for the standards part of the plan
+    standards_part <- standards_txt(input)
+
+    # Preservation
+    preservation_part <- preservation_txt(
+      repository_part,
+      fair_description(input),
+      duration_description(input)
+    )
+
     # Input default text
     if(input$core_datatype == "flow_cytometry"){
       datatype_part <- flow_cytometry_core_datatype(input, metadata_part)
       tools_part <- flow_cytometry_core_tools(tools_code_part)
+      standards_part <- flow_cytometry_core_standards()
+      preservation_part <- flow_cytometry_core_preservation(input)
     }
 
     # Combine each section into one vector
-    book <- c(datatype_part, tools_part)
+    book <- c(datatype_part, tools_part, standards_part, preservation_part)
 
     # Create downloads
     writeLines(book, file.path(paste0(getwd(),"/outtext.md")))
