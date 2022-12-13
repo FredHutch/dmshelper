@@ -10,12 +10,19 @@ RUN Rscript -e "install.packages('ragg')"
 
 # Devtools and custom package
 RUN Rscript -e "install.packages('devtools', dependencies=T)"
-RUN Rscript -e "library(devtools);install_github('FredHutch/dsmphelper')"
+# RUN Rscript -e "library(devtools);install_github('FredHutch/dsmphelper')"
 
+# install dsmphelper package
+ADD . /src/dsmphelper
+WORKDIR /src/dsmphelper
+RUN R CMD INSTALL .
+WORKDIR /srv/shiny-server/
+RUN rm -rf /src/dsmphelper
 
 RUN rm -rf /srv/shiny-server/
 RUN mkdir -p /src/shiny-server/
 COPY app/start.R /srv/shiny-server/app.R
+COPY doc /srv/shiny-server/doc/
 
 RUN chown -R shiny:shiny /srv/shiny-server/
 EXPOSE 3838
