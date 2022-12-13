@@ -58,12 +58,34 @@ shiny_ui <- function(){
 
         # TOOLS / SOFTWARE / CODE
         selectInput(
+          "open_source_level",
+          label = "Select a level of development transparency",
+          choices =
+            c("Open Source" = "opensource",
+              "Semi-Open Source" = "semiopen",
+              "Proprietary" = "proprietary"),
+          selected = "opensource",
+          multiple = FALSE
+        ),
+        selectInput(
           "version_control",
           label = "Select a version control method",
-          choices =
-            c("GitHub" = "GitHub",
-              "GitLab" = "GitLab"),
-          selected = "short",
+          choices = c("GitHub", "GitLab", "BitBucket"),
+          selected = "GitHub",
+          multiple = FALSE
+        ),
+        selectInput(
+          "tool",
+          label = "Select all that apply",
+          choices = list_of_tools(),
+          selected = "R scripts",
+          multiple = TRUE
+        ),
+        selectInput(
+          "platform",
+          label = "Select all that apply",
+          choices = list_of_platforms(),
+          selected = "CRAN",
           multiple = TRUE
         ),
       ),

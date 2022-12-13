@@ -39,6 +39,15 @@ shiny_server <- function(input, output) {
       metadata_part <- ""
     }
 
+    # Choose between three options for tools
+    if(input$open_source_level == "semiopen"){
+      tools_code_part <- tools_semiopen(input)
+    } else if (input$open_source_level == "proprietary"){
+      tools_code_part <- tools_proprietary(input)
+    } else {
+      tools_code_part <- tools_open(input)
+    }
+
     # Get the text of the datatype part of the plan
     datatype_part <- datatype_txt(
         input$technology_description,
@@ -58,11 +67,19 @@ shiny_server <- function(input, output) {
         metadata_part
       )
 
+    # Get the text for the tool part of the plan
+    tools_part <- tools_txt(
+      tools_code_part
+    )
+
+    # Input default text
     if(input$core_datatype == "flow_cytometry"){
       datatype_part <- flow_cytometry_core_datatype(input, metadata_part)
+      tools_part <- flow_cytometry_core_tools(tools_code_part)
     }
 
-    book <- c(datatype_part)
+    # Combine each section into one vector
+    book <- c(datatype_part, tools_part)
 
     # Create downloads
     writeLines(book, file.path(paste0(getwd(),"/outtext.md")))

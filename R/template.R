@@ -69,27 +69,41 @@ datatype_txt <- function(
     "#### Metadata, other relevant data, and associated documentation",
     "",
     metadata_part,
-    "",
-    stringi::stri_rand_lipsum(1, start_lipsum = F)
+    ""
   ))
 }
 
 
-toolscode_txt <- function(
+tools_txt <- function(
+    tools_code_part
 ){
   return(c(
     "",
     "### Related Tools, Software and/or Code",
     "",
-    stringi::stri_rand_lipsum(1, start_lipsum = F),
-    "",
-    stringi::stri_rand_lipsum(1, start_lipsum = F),
+    tools_code_part,
+    ""
+  ))
+}
+
+
+standards_txt <- function(
+
+){
+  return(c(
     "",
     "### Standards",
     "",
     stringi::stri_rand_lipsum(1, start_lipsum = F),
-    "",
-    stringi::stri_rand_lipsum(1, start_lipsum = F),
+    ""
+  ))
+}
+
+
+preservation_txt <- function(
+
+){
+  return(c(
     "",
     "### Data Preservation, Access, and Associated Timelines",
     "",
@@ -114,6 +128,15 @@ toolscode_txt <- function(
     "_Whether access to scientific data will be controlled:_",
     "",
     stringi::stri_rand_lipsum(1, start_lipsum = F),
+    ""
+  ))
+}
+
+
+oversight_txt <- function(
+
+){
+  return(c(
     "",
     "### Oversight of Data Management and Sharing",
     "",
@@ -121,4 +144,3 @@ toolscode_txt <- function(
     ""
   ))
 }
-

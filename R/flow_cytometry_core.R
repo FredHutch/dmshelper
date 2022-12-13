@@ -4,7 +4,7 @@
 #' @export
 #'
 #' @examples
-flow_cytometry_core_datatype <- function(input, metadata_part){
+flow_cytometry_core_datatype <- function(input, metadata_part) {
   datatype_txt(
     "<font color='OA799A'>flow cytometers from BD Biosciences and/or Sony Biotechnology</font>",
     "<font color='OA799A'>Flow Cytometry Standard files in FCS format, widely adopted and maintained by the International Society for Advancement of Cytometry (ISAC)</font>",
@@ -24,3 +24,10 @@ flow_cytometry_core_datatype <- function(input, metadata_part){
   )
 }
 
+
+flow_cytometry_core_tools <- function(tools_part) {
+  #length(input)
+  tools_txt(
+    tools_part
+  )
+}

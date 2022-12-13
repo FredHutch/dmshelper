@@ -2,6 +2,7 @@
 
 export(datatype_txt)
 export(flow_cytometry_core_datatype)
+export(list_of_tools)
 export(metadata_long)
 export(metadata_short)
 export(shiny_server)
