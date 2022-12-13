@@ -118,20 +118,30 @@ preservation_txt <- function(
     "#### When and how long the scientific data will be made available",
     "",
     duration_description,
-    "",
-    "#### Access, Distribution, or Reuse Considerations",
-    "",
-    "_Factors affecting subsequent access, distribution, or reuse of scientific data:_",
-    "",
-    stringi::stri_rand_lipsum(1, start_lipsum = F),
-    "",
-    "_Whether access to scientific data will be controlled:_",
-    "",
-    stringi::stri_rand_lipsum(1, start_lipsum = F),
     ""
   ))
 }
 
+
+access_txt <- function(reuse_part, control_part, hs_part){
+  return(c(
+    "",
+    "### Access, Distribution, or Reuse Considerations",
+    "",
+    "#### Factors affecting subsequent access, distribution, or reuse of scientific data",
+    "",
+    reuse_part,
+    "",
+    "#### Whether access to scientific data will be controlled",
+    "",
+    control_part,
+    "",
+    "#### Protections for privacy, rights, and confidentiality of human research participants",
+    "",
+    hs_part,
+    ""
+  ))
+}
 
 oversight_txt <- function(
 

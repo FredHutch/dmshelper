@@ -97,7 +97,7 @@ shiny_ui <- function(){
         textInput("standards_comment", "Insert additional details as appropriate", value = ""),
 
         # PRESERVATION
-        h2("Preservation and Access"),
+        h2("Preservation"),
 
         # Repository subsection
         h4("Repositories"),
@@ -121,6 +121,47 @@ shiny_ui <- function(){
         textInput("timeframe_to_pub", "Timeframe for depositing (e.g., within X months of data generation / at the time of publication)", value = ""),
         textInput("timeframe_longevity", "Timeframe for availability (e.g., duration of the grant funding)", value = ""),
 
+        # ACCESS
+        h2("Access"),
+
+        # Re-use subsection
+        h4("Data Reuse"),
+        selectInput(
+          "reuse",
+          label = "Select a plan for subsequent data access, distribution, or reuse",
+          choices = reuse_choices(),
+          selected = "no_restrictions",
+          multiple = FALSE
+        ),
+        textInput("reuse_raw_file_type", "Raw data type", value = ""),
+        selectInput(
+          "reuse_level",
+          label = "Data level",
+          choices = c("Level 0", "Level 1"),
+          selected = "Level 0",
+          multiple = FALSE
+        ),
+
+        # Controls subsection
+        h4("Data Controls"),
+        selectInput(
+          "controls",
+          label = "Are access controls needed?",
+          choices = c("No controls needed", "Controls needed"),
+          selected = "No controls needed",
+          multiple = FALSE
+        ),
+        textInput("control_comment", label = "Add additional text", value = "submitted to and processed by the NIH-designated data repository under their 'controlled access' process"),
+
+        # Controls subsection
+        h4("Human Subjects"),
+        selectInput(
+          "human_subjects",
+          label = "Are human subjects involved?",
+          choices = c("No", "Yes"),
+          selected = "No",
+          multiple = FALSE
+        ),
       ),
 
       # ------- Preview

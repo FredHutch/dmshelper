@@ -65,6 +65,28 @@ shiny_server <- function(input, output) {
       repository_part <- repository_custom(input)
     }
 
+    # Choose among options for reuse
+    if(input$reuse == "ns_software"){
+      reuse_part <- reuse_ns_software(input)
+    } else {
+      reuse_part <- reuse_no_restrictions()
+      control_part <- control_no_restrictions()
+    }
+
+    # Choose among options for controls
+    if(input$controls == "Controls needed"){
+      control_part <- control_restrictions(input)
+    } else {
+      control_part <- control_no_restrictions()
+    }
+
+    # Choose among options for human subjects
+    if(input$human_subjects == "Yes"){
+      hs_part <- human_subjects()
+    } else {
+      hs_part <- human_subjects_none()
+    }
+
     # Get the text of the datatype part of the plan
     datatype_part <- datatype_txt(
         input$technology_description,
@@ -99,6 +121,8 @@ shiny_server <- function(input, output) {
       duration_description(input)
     )
 
+    access_part <- access_txt(reuse_part, control_part, hs_part)
+
     # Input default text
     if(input$core_datatype == "flow_cytometry"){
       datatype_part <- flow_cytometry_core_datatype(input, metadata_part)
@@ -108,11 +132,11 @@ shiny_server <- function(input, output) {
     }
 
     # Combine each section into one vector
-    book <- c(datatype_part, tools_part, standards_part, preservation_part)
+    book <- c(datatype_part, tools_part, standards_part, preservation_part, access_part)
 
     # Create downloads
     writeLines(book, file.path(paste0(getwd(),"/outtext.md")))
-    rmarkdown::render("outtext.md", output_file = paste0(getwd(),"/outtext.docx"), quiet = TRUE)
+    rmarkdown::render("outtext.md", output_format = rmarkdown::word_document(reference_docx = "doc/template.docx"), output_file = paste0(getwd(),"/outtext.docx"), quiet = TRUE)
 
     # Render preview
     rmarkdown::render("outtext.md", output_format = rmarkdown::html_document(), output_file = paste0(getwd(),"/outtext.html"), quiet = TRUE)
