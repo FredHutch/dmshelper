@@ -12,7 +12,7 @@ services:
         - "traefik.http.routers.dsmphelper.rule=Host(`dsmphelper.fredhutch.org`)"
         - "traefik.http.routers.dsmphelper-secured.rule=Host(`dsmphelper.fredhutch.org`)"
         - "traefik.http.routers.dsmphelper.entrypoints=web,web-secured"
-        - "traefik.http.services.dsmphelper.loadbalancer.server.port=7777" # it seems you always need to give traefik a port so it 'notices' the service
+        - "traefik.http.services.dsmphelper.loadbalancer.server.port=3838" # it seems you always need to give traefik a port so it 'notices' the service
         - "traefik.http.routers.dsmphelper.tls=true"
 
 networks:
