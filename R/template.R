@@ -173,12 +173,12 @@ access_txt <- function(reuse_part, control_part, hs_part){
 #' @export
 #'
 #' @examples
-oversight_txt <- function(){
+oversight_txt <- function(oversight_part){
   return(c(
     "",
     "### Oversight of Data Management and Sharing",
     "",
-    "oversight",
+    oversight_part,
     ""
   ))
 }

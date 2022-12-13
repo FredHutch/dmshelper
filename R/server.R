@@ -75,7 +75,6 @@ shiny_server <- function(input, output, session) {
       reuse_part <- reuse_ns_software(input)
     } else {
       reuse_part <- reuse_no_restrictions()
-      control_part <- control_no_restrictions()
     }
 
     # Choose among options for controls
@@ -90,6 +89,15 @@ shiny_server <- function(input, output, session) {
       hs_part <- human_subjects()
     } else {
       hs_part <- human_subjects_none()
+    }
+
+    # Choose among options for oversight
+    if(input$oversight_method == "Laboratory Staff"){
+      oversight_part <- oversight_lab(input)
+    } else if (input$oversight_method == "External Collaborator"){
+      oversight_part <- oversight_collaborator(input)
+    } else {
+      oversight_part <- oversight_self(input)
     }
 
     # ------
@@ -112,10 +120,12 @@ shiny_server <- function(input, output, session) {
 
     access_part <- access_txt(reuse_part, control_part, hs_part)
 
+    oversight_part <- oversight_txt(oversight_part)
+
     # -----
 
     # Combine each section into one vector
-    book <- c(datatype_part, tools_part, standards_part, preservation_part, access_part)
+    book <- c(datatype_part, tools_part, standards_part, preservation_part, access_part, oversight_part)
 
     # Create downloads
     writeLines(book, file.path(paste0(getwd(), "/outtext.md")))

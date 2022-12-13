@@ -26,23 +26,23 @@ shiny_ui <- function(){
         # Data types and amounts
         h4("Data Type & Amount"),
         textInput("technology_description", "Data generating technology", value = ""),
-        textInput("raw_file_description", "Raw data file description", value = ""),
-        textInput("avg_file_size", "Average file size", value = ""),
+        textInput("raw_file_description", "Raw data file type and description", value = ""),
+        textInput("avg_file_size", "Average file size (e.g., in MB or GB)", value = ""),
         textInput("total_samples_files", "Total number of samples/files to be collected", value = ""),
         textInput("data_volume", "Total data volume", value = ""),
         textInput("raw_file_type", "Raw data file type", value = ""),
         textInput("brief_pipeline_description", "Brief pipeline description", value = ""),
         textInput("processsed_file_description", "Processed file description", value = ""),
-        textInput("avg_processed_file_size", "Average processed file size", value = ""),
+        textInput("avg_processed_file_size", "Average processed file size (e.g., in MB or GB)", value = ""),
         textInput("total_processed_samples_files", "Total number of processed samples/files to be collected", value = ""),
         textInput("data_processed_volume", "Total processed data volume", value = ""),
-        textInput("datatype_comment", label = "Add additional text", value = ""),
+        textInput("datatype_comment", label = "Optional: add additional text about data types", value = ""),
 
         # Sharing
         h4("Sharing"),
         textInput("shared_technologies", "Technologies and processed data to be shared", value = ""),
         selectInput("notshared",
-                    label = "Select: justification for not sharing",
+                    label = "Select: justifications if not sharing data",
                     choices = data_not_shared(),
                     selected = "\nWe anticipate all data will be able to be preserved and shared.",
                     multiple = TRUE),
@@ -51,16 +51,17 @@ shiny_ui <- function(){
         h4("Metadata"),
         selectInput(
           "metadata_desc",
-          label = "Choose: short and/or long metadata description",
+          label = "Select: short and/or long metadata description",
           choices =
             c("Short Description" = "short",
               "Long Description" = "long"),
           selected = "long",
           multiple = TRUE
         ),
-        textInput("metadata_descriptors", "Metadata descriptors", value = ""),
-        textInput("metadata_collection", "Process for collecting metadata", value = ""),
-        textInput("fair_standards", "if it exists, insert FAIR standards for data type from here (see https://www.nature.com/articles/sdata201618)", value = ""),
+        textInput("metadata_descriptors", "Metadata descriptor(s) (e.g., instrument output, medical records information", value = ""),
+        textInput("metadata_collection", "Process/guidelines for collecting metadata", value = ""),
+        textInput("fair_standards", "if it exists, FAIR standards for data type", value = ""),
+        HTML('<a href="https://www.nature.com/articles/sdata201618">More about FAIR standards here</a><br><br>'),
         textInput("metadata_location", "Location where metadata will be deposited", value = ""),
 
         # II
@@ -68,7 +69,7 @@ shiny_ui <- function(){
         h3("Tools/Code"),
         selectInput(
           "open_source_level",
-          label = "Select a level of development transparency",
+          label = "Select: level of development transparency",
           choices =
             c("Microsoft Office" = "office",
               "Open Source" = "opensource",
@@ -79,21 +80,21 @@ shiny_ui <- function(){
         ),
         selectInput(
           "version_control",
-          label = "Select a version control method",
+          label = "Select: version control method",
           choices = c("GitHub", "GitLab", "BitBucket"),
           selected = "GitHub",
           multiple = FALSE
         ),
         selectInput(
           "tool",
-          label = "Select all that apply",
+          label = "Select: code type (all that apply)",
           choices = list_of_tools(),
           selected = "R scripts",
           multiple = TRUE
         ),
         selectInput(
           "platform",
-          label = "Select all that apply",
+          label = "Select: platform (all that apply)",
           choices = list_of_platforms(),
           selected = "CRAN",
           multiple = TRUE
@@ -102,8 +103,8 @@ shiny_ui <- function(){
         # III
         # STANDARDS
         h3("Standards"),
-        textInput("standards_description", "Standard creation organization and description", value = ""),
-        textInput("standards_comment", "Insert additional details as appropriate", value = ""),
+        textInput("standards_description", "Standard creator/organization and description", value = ""),
+        textInput("standards_comment", "Optional: additional details as appropriate", value = ""),
 
         # IV
         # PRESERVATION
@@ -113,14 +114,14 @@ shiny_ui <- function(){
         h4("Repositories"),
         selectInput(
           "repository",
-          label = "Select a repository where scientific data and metadata",
+          label = "Select: custom repository or established method",
           choices = repository_choices(),
           selected = "custom",
           multiple = FALSE
         ),
-        textInput("repository_data_type", "Custom: repository data type", value = ""),
-        textInput("chosen_repositories", "Custom: list repository", value = ""),
-        textInput("sensitive_data_type", "None (sensitive data): list sensitive data types", value = ""),
+        textInput("repository_data_type", "Repository data type", value = ""),
+        textInput("chosen_repositories", "Repository", value = ""),
+        textInput("sensitive_data_type", "Sensitive data types (if applicable)", value = ""),
 
         # FAIR
         h4("Findability"),
@@ -139,15 +140,15 @@ shiny_ui <- function(){
         h4("Data Reuse"),
         selectInput(
           "reuse",
-          label = "Select a plan for subsequent data access, distribution, or reuse",
+          label = "Select: plan for subsequent data access, distribution, or reuse",
           choices = reuse_choices(),
           selected = "no_restrictions",
           multiple = FALSE
         ),
-        textInput("reuse_raw_file_type", "Raw data type", value = ""),
+        textInput("reuse_raw_file_type", "Raw data type(s)", value = ""),
         selectInput(
           "reuse_level",
-          label = "Data level",
+          label = "Select: data level",
           choices = c("Level 0", "Level 1"),
           selected = "Level 0",
           multiple = FALSE
@@ -157,18 +158,18 @@ shiny_ui <- function(){
         h4("Data Controls"),
         selectInput(
           "controls",
-          label = "Are access controls needed?",
+          label = "Select: are access controls needed?",
           choices = c("No controls needed", "Controls needed"),
           selected = "No controls needed",
           multiple = FALSE
         ),
-        textInput("control_comment", label = "Add additional text", value = "submitted to and processed by the NIH-designated data repository under their 'controlled access' process"),
+        textInput("control_comment", label = "Optional: add additional control details", value = "submitted to and processed by the NIH-designated data repository under their 'controlled access' process"),
 
         # Human subjects
         h4("Human Subjects"),
         selectInput(
           "human_subjects",
-          label = "Are human subjects involved?",
+          label = "Select: are human subjects involved?",
           choices = c("No", "Yes"),
           selected = "No",
           multiple = FALSE
@@ -177,6 +178,16 @@ shiny_ui <- function(){
         # V
         # OVERSIGHT
         h3("Oversight"),
+        selectInput(
+          "oversight_method",
+          label = "Select: who will conduct the oversight?",
+          choices = c("Proposal Team", "Laboratory Staff", "External Collaborator"),
+          selected = "Proposal Team",
+          multiple = FALSE
+        ),
+        textInput("name_role", label = "Oversight lead (e.g., Name and role)", value = ""),
+        textInput("review_frequency", label = "Review frequency (e.g., twice annually)", value = ""),
+        textInput("review_addtnl", label = "Additional review points (e.g., when publications are accepted)", value = ""),
 
       ),
 
