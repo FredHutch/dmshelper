@@ -4,7 +4,7 @@
 \alias{shiny_server}
 \title{Title}
 \usage{
-shiny_server(input, output)
+shiny_server(input, output, session)
 }
 \arguments{
 \item{output}{}

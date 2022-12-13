@@ -117,7 +117,8 @@ fair_description <- function(input) {
       "<font color='OA799A'>",
       input$chosen_repositories,
       "</font> provide stable IDs to <font color='OA799A'>",
-      input$fair_id_level, "</font>. ")
+      input$fair_comment,
+      "</font>")
   )
 }
 
@@ -135,8 +136,8 @@ duration_description <- function(input) {
       "<font color='OA799A'>",
       input$repository_data_type,
       "</font> will be deposited in <font color='OA799A'>",
-      input$chosen_repository,
-      "</font> will be deposited in <font color='OA799A'>",
+      input$chosen_repositories,
+      " ",
       input$timeframe_to_pub,
       "</font> and preserved for <font color='OA799A'>",
       input$timeframe_longevity,

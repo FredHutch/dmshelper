@@ -16,19 +16,7 @@
 #' @export
 #'
 #' @examples
-datatype_txt <- function(
-    raw_part,
-    total_samples_files,
-    data_volume,
-    processed_part,
-    avg_processed_file_size,
-    total_processed_samples_files,
-    data_processed_volume,
-    datatype_comment,
-    shared_technologies,
-    notshared,
-    metadata_part
-){
+datatype_txt <- function(input, metadata_part){
   return(c(
     "",
     "## Data Sharing and Management Plan",
@@ -39,29 +27,35 @@ datatype_txt <- function(
     "",
     "_Our proposal will generate raw data of the following types and sizes:_",
     "",
-    raw_part,
-    paste0("**Number of Files:** We anticipate collecting data from <font color='OA799A'>", total_samples_files, "</font> for a total data volume of <font color='OA799A'>", data_volume, "</font>. "),
+    paste0("**Technology:** We will generate data using <font color='OA799A'>", input$technology_description, "</font>. "),
+    paste0("**File Type:** Data for this study will generate <font color='OA799A'>", input$raw_file_description, "</font>. "),
+    paste0("The amount of data generated per sample is <font color='OA799A'>", input$avg_file_size, "</font>. "),
+    paste0("**Number of Files:** We anticipate collecting data from <font color='OA799A'>", input$total_samples_files, "</font> for a total data volume of <font color='OA799A'>", input$data_volume, "</font>. "),
     "",
     "_Our proposal will generate processed data of the following types and sizes:_",
     "",
-    processed_part,
-    paste0("The amount of data generated per sample is <font color='OA799A'>", avg_processed_file_size, "</font>. "),
-    paste0("**Number of Files:** We anticipate generating <font color='OA799A'>", total_processed_samples_files, "</font> for a total data volume of <font color='OA799A'>", data_processed_volume, "</font>. "),
+    paste0("**Technology:** We will process the <font color='OA799A'>", input$raw_file_type, "</font> using <font color='OA799A'>", input$brief_pipeline_description, "</font>. "),
+    paste0("**File Type:** The data processing will result in <font color='OA799A'>", input$processsed_file_description, "</font>. "),
+    paste0("The amount of data generated per sample is <font color='OA799A'>", input$avg_processed_file_size, "</font>. "),
+    paste0("**Number of Files:** We anticipate generating <font color='OA799A'>", input$total_processed_samples_files, "</font> for a total data volume of <font color='OA799A'>", input$data_processed_volume, "</font>. "),
     "",
-    paste0("<font color='OA799A'>", datatype_comment, "</font>"),
+    paste0("<font color='OA799A'>", input$datatype_comment, "</font>"),
     "",
     "#### Scientific data that will be preserved and shared, and the rationale for doing so",
     "",
     "_Our proposal will preserve and share the following types of data:_",
     "",
-    paste0("<font color='OA799A'>", shared_technologies, "</font> will be preserved and shared to facilitate re-analysis and re-use of the data by other investigators."),
+    paste0("<font color='OA799A'>", input$shared_technologies, "</font> will be preserved and shared to facilitate re-analysis and re-use of the data by other investigators."),
     "",
     "_Our proposal will not preserve and share the following data types:_",
-    notshared,
+    "",
+    paste("<font color='OA799A'>", input$notshared, "</font>", sep = "\n"),
     "",
     "#### Metadata, other relevant data, and associated documentation",
     "",
+    "<font color='OA799A'>",
     metadata_part,
+    "</font>",
     ""
   ))
 }
@@ -101,7 +95,7 @@ standards_txt <- function(input){
     "",
     "### Standards",
     "",
-    paste0("The data produced in this project will be collected using the standards established by <font color='OA799A'>", input$standards_description, ". ", input$standards_comment, "</font>. "),
+    paste0("The data produced in this project will be collected using <font color='OA799A'>", input$standards_description, ". ", input$standards_comment, "</font>. "),
     ""
   ))
 }

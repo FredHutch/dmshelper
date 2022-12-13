@@ -4,19 +4,7 @@
 \alias{datatype_txt}
 \title{Title}
 \usage{
-datatype_txt(
-  raw_part,
-  total_samples_files,
-  data_volume,
-  processed_part,
-  avg_processed_file_size,
-  total_processed_samples_files,
-  data_processed_volume,
-  datatype_comment,
-  shared_technologies,
-  notshared,
-  metadata_part
-)
+datatype_txt(input, metadata_part)
 }
 \arguments{
 \item{metadata_part}{}

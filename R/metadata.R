@@ -40,7 +40,7 @@ metadata_long <- function(input) {
       input$raw_file_type,
       "</font>, saved as a plain text file and uploaded to <font color='OA799A'>",
       input$metadata_location,
-      "</font>. For more information on data formatting see https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989. Information for human data about de-identification can be found here https://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/index.html#standard."
+      "</font>. [For more information on data formatting see https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989. Information for human data about de-identification can be found here https://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/index.html#standard.]"
     )
   )
 }

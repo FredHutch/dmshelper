@@ -12,16 +12,19 @@ shiny_ui <- function(){
     sidebarLayout(
       sidebarPanel(
 
+        h2("NIH DSMP Helper"),
+
+        selectInput("core_datatype", "Choose a default Fred Hutch Core Discipline to get started with some suggested text!",
+                    c("None Selected (Custom)" = "none",
+                      "Flow Cytometry Core" = "flow_cytometry",
+                      "Electron Microscopy Core" = "electron_microscopy")),
+
         # I
         # DATA TYPE
-        h2("Data Type"),
+        h3("Data Type"),
 
         # Data types and amounts
         h4("Data Type & Amount"),
-        selectInput("core_datatype", "Choose a default Fred Hutch Core:",
-                    c("None Selected" = "none",
-                      "Flow Cytometry Core" = "flow_cytometry",
-                      "Electron Microscopy Core" = "electron_microscopy")),
         textInput("technology_description", "Data generating technology", value = ""),
         textInput("raw_file_description", "Raw data file description", value = ""),
         textInput("avg_file_size", "Average file size", value = ""),
@@ -39,7 +42,7 @@ shiny_ui <- function(){
         h4("Sharing"),
         textInput("shared_technologies", "Technologies and processed data to be shared", value = ""),
         selectInput("notshared",
-                    label = "Reasons for not sharing",
+                    label = "Select: justification for not sharing",
                     choices = data_not_shared(),
                     selected = "\nWe anticipate all data will be able to be preserved and shared.",
                     multiple = TRUE),
@@ -48,11 +51,11 @@ shiny_ui <- function(){
         h4("Metadata"),
         selectInput(
           "metadata_desc",
-          label = "Metadata (short and/or long)",
+          label = "Choose: short and/or long metadata description",
           choices =
             c("Short Description" = "short",
               "Long Description" = "long"),
-          selected = "short",
+          selected = "long",
           multiple = TRUE
         ),
         textInput("metadata_descriptors", "Metadata descriptors", value = ""),
@@ -62,7 +65,7 @@ shiny_ui <- function(){
 
         # II
         # TOOLS / SOFTWARE / CODE
-        h2("Tools/Code"),
+        h3("Tools/Code"),
         selectInput(
           "open_source_level",
           label = "Select a level of development transparency",
@@ -98,13 +101,13 @@ shiny_ui <- function(){
 
         # III
         # STANDARDS
-        h2("Standards"),
+        h3("Standards"),
         textInput("standards_description", "Standard creation organization and description", value = ""),
         textInput("standards_comment", "Insert additional details as appropriate", value = ""),
 
         # IV
         # PRESERVATION
-        h2("Preservation"),
+        h3("Preservation"),
 
         # Repository
         h4("Repositories"),
@@ -121,7 +124,7 @@ shiny_ui <- function(){
 
         # FAIR
         h4("Findability"),
-        textInput("fair_id_level", "Findable: list the level of ID", value = ""),
+        textInput("fair_comment", "Description of level of findability", value = ""),
 
         # Timeframe
         h4("Timeframe"),
@@ -130,7 +133,7 @@ shiny_ui <- function(){
 
         # V
         # ACCESS
-        h2("Access"),
+        h3("Access"),
 
         # Reuse
         h4("Data Reuse"),
@@ -173,7 +176,7 @@ shiny_ui <- function(){
 
         # V
         # OVERSIGHT
-        h2("Oversight"),
+        h3("Oversight"),
 
       ),
 
