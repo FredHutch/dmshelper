@@ -17,7 +17,7 @@ shiny_ui <- function(){
         h2("Data Type"),
 
         # Data types and amounts
-        h2("Data Type & Amount"),
+        h4("Data Type & Amount"),
         selectInput("core_datatype", "Choose a default Fred Hutch Core:",
                     c("None Selected" = "none",
                       "Flow Cytometry Core" = "flow_cytometry",
