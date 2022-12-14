@@ -6,6 +6,9 @@
 \usage{
 datatype_comment(input)
 }
+\arguments{
+\item{input}{}
+}
 \description{
 Title
 }
