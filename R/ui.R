@@ -17,6 +17,10 @@ shiny_ui <- function(){
         selectInput("core_datatype", "Choose a default Fred Hutch Core Discipline to get started with some suggested text!",
                     c("None Selected (Custom)" = "none",
                       "Antibody Technology Core" = "antibody_tech",
+                      "Cellular Imaging Core" = "cellular_imaging",
+                      "Electron Microscopy - TEM" = "em_tem",
+                      "Electron Microscopy - SEM" = "em_sem",
+                      "Electron Microscopy - CryoEM" = "em_cryoem",
                       "Flow Cytometry Core" = "flow_cytometry",
                       "Electron Microscopy Core" = "electron_microscopy")),
 
@@ -69,11 +73,18 @@ shiny_ui <- function(){
         # TOOLS / SOFTWARE / CODE
         h3("Tools/Code"),
         selectInput(
+          "manipulation",
+          label = "Select: add a custom data manipulation statement?",
+          choices = c("No", "Yes"),
+          selected = "Yes",
+          multiple = FALSE
+        ),
+        textInput("data_manipulation_tool", "Tool used for data manipulation", value = "standard office suite spreadsheet software"),
+        selectInput(
           "open_source_level",
           label = "Select: level of development transparency",
           choices =
-            c("Microsoft Office" = "office",
-              "Open Source" = "opensource",
+            c("Open Source" = "opensource",
               "Semi-Open Source" = "semiopen",
               "Proprietary" = "proprietary"),
           selected = "opensource",

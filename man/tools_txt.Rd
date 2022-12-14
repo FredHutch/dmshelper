@@ -4,7 +4,7 @@
 \alias{tools_txt}
 \title{Title}
 \usage{
-tools_txt(tools_code_part)
+tools_txt(manipulation_part, tools_code_part)
 }
 \arguments{
 \item{tools_code_part}{}

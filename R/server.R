@@ -41,6 +41,18 @@ shiny_server <- function(input, output, session) {
       if(toggle_example_txt$core_datatype == "antibody_tech"){
         antibody_tech_update(session)
       }
+      if(toggle_example_txt$core_datatype == "cellular_imaging"){
+        cellular_imaging_update(session)
+      }
+      if(toggle_example_txt$core_datatype == "em_tem"){
+        em_tem_update(session)
+      }
+      if(toggle_example_txt$core_datatype == "em_sem"){
+        em_sem_update(session)
+      }
+      if(toggle_example_txt$core_datatype == "em_cryoem"){
+        em_cryoem_update(session)
+      }
       if(toggle_example_txt$core_datatype == "flow_cytometry"){
         flow_cytometry_update(session)
       }
@@ -60,13 +72,18 @@ shiny_server <- function(input, output, session) {
       metadata_part <- ""
     }
 
+    # Choose yes or no for manipulation statemenet
+    if(input$manipulation == "Yes"){
+      manipulation_part <- manipulation_custom(input)
+    } else {
+      manipulation_part <- ""
+    }
+
     # Choose between three options for tools
     if(input$open_source_level == "semiopen"){
       tools_code_part <- tools_semiopen(input)
     } else if (input$open_source_level == "proprietary"){
       tools_code_part <- tools_proprietary()
-    } else if (input$open_source_level == "office"){
-      tools_code_part <- tools_office()
     } else {
       tools_code_part <- tools_open(input)
     }
@@ -122,7 +139,7 @@ shiny_server <- function(input, output, session) {
     datatype_part <- datatype_txt(input, metadata_part)
 
     # Get the text for the tool part of the plan
-    tools_part <- tools_txt(tools_code_part)
+    tools_part <- tools_txt(manipulation_part, tools_code_part)
 
     # Get the text for the standards part of the plan
     standards_part <- standards_txt(input)
