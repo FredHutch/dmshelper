@@ -16,7 +16,7 @@ cellular_imaging_update <- function(session){
   shiny::updateTextInput(session, "raw_file_type", value = "")
   shiny::updateTextInput(session, "brief_pipeline_description", value = "")
   shiny::updateTextInput(session, "processsed_file_description", value = "")
-  # shiny::updateTextInput(session, "avg_processed_file_size", value = "")
+  shiny::updateTextInput(session, "avg_processed_file_size", value = "")
   # shiny::updateTextInput(session, "total_processed_samples_files", value = "")
   # shiny::updateTextInput(session, "data_processed_volume", value = "")
   shiny::updateTextInput(session, "datatype_comment", value = "")
