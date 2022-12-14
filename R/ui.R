@@ -6,6 +6,8 @@
 #' @examples
 shiny_ui <- function(){
   fluidPage(
+    tags$style(type="text/css", ".recalculating {opacity: 1.0;}"),
+
     titlePanel(""),
 
     # ------- User Inputs
@@ -211,7 +213,8 @@ shiny_ui <- function(){
         downloadButton("downloadmd", label = "Download .md"),
 
         # HTML preview
-        htmlOutput("html_preview")
+        htmlOutput("html_preview"),
+
       )
     )
   )
