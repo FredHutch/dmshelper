@@ -1,16 +1,7 @@
 #' Title
 #'
-#' @param total_samples_files
-#' @param data_volume
-#' @param avg_processed_file_size
-#' @param total_processed_samples_files
-#' @param data_processed_volume
-#' @param raw_part
-#' @param processed_part
-#' @param datatype_comment
-#' @param shared_technologies
-#' @param notshared
 #' @param metadata_part
+#' @param input
 #'
 #' @return
 #' @export
@@ -61,6 +52,7 @@ datatype_txt <- function(input, metadata_part){
 #' Title
 #'
 #' @param tools_code_part
+#' @param manipulation_part
 #'
 #' @return
 #' @export
@@ -168,6 +160,8 @@ access_txt <- function(reuse_part, control_part, hs_part){
 
 
 #' Title
+#'
+#' @param oversight_part
 #'
 #' @return
 #' @export
