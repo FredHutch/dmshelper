@@ -182,3 +182,33 @@ oversight_txt <- function(oversight_part){
     ""
   ))
 }
+
+
+#' Title
+#'
+#' @param session
+#'
+#' @return
+#' @export
+#'
+#' @examples
+custom_update <- function(session){
+  # DATATYPE
+  shiny::updateTextInput(session, "technology_description", value = "")
+  shiny::updateTextInput(session, "raw_file_description", value = "")
+  shiny::updateTextInput(session, "avg_file_size", value = "")
+  shiny::updateTextInput(session, "raw_file_type", value = "")
+  shiny::updateTextInput(session, "brief_pipeline_description", value = "")
+  shiny::updateTextInput(session, "processsed_file_description", value = "")
+  shiny::updateTextInput(session, "datatype_comment", value = "")
+  shiny::updateTextInput(session, "shared_technologies", value = "")
+
+  # STANDARDS
+  shiny::updateTextInput(session, "standards_description", value = "")
+
+  # PRESERVATION
+  shiny::updateTextInput(session, "repository_data_type", value = "")
+  shiny::updateTextInput(session, "chosen_repositories", value = "")
+  shiny::updateTextInput(session, "fair_comment", value = "")
+
+}

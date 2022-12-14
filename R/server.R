@@ -26,10 +26,24 @@ shiny_server <- function(input, output, session) {
   # ------- Render the preview and the files for download
   output$html_preview <- renderUI({
 
-    # Populate some default text
-    if(input$core_datatype == "flow_cytometry"){
-      flow_cytometry_update(session)
-    }
+    toggle_default_txt <- reactiveValues(core_datatype = "none")
+
+    observeEvent(input$core_datatype,{
+      req(input$core_datatype != toggle_default_txt$core_datatype)
+      toggle_default_txt$core_datatype <- input$core_datatype
+
+      # Populate some default text
+      if(toggle_default_txt$core_datatype == "none"){
+        custom_update(session)
+      }
+      if(toggle_default_txt$core_datatype == "antibody_tech"){
+        antibody_tech_update(session)
+      }
+      if(toggle_default_txt$core_datatype == "flow_cytometry"){
+        flow_cytometry_update(session)
+      }
+
+    },ignoreInit = TRUE)
 
     # Choose between two options for metadata description (short and long)
     if(length(input$metadata_desc) == 2){
@@ -121,6 +135,13 @@ shiny_server <- function(input, output, session) {
     access_part <- access_txt(reuse_part, control_part, hs_part)
 
     oversight_part <- oversight_txt(oversight_part)
+
+    # -----
+
+    # Small tweaks for specific core examples
+    if(input$core_datatype == "antibody_tech"){
+      datatype_part <- datatype_part[-8:-21]
+    }
 
     # -----
 

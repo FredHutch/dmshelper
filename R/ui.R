@@ -16,6 +16,7 @@ shiny_ui <- function(){
 
         selectInput("core_datatype", "Choose a default Fred Hutch Core Discipline to get started with some suggested text!",
                     c("None Selected (Custom)" = "none",
+                      "Antibody Technology Core" = "antibody_tech",
                       "Flow Cytometry Core" = "flow_cytometry",
                       "Electron Microscopy Core" = "electron_microscopy")),
 
@@ -121,6 +122,7 @@ shiny_ui <- function(){
         ),
         textInput("repository_data_type", "Repository data type", value = ""),
         textInput("chosen_repositories", "Repository", value = ""),
+        textInput("controlled_repositories", "Repository (controlled data)", value = ""),
         textInput("sensitive_data_type", "Sensitive data types (if applicable)", value = ""),
 
         # FAIR

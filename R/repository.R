@@ -12,7 +12,9 @@ repository_custom <- function(input) {
       input$repository_data_type,
       "</font> will be <font color='OA799A'>",
       input$chosen_repositories,
-      "</font> for data that can be made publicly available."
+      "</font> for data that can be made publicly available and <font color='OA799A'>",
+      input$controlled_repositories,
+      "</font> for data that require access controls.<font color='OA799A'>"
     )
   )
 }

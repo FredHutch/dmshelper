@@ -14,6 +14,7 @@ flow_cytometry_update <- function(session){
   shiny::updateTextInput(session, "raw_file_type", value = "raw FCS files")
   shiny::updateTextInput(session, "brief_pipeline_description", value = "software such as FloJo to yield summary tables of comparable cell groupings")
   shiny::updateTextInput(session, "processsed_file_description", value = "tabular data in CSV/TSV format")
+  shiny::updateTextInput(session, "datatype_comment", value = "")
   shiny::updateTextInput(session, "shared_technologies", value = "Raw FCS and processed CSV/TSV data")
 
   # STANDARDS
