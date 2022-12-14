@@ -6,7 +6,7 @@
 #' @examples
 shiny_ui <- function(){
   fluidPage(
-    tags$style(type="text/css", ".recalculating {opacity: 1.0;}"),
+    #tags$style(type="text/css", ".recalculating {opacity: 1.0;}"),
 
     titlePanel(""),
 
@@ -62,7 +62,7 @@ shiny_ui <- function(){
           choices =
             c("Short Description" = "short",
               "Long Description" = "long"),
-          selected = "long",
+          selected = "short",
           multiple = TRUE
         ),
         textInput("metadata_descriptors", "Metadata descriptor(s) (e.g., instrument output, medical records information", value = ""),

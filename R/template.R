@@ -39,7 +39,7 @@ datatype_txt <- function(input, metadata_part){
     paste0("The amount of data generated per sample is <font color='OA799A'>", input$avg_processed_file_size, "</font>. "),
     paste0("**Number of Files:** We anticipate generating <font color='OA799A'>", input$total_processed_samples_files, "</font> for a total data volume of <font color='OA799A'>", input$data_processed_volume, "</font>. "),
     "",
-    paste0("<font color='OA799A'>", input$datatype_comment, "</font>"),
+    datatype_comment(input),
     "",
     "#### Scientific data that will be preserved and shared, and the rationale for doing so",
     "",
@@ -48,14 +48,11 @@ datatype_txt <- function(input, metadata_part){
     paste0("<font color='OA799A'>", input$shared_technologies, "</font> will be preserved and shared to facilitate re-analysis and re-use of the data by other investigators."),
     "",
     "_Our proposal will not preserve and share the following data types:_",
-    "",
     paste("<font color='OA799A'>", input$notshared, "</font>", sep = "\n"),
     "",
     "#### Metadata, other relevant data, and associated documentation",
     "",
-    "<font color='OA799A'>",
     metadata_part,
-    "</font>",
     ""
   ))
 }
