@@ -26,20 +26,22 @@ shiny_server <- function(input, output, session) {
   # ------- Render the preview and the files for download
   output$html_preview <- renderUI({
 
-    toggle_default_txt <- reactiveValues(core_datatype = "none")
-
+    # The following populates example text but allows user changes as long
+    # as the selected core (core_datatype) is not changed.
+    toggle_example_txt <- reactiveValues(core_datatype = "none")
     observeEvent(input$core_datatype,{
-      req(input$core_datatype != toggle_default_txt$core_datatype)
-      toggle_default_txt$core_datatype <- input$core_datatype
+      req(input$core_datatype != toggle_example_txt$core_datatype)
+      toggle_example_txt$core_datatype <- input$core_datatype
 
-      # Populate some default text
-      if(toggle_default_txt$core_datatype == "none"){
+      # Update according to the core selected
+      if(toggle_example_txt$core_datatype == "none"){
+        # This is the default
         custom_update(session)
       }
-      if(toggle_default_txt$core_datatype == "antibody_tech"){
+      if(toggle_example_txt$core_datatype == "antibody_tech"){
         antibody_tech_update(session)
       }
-      if(toggle_default_txt$core_datatype == "flow_cytometry"){
+      if(toggle_example_txt$core_datatype == "flow_cytometry"){
         flow_cytometry_update(session)
       }
 
@@ -69,7 +71,7 @@ shiny_server <- function(input, output, session) {
       tools_code_part <- tools_open(input)
     }
 
-    # Choose among some default options for repository
+    # Choose among some example options for repository
     if(input$repository == "dbgap_3"){
       repository_part <- repository_dbgap_3()
     } else if (input$repository == "gene_3"){
