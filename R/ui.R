@@ -39,7 +39,8 @@ shiny_ui <- function() {
         # DATA TYPE
         box(
           title = "Data Type",
-          collapsible = T,
+          collapsible = TRUE,
+          collapsed = TRUE,
           width = NULL,
 
           # Data types and amounts
@@ -93,7 +94,8 @@ shiny_ui <- function() {
         # Sharing
         box(
           title = "Sharing",
-          collapsible = T,
+          collapsible = TRUE,
+          collapsed = TRUE,
           width = NULL,
 
           textInput(
@@ -114,7 +116,8 @@ shiny_ui <- function() {
         # Metadata
         box(
           title = "Metadata",
-          collapsible = T,
+          collapsible = TRUE,
+          collapsed = TRUE,
           width = NULL,
 
           selectInput(
@@ -157,7 +160,8 @@ shiny_ui <- function() {
         # TOOLS / SOFTWARE / CODE
         box(
           title = "Tools/Code",
-          collapsible = T,
+          collapsible = TRUE,
+          collapsed = TRUE,
           width = NULL,
 
           selectInput(
@@ -211,7 +215,8 @@ shiny_ui <- function() {
         # STANDARDS
         box(
           title = "Standards",
-          collapsible = T,
+          collapsible = TRUE,
+          collapsed = TRUE,
           width = NULL,
 
           textInput(
@@ -230,7 +235,8 @@ shiny_ui <- function() {
         # PRESERVATION
         box(
           title = "Preservation",
-          collapsible = T,
+          collapsible = TRUE,
+          collapsed = TRUE,
           width = NULL,
 
           # Repository
@@ -277,7 +283,8 @@ shiny_ui <- function() {
         # ACCESS
         box(
           title = "Access",
-          collapsible = T,
+          collapsible = TRUE,
+          collapsed = TRUE,
           width = NULL,
 
           # Reuse
@@ -326,7 +333,8 @@ shiny_ui <- function() {
         # OVERSIGHT
         box(
           title = "Oversight",
-          collapsible = T,
+          collapsible = TRUE,
+          collapsed = TRUE,
           width = NULL,
 
           selectInput(
@@ -339,27 +347,33 @@ shiny_ui <- function() {
           textInput("name_role", label = "Oversight lead (e.g., Name and role)", value = ""),
           textInput("review_frequency", label = "Review frequency (e.g., twice annually)", value = ""),
           textInput("review_addtnl", label = "Additional review points (e.g., when publications are accepted)", value = "")
-        ),
-
-        # Hutch logo
-        HTML(
-          '
-          <a href="https://hutchdatascience.org/">
-            <img src="https://raw.githubusercontent.com/jhudsl/OTTR_Template/main/style-sets/fhdasl/copy_to_assets/big-dasl-stacked.png" align = "center">
-          </a>
-          '
         )
       ),
 
       # ------- Preview
       mainPanel(
         #####
+
+        h4("About this Tool"),
+        HTML("This tool was created by the Fred Hutch Data Science Lab to be an evolving warehouse of template text that can help you develop your NIH Data Management and Sharing Plan (DSMP). Choose from existing examples by selecting a core discipline from the first dropdown on the left. Use the expandable fill-in-the blanks and dropdowns to further customize your text. A preview of your plan will appear below with customized text appearing in <font color='OA799A'><b>blue text</b></font>. You can also <b>download</b> your plan using the buttons below. <br><br> This material has been collected and consolidated from many groups at Fred Hutch including Shared Resources, OSR, and other partners.<br><br>"),
+
         # Download buttons
-        downloadButton("downloaddocx", label = "Download .docx"),
-        downloadButton("downloadmd", label = "Download .md"),
+        downloadButton("downloaddocx", label = "Download .docx", align = "center"),
+        downloadButton("downloadmd", label = "Download .md", align = "center"),
+
+        # Hutch logo
+        HTML(
+          '
+          <br><br>
+          <a href="https://hutchdatascience.org/">
+            <img src="https://hutchdatascience.org/images/big-dasl-narrower-web.png" align = "center" width = "50%">
+          </a>
+          <br><br>
+          '
+        ),
 
         # HTML preview
-        htmlOutput("html_preview"),
+        box(htmlOutput("html_preview"), width = NULL),
 
       )
     )
