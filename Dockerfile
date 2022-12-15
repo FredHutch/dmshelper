@@ -24,6 +24,7 @@ RUN rm -rf /srv/shiny-server/
 RUN mkdir -p /src/shiny-server/
 COPY app/start.R /srv/shiny-server/app.R
 COPY doc /srv/shiny-server/doc/
+COPY doc /srv/shiny-server/inst/
 
 RUN chown -R shiny:shiny /srv/shiny-server/
 EXPOSE 3838
