@@ -7,7 +7,7 @@
 datatype_txt(input, metadata_part)
 }
 \arguments{
-\item{metadata_part}{}
+\item{input}{}
 }
 \description{
 Title

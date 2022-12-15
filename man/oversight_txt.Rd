@@ -6,6 +6,9 @@
 \usage{
 oversight_txt(oversight_part)
 }
+\arguments{
+\item{oversight_part}{}
+}
 \description{
 Title
 }

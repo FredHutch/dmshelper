@@ -7,7 +7,7 @@
 tools_txt(manipulation_part, tools_code_part)
 }
 \arguments{
-\item{tools_code_part}{}
+\item{manipulation_part}{}
 }
 \description{
 Title
