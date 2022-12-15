@@ -1,5 +1,6 @@
 # not run
 library(shiny)
+library(shinydashboard)
 library(dsmphelper)
 
 # devtools::document()
