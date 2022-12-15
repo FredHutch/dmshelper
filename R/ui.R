@@ -7,9 +7,12 @@
 shiny_ui <- function() {
   fluidPage(
     # Styling stuff
-    includeCSS(path = "inst/AdminLTE.css"),
-    includeCSS(path = "inst/shinydashboard.css"),
-    includeScript(path = "inst/app.js"),
+    includeCSS(path = system.file("AdminLTE.css", package="dsmphelper")),
+    includeCSS(path = system.file("shinydashboard.css", package="dsmphelper")),
+    includeScript(path = system.file("app.js", package="dsmphelper")),
+    # includeCSS(path = "inst/AdminLTE.css"),
+    # includeCSS(path = "inst/shinydashboard.css"),
+    # includeScript(path = "inst/app.js"),
 
     titlePanel("NIH DSMP Helper"),
 
