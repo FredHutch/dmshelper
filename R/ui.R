@@ -355,18 +355,25 @@ shiny_ui <- function() {
         #####
 
         h4("About this Tool"),
-        HTML("This tool was created by the Fred Hutch Data Science Lab to be an evolving warehouse of template text that can help you develop your NIH Data Management and Sharing Plan (DSMP). Choose from existing examples by selecting a core discipline from the first dropdown on the left. Use the expandable fill-in-the blanks and dropdowns to further customize your text. A preview of your plan will appear below with customized text appearing in <font color='OA799A'><b>blue text</b></font>. You can also <b>download</b> your plan using the buttons below. <br><br> This material has been collected and consolidated from many groups at Fred Hutch including Shared Resources, OSR, and other partners.<br><br>"),
+        HTML('
+             This tool was created by the <a href="https://hutchdatascience.org/">Fred Hutch Data Science Lab</a> to be an evolving warehouse of template text that can help you develop your NIH Data Management and Sharing Plan (DSMP). Choose from existing examples by selecting a core discipline from the first dropdown on the left. Use the expandable fill-in-the blanks and dropdowns to further customize your text. A preview of your plan will appear below with customized text appearing in <font color="OA799A"><b>blue text</b></font>. You can also <b>download</b> your plan using the buttons below. <br><br>
+
+             Please see our <a href="https://hutchdatascience.org/NIH_Data_Sharing/">NIH Data Sharing Course</a> to learn more about new requirements from the NIH.<br><br>
+
+             This material has been collected and consolidated from many groups at Fred Hutch including Shared Resources, OSR, and other partners.<br><br>
+             '
+        ),
 
         # Download buttons
-        downloadButton("downloaddocx", label = "Download .docx", align = "center"),
-        downloadButton("downloadmd", label = "Download .md", align = "center"),
+        downloadButton("downloaddocx", label = "Download .docx"),
+        downloadButton("downloadmd", label = "Download .md"),
 
         # Hutch logo
         HTML(
           '
           <br><br>
           <a href="https://hutchdatascience.org/">
-            <img src="https://hutchdatascience.org/images/big-dasl-narrower-web.png" align = "center" width = "50%">
+            <img src="https://hutchdatascience.org/images/big-dasl-narrower-web.png" width = "50%">
           </a>
           <br><br>
           '
