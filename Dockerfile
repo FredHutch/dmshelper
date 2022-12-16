@@ -11,6 +11,7 @@ RUN Rscript -e "install.packages('ragg')"
 # Devtools and custom package
 RUN Rscript -e "install.packages('devtools', dependencies=T)"
 RUN Rscript -e "install.packages('shinydashboard')"
+RUN Rscript -e "install.packages('pdftools')"
 # RUN Rscript -e "library(devtools);install_github('FredHutch/dsmphelper')"
 
 # install dsmphelper package

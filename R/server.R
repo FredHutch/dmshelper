@@ -23,6 +23,9 @@ shiny_server <- function(input, output, session) {
     contentType = "text/md"
   )
 
+  #
+  values <- reactiveValues()
+
   # ------- Render the preview and the files for download
   output$html_preview <- renderUI({
 
@@ -175,6 +178,15 @@ shiny_server <- function(input, output, session) {
       output_file = paste0(getwd(), "/outtext.docx"),
       quiet = TRUE
     )
+    rmarkdown::render(
+      "outtext.md",
+      output_format = rmarkdown::pdf_document(),
+      output_file = paste0(getwd(), "/outtext.pdf"),
+      quiet = TRUE
+    )
+    values$page_num <-
+      length(pdftools::pdf_text("outtext.pdf"))
+
 
     # Render preview
     rmarkdown::render(
@@ -184,6 +196,16 @@ shiny_server <- function(input, output, session) {
       quiet = TRUE
     )
     htmltools::HTML(readLines("outtext.html"))
+  })
+
+  page_number <- reactiveValues()
+
+  output$page_number <-  renderText({
+    if(values$page_num <= 2){
+      "<i>Nice work! Your plan is 2 pages or less.</i>"
+    } else {
+      "<font color='f44336'><i>Just a heads up - Your plan exceeds the NIH limit of 2 pages.</i></font>"
+    }
   })
 
 }

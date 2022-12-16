@@ -367,6 +367,7 @@ shiny_ui <- function() {
         # Download buttons
         downloadButton("downloaddocx", label = "Download .docx"),
         downloadButton("downloadmd", label = "Download .md"),
+        htmlOutput("page_number"),
 
         # Hutch logo
         HTML(
