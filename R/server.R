@@ -184,9 +184,6 @@ shiny_server <- function(input, output, session) {
       output_file = paste0(getwd(), "/outtext.pdf"),
       quiet = TRUE
     )
-    values$page_num <-
-      length(pdftools::pdf_text("outtext.pdf"))
-
 
     # Render preview
     rmarkdown::render(
@@ -198,13 +195,20 @@ shiny_server <- function(input, output, session) {
     htmltools::HTML(readLines("outtext.html"))
   })
 
-  page_number <- reactiveValues()
+  values <- reactiveValues()
+  values$page_num <-
+    length(pdftools::pdf_text("outtext.pdf"))
 
   output$page_number <-  renderText({
-    if(values$page_num <= 2){
-      "<i>Nice work! Your plan is 2 pages or less.</i>"
+    if(values$page_num == 0){
+      # "<i>Zero (error)</i>"
+      paste(library(pdftools), values$page_num)
+    } else if(values$page_num == 1 | values$page_num == 2){
+      paste(library(pdftools), values$page_num)
+      # "<i>Nice work! Your plan is 2 pages or less.</i>"
     } else {
-      "<font color='f44336'><i>Just a heads up - Your plan exceeds the NIH limit of 2 pages.</i></font>"
+      paste(library(pdftools), values$page_num)
+      # "<font color='f44336'><i>Just a heads up - Your plan exceeds the NIH limit of 2 pages.</i></font>"
     }
   })
 
