@@ -3,10 +3,10 @@ RUN echo running....
 RUN apt-get update -y
 RUN apt-get install -y pandoc software-properties-common
 
-RUN add-apt-repository -y ppa:cran/poppler
+# RUN add-apt-repository -y ppa:cran/poppler
 
 # Devtools dependencies
-RUN apt-get install -y libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev curl libxml2 libxml2-dev libcurl4-openssl-dev libssl-dev r-cran-openssl  libgit2-dev
+RUN apt-get install -y libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev curl libxml2 libxml2-dev libcurl4-openssl-dev libssl-dev r-cran-openssl  libgit2-dev libpoppler-cpp-dev
 RUN Rscript -e "install.packages('systemfonts')"
 RUN Rscript -e "install.packages('textshaping')"
 RUN Rscript -e "install.packages('ragg')"
