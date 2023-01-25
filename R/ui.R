@@ -358,8 +358,8 @@ shiny_ui <- function() {
         HTML("This tool was created by the Fred Hutch Data Science Lab to be an evolving warehouse of template text that can help you develop your NIH Data Management and Sharing Plan (DSMP). Choose from existing examples by selecting a core discipline from the first dropdown on the left. Use the expandable fill-in-the blanks and dropdowns to further customize your text. A preview of your plan will appear below with customized text appearing in <font color='OA799A'><b>blue text</b></font>. You can also <b>download</b> your plan using the buttons below. <br><br> This material has been collected and consolidated from many groups at Fred Hutch including Shared Resources, OSR, and other partners.<br><br>"),
 
         # Download buttons
-        downloadButton("downloaddocx", label = "Download .docx"),
-        downloadButton("downloadmd", label = "Download .md"),
+        downloadButton("downloaddocx", label = "Download .docx", align = "center"),
+        downloadButton("downloadmd", label = "Download .md", align = "center"),
 
         # Hutch logo
         HTML(
