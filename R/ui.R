@@ -34,8 +34,8 @@ shiny_ui <- function() {
             "Experimental Histopathology - Polaris Platform" = "eh_polaris",
             "Experimental Histopathology - Vectra images" = "eh_vectra",
             "Flow Cytometry Core" = "flow_cytometry",
-            "Genomics & Bioinformatics" = "genomics",
-            "Immune Monitoring" = "immune"
+            "Genomics & Bioinformatics Core" = "genomics",
+            "Immune Monitoring Core" = "immune"
           )
         ),
 
