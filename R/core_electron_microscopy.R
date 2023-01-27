@@ -10,7 +10,7 @@ em_tem_update <- function(session){
   # DATATYPE
   shiny::updateTextInput(session, "technology_description", value = "ThermoFisher Talos L120C TEM instrumentation with ThermoFisher TEM Imaging and Analysis software (TIA) (version 5.3 SP1) or Leginon (version 3.6)")
   shiny::updateTextInput(session, "raw_file_description", value = "high-resolution TEM images in .ser, .emi,TIFF formats (TIA software), and .mrc (Leginon)")
-  shiny::updateTextInput(session, "avg_file_size", value = "1.6 GB (TIA), or 50 MB/image (Leginon)")
+  shiny::updateTextInput(session, "avg_file_size", value = "is 1.6 GB (TIA), or 50 MB/image (Leginon)")
   # shiny::updateTextInput(session, "total_samples_files", value = "")
   # shiny::updateTextInput(session, "data_volume", value = "")
   shiny::updateTextInput(session, "raw_file_type", value = "")
@@ -20,6 +20,7 @@ em_tem_update <- function(session){
   # shiny::updateTextInput(session, "total_processed_samples_files", value = "")
   # shiny::updateTextInput(session, "data_processed_volume", value = "")
   shiny::updateTextInput(session, "datatype_comment", value = "")
+  shiny::updateTextInput(session, "datatype_comment_summary", value = "")
   shiny::updateTextInput(session, "shared_technologies", value = "Raw and processed EM images")
 
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard office suite spreadsheet software")
@@ -72,6 +73,7 @@ em_sem_update <- function(session){
   # shiny::updateTextInput(session, "total_processed_samples_files", value = "")
   # shiny::updateTextInput(session, "data_processed_volume", value = "")
   shiny::updateTextInput(session, "datatype_comment", value = "")
+  shiny::updateTextInput(session, "datatype_comment_summary", value = "")
   shiny::updateTextInput(session, "shared_technologies", value = "Raw and processed EM images")
 
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard office suite spreadsheet software")
@@ -124,6 +126,7 @@ em_cryoem_update <- function(session){
   # shiny::updateTextInput(session, "total_processed_samples_files", value = "")
   # shiny::updateTextInput(session, "data_processed_volume", value = "")
   shiny::updateTextInput(session, "datatype_comment", value = "")
+  shiny::updateTextInput(session, "datatype_comment_summary", value = "")
   shiny::updateTextInput(session, "shared_technologies", value = "Raw and processed EM images")
 
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard office suite spreadsheet software")

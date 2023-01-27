@@ -10,7 +10,7 @@ flow_cytometry_update <- function(session){
   # DATATYPE
   shiny::updateTextInput(session, "technology_description", value = "flow cytometers from BD Biosciences and/or Sony Biotechnology")
   shiny::updateTextInput(session, "raw_file_description", value = "Flow Cytometry Standard files in FCS format, widely adopted and maintained by the International Society for Advancement of Cytometry (ISAC)")
-  shiny::updateTextInput(session, "avg_file_size", value = "approximately 10MB")
+  shiny::updateTextInput(session, "avg_file_size", value = "is approximately 10MB")
   # shiny::updateTextInput(session, "total_samples_files", value = "")
   # shiny::updateTextInput(session, "data_volume", value = "")
   shiny::updateTextInput(session, "raw_file_type", value = "raw FCS files")
@@ -20,6 +20,7 @@ flow_cytometry_update <- function(session){
   # shiny::updateTextInput(session, "total_processed_samples_files", value = "")
   # shiny::updateTextInput(session, "data_processed_volume", value = "")
   shiny::updateTextInput(session, "datatype_comment", value = "")
+  shiny::updateTextInput(session, "datatype_comment_summary", value = "-OR- Summarize the types (for example, 256-channel EEG data and fMRI images) and amount (for example, from 50 research participants) of scientific data to be generated and/or used in the research. Descriptions may include the data modality (e.g., imaging, genomic, mobile, survey), level of aggregation (e.g., individual, aggregated, summarized), and/or the degree of data processing.")
   shiny::updateTextInput(session, "shared_technologies", value = "Raw FCS and processed CSV/TSV data")
 
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard office suite spreadsheet software")

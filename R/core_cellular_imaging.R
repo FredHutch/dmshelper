@@ -20,6 +20,7 @@ cellular_imaging_update <- function(session){
   # shiny::updateTextInput(session, "total_processed_samples_files", value = "")
   # shiny::updateTextInput(session, "data_processed_volume", value = "")
   shiny::updateTextInput(session, "datatype_comment", value = "")
+  shiny::updateTextInput(session, "datatype_comment_summary", value = "")
   shiny::updateTextInput(session, "shared_technologies", value = "Raw and processed images")
 
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard image viewing and processing software such as Fiji (https://imagej.net/software/fiji/) or CellProfiler (https://cellprofiler.org/)")

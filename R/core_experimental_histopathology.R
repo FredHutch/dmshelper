@@ -10,7 +10,7 @@ eh_aperio_update <- function(session){
   # DATATYPE
   shiny::updateTextInput(session, "technology_description", value = "the Aperio platform")
   shiny::updateTextInput(session, "raw_file_description", value = "[select: 20X, 40X] [select: brightfield, fluorescent] images in .svc or .svn file format")
-  shiny::updateTextInput(session, "avg_file_size", value = "1-4GB per image")
+  shiny::updateTextInput(session, "avg_file_size", value = "is 1-4GB per image")
   # shiny::updateTextInput(session, "total_samples_files", value = "")
   # shiny::updateTextInput(session, "data_volume", value = "")
   shiny::updateTextInput(session, "raw_file_type", value = ".svc or .svn files")
@@ -20,6 +20,7 @@ eh_aperio_update <- function(session){
   # shiny::updateTextInput(session, "total_processed_samples_files", value = "")
   # shiny::updateTextInput(session, "data_processed_volume", value = "")
   shiny::updateTextInput(session, "datatype_comment", value = "")
+  shiny::updateTextInput(session, "datatype_comment_summary", value = "-OR- Summarize the types (for example, 256-channel EEG data and fMRI images) and amount (for example, from 50 research participants) of scientific data to be generated and/or used in the research. Descriptions may include the data modality (e.g., imaging, genomic, mobile, survey), level of aggregation (e.g., individual, aggregated, summarized), and/or the degree of data processing.")
   shiny::updateTextInput(session, "shared_technologies", value = "[Aperio brightfield images/Aperio fluorescent images]")
 
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard office suite spreadsheet software")
@@ -72,6 +73,7 @@ eh_polaris_update <- function(session){
   # shiny::updateTextInput(session, "total_processed_samples_files", value = "")
   # shiny::updateTextInput(session, "data_processed_volume", value = "")
   shiny::updateTextInput(session, "datatype_comment", value = "")
+  shiny::updateTextInput(session, "datatype_comment_summary", value = "-OR- Summarize the types (for example, 256-channel EEG data and fMRI images) and amount (for example, from 50 research participants) of scientific data to be generated and/or used in the research. Descriptions may include the data modality (e.g., imaging, genomic, mobile, survey), level of aggregation (e.g., individual, aggregated, summarized), and/or the degree of data processing.")
   shiny::updateTextInput(session, "shared_technologies", value = "MOTIF images")
 
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard office suite spreadsheet software")
@@ -124,6 +126,7 @@ eh_vectra_update <- function(session){
   # shiny::updateTextInput(session, "total_processed_samples_files", value = "")
   # shiny::updateTextInput(session, "data_processed_volume", value = "")
   shiny::updateTextInput(session, "datatype_comment", value = "")
+  shiny::updateTextInput(session, "datatype_comment_summary", value = "-OR- Summarize the types (for example, 256-channel EEG data and fMRI images) and amount (for example, from 50 research participants) of scientific data to be generated and/or used in the research. Descriptions may include the data modality (e.g., imaging, genomic, mobile, survey), level of aggregation (e.g., individual, aggregated, summarized), and/or the degree of data processing.")
   shiny::updateTextInput(session, "shared_technologies", value = "Vectra images")
 
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard office suite spreadsheet software")

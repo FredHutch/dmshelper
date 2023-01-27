@@ -65,6 +65,9 @@ shiny_server <- function(input, output, session) {
       if(toggle_example_txt$core_datatype == "flow_cytometry"){
         flow_cytometry_update(session)
       }
+      if(toggle_example_txt$core_datatype == "genomics"){
+        genomics_update(session)
+      }
 
     },ignoreInit = TRUE)
 
@@ -169,6 +172,9 @@ shiny_server <- function(input, output, session) {
     # Small tweaks for specific core examples
     if(input$core_datatype == "antibody_tech"){
       datatype_part <- datatype_part[-8:-21]
+    }
+    if(input$core_datatype == "genomics"){
+      preservation_part[10] <- genomics_findable_identifiable()
     }
 
     # -----

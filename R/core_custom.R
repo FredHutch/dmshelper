@@ -20,6 +20,7 @@ custom_update <- function(session){
   # shiny::updateTextInput(session, "total_processed_samples_files", value = "")
   # shiny::updateTextInput(session, "data_processed_volume", value = "")
   shiny::updateTextInput(session, "datatype_comment", value = "")
+  shiny::updateTextInput(session, "datatype_comment_summary", value = "")
   shiny::updateTextInput(session, "shared_technologies", value = "")
 
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard office suite spreadsheet software")

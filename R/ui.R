@@ -33,7 +33,8 @@ shiny_ui <- function() {
             "Experimental Histopathology - Aperio Platform" = "eh_aperio",
             "Experimental Histopathology - Polaris Platform" = "eh_polaris",
             "Experimental Histopathology - Vectra images" = "eh_vectra",
-            "Flow Cytometry Core" = "flow_cytometry"
+            "Flow Cytometry Core" = "flow_cytometry",
+            "Genomics & Bioinformatics" = "genomics"
           )
         ),
 
@@ -90,7 +91,8 @@ shiny_ui <- function() {
             "Total processed data volume",
             value = ""
           ),
-          textInput("datatype_comment", label = "Optional: add additional text about data types", value = "")
+          textInput("datatype_comment", label = "Optional: add additional text about data types", value = ""),
+          textInput("datatype_comment_summary", label = "Optional: add additional text about techniques", value = "")
         ),
 
         # Sharing
