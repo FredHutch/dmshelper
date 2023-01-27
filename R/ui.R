@@ -30,8 +30,10 @@ shiny_ui <- function() {
             "Electron Microscopy - TEM" = "em_tem",
             "Electron Microscopy - SEM" = "em_sem",
             "Electron Microscopy - CryoEM" = "em_cryoem",
-            "Flow Cytometry Core" = "flow_cytometry",
-            "Electron Microscopy Core" = "electron_microscopy"
+            "Experimental Histopathology - Aperio Platform" = "eh_aperio",
+            "Experimental Histopathology - Polaris Platform" = "eh_polaris",
+            "Experimental Histopathology - Vectra images" = "eh_vectra",
+            "Flow Cytometry Core" = "flow_cytometry"
           )
         ),
 

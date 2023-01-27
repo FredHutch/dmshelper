@@ -53,6 +53,15 @@ shiny_server <- function(input, output, session) {
       if(toggle_example_txt$core_datatype == "em_cryoem"){
         em_cryoem_update(session)
       }
+      if(toggle_example_txt$core_datatype == "eh_aperio"){
+        eh_aperio_update(session)
+      }
+      if(toggle_example_txt$core_datatype == "eh_polaris"){
+        eh_polaris_update(session)
+      }
+      if(toggle_example_txt$core_datatype == "eh_vectra"){
+        eh_vectra_update(session)
+      }
       if(toggle_example_txt$core_datatype == "flow_cytometry"){
         flow_cytometry_update(session)
       }
