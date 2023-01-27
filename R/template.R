@@ -18,7 +18,10 @@ datatype_txt <- function(input, metadata_part){
     "",
     "_Our proposal will generate raw data of the following types and sizes:_",
     "",
-    paste0("**Technology:** We will generate data using <font color='OA799A'>", input$technology_description, "</font>. "),
+    if (input$core_datatype == "immune") {
+      paste0("**Technology:** We will collect <font color='OA799A'>assay results for clinical trials using ",input$technology_description,"</font>. ")
+      } else
+      paste0("**Technology:** We will generate data using <font color='OA799A'>",input$technology_description,"</font>. "),
     paste0("**File Type:** Data for this study will generate <font color='OA799A'>", input$raw_file_description, "</font>. "),
     paste0("The amount of data generated per sample <font color='OA799A'>", input$avg_file_size, "</font>. "),
     paste0("**Number of Files:** We anticipate collecting data from <font color='OA799A'>", input$total_samples_files, "</font> for a total data volume of <font color='OA799A'>", input$data_volume, "</font>. "),

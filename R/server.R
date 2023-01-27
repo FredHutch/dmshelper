@@ -68,6 +68,9 @@ shiny_server <- function(input, output, session) {
       if(toggle_example_txt$core_datatype == "genomics"){
         genomics_update(session)
       }
+      if(toggle_example_txt$core_datatype == "immune"){
+        immune_update(session)
+      }
 
     },ignoreInit = TRUE)
 
