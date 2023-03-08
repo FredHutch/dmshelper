@@ -12,9 +12,17 @@ repository_custom <- function(input) {
       input$repository_data_type,
       "</font> will be <font color='OA799A'>",
       input$chosen_repositories,
-      "</font> for data that can be made publicly available and <font color='OA799A'>",
-      input$controlled_repositories,
-      "</font> for data that require access controls."
+      if (input$core_datatype %in% c("proteomics")) {
+        paste0(". ")
+      } else {
+        paste0(
+          "</font> for data that can be made publicly available and <font color='OA799A'>",
+          input$controlled_repositories,
+          "</font> for data that require access controls. <font color='OA799A'>"
+        )
+      },
+      input$repo_comment,
+      "</font>"
     )
   )
 }
@@ -115,15 +123,23 @@ repository_choices <- function(){
 #'
 fair_description <- function(input) {
   return(
-    paste0(
-      "<font color='OA799A'>",
-      input$chosen_repositories,
-      "</font> provide stable IDs to <font color='OA799A'>",
-      input$fair_comment,
-      "</font>")
+    if (input$core_datatype %in% c("small_animal")) {
+      paste0(
+        "<font color='OA799A'>",
+        input$fair_comment,
+        "</font>"
+      )
+    } else {
+      paste0(
+        "<font color='OA799A'>",
+        input$chosen_repositories,
+        "</font> provide stable IDs to <font color='OA799A'>",
+        input$fair_comment,
+        "</font>"
+      )
+    }
   )
 }
-
 
 #' Title
 #'
@@ -134,7 +150,18 @@ fair_description <- function(input) {
 #'
 duration_description <- function(input) {
   return(
-    paste0(
+    if (input$core_datatype %in% c("small_animal")) {
+      paste0(
+        "<font color='OA799A'>",
+        input$repository_data_type,
+        "</font> results will be made available <font color='OA799A'>",
+        input$timeframe_to_pub,
+        "</font> and preserved for <font color='OA799A'>",
+        input$timeframe_longevity,
+        ". IVIS will be deposited in TCIA/IDC and preserved indefinitely.</font>"
+      )
+    } else {
+      paste0(
       "<font color='OA799A'>",
       input$repository_data_type,
       "</font> will be deposited in <font color='OA799A'>",
@@ -143,6 +170,8 @@ duration_description <- function(input) {
       input$timeframe_to_pub,
       "</font> and preserved for <font color='OA799A'>",
       input$timeframe_longevity,
-      "</font>. ")
+      "</font>. "
+      )
+    }
   )
 }

@@ -71,8 +71,46 @@ shiny_server <- function(input, output, session) {
       if(toggle_example_txt$core_datatype == "immune"){
         immune_update(session)
       }
+      if(toggle_example_txt$core_datatype == "large_animal"){
+        large_animal_update(session)
+      }
+      if(toggle_example_txt$core_datatype == "preclinical_img_ivis"){
+        preclinical_imaging_IVIS_update(session)
+      }
+      if(toggle_example_txt$core_datatype == "preclinical_img_microct"){
+        preclinical_imaging_MicroCT_update(session)
+      }
+      if(toggle_example_txt$core_datatype == "preclinical_img_mri"){
+        preclinical_imaging_MRI_update(session)
+      }
+      if(toggle_example_txt$core_datatype == "preclinical_model"){
+        preclinical_modeling_update(session)
+      }
+      if(toggle_example_txt$core_datatype == "proteomics"){
+        proteomics_update(session)
+      }
+      if(toggle_example_txt$core_datatype == "small_animal"){
+        small_animal_update(session)
+      }
+      if(toggle_example_txt$core_datatype == "therapeutic"){
+        therapeutic_update(session)
+      }
 
     },ignoreInit = TRUE)
+
+    # Datatype
+    # Raw data
+    if(!(is.null(input$core_datatype))){
+      raw_data_part <- raw_data_chunk(input)
+    } else {
+      raw_data_part <- ""
+    }
+    # Processed data
+    if(!(is.null(input$core_datatype))){
+      processed_data_part <- processed_data_chunk(input)
+    } else {
+      processed_data_part <- ""
+    }
 
     # Choose between two options for metadata description (short and long)
     if(length(input$metadata_desc) == 2){
@@ -87,7 +125,7 @@ shiny_server <- function(input, output, session) {
       metadata_part <- ""
     }
 
-    # Choose yes or no for manipulation statemenet
+    # Choose yes or no for manipulation statement
     if(input$manipulation == "Yes"){
       manipulation_part <- manipulation_custom(input)
     } else {
@@ -99,8 +137,10 @@ shiny_server <- function(input, output, session) {
       tools_code_part <- tools_semiopen(input)
     } else if (input$open_source_level == "proprietary"){
       tools_code_part <- tools_proprietary()
-    } else {
+    } else if (input$open_source_level == "opensource"){
       tools_code_part <- tools_open(input)
+    } else {
+      tools_code_part <- ""
     }
 
     # Choose among some example options for repository
@@ -122,14 +162,14 @@ shiny_server <- function(input, output, session) {
     if(input$reuse == "ns_software"){
       reuse_part <- reuse_ns_software(input)
     } else {
-      reuse_part <- reuse_no_restrictions()
+      reuse_part <- reuse_no_restrictions(input)
     }
 
     # Choose among options for controls
     if(input$controls == "Controls needed"){
       control_part <- control_restrictions(input)
     } else {
-      control_part <- control_no_restrictions()
+      control_part <- control_no_restrictions(input)
     }
 
     # Choose among options for human subjects
@@ -151,7 +191,12 @@ shiny_server <- function(input, output, session) {
     # ------
 
     # Get the text of the datatype part of the plan
-    datatype_part <- datatype_txt(input, metadata_part)
+    datatype_part <- datatype_txt(
+      input,
+      raw_data_part,
+      processed_data_part,
+      metadata_part
+    )
 
     # Get the text for the tool part of the plan
     tools_part <- tools_txt(manipulation_part, tools_code_part)
@@ -173,8 +218,11 @@ shiny_server <- function(input, output, session) {
     # -----
 
     # Small tweaks for specific core examples
-    if(input$core_datatype == "antibody_tech"){
+    if(input$core_datatype %in% c("antibody_tech", "large_animal")){
       datatype_part <- datatype_part[-8:-21]
+    }
+    if(input$core_datatype %in% c("antibody_tech", "preclinical_img_ivis", "small_animal", "therapeutic")){
+      datatype_part <- datatype_part[-14:-20]
     }
     if(input$core_datatype == "genomics"){
       preservation_part[10] <- genomics_findable_identifiable()

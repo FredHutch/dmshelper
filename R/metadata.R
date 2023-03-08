@@ -13,9 +13,13 @@ metadata_short <- function(input) {
       input$metadata_descriptors,
       "</font> will be collected via <font color='OA799A'>",
       input$metadata_collection,
-      "</font> and will be submitted in accordance with FAIR data principles according to <font color='OA799A'>",
-      input$fair_standard,
-      "</font>"
+      if (input$core_datatype %in% c("large_animal", "preclinical_img_ivis", "preclinical_img_microct", "preclinical_img_mri", "proteomics")) {
+        "</font> and will be submitted in accordance with FAIR data principles."
+      } else {
+        paste0("</font> and will be submitted in accordance with FAIR data principles according to <font color='OA799A'>",
+        input$fair_standards,
+        ".</font>")
+      }
     )
   )
 }

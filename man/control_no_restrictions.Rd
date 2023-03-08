@@ -4,7 +4,7 @@
 \alias{control_no_restrictions}
 \title{Title}
 \usage{
-control_no_restrictions()
+control_no_restrictions(input)
 }
 \description{
 Title

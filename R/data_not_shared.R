@@ -12,3 +12,46 @@ data_not_shared <- function() {
       )
   )
 }
+
+
+#' Title
+#'
+#' @param input
+#'
+#' @return
+#' @export
+#'
+#' @examples
+shared_comment <- function(input) {
+  if (input$shared_comment != "")
+    sh_comment <-
+      paste0("<font color='OA799A'>",
+             input$shared_comment,
+             "</font>"
+      )
+  else {
+    sh_comment <- ""
+  }
+  return(sh_comment)
+}
+
+#' Title
+#'
+#' @param input
+#'
+#' @return
+#' @export
+#'
+#' @examples
+not_shared_comment <- function(input) {
+  if (input$not_shared_comment != "")
+    nsh_comment <-
+      paste0("<font color='OA799A'>",
+             input$not_shared_comment,
+             "</font>"
+      )
+  else {
+    nsh_comment <- ""
+  }
+  return(nsh_comment)
+}

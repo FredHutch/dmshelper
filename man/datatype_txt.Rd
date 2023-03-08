@@ -4,7 +4,7 @@
 \alias{datatype_txt}
 \title{Title}
 \usage{
-datatype_txt(input, metadata_part)
+datatype_txt(input, raw_data_part, processed_data_part, metadata_part)
 }
 \arguments{
 \item{input}{}

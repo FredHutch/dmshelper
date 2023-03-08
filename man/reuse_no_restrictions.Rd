@@ -4,7 +4,7 @@
 \alias{reuse_no_restrictions}
 \title{Title}
 \usage{
-reuse_no_restrictions()
+reuse_no_restrictions(input)
 }
 \description{
 Title

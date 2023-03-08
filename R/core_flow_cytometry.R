@@ -25,10 +25,10 @@ flow_cytometry_update <- function(session){
 
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard office suite spreadsheet software")
 
-  # shiny::updateTextInput(session, "metadata_descriptors", value = "")
-  # shiny::updateTextInput(session, "metadata_collection", value = "")
-  # shiny::updateTextInput(session, "fair_standards", value = "")
-  # shiny::updateTextInput(session, "metadata_location", value = "")
+  shiny::updateTextInput(session, "metadata_descriptors", value = "")
+  shiny::updateTextInput(session, "metadata_collection", value = "")
+  shiny::updateTextInput(session, "fair_standards", value = "")
+  shiny::updateTextInput(session, "metadata_location", value = "")
 
   # STANDARDS
   shiny::updateTextInput(session, "standards_description", value = "the Minimum Information about a Flow Cytometry Experiment (MIFlowCyt) standard established by the International Society for Analytical Cytology Data Standards Task Force (ref: https://doi.org/10.1002%2Fcyto.a.20623)")

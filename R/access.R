@@ -3,12 +3,14 @@
 #' @return
 #' @export
 #'
-reuse_no_restrictions <- function() {
+reuse_no_restrictions <- function(input) {
   return(
-    "<font color='OA799A'>We do not anticipate any factors affecting subsequent access, distribution, or reuse of the collected scientific data.</font>"
-  )
+    if (input$core_datatype %in% c("small_animal")) {
+      "<font color='OA799A'>We do not anticipate any significant factors limiting the access, distribution, or reuse of IVIS scientific data generated for this project. Breeding and hematology records will be retained in internal databases. Relevant information will be published.</font>"
+    } else {
+      "<font color='OA799A'>We do not anticipate any factors affecting subsequent access, distribution, or reuse of the collected scientific data.</font>"
+  })
 }
-
 
 #' Title
 #'
@@ -55,9 +57,23 @@ reuse_choices <- function(){
 #' @return
 #' @export
 #'
-control_no_restrictions <- function() {
+control_no_restrictions <- function(input) {
   return(
-    "<font color='OA799A'>We do not anticipate collection of any controlled data.</font>"
+    if (input$core_datatype %in% c("proteomics")) {
+      paste0(
+        "<font color='OA799A'>All proteomics datasets stored in MassIVE or PRIDE will be available to requesting researchers without the need for approval.</font>"
+      )
+    } else if (input$core_datatype %in% c("small_animal")) {
+      paste0(
+        "<font color='OA799A'>Scientific data will be made openly accessibly upon submission to a public data repository, without any subsequent requirement for access approval by requesting researchers.</font>"
+      )
+    } else if (input$core_datatype %in% c("therapeutic")) {
+      paste0(
+        "<font color='OA799A'>Repositories provide stable IDs to [project accession, SRA read accession, sequencing platform, etc.]. Primary references would be to a GEO series accession or SRA run accession. The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project.</font>"
+      )
+    } else {
+      paste0("<font color='OA799A'>We do not anticipate collection of any controlled data.</font>")
+    }
   )
 }
 

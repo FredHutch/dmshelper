@@ -25,10 +25,10 @@ genomics_update <- function(session){
 
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard office suite spreadsheet software")
 
-  # shiny::updateTextInput(session, "metadata_descriptors", value = "")
-  # shiny::updateTextInput(session, "metadata_collection", value = "")
-  # shiny::updateTextInput(session, "fair_standards", value = "")
-  # shiny::updateTextInput(session, "metadata_location", value = "")
+  shiny::updateTextInput(session, "metadata_descriptors", value = "")
+  shiny::updateTextInput(session, "metadata_collection", value = "")
+  shiny::updateTextInput(session, "fair_standards", value = "")
+  shiny::updateTextInput(session, "metadata_location", value = "")
 
   # STANDARDS
   shiny::updateTextInput(session, "standards_description", value = "")
@@ -38,8 +38,11 @@ genomics_update <- function(session){
   shiny::updateTextInput(session, "repository_data_type", value = "raw sequence data")
   shiny::updateTextInput(session, "chosen_repositories", value = "Gene Expression Omnibus")
   shiny::updateTextInput(session, "controlled_repositories", value = "dbGaP")
-  # shiny::updateTextInput(session, "sensitive_data_type", value = "")
+  shiny::updateTextInput(session, "sensitive_data_type", value = "")
+  shiny::updateTextInput(session, "repo_comment", value = "Both repositories are backed by the Sequence Read Archive (SRA) for storage of raw sequence data, typically in FASTQ format, although uBAM files may be submitted instead. In addition to raw data, both GEO and dbGaP may accept derived results (e.g., gene-barcode matrices, CRISPR sgRNA counts, etc.). Key derived results will accompany and be linked to corresponding raw data using standard SRA metadata spreadsheets. These data sharing repositories are managed and supported by the National Library of Medicine, and there is no current charge for submission or data hosting.")
+
   shiny::updateTextInput(session, "fair_comment", value = "")
+
   # shiny::updateTextInput(session, "timeframe_to_pub", value = "")
   # shiny::updateTextInput(session, "timeframe_longevity", value = "")
   # shiny::updateTextInput(session, "reuse_raw_file_type", value = "")

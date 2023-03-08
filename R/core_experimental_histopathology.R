@@ -25,10 +25,10 @@ eh_aperio_update <- function(session){
 
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard office suite spreadsheet software")
 
-  # shiny::updateTextInput(session, "metadata_descriptors", value = "")
-  # shiny::updateTextInput(session, "metadata_collection", value = "")
-  # shiny::updateTextInput(session, "fair_standards", value = "")
-  # shiny::updateTextInput(session, "metadata_location", value = "")
+  shiny::updateTextInput(session, "metadata_descriptors", value = "")
+  shiny::updateTextInput(session, "metadata_collection", value = "")
+  shiny::updateTextInput(session, "fair_standards", value = "")
+  shiny::updateTextInput(session, "metadata_location", value = "")
 
   # STANDARDS
   shiny::updateTextInput(session, "standards_description", value = "")

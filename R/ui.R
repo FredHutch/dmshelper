@@ -35,7 +35,15 @@ shiny_ui <- function() {
             "Experimental Histopathology - Vectra images" = "eh_vectra",
             "Flow Cytometry Core" = "flow_cytometry",
             "Genomics & Bioinformatics Core" = "genomics",
-            "Immune Monitoring Core" = "immune"
+            "Immune Monitoring Core" = "immune",
+            "Large Animal Facility Core" = "large_animal",
+            "Preclinical Imaging Core (IVIS)" = "preclinical_img_ivis",
+            "Preclinical Imaging Core (MicroCT)" = "preclinical_img_microct",
+            "Preclinical Imaging Core (MRI)" = "preclinical_img_mri",
+            "Preclinical Modeling Core" = "preclinical_model",
+            "Proteomics Core" = "proteomics",
+            "Small Animal Facility Core" = "small_animal",
+            "Therapeutic Products Core" = "therapeutic"
           )
         ),
 
@@ -108,13 +116,15 @@ shiny_ui <- function() {
             "Technologies and processed data to be shared",
             value = ""
           ),
+          textInput("shared_comment", label = "Optional: add additional text about data sharing", value = ""),
           selectInput(
             "notshared",
             label = "Select: justifications if not sharing data",
             choices = data_not_shared(),
             selected = "\nWe anticipate all data will be able to be preserved and shared.",
             multiple = TRUE
-          )
+          ),
+          textInput("not_shared_comment", label = "Optional: add additional text about data not shared", value = ""),
         ),
 
 
@@ -186,6 +196,7 @@ shiny_ui <- function() {
             label = "Select: level of development transparency",
             choices =
               c(
+                "Not Applicable" = "na",
                 "Open Source" = "opensource",
                 "Semi-Open Source" = "semiopen",
                 "Proprietary" = "proprietary"
@@ -265,6 +276,7 @@ shiny_ui <- function() {
             "Sensitive data types (if applicable)",
             value = ""
           ),
+          textInput("repo_comment", label = "Optional: add additional text about the repository", value = ""),
 
           # FAIR
           h4("Findability"),
