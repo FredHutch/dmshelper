@@ -57,7 +57,13 @@ shiny_ui <- function() {
           width = NULL,
 
           # Data types and amounts
-          h4("Data Type & Amount"),
+          h4("Raw Data Type"),
+          checkboxInput(
+            "raw_data_present",
+            label = "Add Raw Data section?",
+            value = TRUE,
+            width = NULL
+          ),
           textInput(
             "technology_description",
             "Data generating technology",
@@ -81,6 +87,14 @@ shiny_ui <- function() {
             "Brief pipeline description",
             value = ""
           ),
+
+          h4("Processed Data Type"),
+          checkboxInput(
+            "processed_data_present",
+            label = "Add Processed Data section?",
+            value = TRUE,
+            width = NULL
+          ),
           textInput(
             "processsed_file_description",
             "Processed file description",
@@ -101,6 +115,8 @@ shiny_ui <- function() {
             "Total processed data volume",
             value = ""
           ),
+
+          h4("Other Data Type Information"),
           textInput("datatype_comment", label = "Optional: add additional text about data types", value = ""),
           textInput("datatype_comment_summary", label = "Optional: add additional text about techniques", value = "")
         ),
@@ -180,12 +196,11 @@ shiny_ui <- function() {
           collapsed = TRUE,
           width = NULL,
 
-          selectInput(
+          checkboxInput(
             "manipulation",
-            label = "Select: add a custom data manipulation statement?",
-            choices = c("No", "Yes"),
-            selected = "Yes",
-            multiple = FALSE
+            label = "Add data manipulation section?",
+            value = TRUE,
+            width = NULL
           ),
           textInput(
             "data_manipulation_tool",
@@ -338,13 +353,10 @@ shiny_ui <- function() {
 
           # Human subjects
           h4("Human Subjects"),
-          selectInput(
-            "human_subjects",
-            label = "Select: are human subjects involved?",
-            choices = c("No", "Yes"),
-            selected = "No",
-            multiple = FALSE
-          )
+          checkboxInput("human_subjects",
+                        label = "Are human subjects involved? (Check for 'yes')",
+                        value = FALSE,
+                        width = NULL)
         ),
 
         # V

@@ -9,42 +9,24 @@
 #' @examples
 datatype_txt <- function(input, raw_data_part, processed_data_part, metadata_part){
   return(c(
-    "",
     "## Data Sharing and Management Plan",
-    "",
     "### Data Type",
-    "",
     "#### Types and amount of scientific data expected to be generated in the project",
-    "",
-    "_Our proposal will generate raw data of the following types and sizes:_",
-    "",
     raw_data_part,
-    "",
-    "_Our proposal will generate processed data of the following types and sizes:_",
-    "",
     processed_data_part,
-    "",
     datatype_comment(input),
-    "",
     datatype_comment_summary(input),
     "",
     "#### Scientific data that will be preserved and shared, and the rationale for doing so",
-    "",
-    "_Our proposal will preserve and share the following types of data:_",
-    "",
+    "_Our proposal will preserve and share the following types of data:_  ",
     paste0("<font color='OA799A'>", input$shared_technologies, "</font> will be preserved and shared to facilitate re-analysis and re-use of the data by other investigators."),
-    "",
     shared_comment(input),
-    "",
-    "_Our proposal will not preserve and share the following data types:_",
-    paste("<font color='OA799A'>", input$notshared, "</font>", sep = "\n"),
-    "",
+    "_Our proposal will not preserve and share the following data types:_  ",
+    paste0("<font color='OA799A'>", input$notshared, "</font>"),
     not_shared_comment(input),
     "",
     "#### Metadata, other relevant data, and associated documentation",
-    "",
-    metadata_part,
-    ""
+    metadata_part
   ))
 }
 

@@ -100,13 +100,13 @@ shiny_server <- function(input, output, session) {
 
     # Datatype
     # Raw data
-    if(!(is.null(input$core_datatype))){
+    if(input$raw_data_present){
       raw_data_part <- raw_data_chunk(input)
     } else {
       raw_data_part <- ""
     }
     # Processed data
-    if(!(is.null(input$core_datatype))){
+    if(input$processed_data_present){
       processed_data_part <- processed_data_chunk(input)
     } else {
       processed_data_part <- ""
@@ -126,7 +126,7 @@ shiny_server <- function(input, output, session) {
     }
 
     # Choose yes or no for manipulation statement
-    if(input$manipulation == "Yes"){
+    if(input$manipulation){
       manipulation_part <- manipulation_custom(input)
     } else {
       manipulation_part <- ""
@@ -173,7 +173,7 @@ shiny_server <- function(input, output, session) {
     }
 
     # Choose among options for human subjects
-    if(input$human_subjects == "Yes"){
+    if(input$human_subjects){
       hs_part <- human_subjects()
     } else {
       hs_part <- human_subjects_none()
