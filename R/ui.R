@@ -14,7 +14,7 @@ shiny_ui <- function() {
     # includeCSS(path = "inst/shinydashboard.css"),
     # includeScript(path = "inst/app.js"),
 
-    titlePanel("NIH DSMP Helper"),
+    titlePanel(div(img(src="https://raw.githubusercontent.com/FredHutch/dsmphelper/main/img/logo.png", height = 60, style="margin-left: 10px;"))),
 
     #------- User Inputs
     sidebarLayout(
@@ -47,6 +47,7 @@ shiny_ui <- function() {
           )
         ),
 
+        #####
         # I
         # DATA TYPE
         box(
@@ -364,37 +365,46 @@ shiny_ui <- function() {
           textInput("name_role", label = "Oversight lead (e.g., Name and role)", value = ""),
           textInput("review_frequency", label = "Review frequency (e.g., twice annually)", value = ""),
           textInput("review_addtnl", label = "Additional review points (e.g., when publications are accepted)", value = "")
-        )
-      ),
-
-      # ------- Preview
-      mainPanel(
+        ),
         #####
 
+        HTML('<br>'),
         h4("About this Tool"),
         HTML('
-             This tool was created by the <a href="https://hutchdatascience.org/">Fred Hutch Data Science Lab</a> to be an evolving warehouse of template text that can help you develop your NIH Data Management and Sharing Plan (DSMP). Choose from existing examples by selecting a core discipline from the first dropdown on the left. Use the expandable fill-in-the blanks and dropdowns to further customize your text. A preview of your plan will appear below with customized text appearing in <font color="OA799A"><b>blue text</b></font>. You can also <b>download</b> your plan using the buttons below. <br><br>
+             This tool was created by the <a href="https://hutchdatascience.org/">Fred Hutch Data Science Lab</a> to be an evolving warehouse of template text that can help you develop your NIH Data Management and Sharing Plan (DSMP).
+             Choose from existing examples by selecting a core discipline from the first dropdown on the left.
+             Use the expandable fill-in-the blanks and dropdowns to further customize your text.
+             A preview of your plan will appear below with customized text appearing in <font color="OA799A"><b>blue text</b></font>.
+             You can also <b>download</b> your plan using the buttons below. <br><br>
 
              Please see our <a href="https://hutchdatascience.org/NIH_Data_Sharing/">NIH Data Sharing Course</a> to learn more about new requirements from the NIH.<br><br>
 
              This material has been collected and consolidated from many groups at Fred Hutch including Shared Resources, OSR, and other partners.<br><br>
              '
         ),
+        # Hutch logo
+        HTML(
+          '
+          <br>
+          <div style="text-align: center;">
+            <a href="https://hutchdatascience.org/">
+              <img src="https://raw.githubusercontent.com/jhudsl/OTTR_Template/main/style-sets/fhdasl/copy_to_assets/big-dasl-stacked.png" margin-left = "auto" margin-right = "auto" width = "75%">
+            </a>
+          </div>
+          <br>
+          '
+        )
+      ),
+
+
+      # ------- Preview
+      mainPanel(
+        #####
 
         # Download buttons
         downloadButton("downloaddocx", label = "Download .docx"),
         downloadButton("downloadmd", label = "Download .md"),
-
-        # Hutch logo
-        HTML(
-          '
-          <br><br>
-          <a href="https://hutchdatascience.org/">
-            <img src="https://hutchdatascience.org/images/big-dasl-narrower-web.png" width = "50%">
-          </a>
-          <br><br>
-          '
-        ),
+        HTML('<br><br>'),
 
         # HTML preview
         box(htmlOutput("html_preview"), width = NULL),
