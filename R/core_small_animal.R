@@ -95,7 +95,7 @@ small_animal_update <- function(session){
   # II
   # TOOLS / SOFTWARE / CODE
   shiny::updateTextInput(session, "manipulation", value = TRUE)
-  shiny::updateTextInput(session, "data_manipulation_tool", value = "standard esktop software for viewing images and spreadsheets (e.g., Microsoft Excel)")
+  shiny::updateTextInput(session, "data_manipulation_tool", value = "standard desktop software for viewing images and spreadsheets (e.g., Microsoft Excel)")
   shiny::updateTextInput(session, "open_source_level", value = "na")
 
   # III
