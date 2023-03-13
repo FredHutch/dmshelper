@@ -112,6 +112,18 @@ shiny_server <- function(input, output, session) {
       processed_data_part <- ""
     }
 
+    # Shared data
+    if(input$shared_data_present){
+      shared_data_part <- shared_datatype_chunk(input)
+    } else {
+      shared_data_part <- ""
+    }
+    if(input$not_shared_data_present){
+      not_shared_data_part <- not_shared_datatype_chunk(input)
+    } else {
+      not_shared_data_part <- ""
+    }
+
     # Choose between two options for metadata description (short and long)
     if(length(input$metadata_desc) == 2){
       metadata_part <- c(metadata_short(input), "", metadata_long(input))
@@ -166,7 +178,7 @@ shiny_server <- function(input, output, session) {
     }
 
     # Choose among options for controls
-    if(input$controls == "Controls needed"){
+    if(input$controls){
       control_part <- control_restrictions(input)
     } else {
       control_part <- control_no_restrictions(input)
@@ -195,6 +207,8 @@ shiny_server <- function(input, output, session) {
       input,
       raw_data_part,
       processed_data_part,
+      shared_data_part,
+      not_shared_data_part,
       metadata_part
     )
 
@@ -218,12 +232,12 @@ shiny_server <- function(input, output, session) {
     # -----
 
     # Small tweaks for specific core examples
-    if(input$core_datatype %in% c("antibody_tech", "large_animal")){
-      datatype_part <- datatype_part[-8:-21]
-    }
-    if(input$core_datatype %in% c("antibody_tech", "preclinical_img_ivis", "small_animal", "therapeutic")){
-      datatype_part <- datatype_part[-14:-20]
-    }
+    # if(input$core_datatype %in% c("antibody_tech", "large_animal")){
+    #   datatype_part <- datatype_part[-8:-21]
+    # }
+    # if(input$core_datatype %in% c("antibody_tech", "preclinical_img_ivis", "small_animal", "therapeutic")){
+    #   datatype_part <- datatype_part[-14:-20]
+    # }
     if(input$core_datatype == "genomics"){
       preservation_part[10] <- genomics_findable_identifiable()
     }

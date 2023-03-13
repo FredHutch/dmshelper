@@ -23,9 +23,9 @@ reuse_ns_software <- function(input) {
   return(
     paste0(
       "<font color='OA799A'>",
-      input$reuse_raw_file_type,
+      if (input$reuse_raw_file_type == "") {" ___ "} else {input$reuse_raw_file_type},
       " will not be shared because they are ",
-      input$reuse_level,
+      if (input$reuse_level == "") {" ___ "} else {input$reuse_level},
       " data and can only be opened in a limited number of open-source software programs/proprietary, licensed viewing software.</font>"
     )
   )
@@ -89,11 +89,11 @@ control_restrictions <- function(input) {
   return(
     paste0(
       "<font color='OA799A'>All requests for the ",
-      input$repository_data_type,
+      if (input$control_data_type == "") {" ___ "} else {input$control_data_type},
       " that is stored in ",
-      input$chosen_repositories,
+      if (input$access_repositories == "") {" ___ "} else {input$access_repositories},
       " will be ",
-      input$control_comment,
+      if (input$control_comment == "") {" ___ "} else {input$control_comment},
       ".</font>"
     )
   )

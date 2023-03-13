@@ -81,12 +81,6 @@ shiny_ui <- function() {
             value = ""
           ),
           textInput("data_volume", "Total data volume", value = ""),
-          textInput("raw_file_type", "Raw data file type", value = ""),
-          textInput(
-            "brief_pipeline_description",
-            "Brief pipeline description",
-            value = ""
-          ),
 
           h4("Processed Data Type"),
           checkboxInput(
@@ -95,9 +89,15 @@ shiny_ui <- function() {
             value = TRUE,
             width = NULL
           ),
+          textInput("raw_file_type", "Raw file(s) to be processed", value = ""),
+          textInput(
+            "brief_pipeline_description",
+            "Brief processing pipeline description",
+            value = ""
+          ),
           textInput(
             "processsed_file_description",
-            "Processed file description",
+            "Processed file type and description",
             value = ""
           ),
           textInput(
@@ -128,12 +128,25 @@ shiny_ui <- function() {
           collapsed = TRUE,
           width = NULL,
 
+          checkboxInput(
+            "shared_data_present",
+            label = "Add Shared Data section?",
+            value = TRUE,
+            width = NULL
+          ),
           textInput(
             "shared_technologies",
             "Technologies and processed data to be shared",
             value = ""
           ),
           textInput("shared_comment", label = "Optional: add additional text about data sharing", value = ""),
+
+          checkboxInput(
+            "not_shared_data_present",
+            label = "Add Data Not Shared section?",
+            value = TRUE,
+            width = NULL
+          ),
           selectInput(
             "notshared",
             label = "Select: justifications if not sharing data",
@@ -214,7 +227,7 @@ shiny_ui <- function() {
               c(
                 "Not Applicable" = "na",
                 "Open Source" = "opensource",
-                "Semi-Open Source" = "semiopen",
+                "Open post-publication" = "semiopen",
                 "Proprietary" = "proprietary"
               ),
             selected = "opensource",
@@ -280,22 +293,39 @@ shiny_ui <- function() {
             selected = "custom",
             multiple = FALSE
           ),
-          textInput("repository_data_type", "Repository data type", value = ""),
-          textInput("chosen_repositories", "Repository", value = ""),
+          checkboxInput(
+            "add_open_repo",
+            label = "Custom: Open data repository?",
+            value = TRUE,
+            width = NULL
+          ),
+          textInput("repository_data_type", "Custom: Data type", value = ""),
+          textInput("chosen_repositories", "Custom: Open repository name", value = ""),
+          checkboxInput(
+            "add_controlled_repo",
+            label = "Custom: Controlled data repository?",
+            value = TRUE,
+            width = NULL
+          ),
           textInput(
             "controlled_repositories",
-            "Repository (controlled data)",
+            "Custom: Controlled repository name",
             value = ""
           ),
           textInput(
             "sensitive_data_type",
-            "Sensitive data types (if applicable)",
+            "None: Sensitive data types",
             value = ""
           ),
           textInput("repo_comment", label = "Optional: add additional text about the repository", value = ""),
 
           # FAIR
           h4("Findability"),
+          textInput(
+            "fair_repositories",
+            "FAIR repositories",
+            value = ""
+          ),
           textInput("fair_comment", "Description of level of findability", value = ""),
 
           # Timeframe
@@ -329,7 +359,7 @@ shiny_ui <- function() {
             selected = "no_restrictions",
             multiple = FALSE
           ),
-          textInput("reuse_raw_file_type", "Raw data type(s)", value = ""),
+          textInput("reuse_raw_file_type", "Data type(s)", value = ""),
           selectInput(
             "reuse_level",
             label = "Select: data level",
@@ -340,12 +370,16 @@ shiny_ui <- function() {
 
           # Controls
           h4("Data Controls"),
-          selectInput(
-            "controls",
-            label = "Select: are access controls needed?",
-            choices = c("No controls needed", "Controls needed"),
-            selected = "No controls needed",
-            multiple = FALSE
+          checkboxInput("controls",
+                        label = "Are access controls needed?",
+                        value = FALSE,
+                        width = NULL),
+
+          textInput("control_data_type", "Controlled data type(s)", value = ""),
+          textInput(
+            "access_repositories",
+            "Controlled repositories",
+            value = ""
           ),
           textInput("control_comment",
                     label = "Optional: add additional control details",
@@ -359,7 +393,7 @@ shiny_ui <- function() {
                         width = NULL)
         ),
 
-        # V
+        # VI
         # OVERSIGHT
         box(
           title = "Oversight",

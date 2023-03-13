@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @examples
-datatype_txt <- function(input, raw_data_part, processed_data_part, metadata_part){
+datatype_txt <- function(input, raw_data_part, processed_data_part, shared_data_part, not_shared_data_part, metadata_part){
   return(c(
     "## Data Sharing and Management Plan",
     "### Data Type",
@@ -17,14 +17,12 @@ datatype_txt <- function(input, raw_data_part, processed_data_part, metadata_par
     datatype_comment(input),
     datatype_comment_summary(input),
     "",
+
     "#### Scientific data that will be preserved and shared, and the rationale for doing so",
-    "_Our proposal will preserve and share the following types of data:_  ",
-    paste0("<font color='OA799A'>", input$shared_technologies, "</font> will be preserved and shared to facilitate re-analysis and re-use of the data by other investigators."),
-    shared_comment(input),
-    "_Our proposal will not preserve and share the following data types:_  ",
-    paste0("<font color='OA799A'>", input$notshared, "</font>"),
-    not_shared_comment(input),
+    shared_data_part,
+    not_shared_data_part,
     "",
+
     "#### Metadata, other relevant data, and associated documentation",
     metadata_part
   ))
@@ -64,12 +62,18 @@ tools_txt <- function(
 #' @export
 #'
 #' @examples
-standards_txt <- function(input){
+standards_txt <- function(input) {
   return(c(
     "",
     "### Standards",
     "",
-    paste0("The data produced in this project will be collected using <font color='OA799A'>", input$standards_description, ". ", input$standards_comment, "</font>. "),
+    paste0(
+      "The data produced in this project will be collected using <font color='OA799A'>",
+      if (input$standards_description == "") {" ___ "} else {input$standards_description},
+      ". ",
+      input$standards_comment,
+      "</font> "
+    ),
     ""
   ))
 }

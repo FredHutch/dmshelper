@@ -9,8 +9,47 @@ data_not_shared <- function() {
       "IRB - no consent" = "\n**Raw data / processed data:** Data will not be shared because the IRB for this protocol does not include consent for public data sharing.",
       "IRB - deidentified consent" = "\n**Raw data / processed data:** Data are not suitable to be shared in identified form due to IRB restrictions. However, de-identified data with randomly generated participant or sample IDs will be applied to the de-identified data.",
       "Sovereignty" = "\n**Raw data / processed data:** Data are not suitable to be shared due to sovereignty restrictions related to individuals from the population sampled."
-      )
+    )
   )
+}
+
+
+
+#' Title
+#'
+#' @param input
+#'
+#' @return
+#' @export
+#'
+#' @examples
+shared_datatype_chunk <- function(input) {
+  if (input$shared_data_present) {
+    return(
+      c(
+        "",
+        "_Our proposal will preserve and share the following types of data:_  ",
+        paste0(
+          "<font color='OA799A'>",
+          if (input$shared_technologies == "") {
+            " ___ "
+          } else {
+            input$shared_technologies
+          },
+          "</font> will be preserved and shared to facilitate re-analysis and re-use of the data by other investigators. "
+        ),
+        if (input$shared_comment != "")
+          paste0("<font color='OA799A'>",
+                 input$shared_comment,
+                 "  </font>")
+        else {
+          ""
+        }
+      )
+    )
+  } else {
+    return("")
+  }
 }
 
 
@@ -22,18 +61,29 @@ data_not_shared <- function() {
 #' @export
 #'
 #' @examples
-shared_comment <- function(input) {
-  if (input$shared_comment != "")
-    sh_comment <-
-      paste0("<font color='OA799A'>",
-             input$shared_comment,
-             "</font>"
+not_shared_datatype_chunk <- function(input) {
+  if (input$not_shared_data_present) {
+    return(
+      c(
+        "",
+        "_Our proposal will not preserve and share the following data types:_  ",
+        paste0("<font color='OA799A'>", input$notshared, "</font>"),
+        if (input$not_shared_comment != "")
+          paste0(
+            "<font color='OA799A'>",
+            input$not_shared_comment,
+            "  </font>"
+          )
+        else {
+          ""
+        }
       )
-  else {
-    sh_comment <- ""
+    )
+  } else {
+    return("")
   }
-  return(sh_comment)
 }
+
 
 #' Title
 #'
@@ -48,8 +98,7 @@ not_shared_comment <- function(input) {
     nsh_comment <-
       paste0("<font color='OA799A'>",
              input$not_shared_comment,
-             "</font>"
-      )
+             "</font>")
   else {
     nsh_comment <- ""
   }
