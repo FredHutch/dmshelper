@@ -14,7 +14,10 @@ shiny_ui <- function() {
     # includeCSS(path = "inst/shinydashboard.css"),
     # includeScript(path = "inst/app.js"),
 
-    tags$head(tags$link(rel="shortcut icon", href="https://raw.githubusercontent.com/jhudsl/OTTR_Template/main/style-sets/fhdasl/copy_to_assets/favicon.ico")),
+    tags$head(
+      tags$link(rel = "shortcut icon",
+                href = "https://raw.githubusercontent.com/jhudsl/OTTR_Template/main/style-sets/fhdasl/copy_to_assets/favicon.ico")
+    ),
 
     # Google Analytics
     tags$head(HTML(
@@ -462,6 +465,8 @@ shiny_ui <- function() {
              You can also <b>download</b> your plan using the buttons below. <br><br>
 
              Please see our <a href="https://hutchdatascience.org/NIH_Data_Sharing/">NIH Data Sharing Course</a> to learn more about new requirements from the NIH.<br><br>
+
+             Comments? We welcome feedback <a href="https://forms.gle/g28hBcNXJBn6tyzz8/">here</a>.
 
              This material has been collected and consolidated from many groups at Fred Hutch including Shared Resources, OSR, and other partners.<br><br>
              '
