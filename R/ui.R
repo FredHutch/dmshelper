@@ -461,8 +461,8 @@ shiny_ui <- function() {
              This tool was created by the <a href="https://hutchdatascience.org/">Fred Hutch Data Science Lab</a> to be an evolving warehouse of template text that can help you develop your NIH Data Sharing and Management Plan (DMS).
              Choose from existing examples by selecting a core discipline from the first dropdown above.
              Use the expandable fill-in-the blanks and dropdowns to further customize your text.
-             A preview of your plan will appear below with customized text appearing in <font color="OA799A"><b>blue text</b></font>.
-             You can also <b>download</b> your plan using the buttons below. <br><br>
+             A preview of your plan will to the right with customized text appearing in <font color="OA799A"><b>blue text</b></font>.
+             You can also <b>download</b> your plan using the buttons at the top of the preview. <br><br>
 
              Please see our <a href="https://hutchdatascience.org/NIH_Data_Sharing/">NIH Data Sharing Course</a> to learn more about new requirements from the NIH.<br><br>
 
