@@ -33,7 +33,7 @@ shiny_ui <- function() {
 
     titlePanel(title = div(
       img(
-        src = "https://raw.githubusercontent.com/FredHutch/dmshelper/main/img/logo2.png",
+        src = "https://raw.githubusercontent.com/FredHutch/dmshelper/main/img/logo3.png",
         alt = "DMS Helper",
         height = 25,
         style = "margin-left: 10px;"

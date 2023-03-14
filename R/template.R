@@ -9,7 +9,7 @@
 #' @examples
 datatype_txt <- function(input, raw_data_part, processed_data_part, shared_data_part, not_shared_data_part, metadata_part){
   return(c(
-    "## Data Sharing and Management Plan",
+    "## Data Management and Sharing Plan",
     "### Data Type",
     "#### Types and amount of scientific data expected to be generated in the project",
     raw_data_part,
