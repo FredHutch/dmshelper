@@ -17,7 +17,7 @@ shiny_ui <- function() {
     tags$head(tags$link(rel="shortcut icon", href="https://raw.githubusercontent.com/jhudsl/OTTR_Template/main/style-sets/fhdasl/copy_to_assets/favicon.ico")),
 
     # Google Analytics
-    HTML(
+    tags$head(HTML(
       "
       <!-- Google tag (gtag.js) -->
       <script async src='https://www.googletagmanager.com/gtag/js?id=G-5LZT89N4CE'></script>
@@ -29,7 +29,7 @@ shiny_ui <- function() {
         gtag('config', 'G-5LZT89N4CE');
       </script>
       "
-    ),
+    )),
 
     titlePanel(title = div(
       img(
