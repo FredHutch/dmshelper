@@ -1,7 +1,7 @@
 version: '3.3'
 services:
-  dsmphelper:
-    image: sc-registry.fredhutch.org/dsmphelper:latest
+  dmshelper:
+    image: sc-registry.fredhutch.org/dmshelper:latest
     networks:
       - proxy
     deploy:
@@ -9,11 +9,11 @@ services:
         condition: on-failure
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.dsmphelper.rule=Host(`dsmphelper.fredhutch.org`)"
-        - "traefik.http.routers.dsmphelper-secured.rule=Host(`dsmphelper.fredhutch.org`)"
-        - "traefik.http.routers.dsmphelper.entrypoints=web,web-secured"
-        - "traefik.http.services.dsmphelper.loadbalancer.server.port=3838" # it seems you always need to give traefik a port so it 'notices' the service
-        - "traefik.http.routers.dsmphelper.tls=true"
+        - "traefik.http.routers.dmshelper.rule=Host(`dmshelper.fredhutch.org`)"
+        - "traefik.http.routers.dmshelper-secured.rule=Host(`dmshelper.fredhutch.org`)"
+        - "traefik.http.routers.dmshelper.entrypoints=web,web-secured"
+        - "traefik.http.services.dmshelper.loadbalancer.server.port=3838" # it seems you always need to give traefik a port so it 'notices' the service
+        - "traefik.http.routers.dmshelper.tls=true"
 
 networks:
   proxy:

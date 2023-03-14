@@ -1,6 +1,6 @@
-Package: dsmphelper
-Title: Create a Data Sharing and Management Plan Painlessly
-Version: 0.0.0.9000
+Package: dmshelper
+Title: Create a Data Management and Sharing Plan Painlessly
+Version: 1.0.0
 Authors@R: 
     person("Ava", "Hoffman", , "avamariehoffman@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-1833-4397"))
