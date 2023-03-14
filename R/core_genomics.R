@@ -89,9 +89,8 @@ genomics_update <- function(session){
 
   # II
   # TOOLS / SOFTWARE / CODE
-  shiny::updateTextInput(session, "manipulation", value = TRUE)
+  shiny::updateTextInput(session, "tools_code_desc", value = c("custom", "opensource"))
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard office suite spreadsheet software")
-  shiny::updateTextInput(session, "open_source_level", value = "opensource")
 
   # III
   # STANDARDS
@@ -101,6 +100,7 @@ genomics_update <- function(session){
   # IV
   # PRESERVATION
   # Repository
+  shiny::updateTextInput(session, "repository", value = c("custom"))
   shiny::updateTextInput(session, "add_open_repo", value = TRUE)
   shiny::updateTextInput(session, "repository_data_type", value = "raw sequence data")
   shiny::updateTextInput(session, "chosen_repositories", value = "Gene Expression Omnibus")
@@ -110,10 +110,11 @@ genomics_update <- function(session){
   shiny::updateTextInput(session, "repo_comment", value = "Both repositories are backed by the Sequence Read Archive (SRA) for storage of raw sequence data, typically in FASTQ format, although uBAM files may be submitted instead. In addition to raw data, both GEO and dbGaP may accept derived results (e.g., gene-barcode matrices, CRISPR sgRNA counts, etc.). Key derived results will accompany and be linked to corresponding raw data using standard SRA metadata spreadsheets. These data sharing repositories are managed and supported by the National Library of Medicine, and there is no current charge for submission or data hosting.")
 
   # FAIR
-  shiny::updateTextInput(session, "fair_repositories", value = "")
-  shiny::updateTextInput(session, "fair_comment", value = "")
+  shiny::updateTextInput(session, "fair_repositories", value = "The SRA, GEO, and dbGaP repositories")
+  shiny::updateTextInput(session, "fair_comment", value = "experiments (BioProject), sequencing data (SRR), and biological specimens (BioSample). Primary references would be to a GEO series accession or BioProject experiment accession. The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project")
 
   # Timing
+  shiny::updateTextInput(session, "timeframe_data_type", value = "")
   shiny::updateTextInput(session, "timeframe_to_pub", value = "")
   shiny::updateTextInput(session, "timeframe_longevity", value = "")
 
@@ -134,17 +135,4 @@ genomics_update <- function(session){
   shiny::updateTextInput(session, "name_role", value = "")
   shiny::updateTextInput(session, "review_frequency", value = "")
   shiny::updateTextInput(session, "review_addtnl", value = "")
-}
-
-
-#' Title
-#'
-#' @return
-#' @export
-#'
-#' @examples
-genomics_findable_identifiable <- function() {
-  return(
-    "<font color='OA799A'>The SRA, GEO, and dbGaP repositories provide stable IDs to experiments (BioProject), sequencing data (SRR), and biological specimens (BioSample). Primary references would be to a GEO series accession or BioProject experiment accession. The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project.</font>"
-  )
 }

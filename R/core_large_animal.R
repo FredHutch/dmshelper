@@ -94,9 +94,8 @@ large_animal_update <- function(session){
 
   # II
   # TOOLS / SOFTWARE / CODE
-  shiny::updateTextInput(session, "manipulation", value = TRUE)
+  shiny::updateTextInput(session, "tools_code_desc", value = c("custom"))
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard office suite applications for viewing and manipulating text files and tabular data (e.g. Microsoft Word and Excel)")
-  shiny::updateTextInput(session, "open_source_level", value = "na")
 
   # III
   # STANDARDS
@@ -106,20 +105,22 @@ large_animal_update <- function(session){
   # IV
   # PRESERVATION
   # Repository
+  shiny::updateTextInput(session, "repository", value = c("custom"))
   shiny::updateTextInput(session, "add_open_repo", value = TRUE)
-  shiny::updateTextInput(session, "repository_data_type", value = "")
-  shiny::updateTextInput(session, "chosen_repositories", value = "")
+  shiny::updateTextInput(session, "repository_data_type", value = "medical records")
+  shiny::updateTextInput(session, "chosen_repositories", value = "web-based software")
   shiny::updateTextInput(session, "add_controlled_repo", value = TRUE)
-  shiny::updateTextInput(session, "controlled_repositories", value = "")
-  shiny::updateTextInput(session, "sensitive_data_type", value = "")
+  shiny::updateTextInput(session, "controlled_repositories", value = "internal server backups")
+  shiny::updateTextInput(session, "sensitive_data_type", value = "raw data")
   shiny::updateTextInput(session, "repo_comment", value = "")
 
   # FAIR
   shiny::updateTextInput(session, "fair_repositories", value = "")
-  shiny::updateTextInput(session, "fair_comment", value = "")
+  shiny::updateTextInput(session, "fair_comment", value = "Summaries of relevant data will be published. The medical record datasets submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project.")
 
   # Timing
-  shiny::updateTextInput(session, "timeframe_to_pub", value = "")
+  shiny::updateTextInput(session, "timeframe_data_type", value = "Data")
+  shiny::updateTextInput(session, "timeframe_to_pub", value = "at the time of publication")
   shiny::updateTextInput(session, "timeframe_longevity", value = "")
 
   # V

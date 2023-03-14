@@ -55,7 +55,7 @@ preclinical_imaging_IVIS_update <- function(session){
   # DATATYPE
   ## Raw
   shiny::updateTextInput(session, "raw_data_present", value = TRUE)
-  shiny::updateTextInput(session, "technology_description", value = "in vivo imaging data using Perkin Elmer IVIS Spectrum instrument")
+  shiny::updateTextInput(session, "technology_description", value = "_in vivo_ imaging data using Perkin Elmer IVIS Spectrum instrument")
   shiny::updateTextInput(session, "raw_file_description", value = "image data in TIFF, PNG, and text file formats")
   shiny::updateTextInput(session, "avg_file_size", value = "is typically 6MB")
   shiny::updateTextInput(session, "total_samples_files", value = " [insert total number of samples/files to be collected – typically 12 files per session]")
@@ -89,9 +89,8 @@ preclinical_imaging_IVIS_update <- function(session){
 
   # II
   # TOOLS / SOFTWARE / CODE
-  shiny::updateTextInput(session, "manipulation", value = TRUE)
+  shiny::updateTextInput(session, "tools_code_desc", value = c("custom", "opensource", "proprietary"))
   shiny::updateTextInput(session, "data_manipulation_tool", value = "the open-source Aura software (available at https://spectralinvivo.com/software/) or with Living Image (available with a license, more information available at https://www.perkinelmer.com/lab-products-and-services/resources/in-vivo-imaging-software-downloads.html)")
-  shiny::updateTextInput(session, "open_source_level", value = "opensource")
 
   # III
   # STANDARDS
@@ -101,6 +100,7 @@ preclinical_imaging_IVIS_update <- function(session){
   # IV
   # PRESERVATION
   # Repository
+  shiny::updateTextInput(session, "repository", value = c("custom"))
   shiny::updateTextInput(session, "add_open_repo", value = TRUE)
   shiny::updateTextInput(session, "repository_data_type", value = "IVIS datasets and associated metadata")
   shiny::updateTextInput(session, "chosen_repositories", value = "The Cancer Imaging Archive (TCIA; https://www.cancerimagingarchive.net/), as well as the Imaging Data Commons (IDC; https://datacommons.cancer.gov/repository/imaging-data-commons), both maintained by the NIH/NCI")
@@ -110,10 +110,11 @@ preclinical_imaging_IVIS_update <- function(session){
   shiny::updateTextInput(session, "repo_comment", value = "")
 
   # FAIR
-  shiny::updateTextInput(session, "fair_repositories", value = "")
+  shiny::updateTextInput(session, "fair_repositories", value = "Both TCIA and the IDC")
   shiny::updateTextInput(session, "fair_comment", value = "dataset collections representing the complete data collected for a particular publication. Primary references would be to a TCIA/IDC collection accession. The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project.")
 
   # Timing
+  shiny::updateTextInput(session, "timeframe_data_type", value = "IVIS data")
   shiny::updateTextInput(session, "timeframe_to_pub", value = "")
   shiny::updateTextInput(session, "timeframe_longevity", value = "")
 
@@ -230,18 +231,18 @@ preclinical_imaging_MicroCT_update <- function(session){
 
   # II
   # TOOLS / SOFTWARE / CODE
-  shiny::updateTextInput(session, "manipulation", value = TRUE)
+  shiny::updateTextInput(session, "tools_code_desc", value = c("custom", "opensource", "proprietary"))
   shiny::updateTextInput(session, "data_manipulation_tool", value = "the Quantum GX2 Viewer and Analysis software, as well as Slicer (available at https://www.slicer.org/ ), Analyze 14.0 (available at https://analyzedirect.com/analyze14/) or other custom software specific for research (e.g. ImageJ (https://imagej.nih.gov/ij/download.html ) or microDICOM (https://www.microdicom.com/)")
-  shiny::updateTextInput(session, "open_source_level", value = "opensource")
 
   # III
   # STANDARDS
-  shiny::updateTextInput(session, "standards_description", value = "the consensus recommendations established by the Minimum Reporting Standards for in vivo Magnetic Resonance Spectroscopy (MRSinMRS) (see https://doi.org/10.1002%2Fnbm.4484)")
+  shiny::updateTextInput(session, "standards_description", value = "the consensus recommendations established by the Minimum Reporting Standards for _in vivo_ Magnetic Resonance Spectroscopy (MRSinMRS) (see https://doi.org/10.1002%2Fnbm.4484)")
   shiny::updateTextInput(session, "standards_comment", value = "")
 
   # IV
   # PRESERVATION
   # Repository
+  shiny::updateTextInput(session, "repository", value = c("custom"))
   shiny::updateTextInput(session, "add_open_repo", value = TRUE)
   shiny::updateTextInput(session, "repository_data_type", value = "MicroCT datasets and associated metadata")
   shiny::updateTextInput(session, "chosen_repositories", value = "The Cancer Imaging Archive (TCIA; https://www.cancerimagingarchive.net/), as well as the Imaging Data Commons (IDC; https://datacommons.cancer.gov/repository/imaging-data-commons), both maintained by the NIH/NCI")
@@ -251,10 +252,11 @@ preclinical_imaging_MicroCT_update <- function(session){
   shiny::updateTextInput(session, "repo_comment", value = "")
 
   # FAIR
-  shiny::updateTextInput(session, "fair_repositories", value = "")
+  shiny::updateTextInput(session, "fair_repositories", value = "Both TCIA and the IDC")
   shiny::updateTextInput(session, "fair_comment", value = "dataset collections representing the complete data collected for a particular publication. Primary references would be to a TCIA/IDC collection accession. The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project.")
 
   # Timing
+  shiny::updateTextInput(session, "timeframe_data_type", value = "MicroCT data")
   shiny::updateTextInput(session, "timeframe_to_pub", value = "")
   shiny::updateTextInput(session, "timeframe_longevity", value = "")
 
@@ -367,18 +369,18 @@ preclinical_imaging_MRI_update <- function(session){
 
   # II
   # TOOLS / SOFTWARE / CODE
-  shiny::updateTextInput(session, "manipulation", value = TRUE)
+  shiny::updateTextInput(session, "tools_code_desc", value = c("custom", "opensource", "proprietary"))
   shiny::updateTextInput(session, "data_manipulation_tool", value = "the microDICOM software (available at https://www.microdicom.com/) or ImageJ software (available at https://imagej.nih.gov/ij/download.html)")
-  shiny::updateTextInput(session, "open_source_level", value = "opensource")
 
   # III
   # STANDARDS
-  shiny::updateTextInput(session, "standards_description", value = "the consensus recommendations established by the Minimum Reporting Standards for in vivo Magnetic Resonance Spectroscopy (MRSinMRS) (see https://doi.org/10.1002%2Fnbm.4484)")
+  shiny::updateTextInput(session, "standards_description", value = "the consensus recommendations established by the Minimum Reporting Standards for _in vivo_ Magnetic Resonance Spectroscopy (MRSinMRS) (see https://doi.org/10.1002%2Fnbm.4484)")
   shiny::updateTextInput(session, "standards_comment", value = "")
 
   # IV
   # PRESERVATION
   # Repository
+  shiny::updateTextInput(session, "repository", value = c("custom"))
   shiny::updateTextInput(session, "add_open_repo", value = TRUE)
   shiny::updateTextInput(session, "repository_data_type", value = "MRI datasets and associated metadata")
   shiny::updateTextInput(session, "chosen_repositories", value = "The Cancer Imaging Archive (TCIA; https://www.cancerimagingarchive.net/), as well as the Imaging Data Commons (IDC; https://datacommons.cancer.gov/repository/imaging-data-commons), both maintained by the NIH/NCI")
@@ -388,10 +390,11 @@ preclinical_imaging_MRI_update <- function(session){
   shiny::updateTextInput(session, "repo_comment", value = "")
 
   # FAIR
-  shiny::updateTextInput(session, "fair_repositories", value = "")
+  shiny::updateTextInput(session, "fair_repositories", value = "Both TCIA and the IDC")
   shiny::updateTextInput(session, "fair_comment", value = "dataset collections representing the complete data collected for a particular publication. Primary references would be to a TCIA/IDC collection accession. The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project.")
 
   # Timing
+  shiny::updateTextInput(session, "timeframe_data_type", value = "MRI data")
   shiny::updateTextInput(session, "timeframe_to_pub", value = "")
   shiny::updateTextInput(session, "timeframe_longevity", value = "")
 

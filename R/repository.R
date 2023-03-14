@@ -134,7 +134,7 @@ repository_choices <- function(){
 #'
 fair_description <- function(input) {
   return(
-    if (input$core_datatype %in% c("small_animal")) {
+    if (input$core_datatype %in% c("large_animal", "small_animal")) {
       paste0(
         "<font color='OA799A'>",
         input$fair_comment,
@@ -164,7 +164,7 @@ duration_description <- function(input) {
     if (input$core_datatype %in% c("small_animal")) {
       paste0(
         "<font color='OA799A'>",
-        if (input$repository_data_type == "") {" ___ "} else {input$repository_data_type},
+        if (input$timeframe_data_type == "") {" ___ "} else {input$timeframe_data_type},
         "</font> results will be made available <font color='OA799A'>",
         if (input$timeframe_to_pub == "") {" ___ "} else {input$timeframe_to_pub},
         "</font> and preserved for <font color='OA799A'>",
@@ -174,7 +174,7 @@ duration_description <- function(input) {
     } else {
       paste0(
       "<font color='OA799A'>",
-      if (input$repository_data_type == "") {" ___ "} else {input$repository_data_type},
+      if (input$timeframe_data_type == "") {" ___ "} else {input$timeframe_data_type},
       "</font> will be deposited in <font color='OA799A'>",
       if (input$fair_repositories == "") {" ___ "} else {input$fair_repositories},
       " ",

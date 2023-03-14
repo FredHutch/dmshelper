@@ -96,9 +96,8 @@ proteomics_update <- function(session){
 
   # II
   # TOOLS / SOFTWARE / CODE
-  shiny::updateTextInput(session, "manipulation", value = TRUE)
+  shiny::updateTextInput(session, "tools_code_desc", value = c("custom", "opensource", "proprietary"))
   shiny::updateTextInput(session, "data_manipulation_tool", value = "the latest software version of ThermoScientific Freestyle and the desktop software ThermoScientific Proteome Discoverer v2.5 (available at https://thermo.flexnetoperations.com/control/thmo/login), respectively, as well as the web-based proteomics analysis functionality provided by MassIVE (https://massive.ucsd.edu/ProteoSAFe/static/massive.jsp)")
-  shiny::updateTextInput(session, "open_source_level", value = "opensource")
 
   # III
   # STANDARDS
@@ -108,6 +107,7 @@ proteomics_update <- function(session){
   # IV
   # PRESERVATION
   # Repository
+  shiny::updateTextInput(session, "repository", value = c("custom"))
   shiny::updateTextInput(session, "add_open_repo", value = TRUE)
   shiny::updateTextInput(session, "repository_data_type", value = "raw spectra as well as processed peptide and protein data")
   shiny::updateTextInput(session, "chosen_repositories", value = "MassIVE (https://massive.ucsd.edu/ProteoSAFe/static/massive.jsp) and/or PRIDE (https://www.ebi.ac.uk/pride/archive/)")
@@ -117,10 +117,11 @@ proteomics_update <- function(session){
   shiny::updateTextInput(session, "repo_comment", value = "MassIVE is a community resource developed by the NIH-funded Center for Computational Mass Spectrometry to promote the global, free exchange of mass spectrometry data. MassIVE datasets can be assigned ProteomeXchange accessions to satisfy publication requirements. The PRoteomics IDEntifications (PRIDE) Archive database is a centralized, standards compliant, public data repository for mass spectrometry proteomics data, including protein and peptide identifications and the corresponding expression values, post-translational modifications and supporting mass spectra evidence (both as raw data and peak list files). PRIDE is a core member in the ProteomeXchange (PX) consortium, which provides a standardized way for submitting mass spectrometry-based proteomics data to public-domain repositories. Datasets are submitted to ProteomeXchange via PRIDE and are handled by expert bio-curators. All PRIDE public datasets can also be searched in ProteomeCentral, the portal for all ProteomeXchange datasets.")
 
   # FAIR
-  shiny::updateTextInput(session, "fair_repositories", value = "")
+  shiny::updateTextInput(session, "fair_repositories", value = "MassIVE and PRIDE")
   shiny::updateTextInput(session, "fair_comment", value = "experiment collections, which are associated in turn with metadata describing the experiment as well as the raw and processed data which was submitted. Any publications associated with an experiment can be listed directly, making the scientific data discoverable by searching for the associated publication. Primary references would be to a dataset record available in MassIVE (https://massive.ucsd.edu/ProteoSAFe/datasets.jsp) or PRIDE (https://www.ebi.ac.uk/pride/archive). The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project.")
 
   # Timing
+  shiny::updateTextInput(session, "timeframe_data_type", value = "Raw spectra as well as processed peptide and protein data")
   shiny::updateTextInput(session, "timeframe_to_pub", value = "at the time of publication")
   shiny::updateTextInput(session, "timeframe_longevity", value = "the duration of the grant funding")
 

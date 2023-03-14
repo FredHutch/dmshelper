@@ -86,9 +86,8 @@ em_tem_update <- function(session){
 
   # II
   # TOOLS / SOFTWARE / CODE
-  shiny::updateTextInput(session, "manipulation", value = TRUE)
+  shiny::updateTextInput(session, "tools_code_desc", value = c("custom", "opensource"))
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard office suite spreadsheet software")
-  shiny::updateTextInput(session, "open_source_level", value = "opensource")
 
   # III
   # STANDARDS
@@ -98,6 +97,7 @@ em_tem_update <- function(session){
   # IV
   # PRESERVATION
   # Repository
+  shiny::updateTextInput(session, "repository", value = c("custom"))
   shiny::updateTextInput(session, "add_open_repo", value = TRUE)
   shiny::updateTextInput(session, "repository_data_type", value = "TEM data")
   shiny::updateTextInput(session, "chosen_repositories", value = "the Electron Microscopy Public Image Archive (EMPIAR; https://www.ebi.ac.uk/empiar/)")
@@ -107,10 +107,11 @@ em_tem_update <- function(session){
   shiny::updateTextInput(session, "repo_comment", value = "")
 
   # FAIR
-  shiny::updateTextInput(session, "fair_repositories", value = "")
+  shiny::updateTextInput(session, "fair_repositories", value = "EMPIAR and EMDB")
   shiny::updateTextInput(session, "fair_comment", value = "EM datasets and derived molecular structures. Primary references would be to an EMD or EMPIAR dataset accession. The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project.")
 
   # Timing
+  shiny::updateTextInput(session, "timeframe_data_type", value = "TEM datasets")
   shiny::updateTextInput(session, "timeframe_to_pub", value = "")
   shiny::updateTextInput(session, "timeframe_longevity", value = "")
 
@@ -222,9 +223,8 @@ em_sem_update <- function(session){
 
   # II
   # TOOLS / SOFTWARE / CODE
-  shiny::updateTextInput(session, "manipulation", value = TRUE)
+  shiny::updateTextInput(session, "tools_code_desc", value = c("custom", "opensource"))
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard office suite spreadsheet software")
-  shiny::updateTextInput(session, "open_source_level", value = "opensource")
 
   # III
   # STANDARDS
@@ -234,6 +234,7 @@ em_sem_update <- function(session){
   # IV
   # PRESERVATION
   # Repository
+  shiny::updateTextInput(session, "repository", value = c("custom"))
   shiny::updateTextInput(session, "add_open_repo", value = TRUE)
   shiny::updateTextInput(session, "repository_data_type", value = "SEM data")
   shiny::updateTextInput(session, "chosen_repositories", value = "the Electron Microscopy Public Image Archive (EMPIAR; https://www.ebi.ac.uk/empiar/)")
@@ -243,10 +244,11 @@ em_sem_update <- function(session){
   shiny::updateTextInput(session, "repo_comment", value = "")
 
   # FAIR
-  shiny::updateTextInput(session, "fair_repositories", value = "")
+  shiny::updateTextInput(session, "fair_repositories", value = "EMPIAR and EMDB")
   shiny::updateTextInput(session, "fair_comment", value = "EM datasets and derived molecular structures. Primary references would be to an EMD or EMPIAR dataset accession. The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project.")
 
   # Timing
+  shiny::updateTextInput(session, "timeframe_data_type", value = "SEM datasets")
   shiny::updateTextInput(session, "timeframe_to_pub", value = "")
   shiny::updateTextInput(session, "timeframe_longevity", value = "")
 
@@ -358,9 +360,8 @@ em_cryoem_update <- function(session){
 
   # II
   # TOOLS / SOFTWARE / CODE
-  shiny::updateTextInput(session, "manipulation", value = TRUE)
+  shiny::updateTextInput(session, "tools_code_desc", value = c("custom", "opensource"))
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard office suite spreadsheet software")
-  shiny::updateTextInput(session, "open_source_level", value = "opensource")
 
   # III
   # STANDARDS
@@ -370,6 +371,7 @@ em_cryoem_update <- function(session){
   # IV
   # PRESERVATION
   # Repository
+  shiny::updateTextInput(session, "repository", value = c("custom"))
   shiny::updateTextInput(session, "add_open_repo", value = TRUE)
   shiny::updateTextInput(session, "repository_data_type", value = "cryoEM data")
   shiny::updateTextInput(session, "chosen_repositories", value = "the Electron Microscopy Data Bank (EMDB; https://www.ebi.ac.uk/emdb/)")
@@ -379,10 +381,11 @@ em_cryoem_update <- function(session){
   shiny::updateTextInput(session, "repo_comment", value = "")
 
   # FAIR
-  shiny::updateTextInput(session, "fair_repositories", value = "")
+  shiny::updateTextInput(session, "fair_repositories", value = "EMPIAR and EMDB")
   shiny::updateTextInput(session, "fair_comment", value = "EM datasets and derived molecular structures. Primary references would be to an EMD or EMPIAR dataset accession. The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project.")
 
   # Timing
+  shiny::updateTextInput(session, "timeframe_data_type", value = "CryoEM datasets")
   shiny::updateTextInput(session, "timeframe_to_pub", value = "")
   shiny::updateTextInput(session, "timeframe_longevity", value = "")
 

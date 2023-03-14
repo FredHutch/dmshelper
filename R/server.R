@@ -137,38 +137,60 @@ shiny_server <- function(input, output, session) {
       metadata_part <- ""
     }
 
-    # Choose yes or no for manipulation statement
-    if(input$manipulation){
-      manipulation_part <- manipulation_custom(input)
-    } else {
-      manipulation_part <- ""
-    }
-
-    # Choose between three options for tools
-    if(input$open_source_level == "semiopen"){
-      tools_code_part <- tools_semiopen(input)
-    } else if (input$open_source_level == "proprietary"){
-      tools_code_part <- tools_proprietary()
-    } else if (input$open_source_level == "opensource"){
-      tools_code_part <- tools_open(input)
+    # Choose type of tool description(s)
+    if("custom" %in% input$tools_code_desc) {
+      tools_code_part <- manipulation_custom(input)
     } else {
       tools_code_part <- ""
     }
+    if("opensource" %in% input$tools_code_desc){
+      tools_code_part <- c(tools_code_part, "  ", tools_open(input))
+    } else {
+      tools_code_part <- c(tools_code_part, "")
+    }
+    if("semiopen" %in% input$tools_code_desc){
+      tools_code_part <- c(tools_code_part, "  ", tools_semiopen(input))
+    } else {
+      tools_code_part <- c(tools_code_part, "")
+    }
+    if("proprietary" %in% input$tools_code_desc){
+      tools_code_part <- c(tools_code_part, "  ", tools_proprietary())
+    } else {
+      tools_code_part <- c(tools_code_part, "")
+    }
 
     # Choose among some example options for repository
-    if(input$repository == "dbgap_3"){
-      repository_part <- repository_dbgap_3()
-    } else if (input$repository == "gene_3"){
-      repository_part <- repository_gene_3()
-    } else if (input$repository == "dbgap_pub"){
-      repository_part <- repository_dbgap_pub()
-    } else if (input$repository == "dbgap_pub_sra"){
-      repository_part <- repository_dbgap_pub_sra()
-    } else if (input$repository == "none"){
-      repository_part <- repository_none(input)
-    } else {
+    if("custom" %in% input$repository) {
       repository_part <- repository_custom(input)
+    } else {
+      repository_part <- ""
     }
+    if("dbgap_3" %in% input$repository){
+      repository_part <- c(repository_part, "  ", repository_dbgap_3())
+    } else {
+      repository_part <- c(repository_part, "")
+    }
+    if("gene_3" %in% input$repository){
+      repository_part <- c(repository_part, "  ", repository_gene_3())
+    } else {
+      repository_part <- c(repository_part, "")
+    }
+    if("dbgap_pub" %in% input$repository){
+      repository_part <- c(repository_part, "  ", repository_dbgap_pub())
+    } else {
+      repository_part <- c(repository_part, "")
+    }
+    if("dbgap_pub_sra" %in% input$repository){
+      repository_part <- c(repository_part, "  ", repository_dbgap_pub_sra())
+    } else {
+      repository_part <- c(repository_part, "")
+    }
+    if("none" %in% input$repository){
+      repository_part <- c(repository_part, "  ", repository_none(input))
+    } else {
+      repository_part <- c(repository_part, "")
+    }
+
 
     # Choose among options for reuse
     if(input$reuse == "ns_software"){
@@ -213,7 +235,7 @@ shiny_server <- function(input, output, session) {
     )
 
     # Get the text for the tool part of the plan
-    tools_part <- tools_txt(manipulation_part, tools_code_part)
+    tools_part <- tools_txt(tools_code_part)
 
     # Get the text for the standards part of the plan
     standards_part <- standards_txt(input)
@@ -225,22 +247,9 @@ shiny_server <- function(input, output, session) {
       duration_description(input)
     )
 
-    access_part <- access_txt(reuse_part, control_part, hs_part)
+    access_part <- access_txt(reuse_part, control_part, hs_part, input)
 
     oversight_part <- oversight_txt(oversight_part)
-
-    # -----
-
-    # Small tweaks for specific core examples
-    # if(input$core_datatype %in% c("antibody_tech", "large_animal")){
-    #   datatype_part <- datatype_part[-8:-21]
-    # }
-    # if(input$core_datatype %in% c("antibody_tech", "preclinical_img_ivis", "small_animal", "therapeutic")){
-    #   datatype_part <- datatype_part[-14:-20]
-    # }
-    if(input$core_datatype == "genomics"){
-      preservation_part[10] <- genomics_findable_identifiable()
-    }
 
     # -----
 

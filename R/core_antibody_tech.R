@@ -89,9 +89,8 @@ antibody_tech_update <- function(session){
 
   # II
   # TOOLS / SOFTWARE / CODE
-  shiny::updateTextInput(session, "manipulation", value = TRUE)
+  shiny::updateTextInput(session, "tools_code_desc", value = c("custom", "opensource"))
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard office suite spreadsheet software")
-  shiny::updateTextInput(session, "open_source_level", value = "opensource")
 
   # III
   # STANDARDS
@@ -101,6 +100,7 @@ antibody_tech_update <- function(session){
   # IV
   # PRESERVATION
   # Repository
+  shiny::updateTextInput(session, "repository", value = c("custom"))
   shiny::updateTextInput(session, "add_open_repo", value = TRUE)
   shiny::updateTextInput(session, "repository_data_type", value = "Excel files")
   shiny::updateTextInput(session, "chosen_repositories", value = "")
@@ -111,9 +111,10 @@ antibody_tech_update <- function(session){
 
   # FAIR
   shiny::updateTextInput(session, "fair_repositories", value = "")
-  shiny::updateTextInput(session, "fair_comment", value = "[project accession, SRA read accession, sequencing platform, etc.]. Primary references would be to a GEO series accession or SRA run accession. The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project.")
+  shiny::updateTextInput(session, "fair_comment", value = "[project accession, SRA read accession, sequencing platform, etc.]. Primary references would be to a GEO series accession or SRA run accession. The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project")
 
   # Timing
+  shiny::updateTextInput(session, "timeframe_data_type", value = "")
   shiny::updateTextInput(session, "timeframe_to_pub", value = "")
   shiny::updateTextInput(session, "timeframe_longevity", value = "")
 

@@ -86,9 +86,8 @@ flow_cytometry_update <- function(session){
 
   # II
   # TOOLS / SOFTWARE / CODE
-  shiny::updateTextInput(session, "manipulation", value = TRUE)
+  shiny::updateTextInput(session, "tools_code_desc", value = c("custom", "opensource"))
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard office suite spreadsheet software")
-  shiny::updateTextInput(session, "open_source_level", value = "opensource")
 
   # III
   # STANDARDS
@@ -98,6 +97,7 @@ flow_cytometry_update <- function(session){
   # IV
   # PRESERVATION
   # Repository
+  shiny::updateTextInput(session, "repository", value = c("custom"))
   shiny::updateTextInput(session, "add_open_repo", value = TRUE)
   shiny::updateTextInput(session, "repository_data_type", value = "FCS data")
   shiny::updateTextInput(session, "chosen_repositories", value = "the FlowRepository (https://flowrepository.org/)")
@@ -107,10 +107,11 @@ flow_cytometry_update <- function(session){
   shiny::updateTextInput(session, "repo_comment", value = "")
 
   # FAIR
-  shiny::updateTextInput(session, "fair_repositories", value = "")
+  shiny::updateTextInput(session, "fair_repositories", value = "The FlowRepository")
   shiny::updateTextInput(session, "fair_comment", value = "data collections associated with individual experiments or publications. Primary references would be to a Repository ID. The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project.")
 
   # Timing
+  shiny::updateTextInput(session, "timeframe_data_type", value = "FCS data")
   shiny::updateTextInput(session, "timeframe_to_pub", value = "")
   shiny::updateTextInput(session, "timeframe_longevity", value = "")
 

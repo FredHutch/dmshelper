@@ -46,9 +46,8 @@ custom_update <- function(session){
 
   # II
   # TOOLS / SOFTWARE / CODE
-  shiny::updateTextInput(session, "manipulation", value = TRUE)
+  shiny::updateTextInput(session, "tools_code_desc", value = c("custom", "opensource"))
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard office suite spreadsheet software")
-  shiny::updateTextInput(session, "open_source_level", value = "opensource")
 
   # III
   # STANDARDS
@@ -58,6 +57,7 @@ custom_update <- function(session){
   # IV
   # PRESERVATION
   # Repository
+  shiny::updateTextInput(session, "repository", value = c("custom"))
   shiny::updateTextInput(session, "add_open_repo", value = TRUE)
   shiny::updateTextInput(session, "repository_data_type", value = "")
   shiny::updateTextInput(session, "chosen_repositories", value = "")
@@ -71,6 +71,7 @@ custom_update <- function(session){
   shiny::updateTextInput(session, "fair_comment", value = "")
 
   # Timing
+  shiny::updateTextInput(session, "timeframe_data_type", value = "")
   shiny::updateTextInput(session, "timeframe_to_pub", value = "")
   shiny::updateTextInput(session, "timeframe_longevity", value = "")
 

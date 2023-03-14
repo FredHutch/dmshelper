@@ -94,18 +94,18 @@ small_animal_update <- function(session){
 
   # II
   # TOOLS / SOFTWARE / CODE
-  shiny::updateTextInput(session, "manipulation", value = TRUE)
+  shiny::updateTextInput(session, "tools_code_desc", value = c("custom"))
   shiny::updateTextInput(session, "data_manipulation_tool", value = "standard desktop software for viewing images and spreadsheets (e.g., Microsoft Excel)")
-  shiny::updateTextInput(session, "open_source_level", value = "na")
 
   # III
   # STANDARDS
-  shiny::updateTextInput(session, "standards_description", value = "the standards established by the ARRIVE guidelines (Animal Research: Reporting In Vivo Experiments) for describing in vivo experiments")
+  shiny::updateTextInput(session, "standards_description", value = "the standards established by the ARRIVE guidelines (Animal Research: Reporting In Vivo Experiments) for describing _in vivo_ experiments")
   shiny::updateTextInput(session, "standards_comment", value = "")
 
   # IV
   # PRESERVATION
   # Repository
+  shiny::updateTextInput(session, "repository", value = c("custom"))
   shiny::updateTextInput(session, "add_open_repo", value = TRUE)
   shiny::updateTextInput(session, "repository_data_type", value = "breeding records and hematology results")
   shiny::updateTextInput(session, "chosen_repositories", value = "internal shared databases")
@@ -119,6 +119,7 @@ small_animal_update <- function(session){
   shiny::updateTextInput(session, "fair_comment", value = "Summaries of relevant data will be published. The breeding and hematology datasets submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project. Both The Cancer Imaging Archive (TCIA) and the Imaging Data Commons (IDC) provide stable IDs to dataset collections representing the complete data collected for a particular publication. Primary references would be to a TCIA/IDC collection accession. The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project.")
 
   # Timing
+  shiny::updateTextInput(session, "timeframe_data_type", value = "Breeding records and hematology results")
   shiny::updateTextInput(session, "timeframe_to_pub", value = "at the time of publication")
   shiny::updateTextInput(session, "timeframe_longevity", value = "the duration of the grant funding")
 

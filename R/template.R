@@ -39,14 +39,11 @@ datatype_txt <- function(input, raw_data_part, processed_data_part, shared_data_
 #'
 #' @examples
 tools_txt <- function(
-    manipulation_part,
     tools_code_part
 ){
   return(c(
     "",
     "### Related Tools, Software and/or Code",
-    "",
-    manipulation_part,
     "",
     tools_code_part,
     ""
@@ -124,24 +121,30 @@ preservation_txt <- function(
 #' @export
 #'
 #' @examples
-access_txt <- function(reuse_part, control_part, hs_part){
-  return(c(
-    "",
-    "### Access, Distribution, or Reuse Considerations",
-    "",
-    "#### Factors affecting subsequent access, distribution, or reuse of scientific data",
-    "",
-    reuse_part,
-    "",
-    "#### Whether access to scientific data will be controlled",
-    "",
-    control_part,
-    "",
-    "#### Protections for privacy, rights, and confidentiality of human research participants",
-    "",
-    hs_part,
-    ""
-  ))
+access_txt <- function(reuse_part, control_part, hs_part, input) {
+  return(
+    c(
+      "",
+      "### Access, Distribution, or Reuse Considerations",
+      "",
+      "#### Factors affecting subsequent access, distribution, or reuse of scientific data",
+      "",
+      reuse_part,
+      if (input$core_datatype %in% c("large_animal")) {
+        ""
+      } else {
+        c("",
+          "#### Whether access to scientific data will be controlled",
+          "",
+          control_part,
+          "")
+      },
+      "#### Protections for privacy, rights, and confidentiality of human research participants",
+      "",
+      hs_part,
+      ""
+    )
+  )
 }
 
 

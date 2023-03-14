@@ -4,7 +4,7 @@
 \alias{access_txt}
 \title{Title}
 \usage{
-access_txt(reuse_part, control_part, hs_part)
+access_txt(reuse_part, control_part, hs_part, input)
 }
 \arguments{
 \item{hs_part}{}

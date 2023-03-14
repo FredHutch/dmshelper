@@ -7,14 +7,21 @@
 shiny_ui <- function() {
   fluidPage(
     # Styling stuff
-    includeCSS(path = system.file("AdminLTE.css", package="dsmphelper")),
-    includeCSS(path = system.file("shinydashboard.css", package="dsmphelper")),
-    includeScript(path = system.file("app.js", package="dsmphelper")),
+    includeCSS(path = system.file("AdminLTE.css", package = "dsmphelper")),
+    includeCSS(path = system.file("shinydashboard.css", package = "dsmphelper")),
+    includeScript(path = system.file("app.js", package = "dsmphelper")),
     # includeCSS(path = "inst/AdminLTE.css"),
     # includeCSS(path = "inst/shinydashboard.css"),
     # includeScript(path = "inst/app.js"),
 
-    titlePanel(div(img(src="https://raw.githubusercontent.com/FredHutch/dsmphelper/main/img/logo.png", height = 60, style="margin-left: 10px;"))),
+    titlePanel(div(
+      img(
+        src = "https://raw.githubusercontent.com/FredHutch/dsmphelper/main/img/logo2.png",
+        alt = "DSMP Helper",
+        height = 25,
+        style = "margin-left: 10px;"
+      )
+    )),
 
     #------- User Inputs
     sidebarLayout(
@@ -118,7 +125,11 @@ shiny_ui <- function() {
 
           h4("Other Data Type Information"),
           textInput("datatype_comment", label = "Optional: add additional text about data types", value = ""),
-          textInput("datatype_comment_summary", label = "Optional: add additional text about techniques", value = "")
+          textInput(
+            "datatype_comment_summary",
+            label = "Optional: add additional text about techniques",
+            value = ""
+          )
         ),
 
         # Sharing
@@ -209,29 +220,23 @@ shiny_ui <- function() {
           collapsed = TRUE,
           width = NULL,
 
-          checkboxInput(
-            "manipulation",
-            label = "Add data manipulation section?",
-            value = TRUE,
-            width = NULL
+          selectInput(
+            "tools_code_desc",
+            label = "Tools/Code description (select any)",
+            choices =
+              c(
+                "Custom" = "custom",
+                "Open Source" = "opensource",
+                "Open post-publication" = "semiopen",
+                "Proprietary" = "proprietary"
+              ),
+            selected = c("custom", "opensource"),
+            multiple = TRUE
           ),
           textInput(
             "data_manipulation_tool",
             "Tool used for data manipulation",
             value = "standard office suite spreadsheet software"
-          ),
-          selectInput(
-            "open_source_level",
-            label = "Select: level of development transparency",
-            choices =
-              c(
-                "Not Applicable" = "na",
-                "Open Source" = "opensource",
-                "Open post-publication" = "semiopen",
-                "Proprietary" = "proprietary"
-              ),
-            selected = "opensource",
-            multiple = FALSE
           ),
           selectInput(
             "version_control",
@@ -279,19 +284,18 @@ shiny_ui <- function() {
         # IV
         # PRESERVATION
         box(
-          title = "Preservation",
+          title = "Repositories",
           collapsible = TRUE,
           collapsed = TRUE,
           width = NULL,
 
           # Repository
-          h4("Repositories"),
           selectInput(
             "repository",
-            label = "Select: custom repository or established method",
+            label = "Repository description (select any)",
             choices = repository_choices(),
-            selected = "custom",
-            multiple = FALSE
+            selected = c("custom"),
+            multiple = TRUE
           ),
           checkboxInput(
             "add_open_repo",
@@ -312,24 +316,37 @@ shiny_ui <- function() {
             "Custom: Controlled repository name",
             value = ""
           ),
+          textInput("sensitive_data_type",
+                    "None: Sensitive data types",
+                    value = ""),
+          textInput("repo_comment", label = "Optional: add additional text about the repository", value = "")
+        ),
+
+        # FAIR
+        box(
+          title = "Findability",
+          collapsible = TRUE,
+          collapsed = TRUE,
+          width = NULL,
+
+          textInput("fair_repositories",
+                    "FAIR repositories",
+                    value = ""),
+          textInput("fair_comment", "Description of level of findability", value = "")
+        ),
+
+        # Timeframe
+        box(
+          title = "Timeframe",
+          collapsible = TRUE,
+          collapsed = TRUE,
+          width = NULL,
+
           textInput(
-            "sensitive_data_type",
-            "None: Sensitive data types",
+            "timeframe_data_type",
+            "Data type",
             value = ""
           ),
-          textInput("repo_comment", label = "Optional: add additional text about the repository", value = ""),
-
-          # FAIR
-          h4("Findability"),
-          textInput(
-            "fair_repositories",
-            "FAIR repositories",
-            value = ""
-          ),
-          textInput("fair_comment", "Description of level of findability", value = ""),
-
-          # Timeframe
-          h4("Timeframe"),
           textInput(
             "timeframe_to_pub",
             "Timeframe for depositing (e.g., within X months of data generation / at the time of publication)",
@@ -370,27 +387,29 @@ shiny_ui <- function() {
 
           # Controls
           h4("Data Controls"),
-          checkboxInput("controls",
-                        label = "Are access controls needed?",
-                        value = FALSE,
-                        width = NULL),
+          checkboxInput(
+            "controls",
+            label = "Are access controls needed?",
+            value = FALSE,
+            width = NULL
+          ),
 
           textInput("control_data_type", "Controlled data type(s)", value = ""),
-          textInput(
-            "access_repositories",
-            "Controlled repositories",
-            value = ""
-          ),
+          textInput("access_repositories",
+                    "Controlled repositories",
+                    value = ""),
           textInput("control_comment",
                     label = "Optional: add additional control details",
                     value = "submitted to and processed by the NIH-designated data repository under their 'controlled access' process"),
 
           # Human subjects
           h4("Human Subjects"),
-          checkboxInput("human_subjects",
-                        label = "Are human subjects involved? (Check for 'yes')",
-                        value = FALSE,
-                        width = NULL)
+          checkboxInput(
+            "human_subjects",
+            label = "Are human subjects involved?",
+            value = FALSE,
+            width = NULL
+          )
         ),
 
         # VI
@@ -416,7 +435,8 @@ shiny_ui <- function() {
 
         HTML('<br>'),
         h4("About this Tool"),
-        HTML('
+        HTML(
+          '
              This tool was created by the <a href="https://hutchdatascience.org/">Fred Hutch Data Science Lab</a> to be an evolving warehouse of template text that can help you develop your NIH Data Management and Sharing Plan (DSMP).
              Choose from existing examples by selecting a core discipline from the first dropdown on the left.
              Use the expandable fill-in-the blanks and dropdowns to further customize your text.
