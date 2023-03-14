@@ -466,7 +466,7 @@ shiny_ui <- function() {
 
              Please see our <a href="https://hutchdatascience.org/NIH_Data_Sharing/">NIH Data Sharing Course</a> to learn more about new requirements from the NIH.<br><br>
 
-             Comments? We welcome feedback <a href="https://forms.gle/g28hBcNXJBn6tyzz8/">here</a>.
+             Comments? We welcome feedback <a href="https://forms.gle/g28hBcNXJBn6tyzz8/">here</a>.<br><br>
 
              This material has been collected and consolidated from many groups at Fred Hutch including Shared Resources, OSR, and other partners.<br><br>
              '
@@ -477,7 +477,7 @@ shiny_ui <- function() {
           <br>
           <div style="text-align: center;">
             <a href="https://hutchdatascience.org/">
-              <img src="https://raw.githubusercontent.com/jhudsl/OTTR_Template/main/style-sets/fhdasl/copy_to_assets/big-dasl-stacked.png" margin-left = "auto" margin-right = "auto" width = "75%">
+              <img src="https://raw.githubusercontent.com/jhudsl/OTTR_Template/main/style-sets/fhdasl/copy_to_assets/big-dasl-stacked.png" margin-left = "auto" margin-right = "auto" width = "65%">
             </a>
           </div>
           <br>
