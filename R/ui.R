@@ -14,14 +14,17 @@ shiny_ui <- function() {
     # includeCSS(path = "inst/shinydashboard.css"),
     # includeScript(path = "inst/app.js"),
 
-    titlePanel(div(
+    tags$head(tags$link(rel="shortcut icon", href="https://raw.githubusercontent.com/jhudsl/OTTR_Template/main/style-sets/fhdasl/copy_to_assets/favicon.ico")),
+
+    titlePanel(title = div(
       img(
         src = "https://raw.githubusercontent.com/FredHutch/dsmphelper/main/img/logo2.png",
         alt = "DSMP Helper",
         height = 25,
         style = "margin-left: 10px;"
       )
-    )),
+    ),
+    windowTitle = "DSMP 📁 Helper"),
 
     #------- User Inputs
     sidebarLayout(
@@ -438,7 +441,7 @@ shiny_ui <- function() {
         HTML(
           '
              This tool was created by the <a href="https://hutchdatascience.org/">Fred Hutch Data Science Lab</a> to be an evolving warehouse of template text that can help you develop your NIH Data Management and Sharing Plan (DSMP).
-             Choose from existing examples by selecting a core discipline from the first dropdown on the left.
+             Choose from existing examples by selecting a core discipline from the first dropdown above.
              Use the expandable fill-in-the blanks and dropdowns to further customize your text.
              A preview of your plan will appear below with customized text appearing in <font color="OA799A"><b>blue text</b></font>.
              You can also <b>download</b> your plan using the buttons below. <br><br>
