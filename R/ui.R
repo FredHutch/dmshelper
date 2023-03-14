@@ -16,6 +16,21 @@ shiny_ui <- function() {
 
     tags$head(tags$link(rel="shortcut icon", href="https://raw.githubusercontent.com/jhudsl/OTTR_Template/main/style-sets/fhdasl/copy_to_assets/favicon.ico")),
 
+    # Google Analytics
+    HTML(
+      "
+      <!-- Google tag (gtag.js) -->
+      <script async src='https://www.googletagmanager.com/gtag/js?id=G-5LZT89N4CE'></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-5LZT89N4CE');
+      </script>
+      "
+    ),
+
     titlePanel(title = div(
       img(
         src = "https://raw.githubusercontent.com/FredHutch/dsmphelper/main/img/logo2.png",
