@@ -394,14 +394,14 @@ shiny_ui <- function() {
             "reuse",
             label = "Select: plan for subsequent data access, distribution, or reuse",
             choices = reuse_choices(),
-            selected = "no_restrictions",
-            multiple = FALSE
+            selected = c("no_restrictions"),
+            multiple = TRUE
           ),
           textInput("reuse_raw_file_type", "Data type(s)", value = ""),
           selectInput(
             "reuse_level",
             label = "Select: data level",
-            choices = c("Level 0", "Level 1"),
+            choices = c("None", "Level 0", "Level 1"),
             selected = "Level 0",
             multiple = FALSE
           ),
@@ -411,11 +411,11 @@ shiny_ui <- function() {
           checkboxInput(
             "controls",
             label = "Are access controls needed?",
-            value = FALSE,
+            value = TRUE,
             width = NULL
           ),
 
-          textInput("control_data_type", "Controlled data type(s)", value = ""),
+          textInput("controlled_data_type", "Controlled data type(s)", value = ""),
           textInput("access_repositories",
                     "Controlled repositories",
                     value = ""),

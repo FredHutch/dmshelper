@@ -128,10 +128,11 @@ small_animal_update <- function(session){
   #Reuse
   shiny::updateTextInput(session, "reuse", value = "no_restrictions")
   shiny::updateTextInput(session, "reuse_raw_file_type", value = "")
+  shiny::updateTextInput(session, "reuse_level", value = "None")
 
   # Control
   shiny::updateTextInput(session, "controls", value = FALSE)
-  shiny::updateTextInput(session, "controlled_data_type", value = "")
+  shiny::updateTextInput(session, "controlled_data_type", value = "Scientific data")
   shiny::updateTextInput(session, "access_repositories", value = "")
   shiny::updateTextInput(session, "control_comment", value = "")
 

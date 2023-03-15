@@ -3,30 +3,16 @@
 #' @return
 #' @export
 #'
-reuse_no_restrictions <- function(input) {
+#' @examples
+reuse_choices <- function(){
   return(
-    if (input$core_datatype %in% c("small_animal")) {
-      "<font color='OA799A'>We do not anticipate any significant factors limiting the access, distribution, or reuse of IVIS scientific data generated for this project. Breeding and hematology records will be retained in internal databases. Relevant information will be published.</font>"
-    } else {
-      "<font color='OA799A'>We do not anticipate any factors affecting subsequent access, distribution, or reuse of the collected scientific data.</font>"
-  })
-}
-
-#' Title
-#'
-#' @param input
-#'
-#' @return
-#' @export
-#'
-reuse_ns_software <- function(input) {
-  return(
-    paste0(
-      "<font color='OA799A'>",
-      if (input$reuse_raw_file_type == "") {" ___ "} else {input$reuse_raw_file_type},
-      " will not be shared because they are ",
-      if (input$reuse_level == "") {" ___ "} else {input$reuse_level},
-      " data and can only be opened in a limited number of open-source software programs/proprietary, licensed viewing software.</font>"
+    c(
+      "No restrictions" = "no_restrictions",
+      "Not shared (software restrictions)" = "ns_software",
+      "Not shared (large data)" = "ns_big_data",
+      "Not shared (no IRB consent)" = "ns_irb_total",
+      "Not shared (IRB deidentified)" = "ns_irb_deidentified",
+      "Not shared (sovereignty)" = "ns_sovereignty"
     )
   )
 }
@@ -37,16 +23,118 @@ reuse_ns_software <- function(input) {
 #' @return
 #' @export
 #'
-#' @examples
-reuse_choices <- function(){
+reuse_no_restrictions <- function(input) {
   return(
-    c(
-      "No restrictions" = "no_restrictions",
-      "Not shared - software restrictions" = "ns_software",
-      "gene-level @ 3 months" = "gene_3",
-      "dbGap @ publication" = "dbgap_pub",
-      "dbGap @ publication - SRA" = "dbgap_pub_sra",
-      "None (sensitive data)" = "none"
+    if (input$core_datatype %in% c("small_animal")) {
+      "<font color='OA799A'>We do not anticipate any significant factors limiting the access, distribution, or reuse of IVIS scientific data generated for this project. Breeding and hematology records will be retained in internal databases. Relevant information will be published.</font>"
+    } else {
+      "<font color='OA799A'>We do not anticipate any factors affecting subsequent access, distribution, or reuse of the collected scientific data.</font>"
+  })
+}
+
+
+#' Title
+#'
+#' @param input
+#'
+#' @return
+#' @export
+#'
+reuse_ns_software <- function(input) {
+  return(
+
+    paste0(
+      "<font color='OA799A'>",
+      if (input$reuse_raw_file_type == "") {" ___ "} else {input$reuse_raw_file_type},
+      " will not be shared because they ",
+      if (input$reuse_level == "None") {
+        ""
+      } else {
+        paste0("are ",
+               input$reuse_level,
+               " data and ")
+      },
+      "can only be opened in a limited number of open-source software programs/proprietary, licensed viewing software.</font>"
+    )
+  )
+}
+
+
+#' Title
+#'
+#' @param input
+#'
+#' @return
+#' @export
+#'
+reuse_ns_big_data <- function(input) {
+  return(
+    paste0(
+      "<font color='OA799A'>",
+      if (input$reuse_raw_file_type == "") {" ___ "} else {input$reuse_raw_file_type},
+      " will not be shared because they ",
+      if (input$reuse_level == "None") {
+        ""
+      } else {
+        paste0("are ",
+               input$reuse_level,
+               " data, ")
+      },
+      "are very large, and are only needed for advanced data processing or to reconstruct the scientifically accepted raw data type.</font>"
+    )
+  )
+}
+
+
+#' Title
+#'
+#' @param input
+#'
+#' @return
+#' @export
+#'
+reuse_ns_irb_total <- function(input) {
+  return(
+    paste0(
+      "<font color='OA799A'>",
+      if (input$reuse_raw_file_type == "") {" ___ "} else {input$reuse_raw_file_type},
+      " will not be shared because the IRB for this protocol does not include consent for public data sharing.</font>"
+    )
+  )
+}
+
+
+#' Title
+#'
+#' @param input
+#'
+#' @return
+#' @export
+#'
+reuse_ns_irb_deidentified <- function(input) {
+  return(
+    paste0(
+      "<font color='OA799A'>",
+      if (input$reuse_raw_file_type == "") {" ___ "} else {input$reuse_raw_file_type},
+      " are not suitable to be shared in identified form due to IRB restrictions. However, de-identified data with randomly generated participant or sample IDs will be shared.</font>"
+    )
+  )
+}
+
+
+#' Title
+#'
+#' @param input
+#'
+#' @return
+#' @export
+#'
+reuse_ns_sovereignty <- function(input) {
+  return(
+    paste0(
+      "<font color='OA799A'>",
+      if (input$reuse_raw_file_type == "") {" ___ "} else {input$reuse_raw_file_type},
+      " are not suitable to be shared due to sovereignty restrictions related to individuals from the population sampled.</font>"
     )
   )
 }
@@ -61,15 +149,17 @@ control_no_restrictions <- function(input) {
   return(
     if (input$core_datatype %in% c("proteomics")) {
       paste0(
-        "<font color='OA799A'>All proteomics datasets stored in MassIVE or PRIDE will be available to requesting researchers without the need for approval.</font>"
+        "<font color='OA799A'>",
+        if (input$controlled_data_type == "") {" ___ "} else {input$controlled_data_type},
+        " stored in ",
+        if (input$access_repositories == "") {" ___ "} else {input$access_repositories},
+        " will be available to requesting researchers without the need for approval.</font>"
       )
     } else if (input$core_datatype %in% c("small_animal")) {
       paste0(
-        "<font color='OA799A'>Scientific data will be made openly accessibly upon submission to a public data repository, without any subsequent requirement for access approval by requesting researchers.</font>"
-      )
-    } else if (input$core_datatype %in% c("therapeutic")) {
-      paste0(
-        "<font color='OA799A'>Repositories provide stable IDs to [project accession, SRA read accession, sequencing platform, etc.]. Primary references would be to a GEO series accession or SRA run accession. The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project.</font>"
+        "<font color='OA799A'>",
+        if (input$controlled_data_type == "") {" ___ "} else {input$controlled_data_type},
+        " will be made openly accessibly upon submission to a public data repository, without any subsequent requirement for access approval by requesting researchers.</font>"
       )
     } else {
       paste0("<font color='OA799A'>We do not anticipate collection of any controlled data.</font>")
@@ -89,7 +179,7 @@ control_restrictions <- function(input) {
   return(
     paste0(
       "<font color='OA799A'>All requests for the ",
-      if (input$control_data_type == "") {" ___ "} else {input$control_data_type},
+      if (input$controlled_data_type == "") {" ___ "} else {input$controlled_data_type},
       " that is stored in ",
       if (input$access_repositories == "") {" ___ "} else {input$access_repositories},
       " will be ",

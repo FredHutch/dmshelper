@@ -123,9 +123,10 @@ preclinical_imaging_IVIS_update <- function(session){
   #Reuse
   shiny::updateTextInput(session, "reuse", value = "no_restrictions")
   shiny::updateTextInput(session, "reuse_raw_file_type", value = "")
+  shiny::updateTextInput(session, "reuse_level", value = "None")
 
   # Control
-  shiny::updateTextInput(session, "controls", value = FALSE)
+  shiny::updateTextInput(session, "controls", value = TRUE)
   shiny::updateTextInput(session, "controlled_data_type", value = "")
   shiny::updateTextInput(session, "access_repositories", value = "")
   shiny::updateTextInput(session, "control_comment", value = "")
@@ -265,9 +266,10 @@ preclinical_imaging_MicroCT_update <- function(session){
   #Reuse
   shiny::updateTextInput(session, "reuse", value = "no_restrictions")
   shiny::updateTextInput(session, "reuse_raw_file_type", value = "")
+  shiny::updateTextInput(session, "reuse_level", value = "None")
 
   # Control
-  shiny::updateTextInput(session, "controls", value = FALSE)
+  shiny::updateTextInput(session, "controls", value = TRUE)
   shiny::updateTextInput(session, "controlled_data_type", value = "")
   shiny::updateTextInput(session, "access_repositories", value = "")
   shiny::updateTextInput(session, "control_comment", value = "")
@@ -403,9 +405,10 @@ preclinical_imaging_MRI_update <- function(session){
   #Reuse
   shiny::updateTextInput(session, "reuse", value = "no_restrictions")
   shiny::updateTextInput(session, "reuse_raw_file_type", value = "")
+  shiny::updateTextInput(session, "reuse_level", value = "None")
 
   # Control
-  shiny::updateTextInput(session, "controls", value = FALSE)
+  shiny::updateTextInput(session, "controls", value = TRUE)
   shiny::updateTextInput(session, "controlled_data_type", value = "")
   shiny::updateTextInput(session, "access_repositories", value = "")
   shiny::updateTextInput(session, "control_comment", value = "")

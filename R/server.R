@@ -98,6 +98,10 @@ shiny_server <- function(input, output, session) {
 
     },ignoreInit = TRUE)
 
+    # ------
+
+    # Decision logic for different sections
+
     # Datatype
     # Raw data
     if(input$raw_data_present){
@@ -193,11 +197,37 @@ shiny_server <- function(input, output, session) {
 
 
     # Choose among options for reuse
-    if(input$reuse == "ns_software"){
-      reuse_part <- reuse_ns_software(input)
-    } else {
+    if("no_restrictions" %in% input$reuse){
       reuse_part <- reuse_no_restrictions(input)
+    } else {
+      reuse_part <- ""
     }
+    if("ns_software" %in% input$reuse){
+      reuse_part <- c(reuse_part, "  ", reuse_ns_software(input))
+    } else {
+      reuse_part <- c(reuse_part, "")
+    }
+    if("ns_big_data" %in% input$reuse){
+      reuse_part <- c(reuse_part, "  ", reuse_ns_big_data(input))
+    } else {
+      reuse_part <- c(reuse_part, "")
+    }
+    if("ns_irb_total" %in% input$reuse){
+      reuse_part <- c(reuse_part, "  ", reuse_ns_irb_total(input))
+    } else {
+      reuse_part <- c(reuse_part, "")
+    }
+    if("ns_irb_deidentified" %in% input$reuse){
+      reuse_part <- c(reuse_part, "  ", reuse_ns_irb_deidentified(input))
+    } else {
+      reuse_part <- c(reuse_part, "")
+    }
+    if("ns_sovereignty" %in% input$reuse){
+      reuse_part <- c(reuse_part, "  ", reuse_ns_sovereignty(input))
+    } else {
+      reuse_part <- c(reuse_part, "")
+    }
+
 
     # Choose among options for controls
     if(input$controls){
@@ -247,7 +277,7 @@ shiny_server <- function(input, output, session) {
       duration_description(input)
     )
 
-    access_part <- access_txt(reuse_part, control_part, hs_part, input)
+    access_part <- access_txt(reuse_part, control_part, hs_part)
 
     oversight_part <- oversight_txt(oversight_part)
 
