@@ -7,7 +7,6 @@
 #'
 #' @examples
 custom_update <- function(session){
-
   # I
   # DATATYPE
   ## Raw
