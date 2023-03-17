@@ -1,30 +1,23 @@
 #' Title
 #'
-#' @param metadata_part
 #' @param input
 #'
 #' @return
 #' @export
 #'
 #' @examples
-datatype_txt <- function(input, raw_data_part, processed_data_part, shared_data_part, not_shared_data_part, metadata_part){
+datatype_txt <- function(input){
   return(c(
     "## Data Management and Sharing Plan",
     "### Data Type",
     "#### Types and amount of scientific data expected to be generated in the project",
-    raw_data_part,
-    processed_data_part,
-    datatype_comment(input),
-    datatype_comment_summary(input),
+    raw_processed_data_chunk(input),
     "",
-
     "#### Scientific data that will be preserved and shared, and the rationale for doing so",
-    shared_data_part,
-    not_shared_data_part,
+    sharing_chunk(input),
     "",
-
     "#### Metadata, other relevant data, and associated documentation",
-    metadata_part
+    metadata_chunk(input)
   ))
 }
 
@@ -32,7 +25,6 @@ datatype_txt <- function(input, raw_data_part, processed_data_part, shared_data_
 #' Title
 #'
 #' @param tools_code_part
-#' @param manipulation_part
 #'
 #' @return
 #' @export

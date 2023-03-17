@@ -1,6 +1,3 @@
-
-
-
 #' Title
 #'
 #' @param input
@@ -9,241 +6,219 @@
 #' @export
 #'
 #' @examples
-raw_data_chunk <- function(input) {
-  return(c(
-    "_Our proposal will generate raw data of the following types and sizes:_  ",
+raw_processed_data_chunk <- function(input) {
+  # Determine which raw data types belong to genomics..
+  # TODO : do we want cores to appear with datatypes or vice versa?
+  genomics_flag <-
+    "genomics" %in% input$core_datatype |
+    any(input$raw_file_description %in% core_genomics_raw_file_types()) |
+    any(input$technology_description %in% core_genomics_technologies())
+  proteomics_flag <-
+    "proteomics" %in% input$core_datatype |
+    any(input$raw_file_description %in% core_proteomics_raw_file_types()) |
+    any(input$technology_description %in% core_proteomics_technologies())
+  # genomics_flag <- "genomics" %in% input$core_datatype
+  # proteomics_flag <- "proteomics" %in% input$core_datatype
 
-    paste0(
-      paste0(if (input$core_datatype %in% c(
-        "antibody_tech",
-        "cellular_imaging",
-        "em_tem",
-        "em_sem",
-        "em_cryoem",
-        "eh_aperio",
-        "eh_polaris",
-        "eh_vectra",
-        "flow_cytometry",
-        "genomics",
-        "immune",
-        "large_animal",
-        "preclinical_img_ivis",
-        "preclinical_img_microct",
-        "preclinical_img_mri",
-        "proteomics",
-        "small_animal",
-        "therapeutic"
-      )) {
-        "**Technology:** We will collect <font color='OA799A'>"
-      } else {
-        "**Technology:** We will generate data using <font color='OA799A'>"
-      },
-      if (input$technology_description == "") {
-        " ___ "
-      } else {
-        input$technology_description
-      },
-      "</font>. "),
-      paste0(
-        "**File Type:** Data for this study will generate <font color='OA799A'>",
-        if (input$raw_file_description == "") {
+  genomics_file_types <-
+    input$raw_file_description[input$raw_file_description %in% core_genomics_raw_file_types()]
+  proteomics_file_types <-
+    input$raw_file_description[input$raw_file_description %in% core_proteomics_raw_file_types()]
+
+  genomics_tech_types <-
+    input$technology_description[input$technology_description %in% core_genomics_technologies()]
+  proteomics_tech_types <-
+    input$technology_description[input$technology_description %in% core_proteomics_technologies()]
+
+  if (genomics_flag) {
+    #####
+    raw_processed_data_chunk_temp <-
+      c(
+        "_Our proposal will generate genomic data of the following types and sizes:_  ",
+        "We will generate raw data in the form of <font color='OA799A'>",
+        if (length(genomics_file_types) == 0) {
           " ___ "
         } else {
-          input$raw_file_description
+          paste(genomics_file_types, collapse = ", ")
         },
-        "</font>. "
-      ),
+        "</font> files using <font color='OA799A'>",
+        if (length(genomics_tech_types) == 0) {
+          " ___ "
+        } else {
+          paste(genomics_tech_types, collapse = ", ")
+        },
+        "</font> sequencing technology. We will collect data from <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_genomics_files))) {
+          " ___ "
+        } else {
+          input$num_genomics_files
+        },
+        "</font> samples ranging from 500MB to 20GB each depending on the assay type and yield for a total data volume of <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_genomics_files))) {
+          " ___ "
+        } else {
+          paste(as.numeric(input$num_genomics_files) * 0.5)
+        },
+        "</font> to <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_genomics_files))) {
+          " ___ "
+        } else {
+          paste(as.numeric(input$num_genomics_files) * 20)
+        },
+        "</font>GB. We will process <font color='OA799A'>",
+        if (length(genomics_file_types) == 0) {
+          " ___ "
+        } else {
+          paste(genomics_file_types, collapse = ", ")
+        },
+        "</font> files using bioinformatics software to be described in all associated publications, resulting in structured data in tabular (CSV/TSV) or standardized genomic file formats (e.g. FASTA, BAM, VCF, HDF5). Processed files will range in size from from 100MB to 1GB depending on the specific analysis, for a total processed data volume of <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_genomics_files))) {
+          " ___ "
+        } else {
+          paste(as.numeric(input$num_genomics_files) * 0.1)
+        },
+        "</font> to <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_genomics_files))) {
+          " ___ "
+        } else {
+          paste(as.numeric(input$num_genomics_files) * 1)
+        },
+        "</font>GB."
+      )
+  } else {
+    raw_processed_data_chunk_temp <- c("")
+  }
+  if (proteomics_flag) {
+    #####
+    raw_processed_data_chunk_temp <-
+      c(
+        raw_processed_data_chunk_temp,
+        "  ",
+        c(
+          "_Our proposal will generate proteomic data of the following types and sizes:_  ",
+          "We will collect raw data as <font color='OA799A'>",
+          if (length(proteomics_file_types) == 0) {
+            " ___ "
+          } else {
+            paste(proteomics_file_types, collapse = ", ")
+          },
+          "</font> files using <font color='OA799A'>",
+          if (length(proteomics_tech_types) == 0) {
+            " ___ "
+          } else {
+            paste(proteomics_tech_types, collapse = ", ")
+          },
+          "</font> technology. We will collect data from <font color='OA799A'>",
+          if (is.na(as.numeric(input$num_proteomics_files))) {
+            " ___ "
+          } else {
+            input$num_proteomics_files
+          },
+          "</font> samples ranging from 0.5 to 2 GB for a total data volume of <font color='OA799A'>",
+          if (is.na(as.numeric(input$num_proteomics_files))) {
+            " ___ "
+          } else {
+            paste(as.numeric(input$num_proteomics_files) * 0.5)
+          },
+          "</font> to <font color='OA799A'>",
+          if (is.na(as.numeric(input$num_proteomics_files))) {
+            " ___ "
+          } else {
+            paste(as.numeric(input$num_proteomics_files) * 2)
+          },
+          "</font>GB. We will process <font color='OA799A'>",
+          if (length(proteomics_file_types) == 0) {
+            " ___ "
+          } else {
+            paste(proteomics_file_types, collapse = ", ")
+          },
+          "</font> files using Thermo Scientific Proteome Discoverer v2.5 and provide analyzed results using the Proteome Discoverer viewer, resulting in pdResult, Excel, and image files. Processed files will range in size from from 1GB to 30GB, for a total processed data volume of <font color='OA799A'>",
+          if (is.na(as.numeric(input$num_proteomics_files))) {
+            " ___ "
+          } else {
+            paste(as.numeric(input$num_proteomics_files) * 1)
+          },
+          "</font> to <font color='OA799A'>",
+          if (is.na(as.numeric(input$num_proteomics_files))) {
+            " ___ "
+          } else {
+            paste(as.numeric(input$num_proteomics_files) * 30)
+          },
+          "</font>GB."
+        )
+      )
+  } else {
+    raw_processed_data_chunk_temp <-
+      c(raw_processed_data_chunk_temp, "")
+  }
 
-      if (input$core_datatype == "proteomics") {
-        paste0(
-          "The amount of data generated per file will be <font color='OA799A'>",
-          if (input$avg_file_size == "") {
-            " ___ "
-          } else {
-            input$avg_file_size
-          },
-          "</font>. "
-        )
-      } else if (input$core_datatype == "antibody_tech") {
-        paste0("")
-      } else if (input$core_datatype == "em_cryoem") {
-        paste0(
-          "The amount of data generated per movie <font color='OA799A'>",
-          if (input$avg_file_size == "") {
-            " ___ "
-          } else {
-            input$avg_file_size
-          },
-          "</font>. "
-        )
-      } else {
-        paste0(
-          "The amount of data generated per sample <font color='OA799A'>",
-          if (input$avg_file_size == "") {
-            " ___ "
-          } else {
-            input$avg_file_size
-          },
-          "</font>. "
-        )
-      },
-      if (input$core_datatype == "large_animal") {
-        paste0(
-          "<font color='OA799A'>The total volume of data collected is not expected to exceed 10MB in aggregate file size.</font>"
-        )
-      } else if (input$core_datatype == "antibody_tech") {
-        paste0(
-          "<font color='OA799A'>The total amount of data describing antibody production is <10MB.</font>"
-        )
-      } else {
-        paste0(
-          "**Number of Files:** We anticipate collecting data from <font color='OA799A'>",
-          if (input$total_samples_files == "") {
-            " ___ "
-          } else {
-            input$total_samples_files
-          },
-          "</font> for a total data volume of <font color='OA799A'>",
-          if (input$data_volume == "") {
-            " ___ "
-          } else {
-            input$data_volume
-          },
-          "</font>. "
-        )
-      }
-    ),
-    ""
+  return(raw_processed_data_chunk_temp)
+}
+
+
+#' Title
+#'
+#' @return
+#' @export
+#'
+#' @examples
+datatype_raw_file_description_options <- function() {
+  return(c(
+    core_genomics_raw_file_types(),
+    core_proteomics_raw_file_types()
   ))
 }
 
 
 #' Title
 #'
-#' @param input
-#'
 #' @return
 #' @export
 #'
 #' @examples
-processed_data_chunk <- function(input) {
-  return(
-    c(
-      "_Our proposal will generate processed data of the following types and sizes:_  ",
-      paste0(
-        paste0(
-          "**Technology:** We will process the <font color='OA799A'>",
-          if (input$raw_file_type == "") {
-            " ___ "
-          } else {
-            input$raw_file_type
-          },
-          "</font> using <font color='OA799A'>",
-          if (input$brief_pipeline_description == "") {
-            " ___ "
-          } else {
-            input$brief_pipeline_description
-          },
-          "</font>. "
-        ),
-        paste0(
-          "**File Type:** The data processing will result in <font color='OA799A'>",
-          if (input$processsed_file_description == "") {
-            " ___ "
-          } else {
-            input$processsed_file_description
-          },
-          "</font>. "
-        ),
-        if (input$core_datatype %in% c("preclinical_img_microct")) {
-          paste0(
-            "The amount of data generated per timepoint <font color='OA799A'>",
-            if (input$avg_processed_file_size == "") {
-              " ___ "
-            } else {
-              input$avg_processed_file_size
-            },
-            "</font>. "
-          )
-        } else if (input$core_datatype == "proteomics") {
-          paste0(
-            "The amount of data generated will be <font color='OA799A'>",
-            if (input$avg_processed_file_size == "") {
-              " ___ "
-            } else {
-              input$avg_processed_file_size
-            },
-            "</font>. "
-          )
-        } else {
-          paste0(
-            "The amount of data generated per sample <font color='OA799A'>",
-            if (input$avg_processed_file_size == "") {
-              " ___ "
-            } else {
-              input$avg_processed_file_size
-            },
-            "</font>. "
-          )
-        },
-        paste0(
-          "**Number of Files:** We anticipate generating <font color='OA799A'>",
-          if (input$total_processed_samples_files == "") {
-            " ___ "
-          } else {
-            input$total_processed_samples_files
-          },
-          "</font> for a total data volume of <font color='OA799A'>",
-          if (input$data_processed_volume == "") {
-            " ___ "
-          } else
-            (input$data_processed_volume)
-          ,
-          "</font>. "
-        )
-      )
-    )
-  )
+datatype_technology_description_options <- function() {
+  return(c(
+    core_genomics_technologies(),
+    core_proteomics_technologies()
+  ))
 }
 
 
 #' Title
 #'
-#' @param input
+#' @param toggle_example_txt
 #'
 #' @return
 #' @export
 #'
 #' @examples
-datatype_comment <- function(input) {
-  if (input$datatype_comment != "")
-    dt_comment <-
-      paste0("<font color='OA799A'>",
-             input$datatype_comment,
-             "</font>")
-  else {
-    dt_comment <- ""
+datatype_raw_by_core <- function(toggle_example_txt) {
+  datatype_raw_ <- ""
+  if ("genomics" %in% toggle_example_txt$core_datatype) {
+    datatype_raw_ <- c(datatype_raw_, core_genomics_raw_file_types())
   }
-  return(dt_comment)
+  if ("proteomics" %in% toggle_example_txt$core_datatype) {
+    datatype_raw_ <- c(datatype_raw_, core_proteomics_raw_file_types())
+  }
+  return(datatype_raw_)
 }
 
 
 #' Title
 #'
-#' @param input
+#' @param toggle_example_txt
 #'
 #' @return
 #' @export
 #'
 #' @examples
-datatype_comment_summary <- function(input) {
-  if (input$datatype_comment_summary != "")
-    dt_comment_summary <-
-      paste0("<font color='OA799A'>",
-             input$datatype_comment_summary,
-             "</font>")
-  else {
-    dt_comment_summary <- ""
+datatype_tech_by_core <- function(toggle_example_txt) {
+  datatype_tech_ <- ""
+  if ("genomics" %in% toggle_example_txt$core_datatype) {
+    datatype_tech_ <- c(datatype_tech_, core_genomics_technologies())
   }
-  return(dt_comment_summary)
+  if ("proteomics" %in% toggle_example_txt$core_datatype) {
+    datatype_tech_ <- c(datatype_tech_, core_proteomics_technologies())
+  }
+  return(datatype_tech_)
 }

@@ -6,45 +6,38 @@
 #' @export
 #'
 #' @examples
-metadata_short <- function(input) {
-  return(
-    paste0(
-      "Metadata on <font color='OA799A'>",
-      if (input$metadata_descriptors == "") {" ___ "} else {input$metadata_descriptors},
-      "</font> will be collected via <font color='OA799A'>",
-      if (input$metadata_collection == "") {" ___ "} else {input$metadata_collection},
-      if (input$core_datatype %in% c("large_animal", "preclinical_img_ivis", "preclinical_img_microct", "preclinical_img_mri", "proteomics")) {
-        "</font> and will be submitted in accordance with FAIR data principles."
-      } else {
-        paste0("</font> and will be submitted in accordance with FAIR data principles according to <font color='OA799A'>",
-        if (input$fair_standards == "") {" ___ "} else (input$fair_standards),
-        ".</font>")
-      }
-    )
-  )
-}
+metadata_chunk <- function(input) {
+  # Determine which raw data types belong to genomics..
+  # TODO : do we want cores to appear with datatypes or vice versa?
+  genomics_flag <-
+    "genomics" %in% input$core_datatype |
+    any(input$raw_file_description %in% core_genomics_raw_file_types()) |
+    any(input$technology_description %in% core_genomics_technologies())
+  proteomics_flag <-
+    "proteomics" %in% input$core_datatype |
+    any(input$raw_file_description %in% core_proteomics_raw_file_types()) |
+    any(input$technology_description %in% core_proteomics_technologies())
+  # genomics_flag <- "genomics" %in% input$core_datatype
+  # proteomics_flag <- "proteomics" %in% input$core_datatype
 
-
-#' Title
-#'
-#' @param input
-#'
-#' @return
-#' @export
-#'
-#' @examples
-metadata_long <- function(input) {
-  return(
-    paste0(
-      "Metadata on <font color='OA799A'>",
-      if (input$metadata_descriptors == "") {" ___ "} else {input$metadata_descriptors},
-      "</font> will be collected via <font color='OA799A'>",
-      if (input$metadata_collection == "") {" ___ "} else {input$metadata_collection},
-      "</font> and will be submitted in accordance with FAIR data principles in the form of a spreadsheet with consistent sample labels, dates in ISO 8601 format (YYYY-MM-DD), without empty cells, with one data item per cell, organized as a single rectangle (with subjects as rows and variables as columns, and with a single header row), with a corresponding data dictionary. Metadata will be released in raw form without calculations on the raw data files, font color or highlighting as data, with human and machine readable variable names, links to raw data urls for <font color='OA799A'>",
-      if (input$raw_file_type == "") {" ___ "} else {input$raw_file_type},
-      "</font>, saved as a plain text file and uploaded to <font color='OA799A'>",
-      if (input$metadata_location == "") {" ___ "} else {input$metadata_location},
-      "</font>. [For more information on data formatting see https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989. Information for human data about de-identification can be found here https://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/index.html#standard.]"
+  if (genomics_flag) {
+    #####
+    metadata_chunk_temp <- c(
+      "Genomic metadata on will be collected and submitted in accordance with FAIR data principles in the form of a spreadsheet with consistent sample labels, dates in ISO 8601 format, without empty cells, with one data item per cell, organized as a single rectangle (with subjects as rows and variables as columns, and with a single header row), with a corresponding data dictionary. Metadata will be released in raw form without calculations on the raw data files, font color or highlighting as data, with human- and machine-readable variable names, links to raw data URLs, saved as a plain text file and uploaded with sequence data."
     )
-  )
+  } else {
+    metadata_chunk_temp <- c("")
+  }
+  if (proteomics_flag) {
+    #####
+    metadata_chunk_temp <-
+      c(
+        metadata_chunk_temp,
+        "Proteomics metadata on biological samples, processing, technical replicates, fractionation, instrumentation, and configuration will be collected using the MAGE-TAB-Proteomics standard (https://psidev.info/magetab) and will be submitted in accordance with FAIR data principles."
+      )
+  } else {
+    metadata_chunk_temp <- c(metadata_chunk_temp, "")
+  }
+
+  return(metadata_chunk_temp)
 }

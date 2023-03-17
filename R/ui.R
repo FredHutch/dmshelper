@@ -50,408 +50,389 @@ shiny_ui <- function() {
         # Select from template/example text
         selectInput(
           "core_datatype",
-          "Choose a default Fred Hutch Core Discipline to get started with some suggested text!",
-          c(
-            "None Selected (Custom)" = "none",
-            "Antibody Technology Core" = "antibody_tech",
-            "Cellular Imaging Core" = "cellular_imaging",
-            "Electron Microscopy - TEM" = "em_tem",
-            "Electron Microscopy - SEM" = "em_sem",
-            "Electron Microscopy - CryoEM" = "em_cryoem",
-            "Experimental Histopathology - Aperio Platform" = "eh_aperio",
-            "Experimental Histopathology - Polaris Platform" = "eh_polaris",
-            "Experimental Histopathology - Vectra images" = "eh_vectra",
-            "Flow Cytometry Core" = "flow_cytometry",
-            "Genomics & Bioinformatics Core" = "genomics",
-            "Immune Monitoring Core" = "immune",
-            "Large Animal Facility Core" = "large_animal",
-            "Preclinical Imaging Core (IVIS)" = "preclinical_img_ivis",
-            "Preclinical Imaging Core (MicroCT)" = "preclinical_img_microct",
-            "Preclinical Imaging Core (MRI)" = "preclinical_img_mri",
-            "Preclinical Modeling Core" = "preclinical_model",
-            "Proteomics Core" = "proteomics",
-            "Small Animal Facility Core" = "small_animal",
-            "Therapeutic Products Core" = "therapeutic"
-          )
+          label = "Choose your discipline(s) to get started with some suggested text!",
+          choices = c(
+            # "None Selected (Custom)" = "none",
+            # "Antibody Technology Core" = "antibody_tech",
+            # "Cellular Imaging Core" = "cellular_imaging",
+            # "Electron Microscopy - TEM" = "em_tem",
+            # "Electron Microscopy - SEM" = "em_sem",
+            # "Electron Microscopy - CryoEM" = "em_cryoem",
+            # "Experimental Histopathology - Aperio Platform" = "eh_aperio",
+            # "Experimental Histopathology - Polaris Platform" = "eh_polaris",
+            # "Experimental Histopathology - Vectra images" = "eh_vectra",
+            # "Flow Cytometry Core" = "flow_cytometry",
+            "Genomics & Bioinformatics" = "genomics",
+            # "Immune Monitoring Core" = "immune",
+            # "Large Animal Facility Core" = "large_animal",
+            # "Preclinical Imaging Core (IVIS)" = "preclinical_img_ivis",
+            # "Preclinical Imaging Core (MicroCT)" = "preclinical_img_microct",
+            # "Preclinical Imaging Core (MRI)" = "preclinical_img_mri",
+            # "Preclinical Modeling Core" = "preclinical_model",
+            "Proteomics Core" = "proteomics"
+            # "Small Animal Facility Core" = "small_animal",
+            # "Therapeutic Products Core" = "therapeutic"
+          ),
+          multiple = TRUE
         ),
 
         #####
         # I
         # DATA TYPE
+        # Data types and amounts
         box(
           title = "Data Type",
           collapsible = TRUE,
           collapsed = TRUE,
           width = NULL,
 
-          # Data types and amounts
-          h4("Raw Data Type"),
-          checkboxInput(
-            "raw_data_present",
-            label = "Add Raw Data section?",
-            value = TRUE,
-            width = NULL
-          ),
-          textInput(
-            "technology_description",
-            "Data generating technology",
-            value = ""
-          ),
-          textInput(
+          selectInput(
             "raw_file_description",
-            "Raw data file type and description",
-            value = ""
+            label = "Raw data file type",
+            choices = datatype_raw_file_description_options(),
+            multiple = TRUE
           ),
-          textInput("avg_file_size", "Average file size (e.g., in MB or GB)", value = ""),
-          textInput(
-            "total_samples_files",
-            "Total number of samples/files to be collected",
-            value = ""
-          ),
-          textInput("data_volume", "Total data volume", value = ""),
+          selectInput(
+            "technology_description",
+            label = "Data generating technology",
+            choices = datatype_technology_description_options(),
+            multiple = TRUE
+          )),
 
-          h4("Processed Data Type"),
-          checkboxInput(
-            "processed_data_present",
-            label = "Add Processed Data section?",
-            value = TRUE,
-            width = NULL
-          ),
-          textInput("raw_file_type", "Raw file(s) to be processed", value = ""),
-          textInput(
-            "brief_pipeline_description",
-            "Brief processing pipeline description",
-            value = ""
-          ),
-          textInput(
-            "processsed_file_description",
-            "Processed file type and description",
-            value = ""
-          ),
-          textInput(
-            "avg_processed_file_size",
-            "Average processed file size (e.g., in MB or GB)",
-            value = ""
-          ),
-          textInput(
-            "total_processed_samples_files",
-            "Total number of processed samples/files to be collected",
-            value = ""
-          ),
-          textInput(
-            "data_processed_volume",
-            "Total processed data volume",
-            value = ""
-          ),
+        # Num samples
+        box(
+          title = "Number of Samples",
+          collapsible = TRUE,
+          collapsed = TRUE,
+          width = NULL,
 
-          h4("Other Data Type Information"),
-          textInput("datatype_comment", label = "Optional: add additional text about data types", value = ""),
-          textInput(
-            "datatype_comment_summary",
-            label = "Optional: add additional text about techniques",
-            value = ""
+          numericInput(
+            "num_genomics_files",
+            label = "Genomic sample count",
+            value = NA
+          ),
+          numericInput(
+            "num_proteomics_files",
+            label = "Proteomic sample count",
+            value = NA
           )
         ),
 
         # Sharing
         box(
-          title = "Sharing",
+          title = "Data Sharing",
           collapsible = TRUE,
           collapsed = TRUE,
           width = NULL,
 
-          checkboxInput(
-            "shared_data_present",
-            label = "Add Shared Data section?",
-            value = TRUE,
-            width = NULL
-          ),
-          textInput(
-            "shared_technologies",
-            "Technologies and processed data to be shared",
-            value = ""
-          ),
-          textInput("shared_comment", label = "Optional: add additional text about data sharing", value = ""),
-
-          checkboxInput(
-            "not_shared_data_present",
-            label = "Add Data Not Shared section?",
-            value = TRUE,
-            width = NULL
-          ),
-          selectInput(
-            "notshared",
-            label = "Select: justifications if not sharing data",
-            choices = data_not_shared(),
-            selected = "\nWe anticipate all data will be able to be preserved and shared.",
-            multiple = TRUE
-          ),
-          textInput("not_shared_comment", label = "Optional: add additional text about data not shared", value = ""),
-        ),
-
-
-        # Metadata
-        box(
-          title = "Metadata",
-          collapsible = TRUE,
-          collapsed = TRUE,
-          width = NULL,
-
-          selectInput(
-            "metadata_desc",
-            label = "Select: short and/or long metadata description",
-            choices =
-              c(
-                "Short Description" = "short",
-                "Long Description" = "long"
-              ),
-            selected = "short",
-            multiple = TRUE
-          ),
-          textInput(
-            "metadata_descriptors",
-            "Metadata descriptor(s) (e.g., instrument output, medical records information",
-            value = ""
-          ),
-          textInput(
-            "metadata_collection",
-            "Process/guidelines for collecting metadata",
-            value = ""
-          ),
-          textInput(
-            "fair_standards",
-            "if it exists, FAIR standards for data type",
-            value = ""
-          ),
-          HTML(
-            '<a href="https://www.nature.com/articles/sdata201618">More about FAIR standards here</a><br><br>'
-          ),
-          textInput(
-            "metadata_location",
-            "Location where metadata will be deposited",
-            value = ""
-          )
-        ),
-
-        # II
-        # TOOLS / SOFTWARE / CODE
-        box(
-          title = "Tools/Code",
-          collapsible = TRUE,
-          collapsed = TRUE,
-          width = NULL,
-
-          selectInput(
-            "tools_code_desc",
-            label = "Tools/Code description (select any)",
-            choices =
-              c(
-                "Custom" = "custom",
-                "Open Source" = "opensource",
-                "Open post-publication" = "semiopen",
-                "Proprietary" = "proprietary"
-              ),
-            selected = c("custom", "opensource"),
-            multiple = TRUE
-          ),
-          textInput(
-            "data_manipulation_tool",
-            "Tool used for data manipulation",
-            value = "standard office suite spreadsheet software"
-          ),
-          selectInput(
-            "version_control",
-            label = "Select: version control method",
-            choices = c("GitHub", "GitLab", "BitBucket"),
-            selected = "GitHub",
-            multiple = FALSE
-          ),
-          selectInput(
-            "tool",
-            label = "Select: code type (all that apply)",
-            choices = list_of_tools(),
-            selected = "R scripts",
-            multiple = TRUE
-          ),
-          selectInput(
-            "platform",
-            label = "Select: platform (all that apply)",
-            choices = list_of_platforms(),
-            selected = "CRAN",
-            multiple = TRUE
-          )
-        ),
-
-        # III
-        # STANDARDS
-        box(
-          title = "Standards",
-          collapsible = TRUE,
-          collapsed = TRUE,
-          width = NULL,
-
-          textInput(
-            "standards_description",
-            "Standard creator/organization and description",
-            value = ""
-          ),
-          textInput(
-            "standards_comment",
-            "Optional: additional details as appropriate",
-            value = ""
-          )
-        ),
-
-        # IV
-        # PRESERVATION
-        box(
-          title = "Repositories",
-          collapsible = TRUE,
-          collapsed = TRUE,
-          width = NULL,
-
-          # Repository
-          selectInput(
-            "repository",
-            label = "Repository description (select any)",
-            choices = repository_choices(),
-            selected = c("custom"),
-            multiple = TRUE
-          ),
-          checkboxInput(
-            "add_open_repo",
-            label = "Custom: Open data repository?",
-            value = TRUE,
-            width = NULL
-          ),
-          textInput("repository_data_type", "Custom: Data type", value = ""),
-          textInput("chosen_repositories", "Custom: Open repository name", value = ""),
-          checkboxInput(
-            "add_controlled_repo",
-            label = "Custom: Controlled data repository?",
-            value = TRUE,
-            width = NULL
-          ),
-          textInput(
-            "controlled_repositories",
-            "Custom: Controlled repository name",
-            value = ""
-          ),
-          textInput("sensitive_data_type",
-                    "None: Sensitive data types",
-                    value = ""),
-          textInput("repo_comment", label = "Optional: add additional text about the repository", value = "")
-        ),
-
-        # FAIR
-        box(
-          title = "Findability",
-          collapsible = TRUE,
-          collapsed = TRUE,
-          width = NULL,
-
-          textInput("fair_repositories",
-                    "FAIR repositories",
-                    value = ""),
-          textInput("fair_comment", "Description of level of findability", value = "")
-        ),
-
-        # Timeframe
-        box(
-          title = "Timeframe",
-          collapsible = TRUE,
-          collapsed = TRUE,
-          width = NULL,
-
-          textInput(
-            "timeframe_data_type",
-            "Data type",
-            value = ""
-          ),
-          textInput(
-            "timeframe_to_pub",
-            "Timeframe for depositing (e.g., within X months of data generation / at the time of publication)",
-            value = ""
-          ),
-          textInput(
-            "timeframe_longevity",
-            "Timeframe for availability (e.g., duration of the grant funding)",
-            value = ""
-          )
-        ),
-
-        # V
-        # ACCESS
-        box(
-          title = "Access",
-          collapsible = TRUE,
-          collapsed = TRUE,
-          width = NULL,
-
-          # Reuse
-          h4("Data Reuse"),
-          selectInput(
-            "reuse",
-            label = "Select: plan for subsequent data access, distribution, or reuse",
-            choices = reuse_choices(),
-            selected = c("no_restrictions"),
-            multiple = TRUE
-          ),
-          textInput("reuse_raw_file_type", "Data type(s)", value = ""),
-          selectInput(
-            "reuse_level",
-            label = "Select: data level",
-            choices = c("None", "Level 0", "Level 1"),
-            selected = "Level 0",
-            multiple = FALSE
-          ),
-
-          # Controls
-          h4("Data Controls"),
-          checkboxInput(
-            "controls",
-            label = "Are access controls needed?",
-            value = TRUE,
-            width = NULL
-          ),
-
-          textInput("controlled_data_type", "Controlled data type(s)", value = ""),
-          textInput("access_repositories",
-                    "Controlled repositories",
-                    value = ""),
-          textInput("control_comment",
-                    label = "Optional: add additional control details",
-                    value = "submitted to and processed by the NIH-designated data repository under their 'controlled access' process"),
-
-          # Human subjects
-          h4("Human Subjects"),
           checkboxInput(
             "human_subjects",
-            label = "Are human subjects involved?",
+            label = "Human subjects data?",
             value = FALSE,
             width = NULL
           )
         ),
 
-        # VI
-        # OVERSIGHT
-        box(
-          title = "Oversight",
-          collapsible = TRUE,
-          collapsed = TRUE,
-          width = NULL,
 
-          selectInput(
-            "oversight_method",
-            label = "Select: who will conduct the oversight?",
-            choices = c("Proposal Team", "Laboratory Staff", "External Collaborator"),
-            selected = "Proposal Team",
-            multiple = FALSE
-          ),
-          textInput("name_role", label = "Oversight lead (e.g., Name and role)", value = ""),
-          textInput("review_frequency", label = "Review frequency (e.g., twice annually)", value = ""),
-          textInput("review_addtnl", label = "Additional review points (e.g., when publications are accepted)", value = "")
-        ),
+        # # Sharing
+        # box(
+        #   title = "Sharing",
+        #   collapsible = TRUE,
+        #   collapsed = TRUE,
+        #   width = NULL,
+        #
+        #   checkboxInput(
+        #     "shared_data_present",
+        #     label = "Add Shared Data section?",
+        #     value = TRUE,
+        #     width = NULL
+        #   ),
+        #   textInput(
+        #     "shared_technologies",
+        #     "Technologies and processed data to be shared",
+        #     value = ""
+        #   ),
+        #   textInput("shared_comment", label = "Optional: add additional text about data sharing", value = ""),
+        #
+        #   checkboxInput(
+        #     "not_shared_data_present",
+        #     label = "Add Data Not Shared section?",
+        #     value = TRUE,
+        #     width = NULL
+        #   ),
+        #   selectInput(
+        #     "notshared",
+        #     label = "Select: justifications if not sharing data",
+        #     choices = data_not_shared(),
+        #     selected = "\nWe anticipate all data will be able to be preserved and shared.",
+        #     multiple = TRUE
+        #   ),
+        #   textInput("not_shared_comment", label = "Optional: add additional text about data not shared", value = ""),
+        # ),
+        #
+        #
+        # # Metadata
+        # box(
+        #   title = "Metadata",
+        #   collapsible = TRUE,
+        #   collapsed = TRUE,
+        #   width = NULL,
+        #
+        #   selectInput(
+        #     "metadata_desc",
+        #     label = "Select: short and/or long metadata description",
+        #     choices =
+        #       c(
+        #         "Short Description" = "short",
+        #         "Long Description" = "long"
+        #       ),
+        #     selected = "short",
+        #     multiple = TRUE
+        #   ),
+        #   textInput(
+        #     "metadata_descriptors",
+        #     "Metadata descriptor(s) (e.g., instrument output, medical records information",
+        #     value = ""
+        #   ),
+        #   textInput(
+        #     "metadata_collection",
+        #     "Process/guidelines for collecting metadata",
+        #     value = ""
+        #   ),
+        #   textInput(
+        #     "fair_standards",
+        #     "if it exists, FAIR standards for data type",
+        #     value = ""
+        #   ),
+        #   HTML(
+        #     '<a href="https://www.nature.com/articles/sdata201618">More about FAIR standards here</a><br><br>'
+        #   ),
+        #   textInput(
+        #     "metadata_location",
+        #     "Location where metadata will be deposited",
+        #     value = ""
+        #   )
+        # ),
+        #
+        # # II
+        # # TOOLS / SOFTWARE / CODE
+        # box(
+        #   title = "Tools/Code",
+        #   collapsible = TRUE,
+        #   collapsed = TRUE,
+        #   width = NULL,
+        #
+        #   selectInput(
+        #     "tools_code_desc",
+        #     label = "Tools/Code description (select any)",
+        #     choices =
+        #       c(
+        #         "Custom" = "custom",
+        #         "Open Source" = "opensource",
+        #         "Open post-publication" = "semiopen",
+        #         "Proprietary" = "proprietary"
+        #       ),
+        #     selected = c("custom", "opensource"),
+        #     multiple = TRUE
+        #   ),
+        #   textInput(
+        #     "data_manipulation_tool",
+        #     "Tool used for data manipulation",
+        #     value = "standard office suite spreadsheet software"
+        #   ),
+        #   selectInput(
+        #     "version_control",
+        #     label = "Select: version control method",
+        #     choices = c("GitHub", "GitLab", "BitBucket"),
+        #     selected = "GitHub",
+        #     multiple = FALSE
+        #   ),
+        #   selectInput(
+        #     "tool",
+        #     label = "Select: code type (all that apply)",
+        #     choices = list_of_tools(),
+        #     selected = "R scripts",
+        #     multiple = TRUE
+        #   ),
+        #   selectInput(
+        #     "platform",
+        #     label = "Select: platform (all that apply)",
+        #     choices = list_of_platforms(),
+        #     selected = "CRAN",
+        #     multiple = TRUE
+        #   )
+        # ),
+        #
+        # # III
+        # # STANDARDS
+        # box(
+        #   title = "Standards",
+        #   collapsible = TRUE,
+        #   collapsed = TRUE,
+        #   width = NULL,
+        #
+        #   textInput(
+        #     "standards_description",
+        #     "Standard creator/organization and description",
+        #     value = ""
+        #   ),
+        #   textInput(
+        #     "standards_comment",
+        #     "Optional: additional details as appropriate",
+        #     value = ""
+        #   )
+        # ),
+        #
+        # # IV
+        # # PRESERVATION
+        # box(
+        #   title = "Repositories",
+        #   collapsible = TRUE,
+        #   collapsed = TRUE,
+        #   width = NULL,
+        #
+        #   # Repository
+        #   selectInput(
+        #     "repository",
+        #     label = "Repository description (select any)",
+        #     choices = repository_choices(),
+        #     selected = c("custom"),
+        #     multiple = TRUE
+        #   ),
+        #   checkboxInput(
+        #     "add_open_repo",
+        #     label = "Custom: Open data repository?",
+        #     value = TRUE,
+        #     width = NULL
+        #   ),
+        #   textInput("repository_data_type", "Custom: Data type", value = ""),
+        #   textInput("chosen_repositories", "Custom: Open repository name", value = ""),
+        #   checkboxInput(
+        #     "add_controlled_repo",
+        #     label = "Custom: Controlled data repository?",
+        #     value = TRUE,
+        #     width = NULL
+        #   ),
+        #   textInput(
+        #     "controlled_repositories",
+        #     "Custom: Controlled repository name",
+        #     value = ""
+        #   ),
+        #   textInput("sensitive_data_type",
+        #             "None: Sensitive data types",
+        #             value = ""),
+        #   textInput("repo_comment", label = "Optional: add additional text about the repository", value = "")
+        # ),
+        #
+        # # FAIR
+        # box(
+        #   title = "Findability",
+        #   collapsible = TRUE,
+        #   collapsed = TRUE,
+        #   width = NULL,
+        #
+        #   textInput("fair_repositories",
+        #             "FAIR repositories",
+        #             value = ""),
+        #   textInput("fair_comment", "Description of level of findability", value = "")
+        # ),
+        #
+        # # Timeframe
+        # box(
+        #   title = "Timeframe",
+        #   collapsible = TRUE,
+        #   collapsed = TRUE,
+        #   width = NULL,
+        #
+        #   textInput(
+        #     "timeframe_data_type",
+        #     "Data type",
+        #     value = ""
+        #   ),
+        #   textInput(
+        #     "timeframe_to_pub",
+        #     "Timeframe for depositing (e.g., within X months of data generation / at the time of publication)",
+        #     value = ""
+        #   ),
+        #   textInput(
+        #     "timeframe_longevity",
+        #     "Timeframe for availability (e.g., duration of the grant funding)",
+        #     value = ""
+        #   )
+        # ),
+        #
+        # # V
+        # # ACCESS
+        # box(
+        #   title = "Access",
+        #   collapsible = TRUE,
+        #   collapsed = TRUE,
+        #   width = NULL,
+        #
+        #   # Reuse
+        #   h4("Data Reuse"),
+        #   selectInput(
+        #     "reuse",
+        #     label = "Select: plan for subsequent data access, distribution, or reuse",
+        #     choices = reuse_choices(),
+        #     selected = c("no_restrictions"),
+        #     multiple = TRUE
+        #   ),
+        #   textInput("reuse_raw_file_type", "Data type(s)", value = ""),
+        #   selectInput(
+        #     "reuse_level",
+        #     label = "Select: data level",
+        #     choices = c("None", "Level 0", "Level 1"),
+        #     selected = "Level 0",
+        #     multiple = FALSE
+        #   ),
+        #
+        #   # Controls
+        #   h4("Data Controls"),
+        #   checkboxInput(
+        #     "controls",
+        #     label = "Are access controls needed?",
+        #     value = TRUE,
+        #     width = NULL
+        #   ),
+        #
+        #   textInput("controlled_data_type", "Controlled data type(s)", value = ""),
+        #   textInput("access_repositories",
+        #             "Controlled repositories",
+        #             value = ""),
+        #   textInput("control_comment",
+        #             label = "Optional: add additional control details",
+        #             value = "submitted to and processed by the NIH-designated data repository under their 'controlled access' process"),
+        #
+        #   # Human subjects
+        #   h4("Human Subjects"),
+        #   checkboxInput(
+        #     "human_subjects",
+        #     label = "Are human subjects involved?",
+        #     value = FALSE,
+        #     width = NULL
+        #   )
+        # ),
+        #
+        # # VI
+        # # OVERSIGHT
+        # box(
+        #   title = "Oversight",
+        #   collapsible = TRUE,
+        #   collapsed = TRUE,
+        #   width = NULL,
+        #
+        #   selectInput(
+        #     "oversight_method",
+        #     label = "Select: who will conduct the oversight?",
+        #     choices = c("Proposal Team", "Laboratory Staff", "External Collaborator"),
+        #     selected = "Proposal Team",
+        #     multiple = FALSE
+        #   ),
+        #   textInput("name_role", label = "Oversight lead (e.g., Name and role)", value = ""),
+        #   textInput("review_frequency", label = "Review frequency (e.g., twice annually)", value = ""),
+        #   textInput("review_addtnl", label = "Additional review points (e.g., when publications are accepted)", value = "")
+        # ),
         #####
 
         HTML('<br>'),
@@ -489,6 +470,23 @@ shiny_ui <- function() {
       # ------- Preview
       mainPanel(
         #####
+
+        HTML('
+          <style>
+            div.container {
+            background-color: #ffffff;
+            }
+            div.container p {
+            font-family: Arial;
+            font-size: 22px;
+            color: #b8331e;
+            }
+          </style>
+
+          <div class="container">
+            <p>This tool is under construction - thanks for your patience!</p>
+          </div>
+        '),
 
         # Download buttons
         downloadButton("downloaddocx", label = "Download .docx"),
