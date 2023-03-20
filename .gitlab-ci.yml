@@ -53,6 +53,4 @@ deploy_dev:
     - sleep 15
     - echo $SC_SWARM_CICD_SSH_KEY | base64 -d > ./sc_swarm_cicd_ssh_key
     - chmod 0400 ./sc_swarm_cicd_ssh_key
-    - python3 build_helper.py docker-compose.yml  > mod.yml
-    - sed -i.bak -e 's/routers.dmshelper./routers.dmshelper_dev./g'  -e 's/dmshelper\/dmshelper/dmshelper\/dmshelper_dev/'  -e 's/dmshelper.fredhutch.org/dmshelper_dev.fredhutch.org/g' -e 's/dmshelper:latest/dmshelper:dev/' mod.yml
-    - cat mod.yml | ssh -i ./sc_swarm_cicd_ssh_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@sc-swarm-mgr.fhcrc.org docker stack deploy --with-registry-auth -c - dmshelper_dev
+    - python3 build_helper.py docker-compose-dev.yml | ssh -i ./sc_swarm_cicd_ssh_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@sc-swarm-mgr.fhcrc.org docker stack deploy --with-registry-auth -c - dmshelper_dev
