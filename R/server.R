@@ -42,31 +42,16 @@ shiny_server <- function(input, output, session) {
 
     },ignoreInit = TRUE)
 
-      # Get the text of the datatype part of the plan
-      datatype_part <- datatype_txt(input)
-#
-#     # Get the text for the tool part of the plan
-#     tools_part <- tools_txt(tools_code_part)
-#
-#     # Get the text for the standards part of the plan
-#     standards_part <- standards_txt(input)
-#
-#     # Preservation
-#     preservation_part <- preservation_txt(
-#       repository_part,
-#       fair_description(input),
-#       duration_description(input)
-#     )
-#
-#     access_part <- access_txt(reuse_part, control_part, hs_part)
-#
-#     oversight_part <- oversight_txt(oversight_part)
-
-    # -----
-
     # Combine each section into one vector
-    # book <- c(datatype_part, tools_part, standards_part, preservation_part, access_part, oversight_part)
-    book <- datatype_part
+      book <-
+        c(
+          datatype_txt(input),
+          tools_txt(input),
+          standards_txt(input),
+          preservation_txt(input),
+          access_txt(input),
+          oversight_txt(input)
+        )
 
     # Create downloads
     writeLines(book, file.path(paste0(getwd(), "/outtext.md")))

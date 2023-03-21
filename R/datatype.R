@@ -7,30 +7,17 @@
 #'
 #' @examples
 raw_processed_data_chunk <- function(input) {
-  # Determine which raw data types belong to genomics..
-  # TODO : do we want cores to appear with datatypes or vice versa?
-  genomics_flag <-
-    "genomics" %in% input$core_datatype |
-    any(input$raw_file_description %in% core_genomics_raw_file_types()) |
-    any(input$technology_description %in% core_genomics_technologies())
-  proteomics_flag <-
-    "proteomics" %in% input$core_datatype |
-    any(input$raw_file_description %in% core_proteomics_raw_file_types()) |
-    any(input$technology_description %in% core_proteomics_technologies())
-  # genomics_flag <- "genomics" %in% input$core_datatype
-  # proteomics_flag <- "proteomics" %in% input$core_datatype
-
   genomics_file_types <-
-    input$raw_file_description[input$raw_file_description %in% core_genomics_raw_file_types()]
+    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/genomics.yml")$raw_file_types]
   proteomics_file_types <-
-    input$raw_file_description[input$raw_file_description %in% core_proteomics_raw_file_types()]
+    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/proteomics.yml")$raw_file_types]
 
   genomics_tech_types <-
-    input$technology_description[input$technology_description %in% core_genomics_technologies()]
+    input$technology_description[input$technology_description %in% yaml.load_file("template/genomics.yml")$tech_types]
   proteomics_tech_types <-
-    input$technology_description[input$technology_description %in% core_proteomics_technologies()]
+    input$technology_description[input$technology_description %in% yaml.load_file("template/proteomics.yml")$tech_types]
 
-  if (genomics_flag) {
+  if (determine_cores(input)$genomics_flag) {
     #####
     raw_processed_data_chunk_temp <-
       c(
@@ -53,7 +40,9 @@ raw_processed_data_chunk <- function(input) {
         } else {
           input$num_genomics_files
         },
-        "</font> samples ranging from 500MB to 20GB each depending on the assay type and yield for a total data volume of <font color='OA799A'>",
+        "</font>",
+        yaml.load_file("template/genomics.yml")$file_sizes,
+        "for a total data volume of <font color='OA799A'>",
         if (is.na(as.numeric(input$num_genomics_files))) {
           " ___ "
         } else {
@@ -71,7 +60,11 @@ raw_processed_data_chunk <- function(input) {
         } else {
           paste(genomics_file_types, collapse = ", ")
         },
-        "</font> files using bioinformatics software to be described in all associated publications, resulting in structured data in tabular (CSV/TSV) or standardized genomic file formats (e.g. FASTA, BAM, VCF, HDF5). Processed files will range in size from from 100MB to 1GB depending on the specific analysis, for a total processed data volume of <font color='OA799A'>",
+        paste0(
+          "</font> files using ",
+          yaml.load_file("template/genomics.yml")$processing,
+          ", for a total processed data volume of <font color='OA799A'>"
+        ),
         if (is.na(as.numeric(input$num_genomics_files))) {
           " ___ "
         } else {
@@ -88,7 +81,7 @@ raw_processed_data_chunk <- function(input) {
   } else {
     raw_processed_data_chunk_temp <- c("")
   }
-  if (proteomics_flag) {
+  if (determine_cores(input)$proteomics_flag) {
     #####
     raw_processed_data_chunk_temp <-
       c(
@@ -114,7 +107,9 @@ raw_processed_data_chunk <- function(input) {
           } else {
             input$num_proteomics_files
           },
-          "</font> samples ranging from 0.5 to 2 GB for a total data volume of <font color='OA799A'>",
+          "</font> ",
+          yaml.load_file("template/proteomics.yml")$file_sizes,
+          "for a total data volume of <font color='OA799A'>",
           if (is.na(as.numeric(input$num_proteomics_files))) {
             " ___ "
           } else {
@@ -132,7 +127,11 @@ raw_processed_data_chunk <- function(input) {
           } else {
             paste(proteomics_file_types, collapse = ", ")
           },
-          "</font> files using Thermo Scientific Proteome Discoverer v2.5 and provide analyzed results using the Proteome Discoverer viewer, resulting in pdResult, Excel, and image files. Processed files will range in size from from 1GB to 30GB, for a total processed data volume of <font color='OA799A'>",
+          paste0(
+            "</font> files using ",
+            yaml.load_file("template/proteomics.yml")$processing,
+            ", for a total processed data volume of <font color='OA799A'>"
+          ),
           if (is.na(as.numeric(input$num_proteomics_files))) {
             " ___ "
           } else {
@@ -164,8 +163,8 @@ raw_processed_data_chunk <- function(input) {
 #' @examples
 datatype_raw_file_description_options <- function() {
   return(c(
-    core_genomics_raw_file_types(),
-    core_proteomics_raw_file_types()
+    yaml.load_file("template/genomics.yml")$raw_file_types,
+    yaml.load_file("template/proteomics.yml")$raw_file_types
   ))
 }
 
@@ -178,8 +177,8 @@ datatype_raw_file_description_options <- function() {
 #' @examples
 datatype_technology_description_options <- function() {
   return(c(
-    core_genomics_technologies(),
-    core_proteomics_technologies()
+    yaml.load_file("template/genomics.yml")$tech_types,
+    yaml.load_file("template/proteomics.yml")$tech_types
   ))
 }
 
@@ -195,10 +194,14 @@ datatype_technology_description_options <- function() {
 datatype_raw_by_core <- function(toggle_example_txt) {
   datatype_raw_ <- ""
   if ("genomics" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <- c(datatype_raw_, core_genomics_raw_file_types())
+    datatype_raw_ <-
+      c(datatype_raw_,
+        yaml.load_file("template/genomics.yml")$raw_file_types)
   }
   if ("proteomics" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <- c(datatype_raw_, core_proteomics_raw_file_types())
+    datatype_raw_ <-
+      c(datatype_raw_,
+        yaml.load_file("template/proteomics.yml")$raw_file_types)
   }
   return(datatype_raw_)
 }
@@ -215,10 +218,14 @@ datatype_raw_by_core <- function(toggle_example_txt) {
 datatype_tech_by_core <- function(toggle_example_txt) {
   datatype_tech_ <- ""
   if ("genomics" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <- c(datatype_tech_, core_genomics_technologies())
+    datatype_tech_ <-
+      c(datatype_tech_,
+        yaml.load_file("template/genomics.yml")$tech_types)
   }
   if ("proteomics" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <- c(datatype_tech_, core_proteomics_technologies())
+    datatype_tech_ <-
+      c(datatype_tech_,
+        yaml.load_file("template/proteomics.yml")$tech_types)
   }
   return(datatype_tech_)
 }

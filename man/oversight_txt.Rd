@@ -4,7 +4,7 @@
 \alias{oversight_txt}
 \title{Title}
 \usage{
-oversight_txt(oversight_part)
+oversight_txt(input)
 }
 \arguments{
 \item{oversight_part}{}
