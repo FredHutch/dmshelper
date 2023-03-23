@@ -14,6 +14,14 @@ standards_chunk <- function(input) {
   } else {
     standards_chunk_temp <- c("")
   }
+  if (determine_cores(input)$cell_img_flag) {
+    #####
+    standards_chunk_temp <-
+      c(standards_chunk_temp,
+        yaml.load_file("template/cell_img.yml")$standards)
+  } else {
+    standards_chunk_temp <- c(standards_chunk_temp, "")
+  }
   if (determine_cores(input)$genomics_flag) {
     #####
     standards_chunk_temp <-

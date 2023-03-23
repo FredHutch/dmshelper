@@ -53,8 +53,8 @@ shiny_ui <- function() {
           label = "Choose your discipline(s) to get started with some suggested text!",
           choices = c(
             # "None Selected (Custom)" = "none",
-            "Antibody Technology Core" = "antibody_tech",
-            # "Cellular Imaging Core" = "cellular_imaging",
+            "Antibody Technology" = "antibody_tech",
+            "Cellular Imaging" = "cellular_imaging",
             # "Electron Microscopy - TEM" = "em_tem",
             # "Electron Microscopy - SEM" = "em_sem",
             # "Electron Microscopy - CryoEM" = "em_cryoem",

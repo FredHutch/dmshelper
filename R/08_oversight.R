@@ -17,7 +17,7 @@ oversight_chunk <- function(input) {
         ".</font>"
       )
   } else {
-    oversight_chunk_temp <- c(oversight_chunk_temp, "")
+    oversight_chunk_temp <- c("")
   }
   if (determine_cores(input)$genomics_flag) {
     #####

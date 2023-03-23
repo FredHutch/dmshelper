@@ -13,6 +13,17 @@ metadata_chunk <- function(input) {
   } else {
     metadata_chunk_temp <- c("")
   }
+  if (determine_cores(input)$cell_img_flag) {
+    metadata_chunk_temp <-
+      c(metadata_chunk_temp,
+        if (yaml.load_file("template/cell_img.yml")$metadata %in% metadata_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/cell_img.yml")$metadata
+        })
+  } else {
+    metadata_chunk_temp <- c(metadata_chunk_temp, "")
+  }
   if (determine_cores(input)$genomics_flag) {
     metadata_chunk_temp <-
       c(metadata_chunk_temp,

@@ -25,6 +25,28 @@ sharing_chunk <- function(input) {
   } else {
     sharing_chunk_temp <- c("")
   }
+  if (determine_cores(input)$cell_img_flag) {
+    #####
+    if (input$human_subjects) {
+      sharing_chunk_temp <-
+        c(
+          sharing_chunk_temp,
+          "  ",
+          "_Our proposal will preserve and share the following types of cellular imaging data:_  ",
+          yaml.load_file("template/cell_img.yml")$sharing_non_hs
+        )
+    } else {
+      sharing_chunk_temp <-
+        c(
+          sharing_chunk_temp,
+          "  ",
+          "_Our proposal will preserve and share the following types of cellular imaging data:_  ",
+          yaml.load_file("template/cell_img.yml")$sharing_non_hs
+        )
+    }
+  } else {
+    sharing_chunk_temp <- c(sharing_chunk_temp, "")
+  }
   if (determine_cores(input)$genomics_flag) {
     #####
     if (input$human_subjects) {
