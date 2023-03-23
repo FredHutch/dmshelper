@@ -7,20 +7,51 @@
 #'
 #' @examples
 raw_processed_data_chunk <- function(input) {
+  antibody_tech_file_types <-
+    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/antibody_tech.yml")$raw_file_types]
   genomics_file_types <-
     input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/genomics.yml")$raw_file_types]
   proteomics_file_types <-
     input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/proteomics.yml")$raw_file_types]
 
+  antibody_tech_tech_types <-
+    input$technology_description[input$technology_description %in% yaml.load_file("template/antibody_tech.yml")$tech_types]
   genomics_tech_types <-
     input$technology_description[input$technology_description %in% yaml.load_file("template/genomics.yml")$tech_types]
   proteomics_tech_types <-
     input$technology_description[input$technology_description %in% yaml.load_file("template/proteomics.yml")$tech_types]
 
+  if (determine_cores(input)$antibody_tech_flag) {
+    #####
+    raw_processed_data_chunk_temp <-
+      c(
+        "_Our proposal will generate antibody technology data of the following types and sizes:_  ",
+        "We will collect generate <font color='OA799A'>",
+        paste0(
+        if (length(antibody_tech_file_types) == 0) {
+          " ___ "
+        } else {
+          paste(antibody_tech_file_types, collapse = ", ")
+        },
+        " ",
+        if (length(antibody_tech_tech_types) == 0) {
+          " ___ "
+        } else {
+          paste(antibody_tech_tech_types, collapse = ", ")
+        },
+        "</font>",
+        ". The total amount of data describing antibody production is <10MB."
+        )
+      )
+  } else {
+    raw_processed_data_chunk_temp <- c("")
+  }
   if (determine_cores(input)$genomics_flag) {
     #####
     raw_processed_data_chunk_temp <-
       c(
+        raw_processed_data_chunk_temp,
+        "  ",
         "_Our proposal will generate genomic data of the following types and sizes:_  ",
         "We will generate raw data in the form of <font color='OA799A'>",
         if (length(genomics_file_types) == 0) {
@@ -79,7 +110,8 @@ raw_processed_data_chunk <- function(input) {
         "</font>GB."
       )
   } else {
-    raw_processed_data_chunk_temp <- c("")
+    raw_processed_data_chunk_temp <-
+      c(raw_processed_data_chunk_temp, "")
   }
   if (determine_cores(input)$proteomics_flag) {
     #####
@@ -163,6 +195,7 @@ raw_processed_data_chunk <- function(input) {
 #' @examples
 datatype_raw_file_description_options <- function() {
   return(c(
+    yaml.load_file("template/antibody_tech.yml")$raw_file_types,
     yaml.load_file("template/genomics.yml")$raw_file_types,
     yaml.load_file("template/proteomics.yml")$raw_file_types
   ))
@@ -177,6 +210,7 @@ datatype_raw_file_description_options <- function() {
 #' @examples
 datatype_technology_description_options <- function() {
   return(c(
+    yaml.load_file("template/antibody_tech.yml")$tech_types,
     yaml.load_file("template/genomics.yml")$tech_types,
     yaml.load_file("template/proteomics.yml")$tech_types
   ))
@@ -193,6 +227,11 @@ datatype_technology_description_options <- function() {
 #' @examples
 datatype_raw_by_core <- function(toggle_example_txt) {
   datatype_raw_ <- ""
+  if ("antibody_tech" %in% toggle_example_txt$core_datatype) {
+    datatype_raw_ <-
+      c(datatype_raw_,
+        yaml.load_file("template/antibody_tech.yml")$raw_file_types)
+  }
   if ("genomics" %in% toggle_example_txt$core_datatype) {
     datatype_raw_ <-
       c(datatype_raw_,
@@ -217,6 +256,11 @@ datatype_raw_by_core <- function(toggle_example_txt) {
 #' @examples
 datatype_tech_by_core <- function(toggle_example_txt) {
   datatype_tech_ <- ""
+  if ("antibody_tech" %in% toggle_example_txt$core_datatype) {
+    datatype_tech_ <-
+      c(datatype_tech_,
+        yaml.load_file("template/antibody_tech.yml")$tech_types)
+  }
   if ("genomics" %in% toggle_example_txt$core_datatype) {
     datatype_tech_ <-
       c(datatype_tech_,

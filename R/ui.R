@@ -53,7 +53,7 @@ shiny_ui <- function() {
           label = "Choose your discipline(s) to get started with some suggested text!",
           choices = c(
             # "None Selected (Custom)" = "none",
-            # "Antibody Technology Core" = "antibody_tech",
+            "Antibody Technology Core" = "antibody_tech",
             # "Cellular Imaging Core" = "cellular_imaging",
             # "Electron Microscopy - TEM" = "em_tem",
             # "Electron Microscopy - SEM" = "em_sem",
@@ -86,6 +86,12 @@ shiny_ui <- function() {
           collapsed = TRUE,
           width = NULL,
 
+          checkboxInput(
+            "human_subjects",
+            label = "Human subjects data?",
+            value = FALSE,
+            width = NULL
+          ),
           selectInput(
             "raw_file_description",
             label = "Raw data file type",
@@ -111,6 +117,18 @@ shiny_ui <- function() {
             label = "Genomic sample count",
             value = NA
           ),
+          # selectInput(
+          #   "num_genomics_files",
+          #   label = "Genomic sample count",
+          #   choices =
+          #     c(
+          #       "1 - 10",
+          #       "11 - 50",
+          #       "51 - 200",
+          #       "200 - 500"
+          #     ),
+          #   multiple = FALSE
+          # ),
           numericInput(
             "num_proteomics_files",
             label = "Proteomic sample count",
@@ -125,12 +143,6 @@ shiny_ui <- function() {
           collapsed = TRUE,
           width = NULL,
 
-          checkboxInput(
-            "human_subjects",
-            label = "Human subjects data?",
-            value = FALSE,
-            width = NULL
-          )
         ),
 
 

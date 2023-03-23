@@ -7,39 +7,57 @@
 #'
 #' @examples
 oversight_chunk <- function(input) {
-  if (determine_cores(input)$genomics_flag) {
+  if (determine_cores(input)$antibody_tech_flag) {
     #####
-    oversight_chunk_temp <- c(
-      yaml.load_file("template/genomics.yml")$oversight,
-      paste0(
-        "Execution of this Plan will be executed by <font color='OA799A'>",
-        yaml.load_file("template/genomics.yml")$oversight_execution,
+    oversight_chunk_temp <-
+      c(
+        yaml.load_file("template/proteomics.yml")$oversight,
+        "Execution of this Plan will be performed by <font color='OA799A'>",
+        yaml.load_file("template/proteomics.yml")$oversight_execution,
         ".</font>"
       )
-    )
   } else {
-    oversight_chunk_temp <- c("")
+    oversight_chunk_temp <- c(oversight_chunk_temp, "")
+  }
+  if (determine_cores(input)$genomics_flag) {
+    #####
+    oversight_chunk_temp <-
+      c(oversight_chunk_temp,
+        if (yaml.load_file("template/genomics.yml")$oversight %in% oversight_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/genomics.yml")$oversight
+        },
+        paste0(if (yaml.load_file("template/genomics.yml")$oversight_execution %in% oversight_chunk_temp) {
+          ""
+        } else {
+          c(
+            "Execution of this Plan will be performed by <font color='OA799A'>",
+            yaml.load_file("template/genomics.yml")$oversight_execution,
+            ".</font>"
+          )
+        }))
+  } else {
+    oversight_chunk_temp <- c(oversight_chunk_temp, "")
   }
   if (determine_cores(input)$proteomics_flag) {
     #####
     oversight_chunk_temp <-
-      c(
-        oversight_chunk_temp,
+      c(oversight_chunk_temp,
         if (yaml.load_file("template/proteomics.yml")$oversight %in% oversight_chunk_temp) {
           ""
         } else {
           yaml.load_file("template/proteomics.yml")$oversight
         },
-        paste0(
-          "Execution of this Plan will be executed by <font color='OA799A'>",
-          if (yaml.load_file("template/proteomics.yml")$oversight_execution %in% oversight_chunk_temp) {
-            ""
-          } else {
-            yaml.load_file("template/proteomics.yml")$oversight_execution
-          },
-          ".</font>"
-        )
-      )
+        paste0(if (yaml.load_file("template/proteomics.yml")$oversight_execution %in% oversight_chunk_temp) {
+          ""
+        } else {
+          c(
+            "Execution of this Plan will be performed by <font color='OA799A'>",
+            yaml.load_file("template/proteomics.yml")$oversight_execution,
+            ".</font>"
+          )
+        }))
   } else {
     oversight_chunk_temp <- c(oversight_chunk_temp, "")
   }
