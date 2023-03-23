@@ -32,7 +32,7 @@ access_reuse: "We do not anticipate any significant factors limiting the access,
 control_approvals: "All proteomics datasets stored in MassIVE or PRIDE will be available to requesting researchers without the need for approval."
 
 # Protections for privacy, rights, and confidentiality of human research participants (IF APPLICABLE)
-privacy_hs: "[text]"
+privacy_hs: ""
 
 # Oversight of Data Management and Sharing
 oversight: "Oversight for, management of and compliance with this data management and sharing plan will be performed by the PI for this project. We will review our plan and identify any datasets that need to be shared, processed for sharing or updated twice annually. Additionally, we will implement aspects of our plan when manuscripts are published."

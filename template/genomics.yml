@@ -32,7 +32,7 @@ duration_non_hs: "Data will be released no later than the time of initial public
 access_reuse: "[text about IRB...]"
 
 # Whether access to scientific data will be controlled
-control_approvals: "[text]"
+control_approvals: ""
 
 # Protections for privacy, rights, and confidentiality of human research participants (IF APPLICABLE)
 privacy_hs: "In order to achieve our goal of data sharing with the research community while not violating assurances and rights of study participants, we will create a dataset for sharing that (1) excludes participants whose consent forms specifically state that their data will not be shared outside of the study team, and (2) incorporates standard blurring or masking techniques for demographic, phenotypic, and descriptive variables so as to reduce risks of identifiability and/or confidentiality violation."
