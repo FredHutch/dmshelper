@@ -7,17 +7,31 @@
 #'
 #' @examples
 access_reuse_chunk <- function(input) {
-  if (determine_cores(input)$genomics_flag) {
+  if (determine_cores(input)$antibody_tech_flag) {
     #####
-    if (input$human_subjects) {
-      access_reuse_chunk_temp <-
-        yaml.load_file("template/genomics.yml")$access_reuse
-    } else {
-      access_reuse_chunk_temp <-
-        yaml.load_file("template/genomics.yml")$access_reuse
-    }
+    access_reuse_chunk_temp <-
+      yaml.load_file("template/antibody_tech.yml")$access_reuse
   } else {
     access_reuse_chunk_temp <- c("")
+  }
+  if (determine_cores(input)$cell_img_flag) {
+    #####
+    access_reuse_chunk_temp <-
+      c(
+        access_reuse_chunk_temp,
+        yaml.load_file("template/cell_img.yml")$access_reuse
+      )
+  } else {
+    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+  }
+  if (determine_cores(input)$genomics_flag) {
+    #####
+    access_reuse_chunk_temp <- c(
+      access_reuse_chunk_temp,
+      yaml.load_file("template/genomics.yml")$access_reuse
+    )
+  } else {
+    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
   }
   if (determine_cores(input)$proteomics_flag) {
     #####
@@ -43,17 +57,31 @@ access_reuse_chunk <- function(input) {
 #'
 #' @examples
 control_chunk <- function(input) {
-  if (determine_cores(input)$genomics_flag) {
+  if (determine_cores(input)$antibody_tech_flag) {
     #####
-    if (input$human_subjects) {
-      control_chunk_temp <-
-        yaml.load_file("template/genomics.yml")$control_approvals
-    } else {
-      control_chunk_temp <-
-        yaml.load_file("template/genomics.yml")$control_approvals
-    }
+    control_chunk_temp <-
+      yaml.load_file("template/antibody_tech.yml")$control_approvals
   } else {
     control_chunk_temp <- c("")
+  }
+  if (determine_cores(input)$cell_img_flag) {
+    #####
+    control_chunk_temp <-
+      c(
+        control_chunk_temp,
+        yaml.load_file("template/cell_img.yml")$control_approvals
+      )
+  } else {
+    control_chunk_temp <- c(control_chunk_temp, "")
+  }
+  if (determine_cores(input)$genomics_flag) {
+    #####
+    control_chunk_temp <- c(
+      control_chunk_temp,
+      yaml.load_file("template/genomics.yml")$control_approvals
+    )
+  } else {
+    control_chunk_temp <- c(control_chunk_temp, "")
   }
   if (determine_cores(input)$proteomics_flag) {
     #####
@@ -79,17 +107,61 @@ control_chunk <- function(input) {
 #'
 #' @examples
 privacy_hs_chunk <- function(input) {
-  if (determine_cores(input)$genomics_flag) {
+  if (determine_cores(input)$antibody_tech_flag) {
     #####
     if (input$human_subjects) {
       privacy_hs_chunk_temp <-
-        yaml.load_file("template/genomics.yml")$privacy_hs
+        yaml.load_file("template/antibody_tech.yml")$privacy_hs
     } else {
       privacy_hs_chunk_temp <-
         "Data will not be collected from human research participants."
     }
   } else {
     privacy_hs_chunk_temp <- c("")
+  }
+  if (determine_cores(input)$cell_img_flag) {
+    #####
+    privacy_hs_chunk_temp <-
+      c(privacy_hs_chunk_temp,
+        if (input$human_subjects) {
+          privacy_hs_chunk_temp <-
+            if (yaml.load_file("template/cell_img.yml")$privacy_hs %in% privacy_hs_chunk_temp) {
+              ""
+            } else {
+              yaml.load_file("template/cell_img.yml")$privacy_hs
+            }
+        } else {
+          privacy_hs_chunk_temp <-
+            if ("Data will not be collected from human research participants." %in%  privacy_hs_chunk_temp) {
+              ""
+            } else {
+              "Data will not be collected from human research participants."
+            }
+        })
+  } else {
+    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
+  }
+  if (determine_cores(input)$genomics_flag) {
+    #####
+    privacy_hs_chunk_temp <-
+      c(privacy_hs_chunk_temp,
+        if (input$human_subjects) {
+          privacy_hs_chunk_temp <-
+            if (yaml.load_file("template/genomics.yml")$privacy_hs %in% privacy_hs_chunk_temp) {
+              ""
+            } else {
+              yaml.load_file("template/genomics.yml")$privacy_hs
+            }
+        } else {
+          privacy_hs_chunk_temp <-
+            if ("Data will not be collected from human research participants." %in%  privacy_hs_chunk_temp) {
+              ""
+            } else {
+              "Data will not be collected from human research participants."
+            }
+        })
+  } else {
+    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
   }
   if (determine_cores(input)$proteomics_flag) {
     #####

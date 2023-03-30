@@ -14,6 +14,14 @@ repository_chunk <- function(input) {
   } else {
     repository_chunk_temp <- c("")
   }
+  if (determine_cores(input)$cell_img_flag) {
+    #####
+    repository_chunk_temp <-
+      c(repository_chunk_temp,
+        yaml.load_file("template/cell_img.yml")$repository)
+  } else {
+    repository_chunk_temp <- c(repository_chunk_temp, "")
+  }
   if (determine_cores(input)$genomics_flag) {
     #####
     if (input$human_subjects) {
@@ -62,6 +70,14 @@ findable_chunk <- function(input) {
   } else {
     findable_chunk_temp <- c("")
   }
+  if (determine_cores(input)$cell_img_flag) {
+    #####
+    findable_chunk_temp <-
+      c(findable_chunk_temp,
+        yaml.load_file("template/cell_img.yml")$findable)
+  } else {
+    findable_chunk_temp <- c(findable_chunk_temp, "")
+  }
   if (determine_cores(input)$genomics_flag) {
     #####
     if (input$human_subjects) {
@@ -103,6 +119,14 @@ duration_chunk <- function(input) {
       c(yaml.load_file("template/antibody_tech.yml")$duration)
   } else {
     duration_chunk_temp <- c("")
+  }
+  if (determine_cores(input)$cell_img_flag) {
+    #####
+    duration_chunk_temp <-
+      c(duration_chunk_temp,
+        yaml.load_file("template/cell_img.yml")$duration)
+  } else {
+    duration_chunk_temp <- c(duration_chunk_temp, "")
   }
   if (determine_cores(input)$genomics_flag) {
     #####
