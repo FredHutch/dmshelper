@@ -47,6 +47,53 @@ sharing_chunk <- function(input) {
   } else {
     sharing_chunk_temp <- c(sharing_chunk_temp, "")
   }
+  if (determine_cores(input)$em_tem_flag | determine_cores(input)$em_sem_flag | determine_cores(input)$em_cryo_flag) {
+    sharing_chunk_temp <-
+      c(
+        sharing_chunk_temp,
+        "  ",
+        "_Our proposal will preserve and share the following types of electron microscopy data:_  "
+      )
+  } else {
+    sharing_chunk_temp <-
+      c(sharing_chunk_temp, "")
+  }
+  if (determine_cores(input)$em_tem_flag) {
+    #####
+    sharing_chunk_temp <-
+      c(sharing_chunk_temp,
+        if (yaml.load_file("template/em_tem.yml")$sharing_non_hs %in% sharing_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/em_tem.yml")$sharing_non_hs
+        })
+  } else {
+    sharing_chunk_temp <- c(sharing_chunk_temp, "")
+  }
+  if (determine_cores(input)$em_sem_flag) {
+    #####
+    sharing_chunk_temp <-
+      c(sharing_chunk_temp,
+        if (yaml.load_file("template/em_sem.yml")$sharing_non_hs %in% sharing_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/em_sem.yml")$sharing_non_hs
+        })
+  } else {
+    sharing_chunk_temp <- c(sharing_chunk_temp, "")
+  }
+  if (determine_cores(input)$em_cryo_flag) {
+    #####
+    sharing_chunk_temp <-
+      c(sharing_chunk_temp,
+        if (yaml.load_file("template/em_cryo.yml")$sharing_non_hs %in% sharing_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/em_cryo.yml")$sharing_non_hs
+        })
+  } else {
+    sharing_chunk_temp <- c(sharing_chunk_temp, "")
+  }
   if (determine_cores(input)$genomics_flag) {
     #####
     if (input$human_subjects) {

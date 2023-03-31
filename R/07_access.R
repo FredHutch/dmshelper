@@ -24,6 +24,36 @@ access_reuse_chunk <- function(input) {
   } else {
     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
   }
+  if (determine_cores(input)$em_tem_flag) {
+    #####
+    access_reuse_chunk_temp <-
+      c(
+        access_reuse_chunk_temp,
+        yaml.load_file("template/em_tem.yml")$access_reuse
+      )
+  } else {
+    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+  }
+  if (determine_cores(input)$em_sem_flag) {
+    #####
+    access_reuse_chunk_temp <-
+      c(
+        access_reuse_chunk_temp,
+        yaml.load_file("template/em_sem.yml")$access_reuse
+      )
+  } else {
+    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+  }
+  if (determine_cores(input)$em_cryo_flag) {
+    #####
+    access_reuse_chunk_temp <-
+      c(
+        access_reuse_chunk_temp,
+        yaml.load_file("template/em_cryo.yml")$access_reuse
+      )
+  } else {
+    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+  }
   if (determine_cores(input)$genomics_flag) {
     #####
     access_reuse_chunk_temp <- c(
@@ -70,6 +100,36 @@ control_chunk <- function(input) {
       c(
         control_chunk_temp,
         yaml.load_file("template/cell_img.yml")$control_approvals
+      )
+  } else {
+    control_chunk_temp <- c(control_chunk_temp, "")
+  }
+  if (determine_cores(input)$em_tem_flag) {
+    #####
+    control_chunk_temp <-
+      c(
+        control_chunk_temp,
+        yaml.load_file("template/em_tem.yml")$control
+      )
+  } else {
+    control_chunk_temp <- c(control_chunk_temp, "")
+  }
+  if (determine_cores(input)$em_sem_flag) {
+    #####
+    control_chunk_temp <-
+      c(
+        control_chunk_temp,
+        yaml.load_file("template/em_sem.yml")$control
+      )
+  } else {
+    control_chunk_temp <- c(control_chunk_temp, "")
+  }
+  if (determine_cores(input)$em_cryo_flag) {
+    #####
+    control_chunk_temp <-
+      c(
+        control_chunk_temp,
+        yaml.load_file("template/em_cryo.yml")$control
       )
   } else {
     control_chunk_temp <- c(control_chunk_temp, "")
@@ -138,6 +198,42 @@ privacy_hs_chunk <- function(input) {
               "Data will not be collected from human research participants."
             }
         })
+  } else {
+    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
+  }
+  if (determine_cores(input)$em_tem_flag) {
+    #####
+    if (input$human_subjects) {
+      privacy_hs_chunk_temp <-
+        yaml.load_file("template/em_tem.yml")$privacy_hs
+    } else {
+      privacy_hs_chunk_temp <-
+        "Data will not be collected from human research participants."
+    }
+  } else {
+    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
+  }
+  if (determine_cores(input)$em_sem_flag) {
+    #####
+    if (input$human_subjects) {
+      privacy_hs_chunk_temp <-
+        yaml.load_file("template/em_sem.yml")$privacy_hs
+    } else {
+      privacy_hs_chunk_temp <-
+        "Data will not be collected from human research participants."
+    }
+  } else {
+    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
+  }
+  if (determine_cores(input)$em_cryo_flag) {
+    #####
+    if (input$human_subjects) {
+      privacy_hs_chunk_temp <-
+        yaml.load_file("template/em_cryo.yml")$privacy_hs
+    } else {
+      privacy_hs_chunk_temp <-
+        "Data will not be collected from human research participants."
+    }
   } else {
     privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
   }

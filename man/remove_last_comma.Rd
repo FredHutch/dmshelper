@@ -4,10 +4,10 @@
 \alias{remove_last_comma}
 \title{Fix list grammar}
 \usage{
-remove_last_comma(string_)
+remove_last_comma(string_vect)
 }
 \arguments{
-\item{string_}{}
+\item{string_vect}{}
 }
 \description{
 Goal of this function is to take a string like a, b, c and return a, b, and c.

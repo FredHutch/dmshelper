@@ -22,6 +22,30 @@ repository_chunk <- function(input) {
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
+  if (determine_cores(input)$em_tem_flag) {
+    #####
+    repository_chunk_temp <-
+      c(repository_chunk_temp,
+        yaml.load_file("template/em_tem.yml")$repository)
+  } else {
+    repository_chunk_temp <- c(repository_chunk_temp, "")
+  }
+  if (determine_cores(input)$em_sem_flag) {
+    #####
+    repository_chunk_temp <-
+      c(repository_chunk_temp,
+        yaml.load_file("template/em_sem.yml")$repository)
+  } else {
+    repository_chunk_temp <- c(repository_chunk_temp, "")
+  }
+  if (determine_cores(input)$em_cryo_flag) {
+    #####
+    repository_chunk_temp <-
+      c(repository_chunk_temp,
+        yaml.load_file("template/em_cryo.yml")$repository)
+  } else {
+    repository_chunk_temp <- c(repository_chunk_temp, "")
+  }
   if (determine_cores(input)$genomics_flag) {
     #####
     if (input$human_subjects) {
@@ -78,6 +102,42 @@ findable_chunk <- function(input) {
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
+  if (determine_cores(input)$em_tem_flag) {
+    #####
+    findable_chunk_temp <-
+      c(findable_chunk_temp,
+        if (yaml.load_file("template/em_tem.yml")$findable %in% findable_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/em_tem.yml")$findable
+        })
+  } else {
+    findable_chunk_temp <- c(findable_chunk_temp, "")
+  }
+  if (determine_cores(input)$em_sem_flag) {
+    #####
+    findable_chunk_temp <-
+      c(findable_chunk_temp,
+        if (yaml.load_file("template/em_sem.yml")$findable %in% findable_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/em_sem.yml")$findable
+        })
+  } else {
+    findable_chunk_temp <- c(findable_chunk_temp, "")
+  }
+  if (determine_cores(input)$em_cryo_flag) {
+    #####
+    findable_chunk_temp <-
+      c(findable_chunk_temp,
+        if (yaml.load_file("template/em_cryo.yml")$findable %in% findable_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/em_cryo.yml")$findable
+        })
+  } else {
+    findable_chunk_temp <- c(findable_chunk_temp, "")
+  }
   if (determine_cores(input)$genomics_flag) {
     #####
     if (input$human_subjects) {
@@ -124,7 +184,47 @@ duration_chunk <- function(input) {
     #####
     duration_chunk_temp <-
       c(duration_chunk_temp,
-        yaml.load_file("template/cell_img.yml")$duration)
+        if (yaml.load_file("template/cell_img.yml")$duration %in% duration_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/cell_img.yml")$duration
+        })
+  } else {
+    duration_chunk_temp <- c(duration_chunk_temp, "")
+  }
+  if (determine_cores(input)$em_tem_flag) {
+    #####
+    duration_chunk_temp <-
+      c(duration_chunk_temp,
+        if (yaml.load_file("template/em_tem.yml")$duration %in% duration_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/em_tem.yml")$duration
+        })
+  } else {
+    duration_chunk_temp <- c(duration_chunk_temp, "")
+  }
+  if (determine_cores(input)$em_sem_flag) {
+    #####
+    duration_chunk_temp <-
+      c(duration_chunk_temp,
+        if (yaml.load_file("template/em_sem.yml")$duration %in% duration_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/em_sem.yml")$duration
+        })
+  } else {
+    duration_chunk_temp <- c(duration_chunk_temp, "")
+  }
+  if (determine_cores(input)$em_cryo_flag) {
+    #####
+    duration_chunk_temp <-
+      c(duration_chunk_temp,
+        if (yaml.load_file("template/em_cryo.yml")$duration %in% duration_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/em_cryo.yml")$duration
+        })
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }

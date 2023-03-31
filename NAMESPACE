@@ -2,8 +2,6 @@
 
 export(access_reuse_chunk)
 export(access_txt)
-export(antibody_tech_update)
-export(cellular_imaging_update)
 export(control_chunk)
 export(custom_update)
 export(datatype_raw_by_core)

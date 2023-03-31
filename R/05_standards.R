@@ -22,6 +22,42 @@ standards_chunk <- function(input) {
   } else {
     standards_chunk_temp <- c(standards_chunk_temp, "")
   }
+  if (determine_cores(input)$em_tem_flag) {
+    #####
+    standards_chunk_temp <-
+      c(standards_chunk_temp,
+        if (yaml.load_file("template/em_tem.yml")$standards %in% standards_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/em_tem.yml")$standards
+        })
+  } else {
+    standards_chunk_temp <- c(standards_chunk_temp, "")
+  }
+  if (determine_cores(input)$em_sem_flag) {
+    #####
+    standards_chunk_temp <-
+      c(standards_chunk_temp,
+        if (yaml.load_file("template/em_sem.yml")$standards %in% standards_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/em_sem.yml")$standards
+        })
+  } else {
+    standards_chunk_temp <- c(standards_chunk_temp, "")
+  }
+  if (determine_cores(input)$em_cryo_flag) {
+    #####
+    standards_chunk_temp <-
+      c(standards_chunk_temp,
+        if (yaml.load_file("template/em_cryo.yml")$standards %in% standards_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/em_cryo.yml")$standards
+        })
+  } else {
+    standards_chunk_temp <- c(standards_chunk_temp, "")
+  }
   if (determine_cores(input)$genomics_flag) {
     #####
     standards_chunk_temp <-
