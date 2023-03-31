@@ -17,6 +17,8 @@ raw_processed_data_chunk <- function(input) {
     input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/em_sem.yml")$raw_file_types]
   em_cryo_file_types <-
     input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/em_cryo.yml")$raw_file_types]
+  flow_cytometry_file_types <-
+    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/flow_cytometry.yml")$raw_file_types]
   genomics_file_types <-
     input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/genomics.yml")$raw_file_types]
   proteomics_file_types <-
@@ -32,6 +34,8 @@ raw_processed_data_chunk <- function(input) {
     input$technology_description[input$technology_description %in% yaml.load_file("template/em_sem.yml")$tech_types]
   em_cryo_tech_types <-
     input$technology_description[input$technology_description %in% yaml.load_file("template/em_cryo.yml")$tech_types]
+  flow_cytometry_tech_types <-
+    input$technology_description[input$technology_description %in% yaml.load_file("template/flow_cytometry.yml")$tech_types]
   genomics_tech_types <-
     input$technology_description[input$technology_description %in% yaml.load_file("template/genomics.yml")$tech_types]
   proteomics_tech_types <-
@@ -237,6 +241,55 @@ raw_processed_data_chunk <- function(input) {
     raw_processed_data_chunk_temp <-
       c(raw_processed_data_chunk_temp, "")
   }
+  if (determine_cores(input)$flow_cytometry_flag) {
+    #####
+    raw_processed_data_chunk_temp <-
+      c(
+        raw_processed_data_chunk_temp,
+        "  ",
+        "_Our proposal will generate flow cytometry data of the following types and sizes:_  ",
+        "We will collect raw data using <font color='OA799A'>",
+        if (length(flow_cytometry_tech_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(flow_cytometry_tech_types)
+        },
+        "</font> flow cytometers in <font color='OA799A'>",
+        if (length(flow_cytometry_file_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(flow_cytometry_file_types)
+        },
+        "</font> format,widely adopted and maintained by the International Society for Advancement of Cytometry (ISAC). We will collect data from <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_flow_cytometry_files))) {
+          " ___ "
+        } else {
+          input$num_flow_cytometry_files
+        },
+        "</font>",
+        yaml.load_file("template/flow_cytometry.yml")$file_sizes,
+        "samples for an estimated total data volume of <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_flow_cytometry_files))) {
+          " ___ "
+        } else {
+          paste(as.numeric(input$num_flow_cytometry_files) * 0.01)
+        },
+        "</font>GB. We will process the <font color='OA799A'>",
+        if (length(flow_cytometry_file_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(flow_cytometry_file_types)
+        },
+        "</font> files using ",
+        yaml.load_file("template/flow_cytometry.yml")$processing_tech,
+        " to produce tabular cell groupings data in ",
+        yaml.load_file("template/flow_cytometry.yml")$processing_file_type,
+        " format."
+      )
+  } else {
+    raw_processed_data_chunk_temp <-
+      c(raw_processed_data_chunk_temp, "")
+  }
   if (determine_cores(input)$genomics_flag) {
     #####
     raw_processed_data_chunk_temp <-
@@ -391,6 +444,7 @@ datatype_raw_file_description_options <- function() {
     yaml.load_file("template/em_tem.yml")$raw_file_types,
     yaml.load_file("template/em_sem.yml")$raw_file_types,
     yaml.load_file("template/em_cryo.yml")$raw_file_types,
+    yaml.load_file("template/flow_cytometry.yml")$raw_file_types,
     yaml.load_file("template/genomics.yml")$raw_file_types,
     yaml.load_file("template/proteomics.yml")$raw_file_types
   ))
@@ -410,6 +464,7 @@ datatype_technology_description_options <- function() {
     yaml.load_file("template/em_tem.yml")$tech_types,
     yaml.load_file("template/em_sem.yml")$tech_types,
     yaml.load_file("template/em_cryo.yml")$tech_types,
+    yaml.load_file("template/flow_cytometry.yml")$tech_types,
     yaml.load_file("template/genomics.yml")$tech_types,
     yaml.load_file("template/proteomics.yml")$tech_types
   ))
@@ -450,6 +505,11 @@ datatype_raw_by_core <- function(toggle_example_txt) {
     datatype_raw_ <-
       c(datatype_raw_,
         yaml.load_file("template/em_cryo.yml")$raw_file_types)
+  }
+  if ("flow_cytometry" %in% toggle_example_txt$core_datatype) {
+    datatype_raw_ <-
+      c(datatype_raw_,
+        yaml.load_file("template/flow_cytometry.yml")$raw_file_types)
   }
   if ("genomics" %in% toggle_example_txt$core_datatype) {
     datatype_raw_ <-
@@ -499,6 +559,11 @@ datatype_tech_by_core <- function(toggle_example_txt) {
     datatype_tech_ <-
       c(datatype_tech_,
         yaml.load_file("template/em_cryo.yml")$tech_types)
+  }
+  if ("flow_cytometry" %in% toggle_example_txt$core_datatype) {
+    datatype_tech_ <-
+      c(datatype_tech_,
+        yaml.load_file("template/flow_cytometry.yml")$tech_types)
   }
   if ("genomics" %in% toggle_example_txt$core_datatype) {
     datatype_tech_ <-

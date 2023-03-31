@@ -54,6 +54,15 @@ access_reuse_chunk <- function(input) {
   } else {
     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
   }
+  if (determine_cores(input)$flow_cytometry_flag) {
+    #####
+    access_reuse_chunk_temp <- c(
+      access_reuse_chunk_temp,
+      yaml.load_file("template/flow_cytometry.yml")$access_reuse
+    )
+  } else {
+    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+  }
   if (determine_cores(input)$genomics_flag) {
     #####
     access_reuse_chunk_temp <- c(
@@ -109,7 +118,7 @@ control_chunk <- function(input) {
     control_chunk_temp <-
       c(
         control_chunk_temp,
-        yaml.load_file("template/em_tem.yml")$control
+        yaml.load_file("template/em_tem.yml")$control_approvals
       )
   } else {
     control_chunk_temp <- c(control_chunk_temp, "")
@@ -119,7 +128,7 @@ control_chunk <- function(input) {
     control_chunk_temp <-
       c(
         control_chunk_temp,
-        yaml.load_file("template/em_sem.yml")$control
+        yaml.load_file("template/em_sem.yml")$control_approvals
       )
   } else {
     control_chunk_temp <- c(control_chunk_temp, "")
@@ -129,8 +138,17 @@ control_chunk <- function(input) {
     control_chunk_temp <-
       c(
         control_chunk_temp,
-        yaml.load_file("template/em_cryo.yml")$control
+        yaml.load_file("template/em_cryo.yml")$control_approvals
       )
+  } else {
+    control_chunk_temp <- c(control_chunk_temp, "")
+  }
+  if (determine_cores(input)$flow_cytometry_flag) {
+    #####
+    control_chunk_temp <- c(
+      control_chunk_temp,
+      yaml.load_file("template/flow_cytometry.yml")$control_approvals
+    )
   } else {
     control_chunk_temp <- c(control_chunk_temp, "")
   }
@@ -230,6 +248,18 @@ privacy_hs_chunk <- function(input) {
     if (input$human_subjects) {
       privacy_hs_chunk_temp <-
         yaml.load_file("template/em_cryo.yml")$privacy_hs
+    } else {
+      privacy_hs_chunk_temp <-
+        "Data will not be collected from human research participants."
+    }
+  } else {
+    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
+  }
+  if (determine_cores(input)$flow_cytometry_flag) {
+    #####
+    if (input$human_subjects) {
+      privacy_hs_chunk_temp <-
+        yaml.load_file("template/flow_cytometry.yml")$privacy_hs
     } else {
       privacy_hs_chunk_temp <-
         "Data will not be collected from human research participants."

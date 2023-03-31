@@ -94,6 +94,28 @@ sharing_chunk <- function(input) {
   } else {
     sharing_chunk_temp <- c(sharing_chunk_temp, "")
   }
+  if (determine_cores(input)$flow_cytometry_flag) {
+    #####
+    if (input$human_subjects) {
+      sharing_chunk_temp <-
+        c(
+          sharing_chunk_temp,
+          "  ",
+          "_Our proposal will preserve and share the following types of flow cytometry data:_  ",
+          yaml.load_file("template/flow_cytometry.yml")$sharing_non_hs
+        )
+    } else {
+      sharing_chunk_temp <-
+        c(
+          sharing_chunk_temp,
+          "  ",
+          "_Our proposal will preserve and share the following types of flow cytometry data:_  ",
+          yaml.load_file("template/flow_cytometry.yml")$sharing_non_hs
+        )
+    }
+  } else {
+    sharing_chunk_temp <- c(sharing_chunk_temp, "")
+  }
   if (determine_cores(input)$genomics_flag) {
     #####
     if (input$human_subjects) {

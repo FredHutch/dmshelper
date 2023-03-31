@@ -46,6 +46,14 @@ repository_chunk <- function(input) {
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
+  if (determine_cores(input)$flow_cytometry_flag) {
+    #####
+    repository_chunk_temp <-
+      c(repository_chunk_temp,
+        yaml.load_file("template/flow_cytometry.yml")$repository)
+  } else {
+    repository_chunk_temp <- c(repository_chunk_temp, "")
+  }
   if (determine_cores(input)$genomics_flag) {
     #####
     if (input$human_subjects) {
@@ -138,6 +146,14 @@ findable_chunk <- function(input) {
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
+  if (determine_cores(input)$flow_cytometry_flag) {
+    #####
+    findable_chunk_temp <-
+      c(findable_chunk_temp,
+        yaml.load_file("template/flow_cytometry.yml")$findable)
+  } else {
+    findable_chunk_temp <- c(findable_chunk_temp, "")
+  }
   if (determine_cores(input)$genomics_flag) {
     #####
     if (input$human_subjects) {
@@ -224,6 +240,18 @@ duration_chunk <- function(input) {
           ""
         } else {
           yaml.load_file("template/em_cryo.yml")$duration
+        })
+  } else {
+    duration_chunk_temp <- c(duration_chunk_temp, "")
+  }
+  if (determine_cores(input)$flow_cytometry_flag) {
+    #####
+    duration_chunk_temp <-
+      c(duration_chunk_temp,
+        if (yaml.load_file("template/flow_cytometry.yml")$duration %in% duration_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/flow_cytometry.yml")$duration
         })
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")

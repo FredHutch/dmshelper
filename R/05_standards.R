@@ -58,6 +58,14 @@ standards_chunk <- function(input) {
   } else {
     standards_chunk_temp <- c(standards_chunk_temp, "")
   }
+  if (determine_cores(input)$flow_cytometry_flag) {
+    #####
+    standards_chunk_temp <-
+      c(standards_chunk_temp,
+        yaml.load_file("template/flow_cytometry.yml")$standards)
+  } else {
+    standards_chunk_temp <- c(standards_chunk_temp, "")
+  }
   if (determine_cores(input)$genomics_flag) {
     #####
     standards_chunk_temp <-

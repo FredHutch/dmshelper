@@ -49,6 +49,14 @@ determine_cores <- function(input) {
     any(
       input$technology_description %in% yaml.load_file("template/em_cryo.yml")$tech_types
     )
+  flow_cytometry_flag <-
+    "flow_cytometry" %in% input$core_datatype |
+    any(
+      input$raw_file_description %in% yaml.load_file("template/flow_cytometry.yml")$raw_file_types
+    ) |
+    any(
+      input$technology_description %in% yaml.load_file("template/flow_cytometry.yml")$tech_types
+    )
   genomics_flag <-
     "genomics" %in% input$core_datatype |
     any(
@@ -72,6 +80,7 @@ determine_cores <- function(input) {
     "em_tem_flag" = em_tem_flag,
     "em_sem_flag" = em_sem_flag,
     "em_cryo_flag" = em_cryo_flag,
+    "flow_cytometry_flag" = flow_cytometry_flag,
     "genomics_flag" = genomics_flag,
     "proteomics_flag" = proteomics_flag
   )

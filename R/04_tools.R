@@ -63,6 +63,18 @@ tools_chunk <- function(input){
   } else {
     tools_chunk_temp <- c(tools_chunk_temp, "")
   }
+  if (determine_cores(input)$flow_cytometry_flag) {
+    #####
+    tools_chunk_temp <-
+      c(tools_chunk_temp,
+        if (yaml.load_file("template/flow_cytometry.yml")$tools %in% tools_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/flow_cytometry.yml")$tools
+        })
+  } else {
+    tools_chunk_temp <- c(tools_chunk_temp, "")
+  }
   if (determine_cores(input)$genomics_flag) {
     #####
     tools_chunk_temp <-
