@@ -17,6 +17,12 @@ raw_processed_data_chunk <- function(input) {
     input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/em_sem.yml")$raw_file_types]
   em_cryo_file_types <-
     input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/em_cryo.yml")$raw_file_types]
+  eh_aperio_file_types <-
+    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/eh_aperio.yml")$raw_file_types]
+  eh_polaris_file_types <-
+    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/eh_polaris.yml")$raw_file_types]
+  eh_vectra_file_types <-
+    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/eh_vectra.yml")$raw_file_types]
   flow_cytometry_file_types <-
     input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/flow_cytometry.yml")$raw_file_types]
   genomics_file_types <-
@@ -34,6 +40,12 @@ raw_processed_data_chunk <- function(input) {
     input$technology_description[input$technology_description %in% yaml.load_file("template/em_sem.yml")$tech_types]
   em_cryo_tech_types <-
     input$technology_description[input$technology_description %in% yaml.load_file("template/em_cryo.yml")$tech_types]
+  eh_aperio_tech_types <-
+    input$technology_description[input$technology_description %in% yaml.load_file("template/eh_aperio.yml")$tech_types]
+  eh_polaris_tech_types <-
+    input$technology_description[input$technology_description %in% yaml.load_file("template/eh_polaris.yml")$tech_types]
+  eh_vectra_tech_types <-
+    input$technology_description[input$technology_description %in% yaml.load_file("template/eh_vectra.yml")$tech_types]
   flow_cytometry_tech_types <-
     input$technology_description[input$technology_description %in% yaml.load_file("template/flow_cytometry.yml")$tech_types]
   genomics_tech_types <-
@@ -127,7 +139,7 @@ raw_processed_data_chunk <- function(input) {
         },
         "</font>",
         yaml.load_file("template/em_tem.yml")$file_sizes,
-        "sample for a total data volume of <font color='OA799A'>",
+        " for a total data volume of <font color='OA799A'>",
         if (is.na(as.numeric(input$num_em_tem_files))) {
           " ___ "
         } else {
@@ -241,6 +253,156 @@ raw_processed_data_chunk <- function(input) {
     raw_processed_data_chunk_temp <-
       c(raw_processed_data_chunk_temp, "")
   }
+
+
+
+
+
+
+
+
+
+
+  if (determine_cores(input)$eh_aperio_flag | determine_cores(input)$eh_polaris_flag | determine_cores(input)$eh_vectra_flag) {
+    raw_processed_data_chunk_temp <-
+      c(
+        raw_processed_data_chunk_temp,
+        "  ",
+        "_Our proposal will generate experimental histopathology data of the following types and sizes:_  "
+      )
+  } else {
+    raw_processed_data_chunk_temp <-
+      c(raw_processed_data_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_aperio_flag) {
+    #####
+    raw_processed_data_chunk_temp <-
+      c(
+        raw_processed_data_chunk_temp,
+        "We will collect <font color='OA799A'>",
+        if (length(eh_aperio_file_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(eh_aperio_file_types)
+        },
+        "</font> images using the <font color='OA799A'>",
+        if (length(eh_aperio_tech_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(eh_aperio_tech_types)
+        },
+        "</font>. Data for this study will generate ",
+        yaml.load_file("template/eh_aperio.yml")$processing_file_type,
+        "files. We will collect data from <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_eh_aperio_files))) {
+          " ___ "
+        } else {
+          input$num_eh_aperio_files
+        },
+        "</font>",
+        yaml.load_file("template/eh_aperio.yml")$file_sizes,
+        "for a total data volume of <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_eh_aperio_files))) {
+          " ___ "
+        } else {
+          paste(as.numeric(input$num_eh_aperio_files) * 1)
+        },
+        "</font> to <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_eh_aperio_files))) {
+          " ___ "
+        } else {
+          paste(as.numeric(input$num_eh_aperio_files) * 4)
+        },
+        "</font>GB."
+      )
+  } else {
+    raw_processed_data_chunk_temp <-
+      c(raw_processed_data_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_polaris_flag) {
+    #####
+    raw_processed_data_chunk_temp <-
+      c(
+        raw_processed_data_chunk_temp,
+        "We will collect/produce MOTIF images (imaging and spectral unmixing) in <font color='OA799A'>",
+        if (length(eh_polaris_file_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(eh_polaris_file_types)
+        },
+        "</font> format using <font color='OA799A'>",
+        if (length(eh_polaris_tech_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(eh_polaris_tech_types)
+        },
+        "</font>. We will collect data from <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_eh_polaris_files))) {
+          " ___ "
+        } else {
+          input$num_eh_polaris_files
+        },
+        "</font> ",
+        yaml.load_file("template/eh_polaris.yml")$file_sizes,
+        "for an estimated total data volume of <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_eh_polaris_files))) {
+          " ___ "
+        } else {
+          paste(as.numeric(input$num_eh_polaris_files) * 18)
+        },
+        "</font>GB."
+      )
+  } else {
+    raw_processed_data_chunk_temp <-
+      c(raw_processed_data_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_vectra_flag) {
+    #####
+    raw_processed_data_chunk_temp <-
+      c(
+        raw_processed_data_chunk_temp,
+        "We will collect/produce <font color='OA799A'>",
+        if (length(eh_vectra_file_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(eh_vectra_file_types)
+        },
+        "</font> Vectra images using <font color='OA799A'>",
+        if (length(eh_vectra_tech_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(eh_vectra_tech_types)
+        },
+        "</font>. We will collect data from <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_eh_vectra_files))) {
+          " ___ "
+        } else {
+          input$num_eh_vectra_files
+        },
+        "</font> ",
+        yaml.load_file("template/eh_vectra.yml")$file_sizes,
+        "for an estimated total data volume of <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_eh_vectra_files))) {
+          " ___ "
+        } else {
+          paste(as.numeric(input$num_eh_vectra_files) * 27.5)
+        },
+        "</font>GB."
+      )
+  } else {
+    raw_processed_data_chunk_temp <-
+      c(raw_processed_data_chunk_temp, "")
+  }
+
+
+
+
+
+
+
+
+
+
   if (determine_cores(input)$flow_cytometry_flag) {
     #####
     raw_processed_data_chunk_temp <-
@@ -444,6 +606,9 @@ datatype_raw_file_description_options <- function() {
     yaml.load_file("template/em_tem.yml")$raw_file_types,
     yaml.load_file("template/em_sem.yml")$raw_file_types,
     yaml.load_file("template/em_cryo.yml")$raw_file_types,
+    yaml.load_file("template/eh_aperio.yml")$raw_file_types,
+    yaml.load_file("template/eh_polaris.yml")$raw_file_types,
+    yaml.load_file("template/eh_vectra.yml")$raw_file_types,
     yaml.load_file("template/flow_cytometry.yml")$raw_file_types,
     yaml.load_file("template/genomics.yml")$raw_file_types,
     yaml.load_file("template/proteomics.yml")$raw_file_types
@@ -464,6 +629,9 @@ datatype_technology_description_options <- function() {
     yaml.load_file("template/em_tem.yml")$tech_types,
     yaml.load_file("template/em_sem.yml")$tech_types,
     yaml.load_file("template/em_cryo.yml")$tech_types,
+    yaml.load_file("template/eh_aperio.yml")$tech_types,
+    yaml.load_file("template/eh_polaris.yml")$tech_types,
+    yaml.load_file("template/eh_vectra.yml")$tech_types,
     yaml.load_file("template/flow_cytometry.yml")$tech_types,
     yaml.load_file("template/genomics.yml")$tech_types,
     yaml.load_file("template/proteomics.yml")$tech_types
@@ -505,6 +673,21 @@ datatype_raw_by_core <- function(toggle_example_txt) {
     datatype_raw_ <-
       c(datatype_raw_,
         yaml.load_file("template/em_cryo.yml")$raw_file_types)
+  }
+  if ("eh_aperio" %in% toggle_example_txt$core_datatype) {
+    datatype_raw_ <-
+      c(datatype_raw_,
+        yaml.load_file("template/eh_aperio.yml")$raw_file_types)
+  }
+  if ("eh_polaris" %in% toggle_example_txt$core_datatype) {
+    datatype_raw_ <-
+      c(datatype_raw_,
+        yaml.load_file("template/eh_polaris.yml")$raw_file_types)
+  }
+  if ("eh_vectra" %in% toggle_example_txt$core_datatype) {
+    datatype_raw_ <-
+      c(datatype_raw_,
+        yaml.load_file("template/eh_vectra.yml")$raw_file_types)
   }
   if ("flow_cytometry" %in% toggle_example_txt$core_datatype) {
     datatype_raw_ <-
@@ -559,6 +742,21 @@ datatype_tech_by_core <- function(toggle_example_txt) {
     datatype_tech_ <-
       c(datatype_tech_,
         yaml.load_file("template/em_cryo.yml")$tech_types)
+  }
+  if ("eh_aperio" %in% toggle_example_txt$core_datatype) {
+    datatype_tech_ <-
+      c(datatype_tech_,
+        yaml.load_file("template/eh_aperio.yml")$tech_types)
+  }
+  if ("eh_polaris" %in% toggle_example_txt$core_datatype) {
+    datatype_tech_ <-
+      c(datatype_tech_,
+        yaml.load_file("template/eh_polaris.yml")$tech_types)
+  }
+  if ("eh_vectra" %in% toggle_example_txt$core_datatype) {
+    datatype_tech_ <-
+      c(datatype_tech_,
+        yaml.load_file("template/eh_vectra.yml")$tech_types)
   }
   if ("flow_cytometry" %in% toggle_example_txt$core_datatype) {
     datatype_tech_ <-

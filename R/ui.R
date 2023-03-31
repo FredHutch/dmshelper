@@ -58,9 +58,9 @@ shiny_ui <- function() {
             "Electron Microscopy - TEM" = "em_tem",
             "Electron Microscopy - SEM" = "em_sem",
             "Electron Microscopy - CryoEM" = "em_cryo",
-            # "Experimental Histopathology - Aperio Platform" = "eh_aperio",
-            # "Experimental Histopathology - Polaris Platform" = "eh_polaris",
-            # "Experimental Histopathology - Vectra images" = "eh_vectra",
+            "Experimental Histopathology - Aperio Platform" = "eh_aperio",
+            "Experimental Histopathology - Polaris Platform" = "eh_polaris",
+            "Experimental Histopathology - Vectra images" = "eh_vectra",
             "Flow Cytometry" = "flow_cytometry",
             "Genomics & Bioinformatics" = "genomics",
             # "Immune Monitoring Core" = "immune",
@@ -125,6 +125,21 @@ shiny_ui <- function() {
           numericInput(
             "num_em_cryo_files",
             label = "Electron microscopy (cryoEM) sample count",
+            value = NA
+          ),
+          numericInput(
+            "num_eh_aperio_files",
+            label = "Experimental histopathology (Aperio) sample count",
+            value = NA
+          ),
+          numericInput(
+            "num_eh_polaris_files",
+            label = "Experimental histopathology (Polaris) sample count",
+            value = NA
+          ),
+          numericInput(
+            "num_eh_vectra_files",
+            label = "Experimental histopathology (Vectra) sample count",
             value = NA
           ),
           numericInput(

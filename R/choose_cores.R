@@ -49,6 +49,30 @@ determine_cores <- function(input) {
     any(
       input$technology_description %in% yaml.load_file("template/em_cryo.yml")$tech_types
     )
+  eh_aperio_flag <-
+    "eh_aperio" %in% input$core_datatype |
+    any(
+      input$raw_file_description %in% yaml.load_file("template/eh_aperio.yml")$raw_file_types
+    ) |
+    any(
+      input$technology_description %in% yaml.load_file("template/eh_aperio.yml")$tech_types
+    )
+  eh_polaris_flag <-
+    "eh_polaris" %in% input$core_datatype |
+    any(
+      input$raw_file_description %in% yaml.load_file("template/eh_polaris.yml")$raw_file_types
+    ) |
+    any(
+      input$technology_description %in% yaml.load_file("template/eh_polaris.yml")$tech_types
+    )
+  eh_vectra_flag <-
+    "eh_vectra" %in% input$core_datatype |
+    any(
+      input$raw_file_description %in% yaml.load_file("template/eh_vectra.yml")$raw_file_types
+    ) |
+    any(
+      input$technology_description %in% yaml.load_file("template/eh_vectra.yml")$tech_types
+    )
   flow_cytometry_flag <-
     "flow_cytometry" %in% input$core_datatype |
     any(
@@ -80,6 +104,9 @@ determine_cores <- function(input) {
     "em_tem_flag" = em_tem_flag,
     "em_sem_flag" = em_sem_flag,
     "em_cryo_flag" = em_cryo_flag,
+    "eh_aperio_flag" = eh_aperio_flag,
+    "eh_polaris_flag" = eh_polaris_flag,
+    "eh_vectra_flag" = eh_vectra_flag,
     "flow_cytometry_flag" = flow_cytometry_flag,
     "genomics_flag" = genomics_flag,
     "proteomics_flag" = proteomics_flag

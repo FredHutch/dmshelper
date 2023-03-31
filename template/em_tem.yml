@@ -1,6 +1,7 @@
 # Datatypes
 raw_file_types: [".ser", ".emi", "TIFF", ".mrc"]
 tech_types: ["ThermoFisher Talos L120C TEM instrumentation with ThermoFisher TEM Imaging and Analysis software (TIA) (version 5.3 SP1)", "Leginon (version 3.6)"]
+file_sizes: "1.6 GB (TIA), or 50 MB/image (Leginon) samples"
 
 # Scientific data that will be preserved and shared, and the rationale for doing so
 sharing_non_hs: "Raw and processed EM images will be preserved and shared to facilitate re-analysis and re-use of the data by other investigators."
