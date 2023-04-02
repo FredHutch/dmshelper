@@ -46,11 +46,49 @@ repository_chunk <- function(input) {
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
-  if (determine_cores(input)$flow_cytometry_flag) {
+  if (determine_cores(input)$eh_aperio_flag) {
     #####
     repository_chunk_temp <-
       c(repository_chunk_temp,
-        yaml.load_file("template/flow_cytometry.yml")$repository)
+        if (yaml.load_file("template/eh_aperio.yml")$repository %in% repository_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/eh_aperio.yml")$repository
+        })
+  } else {
+    repository_chunk_temp <- c(repository_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_polaris_flag) {
+    #####
+    repository_chunk_temp <-
+      c(repository_chunk_temp,
+        if (yaml.load_file("template/eh_polaris.yml")$repository %in% repository_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/eh_polaris.yml")$repository
+        })
+  } else {
+    repository_chunk_temp <- c(repository_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_vectra_flag) {
+    #####
+    repository_chunk_temp <-
+      c(repository_chunk_temp,
+        if (yaml.load_file("template/eh_vectra.yml")$repository %in% repository_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/eh_vectra.yml")$repository
+        })
+  } else {
+    repository_chunk_temp <- c(repository_chunk_temp, "")
+  }
+  if (determine_cores(input)$flow_cytometry_flag) {
+    #####
+    repository_chunk_temp <-
+      c(
+        repository_chunk_temp,
+        yaml.load_file("template/flow_cytometry.yml")$repository
+      )
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
@@ -142,6 +180,42 @@ findable_chunk <- function(input) {
           ""
         } else {
           yaml.load_file("template/em_cryo.yml")$findable
+        })
+  } else {
+    findable_chunk_temp <- c(findable_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_aperio_flag) {
+    #####
+    findable_chunk_temp <-
+      c(findable_chunk_temp,
+        if (yaml.load_file("template/eh_aperio.yml")$findable %in% findable_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/eh_aperio.yml")$findable
+        })
+  } else {
+    findable_chunk_temp <- c(findable_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_polaris_flag) {
+    #####
+    findable_chunk_temp <-
+      c(findable_chunk_temp,
+        if (yaml.load_file("template/eh_polaris.yml")$findable %in% findable_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/eh_polaris.yml")$findable
+        })
+  } else {
+    findable_chunk_temp <- c(findable_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_vectra_flag) {
+    #####
+    findable_chunk_temp <-
+      c(findable_chunk_temp,
+        if (yaml.load_file("template/eh_vectra.yml")$findable %in% findable_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/eh_vectra.yml")$findable
         })
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
@@ -240,6 +314,42 @@ duration_chunk <- function(input) {
           ""
         } else {
           yaml.load_file("template/em_cryo.yml")$duration
+        })
+  } else {
+    duration_chunk_temp <- c(duration_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_aperio_flag) {
+    #####
+    duration_chunk_temp <-
+      c(duration_chunk_temp,
+        if (yaml.load_file("template/eh_aperio.yml")$duration %in% duration_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/eh_aperio.yml")$duration
+        })
+  } else {
+    duration_chunk_temp <- c(duration_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_polaris_flag) {
+    #####
+    duration_chunk_temp <-
+      c(duration_chunk_temp,
+        if (yaml.load_file("template/eh_polaris.yml")$duration %in% duration_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/eh_polaris.yml")$duration
+        })
+  } else {
+    duration_chunk_temp <- c(duration_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_vectra_flag) {
+    #####
+    duration_chunk_temp <-
+      c(duration_chunk_temp,
+        if (yaml.load_file("template/eh_vectra.yml")$duration %in% duration_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/eh_vectra.yml")$duration
         })
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")

@@ -103,6 +103,69 @@ oversight_chunk <- function(input) {
   } else {
     oversight_chunk_temp <- c(oversight_chunk_temp, "")
   }
+  if (determine_cores(input)$eh_aperio_flag) {
+    #####
+    oversight_chunk_temp <-
+      c(oversight_chunk_temp,
+        if (yaml.load_file("template/eh_aperio.yml")$oversight %in% oversight_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/eh_aperio.yml")$oversight
+        },
+        paste0(if (yaml.load_file("template/eh_aperio.yml")$oversight_execution %in% oversight_chunk_temp) {
+          ""
+        } else {
+          c(
+            "Execution of this Plan will be performed by <font color='OA799A'>",
+            yaml.load_file("template/eh_aperio.yml")$oversight_execution,
+            ".</font>"
+          )
+        }))
+  } else {
+    oversight_chunk_temp <- c(oversight_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_polaris_flag) {
+    #####
+    oversight_chunk_temp <-
+      c(oversight_chunk_temp,
+        if (yaml.load_file("template/eh_polaris.yml")$oversight %in% oversight_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/eh_polaris.yml")$oversight
+        },
+        paste0(if (yaml.load_file("template/eh_polaris.yml")$oversight_execution %in% oversight_chunk_temp) {
+          ""
+        } else {
+          c(
+            "Execution of this Plan will be performed by <font color='OA799A'>",
+            yaml.load_file("template/eh_polaris.yml")$oversight_execution,
+            ".</font>"
+          )
+        }))
+  } else {
+    oversight_chunk_temp <- c(oversight_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_vectra_flag) {
+    #####
+    oversight_chunk_temp <-
+      c(oversight_chunk_temp,
+        if (yaml.load_file("template/eh_vectra.yml")$oversight %in% oversight_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/eh_vectra.yml")$oversight
+        },
+        paste0(if (yaml.load_file("template/eh_vectra.yml")$oversight_execution %in% oversight_chunk_temp) {
+          ""
+        } else {
+          c(
+            "Execution of this Plan will be performed by <font color='OA799A'>",
+            yaml.load_file("template/eh_vectra.yml")$oversight_execution,
+            ".</font>"
+          )
+        }))
+  } else {
+    oversight_chunk_temp <- c(oversight_chunk_temp, "")
+  }
   if (determine_cores(input)$flow_cytometry_flag) {
     #####
     oversight_chunk_temp <-

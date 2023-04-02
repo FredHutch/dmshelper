@@ -54,6 +54,36 @@ access_reuse_chunk <- function(input) {
   } else {
     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
   }
+  if (determine_cores(input)$eh_aperio_flag) {
+    #####
+    access_reuse_chunk_temp <-
+      c(
+        access_reuse_chunk_temp,
+        yaml.load_file("template/eh_aperio.yml")$access_reuse
+      )
+  } else {
+    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_polaris_flag) {
+    #####
+    access_reuse_chunk_temp <-
+      c(
+        access_reuse_chunk_temp,
+        yaml.load_file("template/eh_polaris.yml")$access_reuse
+      )
+  } else {
+    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_vectra_flag) {
+    #####
+    access_reuse_chunk_temp <-
+      c(
+        access_reuse_chunk_temp,
+        yaml.load_file("template/eh_vectra.yml")$access_reuse
+      )
+  } else {
+    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+  }
   if (determine_cores(input)$flow_cytometry_flag) {
     #####
     access_reuse_chunk_temp <- c(
@@ -140,6 +170,33 @@ control_chunk <- function(input) {
         control_chunk_temp,
         yaml.load_file("template/em_cryo.yml")$control_approvals
       )
+  } else {
+    control_chunk_temp <- c(control_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_aperio_flag) {
+    #####
+    control_chunk_temp <- c(
+      control_chunk_temp,
+      yaml.load_file("template/eh_aperio.yml")$control_approvals
+    )
+  } else {
+    control_chunk_temp <- c(control_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_polaris_flag) {
+    #####
+    control_chunk_temp <- c(
+      control_chunk_temp,
+      yaml.load_file("template/eh_polaris.yml")$control_approvals
+    )
+  } else {
+    control_chunk_temp <- c(control_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_vectra_flag) {
+    #####
+    control_chunk_temp <- c(
+      control_chunk_temp,
+      yaml.load_file("template/eh_vectra.yml")$control_approvals
+    )
   } else {
     control_chunk_temp <- c(control_chunk_temp, "")
   }
@@ -248,6 +305,42 @@ privacy_hs_chunk <- function(input) {
     if (input$human_subjects) {
       privacy_hs_chunk_temp <-
         yaml.load_file("template/em_cryo.yml")$privacy_hs
+    } else {
+      privacy_hs_chunk_temp <-
+        "Data will not be collected from human research participants."
+    }
+  } else {
+    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_aperio_flag) {
+    #####
+    if (input$human_subjects) {
+      privacy_hs_chunk_temp <-
+        yaml.load_file("template/eh_aperio.yml")$privacy_hs
+    } else {
+      privacy_hs_chunk_temp <-
+        "Data will not be collected from human research participants."
+    }
+  } else {
+    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_polaris_flag) {
+    #####
+    if (input$human_subjects) {
+      privacy_hs_chunk_temp <-
+        yaml.load_file("template/eh_polaris.yml")$privacy_hs
+    } else {
+      privacy_hs_chunk_temp <-
+        "Data will not be collected from human research participants."
+    }
+  } else {
+    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_vectra_flag) {
+    #####
+    if (input$human_subjects) {
+      privacy_hs_chunk_temp <-
+        yaml.load_file("template/eh_vectra.yml")$privacy_hs
     } else {
       privacy_hs_chunk_temp <-
         "Data will not be collected from human research participants."
