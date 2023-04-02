@@ -110,6 +110,14 @@ standards_chunk <- function(input) {
   } else {
     standards_chunk_temp <- c(standards_chunk_temp, "")
   }
+  if (determine_cores(input)$immune_flag) {
+    #####
+    standards_chunk_temp <-
+      c(standards_chunk_temp,
+        yaml.load_file("template/immune.yml")$standards)
+  } else {
+    standards_chunk_temp <- c(standards_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     standards_chunk_temp <-

@@ -27,6 +27,8 @@ raw_processed_data_chunk <- function(input) {
     input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/flow_cytometry.yml")$raw_file_types]
   genomics_file_types <-
     input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/genomics.yml")$raw_file_types]
+  immune_file_types <-
+    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/immune.yml")$raw_file_types]
   proteomics_file_types <-
     input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/proteomics.yml")$raw_file_types]
 
@@ -50,6 +52,8 @@ raw_processed_data_chunk <- function(input) {
     input$technology_description[input$technology_description %in% yaml.load_file("template/flow_cytometry.yml")$tech_types]
   genomics_tech_types <-
     input$technology_description[input$technology_description %in% yaml.load_file("template/genomics.yml")$tech_types]
+  immune_tech_types <-
+    input$technology_description[input$technology_description %in% yaml.load_file("template/immune.yml")$tech_types]
   proteomics_tech_types <-
     input$technology_description[input$technology_description %in% yaml.load_file("template/proteomics.yml")$tech_types]
 
@@ -253,17 +257,7 @@ raw_processed_data_chunk <- function(input) {
     raw_processed_data_chunk_temp <-
       c(raw_processed_data_chunk_temp, "")
   }
-
-
-
-
-
-
-
-
-
-
-  if (determine_cores(input)$eh_aperio_flag | determine_cores(input)$eh_polaris_flag | determine_cores(input)$eh_vectra_flag) {
+ if (determine_cores(input)$eh_aperio_flag | determine_cores(input)$eh_polaris_flag | determine_cores(input)$eh_vectra_flag) {
     raw_processed_data_chunk_temp <-
       c(
         raw_processed_data_chunk_temp,
@@ -393,16 +387,6 @@ raw_processed_data_chunk <- function(input) {
     raw_processed_data_chunk_temp <-
       c(raw_processed_data_chunk_temp, "")
   }
-
-
-
-
-
-
-
-
-
-
   if (determine_cores(input)$flow_cytometry_flag) {
     #####
     raw_processed_data_chunk_temp <-
@@ -519,6 +503,45 @@ raw_processed_data_chunk <- function(input) {
     raw_processed_data_chunk_temp <-
       c(raw_processed_data_chunk_temp, "")
   }
+  if (determine_cores(input)$immune_flag) {
+    #####
+    raw_processed_data_chunk_temp <-
+      c(
+        raw_processed_data_chunk_temp,
+        "  ",
+        "_Our proposal will generate immune monitoring data of the following types and sizes:_  ",
+        "We will collect assay results for clinical trials using <font color='OA799A'>",
+        if (length(immune_tech_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(immune_tech_types)
+        },
+        "</font>. Data for this study will generate <font color='OA799A'>",
+        if (length(immune_file_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(immune_file_types)
+        },
+        "</font>. We will collect data from <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_immune_files))) {
+          " ___ "
+        } else {
+          input$num_immune_files
+        },
+        "</font> ",
+        yaml.load_file("template/immune.yml")$file_sizes,
+        "for an estimated total data volume of <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_immune_files))) {
+          " ___ "
+        } else {
+          paste(as.numeric(input$num_immune_files) * 0)
+        },
+        "</font>GB."
+      )
+  } else {
+    raw_processed_data_chunk_temp <-
+      c(raw_processed_data_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     raw_processed_data_chunk_temp <-
@@ -611,6 +634,7 @@ datatype_raw_file_description_options <- function() {
     yaml.load_file("template/eh_vectra.yml")$raw_file_types,
     yaml.load_file("template/flow_cytometry.yml")$raw_file_types,
     yaml.load_file("template/genomics.yml")$raw_file_types,
+    yaml.load_file("template/immune.yml")$raw_file_types,
     yaml.load_file("template/proteomics.yml")$raw_file_types
   ))
 }
@@ -634,6 +658,7 @@ datatype_technology_description_options <- function() {
     yaml.load_file("template/eh_vectra.yml")$tech_types,
     yaml.load_file("template/flow_cytometry.yml")$tech_types,
     yaml.load_file("template/genomics.yml")$tech_types,
+    yaml.load_file("template/immune.yml")$tech_types,
     yaml.load_file("template/proteomics.yml")$tech_types
   ))
 }
@@ -698,6 +723,11 @@ datatype_raw_by_core <- function(toggle_example_txt) {
     datatype_raw_ <-
       c(datatype_raw_,
         yaml.load_file("template/genomics.yml")$raw_file_types)
+  }
+  if ("immune" %in% toggle_example_txt$core_datatype) {
+    datatype_raw_ <-
+      c(datatype_raw_,
+        yaml.load_file("template/immune.yml")$raw_file_types)
   }
   if ("proteomics" %in% toggle_example_txt$core_datatype) {
     datatype_raw_ <-
@@ -767,6 +797,11 @@ datatype_tech_by_core <- function(toggle_example_txt) {
     datatype_tech_ <-
       c(datatype_tech_,
         yaml.load_file("template/genomics.yml")$tech_types)
+  }
+  if ("immune" %in% toggle_example_txt$core_datatype) {
+    datatype_tech_ <-
+      c(datatype_tech_,
+        yaml.load_file("template/immune.yml")$tech_types)
   }
   if ("proteomics" %in% toggle_example_txt$core_datatype) {
     datatype_tech_ <-

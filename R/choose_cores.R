@@ -89,6 +89,14 @@ determine_cores <- function(input) {
     any(
       input$technology_description %in% yaml.load_file("template/genomics.yml")$tech_types
     )
+  immune_flag <-
+    "immune" %in% input$core_datatype |
+    any(
+      input$raw_file_description %in% yaml.load_file("template/immune.yml")$raw_file_types
+    ) |
+    any(
+      input$technology_description %in% yaml.load_file("template/immune.yml")$tech_types
+    )
   proteomics_flag <-
     "proteomics" %in% input$core_datatype |
     any(
@@ -109,6 +117,7 @@ determine_cores <- function(input) {
     "eh_vectra_flag" = eh_vectra_flag,
     "flow_cytometry_flag" = flow_cytometry_flag,
     "genomics_flag" = genomics_flag,
+    "immune_flag" = immune_flag,
     "proteomics_flag" = proteomics_flag
   )
 

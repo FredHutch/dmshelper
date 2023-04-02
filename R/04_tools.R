@@ -85,6 +85,14 @@ tools_chunk <- function(input) {
   } else {
     tools_chunk_temp <- c(tools_chunk_temp, "")
   }
+  if (determine_cores(input)$immune_flag) {
+    #####
+    tools_chunk_temp <-
+      c(tools_chunk_temp,
+        yaml.load_file("template/immune.yml")$tools[!(yaml.load_file("template/immune.yml")$tools %in% tools_chunk_temp)])
+  } else {
+    tools_chunk_temp <- c(tools_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     tools_chunk_temp <-

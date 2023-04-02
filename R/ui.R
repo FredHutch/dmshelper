@@ -63,7 +63,7 @@ shiny_ui <- function() {
             "Experimental Histopathology - Vectra images" = "eh_vectra",
             "Flow Cytometry" = "flow_cytometry",
             "Genomics & Bioinformatics" = "genomics",
-            # "Immune Monitoring Core" = "immune",
+            "Immune Monitoring" = "immune",
             # "Large Animal Facility Core" = "large_animal",
             # "Preclinical Imaging Core (IVIS)" = "preclinical_img_ivis",
             # "Preclinical Imaging Core (MicroCT)" = "preclinical_img_microct",
@@ -150,6 +150,11 @@ shiny_ui <- function() {
           numericInput(
             "num_genomics_files",
             label = "Genomic sample count",
+            value = NA
+          ),
+          numericInput(
+            "num_immune_files",
+            label = "Immune monitoring sample count",
             value = NA
           ),
           # selectInput(

@@ -185,6 +185,28 @@ sharing_chunk <- function(input) {
   } else {
     sharing_chunk_temp <- c(sharing_chunk_temp, "")
   }
+  if (determine_cores(input)$immune_flag) {
+    #####
+    if (input$human_subjects) {
+      sharing_chunk_temp <-
+        c(
+          sharing_chunk_temp,
+          "  ",
+          "_Our proposal will preserve and share the following types of immune monitoring data:_  ",
+          yaml.load_file("template/immune.yml")$sharing_non_hs
+        )
+    } else {
+      sharing_chunk_temp <-
+        c(
+          sharing_chunk_temp,
+          "  ",
+          "_Our proposal will preserve and share the following types of immune monitoring data:_  ",
+          yaml.load_file("template/immune.yml")$sharing_non_hs
+        )
+    }
+  } else {
+    sharing_chunk_temp <- c(sharing_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     if (input$human_subjects) {

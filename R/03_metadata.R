@@ -112,6 +112,17 @@ metadata_chunk <- function(input) {
   } else {
     metadata_chunk_temp <- c(metadata_chunk_temp, "")
   }
+  if (determine_cores(input)$immune_flag) {
+    metadata_chunk_temp <-
+      c(metadata_chunk_temp,
+        if (yaml.load_file("template/immune.yml")$metadata %in% metadata_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/immune.yml")$metadata
+        })
+  } else {
+    metadata_chunk_temp <- c(metadata_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     metadata_chunk_temp <-
       c(metadata_chunk_temp,
