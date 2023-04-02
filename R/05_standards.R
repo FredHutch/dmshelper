@@ -58,6 +58,42 @@ standards_chunk <- function(input) {
   } else {
     standards_chunk_temp <- c(standards_chunk_temp, "")
   }
+  if (determine_cores(input)$eh_aperio_flag) {
+    #####
+    standards_chunk_temp <-
+      c(standards_chunk_temp,
+        if (yaml.load_file("template/eh_aperio.yml")$standards %in% standards_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/eh_aperio.yml")$standards
+        })
+  } else {
+    standards_chunk_temp <- c(standards_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_polaris_flag) {
+    #####
+    standards_chunk_temp <-
+      c(standards_chunk_temp,
+        if (yaml.load_file("template/eh_polaris.yml")$standards %in% standards_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/eh_polaris.yml")$standards
+        })
+  } else {
+    standards_chunk_temp <- c(standards_chunk_temp, "")
+  }
+  if (determine_cores(input)$eh_vectra_flag) {
+    #####
+    standards_chunk_temp <-
+      c(standards_chunk_temp,
+        if (yaml.load_file("template/eh_vectra.yml")$standards %in% standards_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/eh_vectra.yml")$standards
+        })
+  } else {
+    standards_chunk_temp <- c(standards_chunk_temp, "")
+  }
   if (determine_cores(input)$flow_cytometry_flag) {
     #####
     standards_chunk_temp <-
