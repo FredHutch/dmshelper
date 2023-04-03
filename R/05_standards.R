@@ -126,6 +126,42 @@ standards_chunk <- function(input) {
   } else {
     standards_chunk_temp <- c(standards_chunk_temp, "")
   }
+  if (determine_cores(input)$pi_ivis_flag) {
+    #####
+    standards_chunk_temp <-
+      c(standards_chunk_temp,
+        if (yaml.load_file("template/pi_ivis.yml")$standards %in% standards_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/pi_ivis.yml")$standards
+        })
+  } else {
+    standards_chunk_temp <- c(standards_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_microct_flag) {
+    #####
+    standards_chunk_temp <-
+      c(standards_chunk_temp,
+        if (yaml.load_file("template/pi_microct.yml")$standards %in% standards_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/pi_microct.yml")$standards
+        })
+  } else {
+    standards_chunk_temp <- c(standards_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_mri_flag) {
+    #####
+    standards_chunk_temp <-
+      c(standards_chunk_temp,
+        if (yaml.load_file("template/pi_mri.yml")$standards %in% standards_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/pi_mri.yml")$standards
+        })
+  } else {
+    standards_chunk_temp <- c(standards_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     standards_chunk_temp <-
