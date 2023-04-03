@@ -207,6 +207,75 @@ sharing_chunk <- function(input) {
   } else {
     sharing_chunk_temp <- c(sharing_chunk_temp, "")
   }
+  if (determine_cores(input)$large_animal_flag) {
+    #####
+    if (input$human_subjects) {
+      sharing_chunk_temp <-
+        c(
+          sharing_chunk_temp,
+          "  ",
+          "_Our proposal will preserve and share the following types of large animal data:_  ",
+          yaml.load_file("template/large_animal.yml")$sharing_non_hs
+        )
+    } else {
+      sharing_chunk_temp <-
+        c(
+          sharing_chunk_temp,
+          "  ",
+          "_Our proposal will preserve and share the following types of large animal data:_  ",
+          yaml.load_file("template/large_animal.yml")$sharing_non_hs
+        )
+    }
+  } else {
+    sharing_chunk_temp <- c(sharing_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_ivis_flag | determine_cores(input)$pi_microct_flag | determine_cores(input)$pi_mri_flag) {
+    sharing_chunk_temp <-
+      c(
+        sharing_chunk_temp,
+        "  ",
+        "_Our proposal will preserve and share the following types of preclinical imaging data:_  "
+      )
+  } else {
+    sharing_chunk_temp <-
+      c(sharing_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_ivis_flag) {
+    #####
+    sharing_chunk_temp <-
+      c(sharing_chunk_temp,
+        if (yaml.load_file("template/pi_ivis.yml")$sharing_non_hs %in% sharing_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/pi_ivis.yml")$sharing_non_hs
+        })
+  } else {
+    sharing_chunk_temp <- c(sharing_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_microct_flag) {
+    #####
+    sharing_chunk_temp <-
+      c(sharing_chunk_temp,
+        if (yaml.load_file("template/pi_microct.yml")$sharing_non_hs %in% sharing_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/pi_microct.yml")$sharing_non_hs
+        })
+  } else {
+    sharing_chunk_temp <- c(sharing_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_mri_flag) {
+    #####
+    sharing_chunk_temp <-
+      c(sharing_chunk_temp,
+        if (yaml.load_file("template/pi_mri.yml")$sharing_non_hs %in% sharing_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/pi_mri.yml")$sharing_non_hs
+        })
+  } else {
+    sharing_chunk_temp <- c(sharing_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     if (input$human_subjects) {

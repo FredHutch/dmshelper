@@ -93,6 +93,38 @@ tools_chunk <- function(input) {
   } else {
     tools_chunk_temp <- c(tools_chunk_temp, "")
   }
+  if (determine_cores(input)$large_animal_flag) {
+    #####
+    tools_chunk_temp <-
+      c(tools_chunk_temp,
+        yaml.load_file("template/large_animal.yml")$tools[!(yaml.load_file("template/large_animal.yml")$tools %in% tools_chunk_temp)])
+  } else {
+    tools_chunk_temp <- c(tools_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_ivis_flag) {
+    #####
+    tools_chunk_temp <-
+      c(tools_chunk_temp,
+        yaml.load_file("template/pi_ivis.yml")$tools[!(yaml.load_file("template/pi_ivis.yml")$tools %in% tools_chunk_temp)])
+  } else {
+    tools_chunk_temp <- c(tools_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_microct_flag) {
+    #####
+    tools_chunk_temp <-
+      c(tools_chunk_temp,
+        yaml.load_file("template/pi_microct.yml")$tools[!(yaml.load_file("template/pi_microct.yml")$tools %in% tools_chunk_temp)])
+  } else {
+    tools_chunk_temp <- c(tools_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_mri_flag) {
+    #####
+    tools_chunk_temp <-
+      c(tools_chunk_temp,
+        yaml.load_file("template/pi_mri.yml")$tools[!(yaml.load_file("template/pi_mri.yml")$tools %in% tools_chunk_temp)])
+  } else {
+    tools_chunk_temp <- c(tools_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     tools_chunk_temp <-

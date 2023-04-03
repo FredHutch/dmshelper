@@ -123,6 +123,50 @@ metadata_chunk <- function(input) {
   } else {
     metadata_chunk_temp <- c(metadata_chunk_temp, "")
   }
+  if (determine_cores(input)$large_animal_flag) {
+    metadata_chunk_temp <-
+      c(metadata_chunk_temp,
+        if (yaml.load_file("template/large_animal.yml")$metadata %in% metadata_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/large_animal.yml")$metadata
+        })
+  } else {
+    metadata_chunk_temp <- c(metadata_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_ivis_flag) {
+    metadata_chunk_temp <-
+      c(metadata_chunk_temp,
+        if (yaml.load_file("template/pi_ivis.yml")$metadata %in% metadata_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/pi_ivis.yml")$metadata
+        })
+  } else {
+    metadata_chunk_temp <- c(metadata_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_microct_flag) {
+    metadata_chunk_temp <-
+      c(metadata_chunk_temp,
+        if (yaml.load_file("template/pi_microct.yml")$metadata %in% metadata_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/pi_microct.yml")$metadata
+        })
+  } else {
+    metadata_chunk_temp <- c(metadata_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_mri_flag) {
+    metadata_chunk_temp <-
+      c(metadata_chunk_temp,
+        if (yaml.load_file("template/pi_mri.yml")$metadata %in% metadata_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/pi_mri.yml")$metadata
+        })
+  } else {
+    metadata_chunk_temp <- c(metadata_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     metadata_chunk_temp <-
       c(metadata_chunk_temp,

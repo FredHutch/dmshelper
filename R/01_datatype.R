@@ -29,6 +29,14 @@ raw_processed_data_chunk <- function(input) {
     input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/genomics.yml")$raw_file_types]
   immune_file_types <-
     input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/immune.yml")$raw_file_types]
+  large_animal_file_types <-
+    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/large_animal.yml")$raw_file_types]
+  pi_ivis_file_types <-
+    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/pi_ivis.yml")$raw_file_types]
+  pi_microct_file_types <-
+    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/pi_microct.yml")$raw_file_types]
+  pi_mri_file_types <-
+    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/pi_mri.yml")$raw_file_types]
   proteomics_file_types <-
     input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/proteomics.yml")$raw_file_types]
 
@@ -54,6 +62,14 @@ raw_processed_data_chunk <- function(input) {
     input$technology_description[input$technology_description %in% yaml.load_file("template/genomics.yml")$tech_types]
   immune_tech_types <-
     input$technology_description[input$technology_description %in% yaml.load_file("template/immune.yml")$tech_types]
+  large_animal_tech_types <-
+    input$technology_description[input$technology_description %in% yaml.load_file("template/large_animal.yml")$tech_types]
+  pi_ivis_tech_types <-
+    input$technology_description[input$technology_description %in% yaml.load_file("template/pi_ivis.yml")$tech_types]
+  pi_microct_tech_types <-
+    input$technology_description[input$technology_description %in% yaml.load_file("template/pi_microct.yml")$tech_types]
+  pi_mri_tech_types <-
+    input$technology_description[input$technology_description %in% yaml.load_file("template/pi_mri.yml")$tech_types]
   proteomics_tech_types <-
     input$technology_description[input$technology_description %in% yaml.load_file("template/proteomics.yml")$tech_types]
 
@@ -542,6 +558,165 @@ raw_processed_data_chunk <- function(input) {
     raw_processed_data_chunk_temp <-
       c(raw_processed_data_chunk_temp, "")
   }
+  if (determine_cores(input)$large_animal_flag) {
+    #####
+    raw_processed_data_chunk_temp <-
+      c(
+        raw_processed_data_chunk_temp,
+        "  ",
+        "_Our proposal will generate large animal facility data of the following types and sizes:_  ",
+        "We will collect medical recrods and clinical pathology data from <font color='OA799A'>",
+        if (length(large_animal_tech_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(large_animal_tech_types)
+        },
+        "</font>. Data for this study will generate <font color='OA799A'>",
+        if (length(large_animal_file_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(large_animal_file_types)
+        },
+        "</font>. The amount of data generated is ",
+        yaml.load_file("template/large_animal.yml")$file_sizes,
+        ", with the total volume of data collected not to exceed 10MB in aggregate file size."
+      )
+  } else {
+    raw_processed_data_chunk_temp <-
+      c(raw_processed_data_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_ivis_flag | determine_cores(input)$pi_microct_flag | determine_cores(input)$pi_mri_flag) {
+    raw_processed_data_chunk_temp <-
+      c(
+        raw_processed_data_chunk_temp,
+        "  ",
+        "_Our proposal will generate preclinical imaging data of the following types and sizes:_  "
+      )
+  } else {
+    raw_processed_data_chunk_temp <-
+      c(raw_processed_data_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_ivis_flag) {
+    #####
+    raw_processed_data_chunk_temp <-
+      c(
+        raw_processed_data_chunk_temp,
+        "We will collect _in vivo_ imaging data using <font color='OA799A'>",
+        if (length(pi_ivis_tech_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(pi_ivis_tech_types)
+        },
+        "</font>, generating image data in <font color='OA799A'>",
+        if (length(pi_ivis_file_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(pi_ivis_file_types)
+        },
+        "</font> file format. ",
+        yaml.load_file("template/pi_ivis.yml")$file_sizes,
+        " We will collect data from <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_pi_ivis_files))) {
+          " ___ "
+        } else {
+          input$num_pi_ivis_files
+        },
+        "</font> samples for an estimated total data volume of <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_pi_ivis_files))) {
+          " ___ "
+        } else {
+          paste(as.numeric(input$num_pi_ivis_files) * 6)
+        },
+        "</font>MB."
+      )
+  } else {
+    raw_processed_data_chunk_temp <-
+      c(raw_processed_data_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_microct_flag) {
+    #####
+    raw_processed_data_chunk_temp <-
+      c(
+        raw_processed_data_chunk_temp,
+        "We will collect raw data using <font color='OA799A'>",
+        if (length(pi_microct_tech_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(pi_microct_tech_types)
+        },
+        "</font>, generating image data in <font color='OA799A'>",
+        if (length(pi_microct_file_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(pi_microct_file_types)
+        },
+        "</font> file format. ",
+        yaml.load_file("template/pi_microct.yml")$file_sizes,
+        " We will collect data from <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_pi_microct_files))) {
+          " ___ "
+        } else {
+          input$num_pi_microct_files
+        },
+        "</font> samples for an estimated total data volume of <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_pi_microct_files))) {
+          " ___ "
+        } else {
+          paste(as.numeric(input$num_pi_microct_files) * 0.140)
+        },
+        "</font> to <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_pi_microct_files))) {
+          " ___ "
+        } else {
+          paste(as.numeric(input$num_pi_microct_files) * 0.277)
+        },
+        "GB</font>. We process the raw files using ",
+        yaml.load_file("template/pi_microct.yml")$processing_tech,
+        " to generate static images from slices of the data. The data processing will result in high resolution images in ",
+        remove_last_comma(yaml.load_file("template/pi_microct.yml")$processing_file_type),
+        " format."
+    )
+  } else {
+    raw_processed_data_chunk_temp <-
+      c(raw_processed_data_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_mri_flag) {
+    #####
+    raw_processed_data_chunk_temp <-
+      c(
+        raw_processed_data_chunk_temp,
+        "We will collect data using the <font color='OA799A'>",
+        if (length(pi_mri_tech_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(pi_mri_tech_types)
+        },
+        "</font>, generating files in <font color='OA799A'>",
+        if (length(pi_mri_file_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(pi_mri_file_types)
+        },
+        "</font> file format. ",
+        yaml.load_file("template/pi_mri.yml")$file_sizes,
+        " We will collect data from <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_pi_mri_files))) {
+          " ___ "
+        } else {
+          input$num_pi_mri_files
+        },
+        "</font> samples for an estimated total data volume of <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_pi_mri_files))) {
+          " ___ "
+        } else {
+          paste(as.numeric(input$num_pi_mri_files) * 15)
+        },
+        "</font>MB."
+      )
+  } else {
+    raw_processed_data_chunk_temp <-
+      c(raw_processed_data_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     raw_processed_data_chunk_temp <-
@@ -635,6 +810,10 @@ datatype_raw_file_description_options <- function() {
     yaml.load_file("template/flow_cytometry.yml")$raw_file_types,
     yaml.load_file("template/genomics.yml")$raw_file_types,
     yaml.load_file("template/immune.yml")$raw_file_types,
+    yaml.load_file("template/large_animal.yml")$raw_file_types,
+    yaml.load_file("template/pi_ivis.yml")$raw_file_types,
+    yaml.load_file("template/pi_microct.yml")$raw_file_types,
+    yaml.load_file("template/pi_mri.yml")$raw_file_types,
     yaml.load_file("template/proteomics.yml")$raw_file_types
   ))
 }
@@ -659,6 +838,10 @@ datatype_technology_description_options <- function() {
     yaml.load_file("template/flow_cytometry.yml")$tech_types,
     yaml.load_file("template/genomics.yml")$tech_types,
     yaml.load_file("template/immune.yml")$tech_types,
+    yaml.load_file("template/large_animal.yml")$tech_types,
+    yaml.load_file("template/pi_ivis.yml")$tech_types,
+    yaml.load_file("template/pi_microct.yml")$tech_types,
+    yaml.load_file("template/pi_mri.yml")$tech_types,
     yaml.load_file("template/proteomics.yml")$tech_types
   ))
 }
@@ -728,6 +911,26 @@ datatype_raw_by_core <- function(toggle_example_txt) {
     datatype_raw_ <-
       c(datatype_raw_,
         yaml.load_file("template/immune.yml")$raw_file_types)
+  }
+  if ("large_animal" %in% toggle_example_txt$core_datatype) {
+    datatype_raw_ <-
+      c(datatype_raw_,
+        yaml.load_file("template/large_animal.yml")$raw_file_types)
+  }
+  if ("pi_ivis" %in% toggle_example_txt$core_datatype) {
+    datatype_raw_ <-
+      c(datatype_raw_,
+        yaml.load_file("template/pi_ivis.yml")$raw_file_types)
+  }
+  if ("pi_microct" %in% toggle_example_txt$core_datatype) {
+    datatype_raw_ <-
+      c(datatype_raw_,
+        yaml.load_file("template/pi_microct.yml")$raw_file_types)
+  }
+  if ("pi_mri" %in% toggle_example_txt$core_datatype) {
+    datatype_raw_ <-
+      c(datatype_raw_,
+        yaml.load_file("template/pi_mri.yml")$raw_file_types)
   }
   if ("proteomics" %in% toggle_example_txt$core_datatype) {
     datatype_raw_ <-
@@ -802,6 +1005,26 @@ datatype_tech_by_core <- function(toggle_example_txt) {
     datatype_tech_ <-
       c(datatype_tech_,
         yaml.load_file("template/immune.yml")$tech_types)
+  }
+  if ("large_animal" %in% toggle_example_txt$core_datatype) {
+    datatype_tech_ <-
+      c(datatype_tech_,
+        yaml.load_file("template/large_animal.yml")$tech_types)
+  }
+  if ("pi_ivis" %in% toggle_example_txt$core_datatype) {
+    datatype_tech_ <-
+      c(datatype_tech_,
+        yaml.load_file("template/pi_ivis.yml")$tech_types)
+  }
+  if ("pi_microct" %in% toggle_example_txt$core_datatype) {
+    datatype_tech_ <-
+      c(datatype_tech_,
+        yaml.load_file("template/pi_microct.yml")$tech_types)
+  }
+  if ("pi_mri" %in% toggle_example_txt$core_datatype) {
+    datatype_tech_ <-
+      c(datatype_tech_,
+        yaml.load_file("template/pi_mri.yml")$tech_types)
   }
   if ("proteomics" %in% toggle_example_txt$core_datatype) {
     datatype_tech_ <-
