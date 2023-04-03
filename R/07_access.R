@@ -122,6 +122,42 @@ access_reuse_chunk <- function(input) {
   } else {
     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
   }
+  if (determine_cores(input)$pi_ivis_flag) {
+    #####
+    access_reuse_chunk_temp <-
+      c( access_reuse_chunk_temp,
+        if (yaml.load_file("template/pi_ivis.yml")$access_reuse %in% access_reuse_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/pi_ivis.yml")$access_reuse
+        })
+  } else {
+    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_microct_flag) {
+    #####
+    access_reuse_chunk_temp <-
+      c( access_reuse_chunk_temp,
+         if (yaml.load_file("template/pi_microct.yml")$access_reuse %in% access_reuse_chunk_temp) {
+           ""
+         } else {
+           yaml.load_file("template/pi_microct.yml")$access_reuse
+         })
+  } else {
+    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_mri_flag) {
+    #####
+    access_reuse_chunk_temp <-
+      c( access_reuse_chunk_temp,
+         if (yaml.load_file("template/pi_mri.yml")$access_reuse %in% access_reuse_chunk_temp) {
+           ""
+         } else {
+           yaml.load_file("template/pi_mri.yml")$access_reuse
+         })
+  } else {
+    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     access_reuse_chunk_temp <-
@@ -254,6 +290,36 @@ control_chunk <- function(input) {
       c(
         control_chunk_temp,
         yaml.load_file("template/large_animal.yml")$control_approvals
+      )
+  } else {
+    control_chunk_temp <- c(control_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_ivis_flag) {
+    #####
+    control_chunk_temp <-
+      c(
+        control_chunk_temp,
+        yaml.load_file("template/pi_ivis.yml")$control_approvals
+      )
+  } else {
+    control_chunk_temp <- c(control_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_microct_flag) {
+    #####
+    control_chunk_temp <-
+      c(
+        control_chunk_temp,
+        yaml.load_file("template/pi_microct.yml")$control_approvals
+      )
+  } else {
+    control_chunk_temp <- c(control_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_mri_flag) {
+    #####
+    control_chunk_temp <-
+      c(
+        control_chunk_temp,
+        yaml.load_file("template/pi_mri.yml")$control_approvals
       )
   } else {
     control_chunk_temp <- c(control_chunk_temp, "")
@@ -454,6 +520,72 @@ privacy_hs_chunk <- function(input) {
               ""
             } else {
               yaml.load_file("template/large_animal.yml")$privacy_hs
+            }
+        } else {
+          privacy_hs_chunk_temp <-
+            if ("Data will not be collected from human research participants." %in%  privacy_hs_chunk_temp) {
+              ""
+            } else {
+              "Data will not be collected from human research participants."
+            }
+        })
+  } else {
+    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_ivis_flag) {
+    #####
+    privacy_hs_chunk_temp <-
+      c(privacy_hs_chunk_temp,
+        if (input$human_subjects) {
+          privacy_hs_chunk_temp <-
+            if (yaml.load_file("template/pi_ivis.yml")$privacy_hs %in% privacy_hs_chunk_temp) {
+              ""
+            } else {
+              yaml.load_file("template/pi_ivis.yml")$privacy_hs
+            }
+        } else {
+          privacy_hs_chunk_temp <-
+            if ("Data will not be collected from human research participants." %in%  privacy_hs_chunk_temp) {
+              ""
+            } else {
+              "Data will not be collected from human research participants."
+            }
+        })
+  } else {
+    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_microct_flag) {
+    #####
+    privacy_hs_chunk_temp <-
+      c(privacy_hs_chunk_temp,
+        if (input$human_subjects) {
+          privacy_hs_chunk_temp <-
+            if (yaml.load_file("template/pi_microct.yml")$privacy_hs %in% privacy_hs_chunk_temp) {
+              ""
+            } else {
+              yaml.load_file("template/pi_microct.yml")$privacy_hs
+            }
+        } else {
+          privacy_hs_chunk_temp <-
+            if ("Data will not be collected from human research participants." %in%  privacy_hs_chunk_temp) {
+              ""
+            } else {
+              "Data will not be collected from human research participants."
+            }
+        })
+  } else {
+    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_mri_flag) {
+    #####
+    privacy_hs_chunk_temp <-
+      c(privacy_hs_chunk_temp,
+        if (input$human_subjects) {
+          privacy_hs_chunk_temp <-
+            if (yaml.load_file("template/pi_mri.yml")$privacy_hs %in% privacy_hs_chunk_temp) {
+              ""
+            } else {
+              yaml.load_file("template/pi_mri.yml")$privacy_hs
             }
         } else {
           privacy_hs_chunk_temp <-

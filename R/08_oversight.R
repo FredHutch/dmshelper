@@ -250,6 +250,69 @@ oversight_chunk <- function(input) {
   } else {
     oversight_chunk_temp <- c(oversight_chunk_temp, "")
   }
+  if (determine_cores(input)$pi_ivis_flag) {
+    #####
+    oversight_chunk_temp <-
+      c(oversight_chunk_temp,
+        if (yaml.load_file("template/pi_ivis.yml")$oversight %in% oversight_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/pi_ivis.yml")$oversight
+        },
+        paste0(if (yaml.load_file("template/pi_ivis.yml")$oversight_execution %in% oversight_chunk_temp) {
+          ""
+        } else {
+          c(
+            "Execution of this Plan will be performed by <font color='OA799A'>",
+            yaml.load_file("template/pi_ivis.yml")$oversight_execution,
+            ".</font>"
+          )
+        }))
+  } else {
+    oversight_chunk_temp <- c(oversight_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_microct_flag) {
+    #####
+    oversight_chunk_temp <-
+      c(oversight_chunk_temp,
+        if (yaml.load_file("template/pi_microct.yml")$oversight %in% oversight_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/pi_microct.yml")$oversight
+        },
+        paste0(if (yaml.load_file("template/pi_microct.yml")$oversight_execution %in% oversight_chunk_temp) {
+          ""
+        } else {
+          c(
+            "Execution of this Plan will be performed by <font color='OA799A'>",
+            yaml.load_file("template/pi_microct.yml")$oversight_execution,
+            ".</font>"
+          )
+        }))
+  } else {
+    oversight_chunk_temp <- c(oversight_chunk_temp, "")
+  }
+  if (determine_cores(input)$pi_mri_flag) {
+    #####
+    oversight_chunk_temp <-
+      c(oversight_chunk_temp,
+        if (yaml.load_file("template/pi_mri.yml")$oversight %in% oversight_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/pi_mri.yml")$oversight
+        },
+        paste0(if (yaml.load_file("template/pi_mri.yml")$oversight_execution %in% oversight_chunk_temp) {
+          ""
+        } else {
+          c(
+            "Execution of this Plan will be performed by <font color='OA799A'>",
+            yaml.load_file("template/pi_mri.yml")$oversight_execution,
+            ".</font>"
+          )
+        }))
+  } else {
+    oversight_chunk_temp <- c(oversight_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     oversight_chunk_temp <-
