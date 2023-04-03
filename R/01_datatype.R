@@ -698,12 +698,14 @@ raw_processed_data_chunk <- function(input) {
       c(
         raw_processed_data_chunk_temp,
         "We will collect data using the <font color='OA799A'>",
-        paste0(if (length(pi_mri_tech_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(pi_mri_tech_types)
-        },
-        "</font>, generating files in <font color='OA799A'>"),
+        paste0(
+          if (length(pi_mri_tech_types) == 0) {
+            " ___ "
+          } else {
+            remove_last_comma(pi_mri_tech_types)
+          },
+          "</font>, generating files in <font color='OA799A'>"
+        ),
         if (length(pi_mri_file_types) == 0) {
           " ___ "
         } else {
