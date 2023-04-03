@@ -176,8 +176,7 @@ raw_processed_data_chunk <- function(input) {
         "</font>GB."
       )
   } else {
-    raw_processed_data_chunk_temp <-
-      c(raw_processed_data_chunk_temp, "")
+    raw_processed_data_chunk_temp <- raw_processed_data_chunk_temp
   }
   if (determine_cores(input)$em_sem_flag) {
     #####
@@ -213,8 +212,7 @@ raw_processed_data_chunk <- function(input) {
         "</font>GB."
       )
   } else {
-    raw_processed_data_chunk_temp <-
-      c(raw_processed_data_chunk_temp, "")
+    raw_processed_data_chunk_temp <- raw_processed_data_chunk_temp
   }
   if (determine_cores(input)$em_cryo_flag) {
     #####
@@ -272,8 +270,7 @@ raw_processed_data_chunk <- function(input) {
         "</font>GB."
       )
   } else {
-    raw_processed_data_chunk_temp <-
-      c(raw_processed_data_chunk_temp, "")
+    raw_processed_data_chunk_temp <- raw_processed_data_chunk_temp
   }
   if (determine_cores(input)$eh_aperio_flag |
       determine_cores(input)$eh_polaris_flag |
@@ -330,8 +327,7 @@ raw_processed_data_chunk <- function(input) {
         "</font>GB."
       )
   } else {
-    raw_processed_data_chunk_temp <-
-      c(raw_processed_data_chunk_temp, "")
+    raw_processed_data_chunk_temp <- raw_processed_data_chunk_temp
   }
   if (determine_cores(input)$eh_polaris_flag) {
     #####
@@ -367,8 +363,7 @@ raw_processed_data_chunk <- function(input) {
         "</font>GB."
       )
   } else {
-    raw_processed_data_chunk_temp <-
-      c(raw_processed_data_chunk_temp, "")
+    raw_processed_data_chunk_temp <- raw_processed_data_chunk_temp
   }
   if (determine_cores(input)$eh_vectra_flag) {
     #####
@@ -404,8 +399,7 @@ raw_processed_data_chunk <- function(input) {
         "</font>GB."
       )
   } else {
-    raw_processed_data_chunk_temp <-
-      c(raw_processed_data_chunk_temp, "")
+    raw_processed_data_chunk_temp <- raw_processed_data_chunk_temp
   }
   if (determine_cores(input)$flow_cytometry_flag) {
     #####
@@ -638,8 +632,7 @@ raw_processed_data_chunk <- function(input) {
         "</font>MB."
       )
   } else {
-    raw_processed_data_chunk_temp <-
-      c(raw_processed_data_chunk_temp, "")
+    raw_processed_data_chunk_temp <- raw_processed_data_chunk_temp
   }
   if (determine_cores(input)$pi_microct_flag) {
     #####
@@ -689,8 +682,7 @@ raw_processed_data_chunk <- function(input) {
         " format."
       )
   } else {
-    raw_processed_data_chunk_temp <-
-      c(raw_processed_data_chunk_temp, "")
+    raw_processed_data_chunk_temp <- raw_processed_data_chunk_temp
   }
   if (determine_cores(input)$pi_mri_flag) {
     #####
@@ -728,8 +720,7 @@ raw_processed_data_chunk <- function(input) {
         "</font>MB."
       )
   } else {
-    raw_processed_data_chunk_temp <-
-      c(raw_processed_data_chunk_temp, "")
+    raw_processed_data_chunk_temp <- raw_processed_data_chunk_temp
   }
   if (determine_cores(input)$proteomics_flag) {
     #####
