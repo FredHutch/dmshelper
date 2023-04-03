@@ -64,10 +64,10 @@ shiny_ui <- function() {
             "Flow Cytometry" = "flow_cytometry",
             "Genomics & Bioinformatics" = "genomics",
             "Immune Monitoring" = "immune",
-            # "Large Animal Facility Core" = "large_animal",
-            # "Preclinical Imaging Core (IVIS)" = "preclinical_img_ivis",
-            # "Preclinical Imaging Core (MicroCT)" = "preclinical_img_microct",
-            # "Preclinical Imaging Core (MRI)" = "preclinical_img_mri",
+            "Large Animal Facility" = "large_animal",
+            "Preclinical Imaging (IVIS)" = "pi_ivis",
+            "Preclinical Imaging (MicroCT)" = "pi_microct",
+            "Preclinical Imaging (MRI)" = "pi_mri",
             # "Preclinical Modeling Core" = "preclinical_model",
             "Proteomics Core" = "proteomics"
             # "Small Animal Facility Core" = "small_animal",
@@ -155,6 +155,21 @@ shiny_ui <- function() {
           numericInput(
             "num_immune_files",
             label = "Immune monitoring sample count",
+            value = NA
+          ),
+          numericInput(
+            "num_pi_ivis_files",
+            label = "Preclinical imaging (IVIS) sample count",
+            value = NA
+          ),
+          numericInput(
+            "num_pi_microct_files",
+            label = "Preclinical imaging (MicroCT) sample count",
+            value = NA
+          ),
+          numericInput(
+            "num_pi_mri_files",
+            label = "Preclinical imaging (MRI) sample count",
             value = NA
           ),
           # selectInput(
