@@ -229,6 +229,27 @@ oversight_chunk <- function(input) {
   } else {
     oversight_chunk_temp <- c(oversight_chunk_temp, "")
   }
+  if (determine_cores(input)$large_animal_flag) {
+    #####
+    oversight_chunk_temp <-
+      c(oversight_chunk_temp,
+        if (yaml.load_file("template/large_animal.yml")$oversight %in% oversight_chunk_temp) {
+          ""
+        } else {
+          yaml.load_file("template/large_animal.yml")$oversight
+        },
+        paste0(if (yaml.load_file("template/large_animal.yml")$oversight_execution %in% oversight_chunk_temp) {
+          ""
+        } else {
+          c(
+            "Execution of this Plan will be performed by <font color='OA799A'>",
+            yaml.load_file("template/large_animal.yml")$oversight_execution,
+            ".</font>"
+          )
+        }))
+  } else {
+    oversight_chunk_temp <- c(oversight_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     oversight_chunk_temp <-

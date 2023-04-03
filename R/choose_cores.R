@@ -26,29 +26,29 @@ determine_cores <- function(input) {
       input$technology_description %in% yaml.load_file("template/cell_img.yml")$tech_types
     )
   em_tem_flag <-
-    "em_tem" %in% input$core_datatype |
-    any(
-      input$raw_file_description %in% yaml.load_file("template/em_tem.yml")$raw_file_types
-    ) |
-    any(
-      input$technology_description %in% yaml.load_file("template/em_tem.yml")$tech_types
-    )
+    "em_tem" %in% input$core_datatype
+    # any(
+    #   input$raw_file_description %in% yaml.load_file("template/em_tem.yml")$raw_file_types
+    # ) |
+    # any(
+    #   input$technology_description %in% yaml.load_file("template/em_tem.yml")$tech_types
+    # )
   em_sem_flag <-
-    "em_sem" %in% input$core_datatype |
-    any(
-      input$raw_file_description %in% yaml.load_file("template/em_sem.yml")$raw_file_types
-    ) |
-    any(
-      input$technology_description %in% yaml.load_file("template/em_sem.yml")$tech_types
-    )
+    "em_sem" %in% input$core_datatype
+    # any(
+    #   input$raw_file_description %in% yaml.load_file("template/em_sem.yml")$raw_file_types
+    # ) |
+    # any(
+    #   input$technology_description %in% yaml.load_file("template/em_sem.yml")$tech_types
+    # )
   em_cryo_flag <-
-    "em_cryo" %in% input$core_datatype |
-    any(
-      input$raw_file_description %in% yaml.load_file("template/em_cryo.yml")$raw_file_types
-    ) |
-    any(
-      input$technology_description %in% yaml.load_file("template/em_cryo.yml")$tech_types
-    )
+    "em_cryo" %in% input$core_datatype
+    # any(
+    #   input$raw_file_description %in% yaml.load_file("template/em_cryo.yml")$raw_file_types
+    # ) |
+    # any(
+    #   input$technology_description %in% yaml.load_file("template/em_cryo.yml")$tech_types
+    # )
   eh_aperio_flag <-
     "eh_aperio" %in% input$core_datatype |
     any(
@@ -97,6 +97,38 @@ determine_cores <- function(input) {
     any(
       input$technology_description %in% yaml.load_file("template/immune.yml")$tech_types
     )
+  large_animal_flag <-
+    "large_animal" %in% input$core_datatype |
+    any(
+      input$raw_file_description %in% yaml.load_file("template/large_animal.yml")$raw_file_types
+    ) |
+    any(
+      input$technology_description %in% yaml.load_file("template/large_animal.yml")$tech_types
+    )
+  pi_ivis_flag <-
+    "pi_ivis" %in% input$core_datatype
+    # any(
+    #   input$raw_file_description %in% yaml.load_file("template/pi_ivis.yml")$raw_file_types
+    # ) |
+    # any(
+    #   input$technology_description %in% yaml.load_file("template/pi_ivis.yml")$tech_types
+    # )
+  pi_microct_flag <-
+    "pi_microct" %in% input$core_datatype
+    # any(
+    #   input$raw_file_description %in% yaml.load_file("template/pi_microct.yml")$raw_file_types
+    # ) |
+    # any(
+    #   input$technology_description %in% yaml.load_file("template/pi_microct.yml")$tech_types
+    # )
+  pi_mri_flag <-
+    "pi_mri" %in% input$core_datatype
+    # any(
+    #   input$raw_file_description %in% yaml.load_file("template/pi_mri.yml")$raw_file_types
+    # ) |
+    # any(
+    #   input$technology_description %in% yaml.load_file("template/pi_mri.yml")$tech_types
+    # )
   proteomics_flag <-
     "proteomics" %in% input$core_datatype |
     any(
@@ -118,6 +150,10 @@ determine_cores <- function(input) {
     "flow_cytometry_flag" = flow_cytometry_flag,
     "genomics_flag" = genomics_flag,
     "immune_flag" = immune_flag,
+    "large_animal_flag" = large_animal_flag,
+    "pi_ivis_flag" = pi_ivis_flag,
+    "pi_microct_flag" = pi_microct_flag,
+    "pi_mri_flag" = pi_mri_flag,
     "proteomics_flag" = proteomics_flag
   )
 

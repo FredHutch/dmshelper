@@ -118,6 +118,14 @@ repository_chunk <- function(input) {
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
+  if (determine_cores(input)$large_animal_flag) {
+    #####
+    repository_chunk_temp <-
+      c(repository_chunk_temp,
+        yaml.load_file("template/large_animal.yml")$repository)
+  } else {
+    repository_chunk_temp <- c(repository_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     repository_chunk_temp <-
@@ -258,6 +266,14 @@ findable_chunk <- function(input) {
         } else {
           yaml.load_file("template/immune.yml")$findable
         })
+  } else {
+    findable_chunk_temp <- c(findable_chunk_temp, "")
+  }
+  if (determine_cores(input)$large_animal_flag) {
+    #####
+    findable_chunk_temp <-
+      c(findable_chunk_temp,
+        yaml.load_file("template/large_animal.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -411,6 +427,14 @@ duration_chunk <- function(input) {
         } else {
           yaml.load_file("template/immune.yml")$duration
         })
+  } else {
+    duration_chunk_temp <- c(duration_chunk_temp, "")
+  }
+  if (determine_cores(input)$large_animal_flag) {
+    #####
+    duration_chunk_temp <-
+      c(duration_chunk_temp,
+        yaml.load_file("template/large_animal.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
