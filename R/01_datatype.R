@@ -80,19 +80,19 @@ raw_processed_data_chunk <- function(input) {
         "_Our proposal will generate antibody technology data of the following types and sizes:_  ",
         "We will generate <font color='OA799A'>",
         paste0(
-        if (length(antibody_tech_file_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(antibody_tech_file_types)
-        },
-        " ",
-        if (length(antibody_tech_tech_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(antibody_tech_tech_types)
-        },
-        "</font>",
-        ". The total amount of data describing antibody production is <10MB."
+          if (length(antibody_tech_file_types) == 0) {
+            " ___ "
+          } else {
+            remove_last_comma(antibody_tech_file_types)
+          },
+          " ",
+          if (length(antibody_tech_tech_types) == 0) {
+            " ___ "
+          } else {
+            remove_last_comma(antibody_tech_tech_types)
+          },
+          "</font>",
+          ". The total amount of data describing antibody production is <10MB."
         )
       )
   } else {
@@ -123,7 +123,9 @@ raw_processed_data_chunk <- function(input) {
     raw_processed_data_chunk_temp <-
       c(raw_processed_data_chunk_temp, "")
   }
-  if (determine_cores(input)$em_tem_flag | determine_cores(input)$em_sem_flag | determine_cores(input)$em_cryo_flag) {
+  if (determine_cores(input)$em_tem_flag |
+      determine_cores(input)$em_sem_flag |
+      determine_cores(input)$em_cryo_flag) {
     raw_processed_data_chunk_temp <-
       c(
         raw_processed_data_chunk_temp,
@@ -273,7 +275,9 @@ raw_processed_data_chunk <- function(input) {
     raw_processed_data_chunk_temp <-
       c(raw_processed_data_chunk_temp, "")
   }
- if (determine_cores(input)$eh_aperio_flag | determine_cores(input)$eh_polaris_flag | determine_cores(input)$eh_vectra_flag) {
+  if (determine_cores(input)$eh_aperio_flag |
+      determine_cores(input)$eh_polaris_flag |
+      determine_cores(input)$eh_vectra_flag) {
     raw_processed_data_chunk_temp <-
       c(
         raw_processed_data_chunk_temp,
@@ -585,7 +589,9 @@ raw_processed_data_chunk <- function(input) {
     raw_processed_data_chunk_temp <-
       c(raw_processed_data_chunk_temp, "")
   }
-  if (determine_cores(input)$pi_ivis_flag | determine_cores(input)$pi_microct_flag | determine_cores(input)$pi_mri_flag) {
+  if (determine_cores(input)$pi_ivis_flag |
+      determine_cores(input)$pi_microct_flag |
+      determine_cores(input)$pi_mri_flag) {
     raw_processed_data_chunk_temp <-
       c(
         raw_processed_data_chunk_temp,
@@ -602,12 +608,14 @@ raw_processed_data_chunk <- function(input) {
       c(
         raw_processed_data_chunk_temp,
         "We will collect _in vivo_ imaging data using <font color='OA799A'>",
-        if (length(pi_ivis_tech_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(pi_ivis_tech_types)
-        },
-        "</font>, generating image data in <font color='OA799A'>",
+        paste0(
+          if (length(pi_ivis_tech_types) == 0) {
+            " ___ "
+          } else {
+            remove_last_comma(pi_ivis_tech_types)
+          },
+          "</font>, generating image data in <font color='OA799A'>"
+        ),
         if (length(pi_ivis_file_types) == 0) {
           " ___ "
         } else {
@@ -639,12 +647,14 @@ raw_processed_data_chunk <- function(input) {
       c(
         raw_processed_data_chunk_temp,
         "We will collect raw data using <font color='OA799A'>",
-        if (length(pi_microct_tech_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(pi_microct_tech_types)
-        },
-        "</font>, generating image data in <font color='OA799A'>",
+        paste0(
+          if (length(pi_microct_tech_types) == 0) {
+            " ___ "
+          } else {
+            remove_last_comma(pi_microct_tech_types)
+          },
+          "</font>, generating image data in <font color='OA799A'>"
+        ),
         if (length(pi_microct_file_types) == 0) {
           " ___ "
         } else {
@@ -673,9 +683,11 @@ raw_processed_data_chunk <- function(input) {
         "GB</font>. We process the raw files using ",
         yaml.load_file("template/pi_microct.yml")$processing_tech,
         " to generate static images from slices of the data. The data processing will result in high resolution images in ",
-        remove_last_comma(yaml.load_file("template/pi_microct.yml")$processing_file_type),
+        remove_last_comma(
+          yaml.load_file("template/pi_microct.yml")$processing_file_type
+        ),
         " format."
-    )
+      )
   } else {
     raw_processed_data_chunk_temp <-
       c(raw_processed_data_chunk_temp, "")
@@ -686,12 +698,12 @@ raw_processed_data_chunk <- function(input) {
       c(
         raw_processed_data_chunk_temp,
         "We will collect data using the <font color='OA799A'>",
-        if (length(pi_mri_tech_types) == 0) {
+        paste0(if (length(pi_mri_tech_types) == 0) {
           " ___ "
         } else {
           remove_last_comma(pi_mri_tech_types)
         },
-        "</font>, generating files in <font color='OA799A'>",
+        "</font>, generating files in <font color='OA799A'>"),
         if (length(pi_mri_file_types) == 0) {
           " ___ "
         } else {
@@ -798,24 +810,26 @@ raw_processed_data_chunk <- function(input) {
 #'
 #' @examples
 datatype_raw_file_description_options <- function() {
-  return(c(
-    yaml.load_file("template/antibody_tech.yml")$raw_file_types,
-    yaml.load_file("template/cell_img.yml")$raw_file_types,
-    yaml.load_file("template/em_tem.yml")$raw_file_types,
-    yaml.load_file("template/em_sem.yml")$raw_file_types,
-    yaml.load_file("template/em_cryo.yml")$raw_file_types,
-    yaml.load_file("template/eh_aperio.yml")$raw_file_types,
-    yaml.load_file("template/eh_polaris.yml")$raw_file_types,
-    yaml.load_file("template/eh_vectra.yml")$raw_file_types,
-    yaml.load_file("template/flow_cytometry.yml")$raw_file_types,
-    yaml.load_file("template/genomics.yml")$raw_file_types,
-    yaml.load_file("template/immune.yml")$raw_file_types,
-    yaml.load_file("template/large_animal.yml")$raw_file_types,
-    yaml.load_file("template/pi_ivis.yml")$raw_file_types,
-    yaml.load_file("template/pi_microct.yml")$raw_file_types,
-    yaml.load_file("template/pi_mri.yml")$raw_file_types,
-    yaml.load_file("template/proteomics.yml")$raw_file_types
-  ))
+  return(
+    c(
+      yaml.load_file("template/antibody_tech.yml")$raw_file_types,
+      yaml.load_file("template/cell_img.yml")$raw_file_types,
+      yaml.load_file("template/em_tem.yml")$raw_file_types,
+      yaml.load_file("template/em_sem.yml")$raw_file_types,
+      yaml.load_file("template/em_cryo.yml")$raw_file_types,
+      yaml.load_file("template/eh_aperio.yml")$raw_file_types,
+      yaml.load_file("template/eh_polaris.yml")$raw_file_types,
+      yaml.load_file("template/eh_vectra.yml")$raw_file_types,
+      yaml.load_file("template/flow_cytometry.yml")$raw_file_types,
+      yaml.load_file("template/genomics.yml")$raw_file_types,
+      yaml.load_file("template/immune.yml")$raw_file_types,
+      yaml.load_file("template/large_animal.yml")$raw_file_types,
+      yaml.load_file("template/pi_ivis.yml")$raw_file_types,
+      yaml.load_file("template/pi_microct.yml")$raw_file_types,
+      yaml.load_file("template/pi_mri.yml")$raw_file_types,
+      yaml.load_file("template/proteomics.yml")$raw_file_types
+    )
+  )
 }
 
 
@@ -826,24 +840,26 @@ datatype_raw_file_description_options <- function() {
 #'
 #' @examples
 datatype_technology_description_options <- function() {
-  return(c(
-    yaml.load_file("template/antibody_tech.yml")$tech_types,
-    yaml.load_file("template/cell_img.yml")$tech_types,
-    yaml.load_file("template/em_tem.yml")$tech_types,
-    yaml.load_file("template/em_sem.yml")$tech_types,
-    yaml.load_file("template/em_cryo.yml")$tech_types,
-    yaml.load_file("template/eh_aperio.yml")$tech_types,
-    yaml.load_file("template/eh_polaris.yml")$tech_types,
-    yaml.load_file("template/eh_vectra.yml")$tech_types,
-    yaml.load_file("template/flow_cytometry.yml")$tech_types,
-    yaml.load_file("template/genomics.yml")$tech_types,
-    yaml.load_file("template/immune.yml")$tech_types,
-    yaml.load_file("template/large_animal.yml")$tech_types,
-    yaml.load_file("template/pi_ivis.yml")$tech_types,
-    yaml.load_file("template/pi_microct.yml")$tech_types,
-    yaml.load_file("template/pi_mri.yml")$tech_types,
-    yaml.load_file("template/proteomics.yml")$tech_types
-  ))
+  return(
+    c(
+      yaml.load_file("template/antibody_tech.yml")$tech_types,
+      yaml.load_file("template/cell_img.yml")$tech_types,
+      yaml.load_file("template/em_tem.yml")$tech_types,
+      yaml.load_file("template/em_sem.yml")$tech_types,
+      yaml.load_file("template/em_cryo.yml")$tech_types,
+      yaml.load_file("template/eh_aperio.yml")$tech_types,
+      yaml.load_file("template/eh_polaris.yml")$tech_types,
+      yaml.load_file("template/eh_vectra.yml")$tech_types,
+      yaml.load_file("template/flow_cytometry.yml")$tech_types,
+      yaml.load_file("template/genomics.yml")$tech_types,
+      yaml.load_file("template/immune.yml")$tech_types,
+      yaml.load_file("template/large_animal.yml")$tech_types,
+      yaml.load_file("template/pi_ivis.yml")$tech_types,
+      yaml.load_file("template/pi_microct.yml")$tech_types,
+      yaml.load_file("template/pi_mri.yml")$tech_types,
+      yaml.load_file("template/proteomics.yml")$tech_types
+    )
+  )
 }
 
 
@@ -1045,8 +1061,8 @@ datatype_tech_by_core <- function(toggle_example_txt) {
 #' @export
 #'
 #' @examples
-remove_last_comma <- function(string_vect){
-  if(length(string_vect) == 2){
+remove_last_comma <- function(string_vect) {
+  if (length(string_vect) == 2) {
     string_ <- paste(string_vect, collapse = ", ")
     out <- sub(",([^,]*)$", " and\\1", string_)
   } else {
