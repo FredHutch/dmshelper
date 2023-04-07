@@ -1,7 +1,7 @@
 # Datatypes
 raw_file_types: ["text documentation", "tabular data"]
 tech_types: ["veterinary research involving large animals"]
-file_sizes: "less than 1MB per sample"
+file_sizes: "less than 1 MB per sample"
 
 # Scientific data that will be preserved and shared, and the rationale for doing so
 sharing_non_hs: "Medical records and clinical pathology data will be preserved and shared to facilitate re-analysis and re-use of the data by other investigators."

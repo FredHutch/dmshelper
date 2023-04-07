@@ -1,7 +1,7 @@
 # Datatypes
 tech_types: ["_in vivo_ imaging technology", "hematology analyzers", "spreadsheets (Excel)"]
 raw_file_types: ["both bioluminescence images (in TIFF format) as well as tabular summaries of hematology results and breeding records (in DOC and XLS format)"]
-file_sizes: "approximately 10MB for a typical image"
+file_sizes: "approximately 10 MB for a typical image"
 
 # Scientific data that will be preserved and shared, and the rationale for doing so
 sharing_non_hs: "Bioluminescence images as well as hematology results and breeding records will be preserved and shared to facilitate re-analysis and re-use of the data by other investigators."

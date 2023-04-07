@@ -1,7 +1,7 @@
 # Datatypes
 raw_file_types: ["TIFF", "PNG", "text"]
 tech_types: ["Perkin Elmer IVIS Spectrum instrument"]
-file_sizes: "The amount of data generated per sample is typically 6MB."
+file_sizes: "The amount of data generated per sample is typically 6 MB."
 
 # Scientific data that will be preserved and shared, and the rationale for doing so
 sharing_non_hs: "Imaging data of IVIS bioluminescence/biofluorescence will be preserved and shared to facilitate re-analysis and re-use of the data by other investigators."

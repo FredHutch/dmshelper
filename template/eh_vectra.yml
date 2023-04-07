@@ -1,7 +1,7 @@
 # Datatypes
 raw_file_types: ["20X 5x10 mm area", "40X 3x5 mm area"]
 tech_types: ""
-file_sizes: "samples consisting of 27.5GB per image"
+file_sizes: "samples consisting of 27.5 GB per image"
 processing_file_type: [".qptiff, .tiff, or .im3"]
 
 # Scientific data that will be preserved and shared, and the rationale for doing so

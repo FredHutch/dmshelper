@@ -1,7 +1,7 @@
 # Datatypes
 raw_file_types: ["Digital Imaging and Communications in Medicine (DICOM)"]
 tech_types: ["7T Dry Magnet Magnetic Resonance Imaging (MRI) instrument"]
-file_sizes: "The amount of data generated per sample is 15MB."
+file_sizes: "The amount of data generated per sample is 15 MB."
 
 # Scientific data that will be preserved and shared, and the rationale for doing so
 sharing_non_hs: "DICOM files will be preserved and shared to facilitate re-analysis and re-use of the data by other investigators, due to the accessibility of viewing DICOM images using many commonly available image viewing applications."

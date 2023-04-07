@@ -1,7 +1,7 @@
 # Datatypes
 raw_file_types: ["20X brightfield", "40X fluorescent"]
 tech_types: ["Aperio platform"]
-file_sizes: "samples consisting of 1-4GB per image"
+file_sizes: "samples consisting of 1-4 GB per image"
 processing_file_type: [".svc or .svn"]
 
 # Scientific data that will be preserved and shared, and the rationale for doing so
