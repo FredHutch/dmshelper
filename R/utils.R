@@ -19,3 +19,41 @@ remove_last_comma <- function(string_vect) {
 
   return(out)
 }
+
+
+#' Title
+#'
+#' @param string_vect
+#'
+#' @return
+#' @export
+#'
+#' @examples
+multi_or_blank <- function(string_vect) {
+  return(if (length(string_vect) == 0) {
+    " ___ "
+  } else {
+    remove_last_comma(string_vect)
+  })
+}
+
+
+#' Title
+#'
+#' @param num_input
+#'
+#' @return
+#' @export
+#'
+#' @examples
+check_numeric <- function(num_input, multiply = NULL) {
+  return(if (!(is.numeric(num_input))) {
+    " ___ "
+  } else {
+    if (is.numeric(multiply)) {
+      num_input * multiply
+    } else {
+      num_input
+    }
+  })
+}

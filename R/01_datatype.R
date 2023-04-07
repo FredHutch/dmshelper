@@ -92,17 +92,9 @@ raw_processed_data_chunk <- function(input) {
         "_Our proposal will generate antibody technology data of the following types and sizes:_  ",
         "We will generate <font color='OA799A'>",
         paste0(
-          if (length(antibody_tech_file_types) == 0) {
-            " ___ "
-          } else {
-            remove_last_comma(antibody_tech_file_types)
-          },
+          multi_or_blank(antibody_tech_file_types),
           " ",
-          if (length(antibody_tech_tech_types) == 0) {
-            " ___ "
-          } else {
-            remove_last_comma(antibody_tech_tech_types)
-          },
+          multi_or_blank(antibody_tech_tech_types),
           "</font>",
           ". The total amount of data describing antibody production is <10MB."
         )
@@ -118,18 +110,10 @@ raw_processed_data_chunk <- function(input) {
         "  ",
         "_Our proposal will generate cellular imaging data of the following types and sizes:_  ",
         "We will collect raw <font color='OA799A'>",
-        if (length(cell_img_file_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(cell_img_file_types)
-        },
+        multi_or_blank(cell_img_file_types),
         "</font> image files using <font color='OA799A'>",
-        paste0(if (length(cell_img_tech_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(cell_img_tech_types)
-        },
-        "</font>.")
+        paste0(multi_or_blank(cell_img_tech_types),
+               "</font>.")
       )
   } else {
     raw_processed_data_chunk_temp <-
@@ -154,39 +138,19 @@ raw_processed_data_chunk <- function(input) {
       c(
         raw_processed_data_chunk_temp,
         "We will generate TEM images in <font color='OA799A'>",
-        if (length(em_tem_file_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(em_tem_file_types)
-        },
+        multi_or_blank(em_tem_file_types),
         "</font> format using <font color='OA799A'>",
         paste0(
-          if (length(em_tem_tech_types) == 0) {
-            " ___ "
-          } else {
-            remove_last_comma(em_tem_tech_types)
-          },
+          multi_or_blank(em_tem_tech_types),
           "</font>. We will collect data from <font color='OA799A'>"
         ),
-        if (is.na(as.numeric(input$num_em_tem_files))) {
-          " ___ "
-        } else {
-          input$num_em_tem_files
-        },
+        check_numeric(input$num_em_tem_files),
         "</font>",
         yaml.load_file("template/em_tem.yml")$file_sizes,
         " for a total data volume of <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_em_tem_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_em_tem_files) * 0.05)
-        },
+        check_numeric(input$num_em_tem_files, multiply = 0.05),
         "</font> to <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_em_tem_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_em_tem_files) * 1.6)
-        },
+        check_numeric(input$num_em_tem_files, multiply = 1.6),
         "</font>GB."
       )
   } else {
@@ -198,33 +162,17 @@ raw_processed_data_chunk <- function(input) {
       c(
         raw_processed_data_chunk_temp,
         "We will generate SEM images in <font color='OA799A'>",
-        if (length(em_sem_file_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(em_sem_file_types)
-        },
+        multi_or_blank(em_sem_file_types),
         "</font> format using <font color='OA799A'>",
         paste0(
-          if (length(em_sem_tech_types) == 0) {
-            " ___ "
-          } else {
-            remove_last_comma(em_sem_tech_types)
-          },
+          multi_or_blank(em_sem_tech_types),
           "</font>. We will collect data from <font color='OA799A'>"
         ),
-        if (is.na(as.numeric(input$num_em_sem_files))) {
-          " ___ "
-        } else {
-          input$num_em_sem_files
-        },
+        check_numeric(input$num_em_sem_files),
         "</font>",
         yaml.load_file("template/em_sem.yml")$file_sizes,
         "samples for an estimated total data volume of <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_em_sem_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_em_sem_files) * 0.48)
-        },
+        check_numeric(input$num_em_sem_files, multiply = 0.48),
         "</font>GB."
       )
   } else {
@@ -236,55 +184,27 @@ raw_processed_data_chunk <- function(input) {
       c(
         raw_processed_data_chunk_temp,
         "We will generate high-resolution cryoEM images in <font color='OA799A'>",
-        if (length(em_cryo_file_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(em_cryo_file_types)
-        },
+        multi_or_blank(em_cryo_file_types),
         "</font> format using <font color='OA799A'>",
         paste0(
-          if (length(em_cryo_tech_types) == 0) {
-            " ___ "
-          } else {
-            remove_last_comma(em_cryo_tech_types)
-          },
+          multi_or_blank(em_cryo_tech_types),
           "</font>. We will collect data from <font color='OA799A'>"
         ),
-        if (is.na(as.numeric(input$num_em_cryo_files))) {
-          " ___ "
-        } else {
-          input$num_em_cryo_files
-        },
+        check_numeric(input$num_em_cryo_files),
         "</font>",
         yaml.load_file("template/em_cryo.yml")$file_sizes,
         "samples for an estimated total data volume of <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_em_cryo_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_em_cryo_files) * 0.9)
-        },
+        check_numeric(input$num_em_cryo_files, multiply = 0.9),
         "</font> GB. We will process the <font color='OA799A'>",
-        if (length(em_cryo_file_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(em_cryo_file_types)
-        },
+        multi_or_blank(em_cryo_file_types),
         "</font> files using ",
         yaml.load_file("template/em_cryo.yml")$processing_tech,
         " to produce ",
         yaml.load_file("template/em_cryo.yml")$processing_file_type,
         " files. Estimated processed data volume is <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_em_cryo_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_em_cryo_files) * 0.1)
-        },
+        check_numeric(input$num_em_cryo_files, multiply = 0.1),
         "</font> to <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_em_cryo_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_em_cryo_files) * 0.5)
-        },
+        check_numeric(input$num_em_cryo_files, multiply = 0.5),
         "</font>GB."
       )
   } else {
@@ -309,39 +229,21 @@ raw_processed_data_chunk <- function(input) {
       c(
         raw_processed_data_chunk_temp,
         "We will collect <font color='OA799A'>",
-        if (length(eh_aperio_file_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(eh_aperio_file_types)
-        },
+        multi_or_blank(eh_aperio_file_types),
         "</font> images using the <font color='OA799A'>",
-        paste0(if (length(eh_aperio_tech_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(eh_aperio_tech_types)
-        },
-        "</font>. Data for this study will generate "),
+        paste0(
+          multi_or_blank(eh_aperio_tech_types),
+          "</font>. Data for this study will generate "
+        ),
         yaml.load_file("template/eh_aperio.yml")$processing_file_type,
         "files. We will collect data from <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_eh_aperio_files))) {
-          " ___ "
-        } else {
-          input$num_eh_aperio_files
-        },
+        check_numeric(input$num_eh_aperio_files),
         "</font>",
         yaml.load_file("template/eh_aperio.yml")$file_sizes,
         "for a total data volume of <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_eh_aperio_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_eh_aperio_files) * 1)
-        },
+        check_numeric(input$num_eh_aperio_files, multiply = 1),
         "</font> to <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_eh_aperio_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_eh_aperio_files) * 4)
-        },
+        check_numeric(input$num_eh_aperio_files, multiply = 4),
         "</font>GB."
       )
   } else {
@@ -353,33 +255,17 @@ raw_processed_data_chunk <- function(input) {
       c(
         raw_processed_data_chunk_temp,
         "We will collect/produce MOTIF images (imaging and spectral unmixing) in <font color='OA799A'>",
-        if (length(eh_polaris_file_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(eh_polaris_file_types)
-        },
+        multi_or_blank(eh_polaris_file_types),
         "</font> format using <font color='OA799A'>",
         paste0(
-          if (length(eh_polaris_tech_types) == 0) {
-            " ___ "
-          } else {
-            remove_last_comma(eh_polaris_tech_types)
-          },
+          multi_or_blank(eh_polaris_tech_types),
           "</font>. We will collect data from <font color='OA799A'>"
         ),
-        if (is.na(as.numeric(input$num_eh_polaris_files))) {
-          " ___ "
-        } else {
-          input$num_eh_polaris_files
-        },
+        check_numeric(input$num_eh_polaris_files),
         "</font> ",
         yaml.load_file("template/eh_polaris.yml")$file_sizes,
         "for an estimated total data volume of <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_eh_polaris_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_eh_polaris_files) * 18)
-        },
+        check_numeric(input$num_eh_polaris_files, multiply = 18),
         "</font>GB."
       )
   } else {
@@ -391,33 +277,17 @@ raw_processed_data_chunk <- function(input) {
       c(
         raw_processed_data_chunk_temp,
         "We will collect/produce <font color='OA799A'>",
-        if (length(eh_vectra_file_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(eh_vectra_file_types)
-        },
+        multi_or_blank(eh_vectra_file_types),
         "</font> Vectra images using <font color='OA799A'>",
         paste0(
-          if (length(eh_vectra_tech_types) == 0) {
-            " ___ "
-          } else {
-            remove_last_comma(eh_vectra_tech_types)
-          },
+          multi_or_blank(eh_vectra_tech_types),
           "</font>. We will collect data from <font color='OA799A'>"
         ),
-        if (is.na(as.numeric(input$num_eh_vectra_files))) {
-          " ___ "
-        } else {
-          input$num_eh_vectra_files
-        },
+        check_numeric(input$num_eh_vectra_files),
         "</font> ",
         yaml.load_file("template/eh_vectra.yml")$file_sizes,
         "for an estimated total data volume of <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_eh_vectra_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_eh_vectra_files) * 27.5)
-        },
+        check_numeric(input$num_eh_vectra_files, multiply = 27.5),
         "</font>GB."
       )
   } else {
@@ -431,37 +301,17 @@ raw_processed_data_chunk <- function(input) {
         "  ",
         "_Our proposal will generate flow cytometry data of the following types and sizes:_  ",
         "We will collect raw data using <font color='OA799A'>",
-        if (length(flow_cytometry_tech_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(flow_cytometry_tech_types)
-        },
+        multi_or_blank(flow_cytometry_tech_types),
         "</font> flow cytometers in <font color='OA799A'>",
-        if (length(flow_cytometry_file_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(flow_cytometry_file_types)
-        },
+        multi_or_blank(flow_cytometry_file_types),
         "</font> format,widely adopted and maintained by the International Society for Advancement of Cytometry (ISAC). We will collect data from <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_flow_cytometry_files))) {
-          " ___ "
-        } else {
-          input$num_flow_cytometry_files
-        },
+        check_numeric(input$num_flow_cytometry_files),
         "</font>",
         yaml.load_file("template/flow_cytometry.yml")$file_sizes,
         "samples for an estimated total data volume of <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_flow_cytometry_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_flow_cytometry_files) * 0.01)
-        },
+        check_numeric(input$num_flow_cytometry_files, multiply = 0.01),
         "</font>GB. We will process the <font color='OA799A'>",
-        if (length(flow_cytometry_file_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(flow_cytometry_file_types)
-        },
+        multi_or_blank(flow_cytometry_file_types),
         "</font> files using ",
         yaml.load_file("template/flow_cytometry.yml")$processing_tech,
         " to produce tabular cell groupings data in ",
@@ -480,59 +330,27 @@ raw_processed_data_chunk <- function(input) {
         "  ",
         "_Our proposal will generate genomic data of the following types and sizes:_  ",
         "We will generate raw data in the form of <font color='OA799A'>",
-        if (length(genomics_file_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(genomics_file_types)
-        },
+        multi_or_blank(genomics_file_types),
         "</font> files using <font color='OA799A'>",
-        if (length(genomics_tech_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(genomics_tech_types)
-        },
+        multi_or_blank(genomics_tech_types),
         "</font> sequencing technology. We will collect data from <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_genomics_files))) {
-          " ___ "
-        } else {
-          input$num_genomics_files
-        },
+        check_numeric(input$num_genomics_files),
         "</font>",
         yaml.load_file("template/genomics.yml")$file_sizes,
         "for a total data volume of <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_genomics_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_genomics_files) * 0.5)
-        },
+        check_numeric(input$num_genomics_files, multiply = 0.5),
         "</font> to <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_genomics_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_genomics_files) * 20)
-        },
+        check_numeric(input$num_genomics_files, multiply = 20),
         "</font>GB. We will process <font color='OA799A'>",
-        if (length(genomics_file_types) == 0) {
-          " ___ "
-        } else {
-          paste(genomics_file_types, collapse = ", ")
-        },
+        multi_or_blank(genomics_file_types),
         paste0(
           "</font> files using ",
           yaml.load_file("template/genomics.yml")$processing,
           ", for a total processed data volume of <font color='OA799A'>"
         ),
-        if (is.na(as.numeric(input$num_genomics_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_genomics_files) * 0.1)
-        },
+        check_numeric(input$num_genomics_files, multiply = 0.1),
         "</font> to <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_genomics_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_genomics_files) * 1)
-        },
+        check_numeric(input$num_genomics_files, multiply = 1),
         "</font>GB."
       )
   } else {
@@ -548,34 +366,18 @@ raw_processed_data_chunk <- function(input) {
         "_Our proposal will generate immune monitoring data of the following types and sizes:_  ",
         "We will collect assay results for clinical trials using <font color='OA799A'>",
         paste0(
-          if (length(immune_tech_types) == 0) {
-            " ___ "
-          } else {
-            remove_last_comma(immune_tech_types)
-          },
+          multi_or_blank(immune_tech_types),
           "</font>. Data for this study will generate <font color='OA799A'>"
         ),
         paste0(
-          if (length(immune_file_types) == 0) {
-            " ___ "
-          } else {
-            remove_last_comma(immune_file_types)
-          },
+          multi_or_blank(immune_file_types),
           "</font>. We will collect data from <font color='OA799A'>"
         ),
-        if (is.na(as.numeric(input$num_immune_files))) {
-          " ___ "
-        } else {
-          input$num_immune_files
-        },
+        check_numeric(input$num_immune_files),
         "</font> ",
         yaml.load_file("template/immune.yml")$file_sizes,
         "for an estimated total data volume of <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_immune_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_immune_files) * 0)
-        },
+        check_numeric(input$num_immune_files, multiply = 0),
         "</font>GB."
       )
   } else {
@@ -591,19 +393,13 @@ raw_processed_data_chunk <- function(input) {
         "_Our proposal will generate large animal facility data of the following types and sizes:_  ",
         "We will collect medical recrods and clinical pathology data from <font color='OA799A'>",
         paste0(
-          if (length(large_animal_tech_types) == 0) {
-            " ___ "
-          } else {
-            remove_last_comma(large_animal_tech_types)
-          },
+          multi_or_blank(large_animal_tech_types),
           "</font>. Data for this study will generate <font color='OA799A'>"
         ),
-        paste0(if (length(large_animal_file_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(large_animal_file_types)
-        },
-        "</font>. The amount of data generated is "),
+        paste0(
+          multi_or_blank(large_animal_file_types),
+          "</font>. The amount of data generated is "
+        ),
         paste0(
           yaml.load_file("template/large_animal.yml")$file_sizes,
           ", with the total volume of data collected not to exceed 10 MB in aggregate file size."
@@ -633,32 +429,16 @@ raw_processed_data_chunk <- function(input) {
         raw_processed_data_chunk_temp,
         "We will collect _in vivo_ imaging data using <font color='OA799A'>",
         paste0(
-          if (length(pi_ivis_tech_types) == 0) {
-            " ___ "
-          } else {
-            remove_last_comma(pi_ivis_tech_types)
-          },
+          multi_or_blank(pi_ivis_tech_types),
           "</font>, generating image data in <font color='OA799A'>"
         ),
-        if (length(pi_ivis_file_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(pi_ivis_file_types)
-        },
+        multi_or_blank(pi_ivis_file_types),
         "</font> file format. ",
         yaml.load_file("template/pi_ivis.yml")$file_sizes,
         " We will collect data from <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_pi_ivis_files))) {
-          " ___ "
-        } else {
-          input$num_pi_ivis_files
-        },
+        check_numeric(input$num_pi_ivis_files),
         "</font> samples for an estimated total data volume of <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_pi_ivis_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_pi_ivis_files) * 6)
-        },
+        check_numeric(input$num_pi_ivis_files, multiply = 6),
         "</font>MB."
       )
   } else {
@@ -671,38 +451,18 @@ raw_processed_data_chunk <- function(input) {
         raw_processed_data_chunk_temp,
         "We will collect raw data using <font color='OA799A'>",
         paste0(
-          if (length(pi_microct_tech_types) == 0) {
-            " ___ "
-          } else {
-            remove_last_comma(pi_microct_tech_types)
-          },
+          multi_or_blank(pi_microct_tech_types),
           "</font>, generating image data in <font color='OA799A'>"
         ),
-        if (length(pi_microct_file_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(pi_microct_file_types)
-        },
+        multi_or_blank(pi_microct_file_types),
         "</font> file format. ",
         yaml.load_file("template/pi_microct.yml")$file_sizes,
         " We will collect data from <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_pi_microct_files))) {
-          " ___ "
-        } else {
-          input$num_pi_microct_files
-        },
+        check_numeric(input$num_pi_microct_files),
         "</font> samples for an estimated total data volume of <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_pi_microct_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_pi_microct_files) * 0.140)
-        },
+        check_numeric(input$num_pi_microct_files, multiply = 0.140),
         "</font> to <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_pi_microct_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_pi_microct_files) * 0.277)
-        },
+        check_numeric(input$num_pi_microct_files, multiply = 0.277),
         "GB</font>. We process the raw files using ",
         yaml.load_file("template/pi_microct.yml")$processing_tech,
         " to generate static images from slices of the data. The data processing will result in high resolution images in ",
@@ -721,32 +481,16 @@ raw_processed_data_chunk <- function(input) {
         raw_processed_data_chunk_temp,
         "We will collect data using the <font color='OA799A'>",
         paste0(
-          if (length(pi_mri_tech_types) == 0) {
-            " ___ "
-          } else {
-            remove_last_comma(pi_mri_tech_types)
-          },
+          multi_or_blank(pi_mri_tech_types),
           "</font>, generating files in <font color='OA799A'>"
         ),
-        paste0(if (length(pi_mri_file_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(pi_mri_file_types)
-        },
-        "</font> file format. "),
+        multi_or_blank(pi_mri_file_types),
+        "</font> file format. ",
         yaml.load_file("template/pi_mri.yml")$file_sizes,
         " We will collect data from <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_pi_mri_files))) {
-          " ___ "
-        } else {
-          input$num_pi_mri_files
-        },
+        check_numeric(input$num_pi_mri_files),
         "</font> samples for an estimated total data volume of <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_pi_mri_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_pi_mri_files) * 15)
-        },
+        check_numeric(input$num_pi_mri_files, multiply = 15),
         "</font>MB."
       )
   } else {
@@ -760,31 +504,15 @@ raw_processed_data_chunk <- function(input) {
         "  ",
         "_Our proposal will generate preclinical modeling data of the following types and sizes:_  ",
         "We will collect assay results for clinical trials using <font color='OA799A'>",
-        if (length(preclinical_model_tech_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(preclinical_model_tech_types)
-        },
+        multi_or_blank(preclinical_model_tech_types),
         "</font>. Data for this study will generate <font color='OA799A'>",
-        if (length(preclinical_model_file_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(preclinical_model_file_types)
-        },
+        multi_or_blank(preclinical_model_file_types),
         "</font>. We will collect data from <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_preclinical_model_files))) {
-          " ___ "
-        } else {
-          input$num_preclinical_model_files
-        },
+        check_numeric(input$num_preclinical_model_files),
         "</font> ",
         yaml.load_file("template/preclinical_model.yml")$file_sizes,
         "for an estimated total data volume of <font color='OA799A'>",
-        if (is.na(as.numeric(input$num_preclinical_model_files))) {
-          " ___ "
-        } else {
-          paste(as.numeric(input$num_preclinical_model_files) * 0)
-        },
+        check_numeric(input$num_preclinical_model_files, multiply = 0),
         "</font>GB."
       )
   } else {
@@ -800,59 +528,27 @@ raw_processed_data_chunk <- function(input) {
         c(
           "_Our proposal will generate proteomic data of the following types and sizes:_  ",
           "We will collect raw data as <font color='OA799A'>",
-          if (length(proteomics_file_types) == 0) {
-            " ___ "
-          } else {
-            remove_last_comma(proteomics_file_types)
-          },
+          multi_or_blank(proteomics_file_types),
           "</font> files using <font color='OA799A'>",
-          if (length(proteomics_tech_types) == 0) {
-            " ___ "
-          } else {
-            remove_last_comma(proteomics_tech_types)
-          },
+          multi_or_blank(proteomics_tech_types),
           "</font> technology. We will collect data from <font color='OA799A'>",
-          if (is.na(as.numeric(input$num_proteomics_files))) {
-            " ___ "
-          } else {
-            input$num_proteomics_files
-          },
+          check_numeric(input$num_proteomics_files),
           "</font> ",
           yaml.load_file("template/proteomics.yml")$file_sizes,
           "for a total data volume of <font color='OA799A'>",
-          if (is.na(as.numeric(input$num_proteomics_files))) {
-            " ___ "
-          } else {
-            paste(as.numeric(input$num_proteomics_files) * 0.5)
-          },
+          check_numeric(input$num_proteomics_files, multiply = 0.5),
           "</font> to <font color='OA799A'>",
-          if (is.na(as.numeric(input$num_proteomics_files))) {
-            " ___ "
-          } else {
-            paste(as.numeric(input$num_proteomics_files) * 2)
-          },
+          check_numeric(input$num_proteomics_files, multiply = 2),
           "</font>GB. We will process <font color='OA799A'>",
-          if (length(proteomics_file_types) == 0) {
-            " ___ "
-          } else {
-            paste(proteomics_file_types, collapse = ", ")
-          },
+          multi_or_blank(proteomics_file_types),
           paste0(
             "</font> files using ",
             yaml.load_file("template/proteomics.yml")$processing,
             ", for a total processed data volume of <font color='OA799A'>"
           ),
-          if (is.na(as.numeric(input$num_proteomics_files))) {
-            " ___ "
-          } else {
-            paste(as.numeric(input$num_proteomics_files) * 1)
-          },
+          check_numeric(input$num_proteomics_files, multiply = 1),
           "</font> to <font color='OA799A'>",
-          if (is.na(as.numeric(input$num_proteomics_files))) {
-            " ___ "
-          } else {
-            paste(as.numeric(input$num_proteomics_files) * 30)
-          },
+          check_numeric(input$num_proteomics_files, multiply = 30),
           "</font>GB."
         )
       )
@@ -869,19 +565,13 @@ raw_processed_data_chunk <- function(input) {
         "_Our proposal will generate small animal facility data of the following types and sizes:_  ",
         "We will collect raw data via <font color='OA799A'>",
         paste0(
-          if (length(small_animal_tech_types) == 0) {
-            " ___ "
-          } else {
-            remove_last_comma(small_animal_tech_types)
-          },
+          multi_or_blank(small_animal_tech_types),
           "</font>. Data for this study will generate <font color='OA799A'>"
         ),
-        paste0(if (length(small_animal_file_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(small_animal_file_types)
-        },
-        "</font>. The amount of data generated is "),
+        paste0(
+          multi_or_blank(small_animal_file_types),
+          "</font>. The amount of data generated is "
+        ),
         paste0(
           yaml.load_file("template/small_animal.yml")$file_sizes,
           ", with an estimated total data volume of 1.5 GB."
@@ -900,18 +590,10 @@ raw_processed_data_chunk <- function(input) {
         "_Our proposal will generate therapeutic products data of the following types and sizes:_  ",
         "We will collect raw data using <font color='OA799A'>",
         paste0(
-          if (length(therapeutic_tech_types) == 0) {
-            " ___ "
-          } else {
-            remove_last_comma(therapeutic_tech_types)
-          },
+          multi_or_blank(therapeutic_tech_types),
           "</font>. Data for this study will generate <font color='OA799A'>"
         ),
-        if (length(therapeutic_file_types) == 0) {
-          " ___ "
-        } else {
-          remove_last_comma(therapeutic_file_types)
-        },
+        multi_or_blank(therapeutic_file_types),
         "</font> quantifying the yield and purity of cellular products which have been generated. The amount of data generated is ",
         paste0(
           yaml.load_file("template/therapeutic.yml")$file_sizes,
