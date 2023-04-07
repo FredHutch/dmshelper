@@ -37,8 +37,14 @@ raw_processed_data_chunk <- function(input) {
     input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/pi_microct.yml")$raw_file_types]
   pi_mri_file_types <-
     input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/pi_mri.yml")$raw_file_types]
+  preclinical_model_file_types <-
+    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/preclinical_model.yml")$raw_file_types]
   proteomics_file_types <-
     input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/proteomics.yml")$raw_file_types]
+  small_animal_file_types <-
+    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/small_animal.yml")$raw_file_types]
+  therapeutic_file_types <-
+    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/therapeutic.yml")$raw_file_types]
 
   antibody_tech_tech_types <-
     input$technology_description[input$technology_description %in% yaml.load_file("template/antibody_tech.yml")$tech_types]
@@ -70,8 +76,14 @@ raw_processed_data_chunk <- function(input) {
     input$technology_description[input$technology_description %in% yaml.load_file("template/pi_microct.yml")$tech_types]
   pi_mri_tech_types <-
     input$technology_description[input$technology_description %in% yaml.load_file("template/pi_mri.yml")$tech_types]
+  preclinical_model_tech_types <-
+    input$technology_description[input$technology_description %in% yaml.load_file("template/preclinical_model.yml")$tech_types]
   proteomics_tech_types <-
     input$technology_description[input$technology_description %in% yaml.load_file("template/proteomics.yml")$tech_types]
+  small_animal_tech_types <-
+    input$technology_description[input$technology_description %in% yaml.load_file("template/small_animal.yml")$tech_types]
+  therapeutic_tech_types <-
+    input$technology_description[input$technology_description %in% yaml.load_file("template/therapeutic.yml")$tech_types]
 
   if (determine_cores(input)$antibody_tech_flag) {
     #####
@@ -722,6 +734,45 @@ raw_processed_data_chunk <- function(input) {
   } else {
     raw_processed_data_chunk_temp <- raw_processed_data_chunk_temp
   }
+  if (determine_cores(input)$preclinical_model_flag) {
+    #####
+    raw_processed_data_chunk_temp <-
+      c(
+        raw_processed_data_chunk_temp,
+        "  ",
+        "_Our proposal will generate preclinical modeling data of the following types and sizes:_  ",
+        "We will collect assay results for clinical trials using <font color='OA799A'>",
+        if (length(preclinical_model_tech_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(preclinical_model_tech_types)
+        },
+        "</font>. Data for this study will generate <font color='OA799A'>",
+        if (length(preclinical_model_file_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(preclinical_model_file_types)
+        },
+        "</font>. We will collect data from <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_preclinical_model_files))) {
+          " ___ "
+        } else {
+          input$num_preclinical_model_files
+        },
+        "</font> ",
+        yaml.load_file("template/preclinical_model.yml")$file_sizes,
+        "for an estimated total data volume of <font color='OA799A'>",
+        if (is.na(as.numeric(input$num_preclinical_model_files))) {
+          " ___ "
+        } else {
+          paste(as.numeric(input$num_preclinical_model_files) * 0)
+        },
+        "</font>GB."
+      )
+  } else {
+    raw_processed_data_chunk_temp <-
+      c(raw_processed_data_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     raw_processed_data_chunk_temp <-
@@ -791,6 +842,60 @@ raw_processed_data_chunk <- function(input) {
     raw_processed_data_chunk_temp <-
       c(raw_processed_data_chunk_temp, "")
   }
+  if (determine_cores(input)$small_animal_flag) {
+    #####
+    raw_processed_data_chunk_temp <-
+      c(
+        raw_processed_data_chunk_temp,
+        "  ",
+        "_Our proposal will generate small animal facility data of the following types and sizes:_  ",
+        "We will collect raw data via <font color='OA799A'>",
+        if (length(small_animal_tech_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(small_animal_tech_types)
+        },
+        "</font>. Data for this study will generate <font color='OA799A'>",
+        if (length(small_animal_file_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(small_animal_file_types)
+        },
+        "</font>. The amount of data generated is ",
+        yaml.load_file("template/small_animal.yml")$file_sizes,
+        ", with an estimated total data volume of 1.5GB."
+      )
+  } else {
+    raw_processed_data_chunk_temp <-
+      c(raw_processed_data_chunk_temp, "")
+  }
+  if (determine_cores(input)$therapeutic_flag) {
+    #####
+    raw_processed_data_chunk_temp <-
+      c(
+        raw_processed_data_chunk_temp,
+        "  ",
+        "_Our proposal will generate therapeutic products data of the following types and sizes:_  ",
+        "We will collect raw data using <font color='OA799A'>",
+        if (length(therapeutic_tech_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(therapeutic_tech_types)
+        },
+        "</font>. Data for this study will generate <font color='OA799A'>",
+        if (length(therapeutic_file_types) == 0) {
+          " ___ "
+        } else {
+          remove_last_comma(therapeutic_file_types)
+        },
+        "</font> quantifying the yield and purity of cellular products which have been generated. The amount of data generated is ",
+        yaml.load_file("template/therapeutic.yml")$file_sizes,
+        ", with an estimated total data volume no more than 10MB."
+      )
+  } else {
+    raw_processed_data_chunk_temp <-
+      c(raw_processed_data_chunk_temp, "")
+  }
 
   return(raw_processed_data_chunk_temp)
 }
@@ -820,7 +925,10 @@ datatype_raw_file_description_options <- function() {
       yaml.load_file("template/pi_ivis.yml")$raw_file_types,
       yaml.load_file("template/pi_microct.yml")$raw_file_types,
       yaml.load_file("template/pi_mri.yml")$raw_file_types,
-      yaml.load_file("template/proteomics.yml")$raw_file_types
+      yaml.load_file("template/preclinical_model.yml")$raw_file_types,
+      yaml.load_file("template/proteomics.yml")$raw_file_types,
+      yaml.load_file("template/small_animal.yml")$raw_file_types,
+      yaml.load_file("template/therapeutic.yml")$raw_file_types
     )
   )
 }
@@ -850,7 +958,10 @@ datatype_technology_description_options <- function() {
       yaml.load_file("template/pi_ivis.yml")$tech_types,
       yaml.load_file("template/pi_microct.yml")$tech_types,
       yaml.load_file("template/pi_mri.yml")$tech_types,
-      yaml.load_file("template/proteomics.yml")$tech_types
+      yaml.load_file("template/preclinical_model.yml")$tech_types,
+      yaml.load_file("template/proteomics.yml")$tech_types,
+      yaml.load_file("template/small_animal.yml")$tech_types,
+      yaml.load_file("template/therapeutic.yml")$tech_types
     )
   )
 }
@@ -941,10 +1052,25 @@ datatype_raw_by_core <- function(toggle_example_txt) {
       c(datatype_raw_,
         yaml.load_file("template/pi_mri.yml")$raw_file_types)
   }
+  if ("preclinical_model" %in% toggle_example_txt$core_datatype) {
+    datatype_raw_ <-
+      c(datatype_raw_,
+        yaml.load_file("template/preclinical_model.yml")$raw_file_types)
+  }
   if ("proteomics" %in% toggle_example_txt$core_datatype) {
     datatype_raw_ <-
       c(datatype_raw_,
         yaml.load_file("template/proteomics.yml")$raw_file_types)
+  }
+  if ("small_animal" %in% toggle_example_txt$core_datatype) {
+    datatype_raw_ <-
+      c(datatype_raw_,
+        yaml.load_file("template/small_animal.yml")$raw_file_types)
+  }
+  if ("therapeutic" %in% toggle_example_txt$core_datatype) {
+    datatype_raw_ <-
+      c(datatype_raw_,
+        yaml.load_file("template/therapeutic.yml")$raw_file_types)
   }
   return(datatype_raw_)
 }
@@ -1035,10 +1161,25 @@ datatype_tech_by_core <- function(toggle_example_txt) {
       c(datatype_tech_,
         yaml.load_file("template/pi_mri.yml")$tech_types)
   }
+  if ("preclinical_model" %in% toggle_example_txt$core_datatype) {
+    datatype_tech_ <-
+      c(datatype_tech_,
+        yaml.load_file("template/preclinical_model.yml")$tech_types)
+  }
   if ("proteomics" %in% toggle_example_txt$core_datatype) {
     datatype_tech_ <-
       c(datatype_tech_,
         yaml.load_file("template/proteomics.yml")$tech_types)
+  }
+  if ("small_animal" %in% toggle_example_txt$core_datatype) {
+    datatype_tech_ <-
+      c(datatype_tech_,
+        yaml.load_file("template/small_animal.yml")$tech_types)
+  }
+  if ("therapeutic" %in% toggle_example_txt$core_datatype) {
+    datatype_tech_ <-
+      c(datatype_tech_,
+        yaml.load_file("template/therapeutic.yml")$tech_types)
   }
   return(datatype_tech_)
 }

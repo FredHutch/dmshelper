@@ -68,10 +68,10 @@ shiny_ui <- function() {
             "Preclinical Imaging (IVIS)" = "pi_ivis",
             "Preclinical Imaging (MicroCT)" = "pi_microct",
             "Preclinical Imaging (MRI)" = "pi_mri",
-            # "Preclinical Modeling Core" = "preclinical_model",
-            "Proteomics Core" = "proteomics"
-            # "Small Animal Facility Core" = "small_animal",
-            # "Therapeutic Products Core" = "therapeutic"
+            "Preclinical Modeling Core" = "preclinical_model",
+            "Proteomics Core" = "proteomics",
+            "Small Animal Facility Core" = "small_animal",
+            "Therapeutic Products Core" = "therapeutic"
           ),
           multiple = TRUE
         ),
@@ -170,6 +170,11 @@ shiny_ui <- function() {
           numericInput(
             "num_pi_mri_files",
             label = "Preclinical imaging (MRI) sample count",
+            value = NA
+          ),
+          numericInput(
+            "num_preclinical_model_files",
+            label = "Preclinical modeling sample count",
             value = NA
           ),
           # selectInput(
