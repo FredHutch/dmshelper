@@ -267,6 +267,28 @@ sharing_chunk <- function(input) {
   } else {
     sharing_chunk_temp <- sharing_chunk_temp
   }
+  if (determine_cores(input)$preclinical_model_flag) {
+    #####
+    if (input$human_subjects) {
+      sharing_chunk_temp <-
+        c(
+          sharing_chunk_temp,
+          "  ",
+          "_Our proposal will preserve and share the following types of preclinical modeling data:_  ",
+          yaml.load_file("template/preclinical_model.yml")$sharing_non_hs
+        )
+    } else {
+      sharing_chunk_temp <-
+        c(
+          sharing_chunk_temp,
+          "  ",
+          "_Our proposal will preserve and share the following types of preclinical modeling data:_  ",
+          yaml.load_file("template/preclinical_model.yml")$sharing_non_hs
+        )
+    }
+  } else {
+    sharing_chunk_temp <- c(sharing_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     if (input$human_subjects) {
@@ -284,6 +306,50 @@ sharing_chunk <- function(input) {
           "  ",
           "_Our proposal will preserve and share the following types of proteomic data:_  ",
           yaml.load_file("template/proteomics.yml")$sharing_non_hs
+        )
+    }
+  } else {
+    sharing_chunk_temp <- c(sharing_chunk_temp, "")
+  }
+  if (determine_cores(input)$small_animal_flag) {
+    #####
+    if (input$human_subjects) {
+      sharing_chunk_temp <-
+        c(
+          sharing_chunk_temp,
+          "  ",
+          "_Our proposal will preserve and share the following types of small animal data:_  ",
+          yaml.load_file("template/small_animal.yml")$sharing_non_hs
+        )
+    } else {
+      sharing_chunk_temp <-
+        c(
+          sharing_chunk_temp,
+          "  ",
+          "_Our proposal will preserve and share the following types of small animal data:_  ",
+          yaml.load_file("template/small_animal.yml")$sharing_non_hs
+        )
+    }
+  } else {
+    sharing_chunk_temp <- c(sharing_chunk_temp, "")
+  }
+  if (determine_cores(input)$therapeutic_flag) {
+    #####
+    if (input$human_subjects) {
+      sharing_chunk_temp <-
+        c(
+          sharing_chunk_temp,
+          "  ",
+          "_Our proposal will preserve and share the following types of therapeutic products data:_  ",
+          yaml.load_file("template/therapeutic.yml")$sharing_non_hs
+        )
+    } else {
+      sharing_chunk_temp <-
+        c(
+          sharing_chunk_temp,
+          "  ",
+          "_Our proposal will preserve and share the following types of therapeutic products data:_  ",
+          yaml.load_file("template/therapeutic.yml")$sharing_non_hs
         )
     }
   } else {
