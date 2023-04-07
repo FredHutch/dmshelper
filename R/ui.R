@@ -55,23 +55,23 @@ shiny_ui <- function() {
             # "None Selected (Custom)" = "none",
             "Antibody Technology" = "antibody_tech",
             "Cellular Imaging" = "cellular_imaging",
-            "Electron Microscopy - TEM" = "em_tem",
-            "Electron Microscopy - SEM" = "em_sem",
-            "Electron Microscopy - CryoEM" = "em_cryo",
+            "Electron Microscopy (TEM)" = "em_tem",
+            "Electron Microscopy (SEM)" = "em_sem",
+            "Electron Microscopy (CryoEM)" = "em_cryo",
             "Experimental Histopathology - Aperio Platform" = "eh_aperio",
             "Experimental Histopathology - Polaris Platform" = "eh_polaris",
             "Experimental Histopathology - Vectra images" = "eh_vectra",
             "Flow Cytometry" = "flow_cytometry",
             "Genomics & Bioinformatics" = "genomics",
             "Immune Monitoring" = "immune",
-            "Large Animal Facility" = "large_animal",
+            "Large Animal Facilities" = "large_animal",
             "Preclinical Imaging (IVIS)" = "pi_ivis",
             "Preclinical Imaging (MicroCT)" = "pi_microct",
             "Preclinical Imaging (MRI)" = "pi_mri",
-            "Preclinical Modeling Core" = "preclinical_model",
-            "Proteomics Core" = "proteomics",
-            "Small Animal Facility Core" = "small_animal",
-            "Therapeutic Products Core" = "therapeutic"
+            "Preclinical Modeling" = "preclinical_model",
+            "Proteomics" = "proteomics",
+            "Small Animal Facilities" = "small_animal",
+            "Therapeutic Products" = "therapeutic"
           ),
           multiple = TRUE
         ),
@@ -197,13 +197,13 @@ shiny_ui <- function() {
         ),
 
         # Sharing
-        box(
-          title = "Data Sharing",
-          collapsible = TRUE,
-          collapsed = TRUE,
-          width = NULL,
-
-        ),
+        # box(
+        #   title = "Data Sharing",
+        #   collapsible = TRUE,
+        #   collapsed = TRUE,
+        #   width = NULL,
+        #
+        # ),
 
 
         # # Sharing
