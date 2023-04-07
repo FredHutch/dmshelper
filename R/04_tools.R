@@ -125,11 +125,35 @@ tools_chunk <- function(input) {
   } else {
     tools_chunk_temp <- c(tools_chunk_temp, "")
   }
+  if (determine_cores(input)$preclinical_model_flag) {
+    #####
+    tools_chunk_temp <-
+      c(tools_chunk_temp,
+        yaml.load_file("template/preclinical_model.yml")$tools[!(yaml.load_file("template/preclinical_model.yml")$tools %in% tools_chunk_temp)])
+  } else {
+    tools_chunk_temp <- c(tools_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     tools_chunk_temp <-
       c(tools_chunk_temp,
         yaml.load_file("template/proteomics.yml")$tools[!(yaml.load_file("template/proteomics.yml")$tools %in% tools_chunk_temp)])
+  } else {
+    tools_chunk_temp <- c(tools_chunk_temp, "")
+  }
+  if (determine_cores(input)$small_animal_flag) {
+    #####
+    tools_chunk_temp <-
+      c(tools_chunk_temp,
+        yaml.load_file("template/small_animal.yml")$tools[!(yaml.load_file("template/small_animal.yml")$tools %in% tools_chunk_temp)])
+  } else {
+    tools_chunk_temp <- c(tools_chunk_temp, "")
+  }
+  if (determine_cores(input)$therapeutic_flag) {
+    #####
+    tools_chunk_temp <-
+      c(tools_chunk_temp,
+        yaml.load_file("template/therapeutic.yml")$tools[!(yaml.load_file("template/therapeutic.yml")$tools %in% tools_chunk_temp)])
   } else {
     tools_chunk_temp <- c(tools_chunk_temp, "")
   }

@@ -162,11 +162,35 @@ repository_chunk <- function(input) {
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
+  if (determine_cores(input)$preclinical_model_flag) {
+    #####
+    repository_chunk_temp <-
+      c(repository_chunk_temp,
+        yaml.load_file("template/preclinical_model.yml")$repository)
+  } else {
+    repository_chunk_temp <- c(repository_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     repository_chunk_temp <-
       c(repository_chunk_temp,
         yaml.load_file("template/proteomics.yml")$repository)
+  } else {
+    repository_chunk_temp <- c(repository_chunk_temp, "")
+  }
+  if (determine_cores(input)$small_animal_flag) {
+    #####
+    repository_chunk_temp <-
+      c(repository_chunk_temp,
+        yaml.load_file("template/small_animal.yml")$repository)
+  } else {
+    repository_chunk_temp <- c(repository_chunk_temp, "")
+  }
+  if (determine_cores(input)$therapeutic_flag) {
+    #####
+    repository_chunk_temp <-
+      c(repository_chunk_temp,
+        yaml.load_file("template/therapeutic.yml")$repository)
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
@@ -349,11 +373,35 @@ findable_chunk <- function(input) {
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
+  if (determine_cores(input)$preclinical_model_flag) {
+    #####
+    findable_chunk_temp <-
+      c(findable_chunk_temp,
+        yaml.load_file("template/preclinical_model.yml")$findable)
+  } else {
+    findable_chunk_temp <- c(findable_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
         yaml.load_file("template/proteomics.yml")$findable)
+  } else {
+    findable_chunk_temp <- c(findable_chunk_temp, "")
+  }
+  if (determine_cores(input)$small_animal_flag) {
+    #####
+    findable_chunk_temp <-
+      c(findable_chunk_temp,
+        yaml.load_file("template/small_animal.yml")$findable)
+  } else {
+    findable_chunk_temp <- c(findable_chunk_temp, "")
+  }
+  if (determine_cores(input)$therapeutic_flag) {
+    #####
+    findable_chunk_temp <-
+      c(findable_chunk_temp,
+        yaml.load_file("template/therapeutic.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -546,11 +594,35 @@ duration_chunk <- function(input) {
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
+  if (determine_cores(input)$preclinical_model_flag) {
+    #####
+    duration_chunk_temp <-
+      c(duration_chunk_temp,
+        yaml.load_file("template/preclinical_model.yml")$duration)
+  } else {
+    duration_chunk_temp <- c(duration_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     duration_chunk_temp <-
       c(duration_chunk_temp,
         yaml.load_file("template/proteomics.yml")$duration)
+  } else {
+    duration_chunk_temp <- c(duration_chunk_temp, "")
+  }
+  if (determine_cores(input)$small_animal_flag) {
+    #####
+    duration_chunk_temp <-
+      c(duration_chunk_temp,
+        yaml.load_file("template/small_animal.yml")$duration)
+  } else {
+    duration_chunk_temp <- c(duration_chunk_temp, "")
+  }
+  if (determine_cores(input)$therapeutic_flag) {
+    #####
+    duration_chunk_temp <-
+      c(duration_chunk_temp,
+        yaml.load_file("template/therapeutic.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }

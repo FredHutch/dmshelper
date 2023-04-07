@@ -158,6 +158,18 @@ access_reuse_chunk <- function(input) {
   } else {
     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
   }
+  if (determine_cores(input)$preclinical_model_flag) {
+    #####
+    access_reuse_chunk_temp <-
+      c( access_reuse_chunk_temp,
+         if (yaml.load_file("template/preclinical_model.yml")$access_reuse %in% access_reuse_chunk_temp) {
+           ""
+         } else {
+           yaml.load_file("template/preclinical_model.yml")$access_reuse
+         })
+  } else {
+    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     access_reuse_chunk_temp <-
@@ -165,6 +177,30 @@ access_reuse_chunk <- function(input) {
         access_reuse_chunk_temp,
         yaml.load_file("template/proteomics.yml")$access_reuse
       )
+  } else {
+    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+  }
+  if (determine_cores(input)$small_animal_flag) {
+    #####
+    access_reuse_chunk_temp <-
+      c( access_reuse_chunk_temp,
+         if (yaml.load_file("template/small_animal.yml")$access_reuse %in% access_reuse_chunk_temp) {
+           ""
+         } else {
+           yaml.load_file("template/small_animal.yml")$access_reuse
+         })
+  } else {
+    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+  }
+  if (determine_cores(input)$therapeutic_flag) {
+    #####
+    access_reuse_chunk_temp <-
+      c( access_reuse_chunk_temp,
+         if (yaml.load_file("template/therapeutic.yml")$access_reuse %in% access_reuse_chunk_temp) {
+           ""
+         } else {
+           yaml.load_file("template/therapeutic.yml")$access_reuse
+         })
   } else {
     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
   }
@@ -598,6 +634,28 @@ privacy_hs_chunk <- function(input) {
   } else {
     privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
   }
+  if (determine_cores(input)$preclinical_model_flag) {
+    #####
+    privacy_hs_chunk_temp <-
+      c(privacy_hs_chunk_temp,
+        if (input$human_subjects) {
+          privacy_hs_chunk_temp <-
+            if (yaml.load_file("template/preclinical_model.yml")$privacy_hs %in% privacy_hs_chunk_temp) {
+              ""
+            } else {
+              yaml.load_file("template/preclinical_model.yml")$privacy_hs
+            }
+        } else {
+          privacy_hs_chunk_temp <-
+            if ("Data will not be collected from human research participants." %in%  privacy_hs_chunk_temp) {
+              ""
+            } else {
+              "Data will not be collected from human research participants."
+            }
+        })
+  } else {
+    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     privacy_hs_chunk_temp <-
@@ -608,6 +666,50 @@ privacy_hs_chunk <- function(input) {
               ""
             } else {
               yaml.load_file("template/proteomics.yml")$privacy_hs
+            }
+        } else {
+          privacy_hs_chunk_temp <-
+            if ("Data will not be collected from human research participants." %in%  privacy_hs_chunk_temp) {
+              ""
+            } else {
+              "Data will not be collected from human research participants."
+            }
+        })
+  } else {
+    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
+  }
+  if (determine_cores(input)$small_animal_flag) {
+    #####
+    privacy_hs_chunk_temp <-
+      c(privacy_hs_chunk_temp,
+        if (input$human_subjects) {
+          privacy_hs_chunk_temp <-
+            if (yaml.load_file("template/small_animal.yml")$privacy_hs %in% privacy_hs_chunk_temp) {
+              ""
+            } else {
+              yaml.load_file("template/small_animal.yml")$privacy_hs
+            }
+        } else {
+          privacy_hs_chunk_temp <-
+            if ("Data will not be collected from human research participants." %in%  privacy_hs_chunk_temp) {
+              ""
+            } else {
+              "Data will not be collected from human research participants."
+            }
+        })
+  } else {
+    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
+  }
+  if (determine_cores(input)$therapeutic_flag) {
+    #####
+    privacy_hs_chunk_temp <-
+      c(privacy_hs_chunk_temp,
+        if (input$human_subjects) {
+          privacy_hs_chunk_temp <-
+            if (yaml.load_file("template/therapeutic.yml")$privacy_hs %in% privacy_hs_chunk_temp) {
+              ""
+            } else {
+              yaml.load_file("template/therapeutic.yml")$privacy_hs
             }
         } else {
           privacy_hs_chunk_temp <-

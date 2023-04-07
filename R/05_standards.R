@@ -162,11 +162,35 @@ standards_chunk <- function(input) {
   } else {
     standards_chunk_temp <- c(standards_chunk_temp, "")
   }
+  if (determine_cores(input)$preclinical_model_flag) {
+    #####
+    standards_chunk_temp <-
+      c(standards_chunk_temp,
+        yaml.load_file("template/preclinical_model.yml")$standards)
+  } else {
+    standards_chunk_temp <- c(standards_chunk_temp, "")
+  }
   if (determine_cores(input)$proteomics_flag) {
     #####
     standards_chunk_temp <-
       c(standards_chunk_temp,
         yaml.load_file("template/proteomics.yml")$standards)
+  } else {
+    standards_chunk_temp <- c(standards_chunk_temp, "")
+  }
+  if (determine_cores(input)$small_animal_flag) {
+    #####
+    standards_chunk_temp <-
+      c(standards_chunk_temp,
+        yaml.load_file("template/small_animal.yml")$standards)
+  } else {
+    standards_chunk_temp <- c(standards_chunk_temp, "")
+  }
+  if (determine_cores(input)$therapeutic_flag) {
+    #####
+    standards_chunk_temp <-
+      c(standards_chunk_temp,
+        yaml.load_file("template/therapeutic.yml")$standards)
   } else {
     standards_chunk_temp <- c(standards_chunk_temp, "")
   }
