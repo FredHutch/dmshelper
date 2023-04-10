@@ -554,10 +554,6 @@ shiny_ui <- function() {
             color: #b8331e;
             }
           </style>
-
-          <div class="container">
-            <p>This tool is under construction - thanks for your patience!</p>
-          </div>
         '),
 
         # Download buttons
