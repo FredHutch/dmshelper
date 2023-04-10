@@ -47,7 +47,9 @@ sharing_chunk <- function(input) {
   } else {
     sharing_chunk_temp <- c(sharing_chunk_temp, "")
   }
-  if (determine_cores(input)$em_tem_flag | determine_cores(input)$em_sem_flag | determine_cores(input)$em_cryo_flag) {
+  if (determine_cores(input)$em_tem_flag |
+      determine_cores(input)$em_sem_flag |
+      determine_cores(input)$em_cryo_flag) {
     sharing_chunk_temp <-
       c(
         sharing_chunk_temp,
@@ -61,37 +63,42 @@ sharing_chunk <- function(input) {
   if (determine_cores(input)$em_tem_flag) {
     #####
     sharing_chunk_temp <-
-        if (yaml.load_file("template/em_tem.yml")$sharing_non_hs %in% sharing_chunk_temp) {
-          sharing_chunk_temp
-        } else {
-          c(sharing_chunk_temp, yaml.load_file("template/em_tem.yml")$sharing_non_hs)
-        }
+      if (yaml.load_file("template/em_tem.yml")$sharing_non_hs %in% sharing_chunk_temp) {
+        sharing_chunk_temp
+      } else {
+        c(sharing_chunk_temp,
+          yaml.load_file("template/em_tem.yml")$sharing_non_hs)
+      }
   } else {
     sharing_chunk_temp <- sharing_chunk_temp
   }
   if (determine_cores(input)$em_sem_flag) {
     #####
     sharing_chunk_temp <-
-        if (yaml.load_file("template/em_sem.yml")$sharing_non_hs %in% sharing_chunk_temp) {
-          sharing_chunk_temp
-        } else {
-          c(sharing_chunk_temp, yaml.load_file("template/em_sem.yml")$sharing_non_hs)
-        }
+      if (yaml.load_file("template/em_sem.yml")$sharing_non_hs %in% sharing_chunk_temp) {
+        sharing_chunk_temp
+      } else {
+        c(sharing_chunk_temp,
+          yaml.load_file("template/em_sem.yml")$sharing_non_hs)
+      }
   } else {
     sharing_chunk_temp <- sharing_chunk_temp
   }
   if (determine_cores(input)$em_cryo_flag) {
     #####
     sharing_chunk_temp <-
-        if (yaml.load_file("template/em_cryo.yml")$sharing_non_hs %in% sharing_chunk_temp) {
-          sharing_chunk_temp
-        } else {
-          c(sharing_chunk_temp, yaml.load_file("template/em_cryo.yml")$sharing_non_hs)
-        }
+      if (yaml.load_file("template/em_cryo.yml")$sharing_non_hs %in% sharing_chunk_temp) {
+        sharing_chunk_temp
+      } else {
+        c(sharing_chunk_temp,
+          yaml.load_file("template/em_cryo.yml")$sharing_non_hs)
+      }
   } else {
     sharing_chunk_temp <- sharing_chunk_temp
   }
-  if (determine_cores(input)$eh_aperio_flag | determine_cores(input)$eh_polaris_flag | determine_cores(input)$eh_vectra_flag) {
+  if (determine_cores(input)$eh_aperio_flag |
+      determine_cores(input)$eh_polaris_flag |
+      determine_cores(input)$eh_vectra_flag) {
     sharing_chunk_temp <-
       c(
         sharing_chunk_temp,
@@ -105,11 +112,14 @@ sharing_chunk <- function(input) {
   if (determine_cores(input)$eh_aperio_flag) {
     #####
     sharing_chunk_temp <-
-        if (yaml.load_file("template/eh_aperio.yml")$sharing_non_hs %in% sharing_chunk_temp) {
-          sharing_chunk_temp
-        } else {
-          c(sharing_chunk_temp, yaml.load_file("template/eh_aperio.yml")$sharing_non_hs)
-        }
+      if (yaml.load_file("template/eh_aperio.yml")$sharing_non_hs %in% sharing_chunk_temp) {
+        sharing_chunk_temp
+      } else {
+        c(
+          sharing_chunk_temp,
+          yaml.load_file("template/eh_aperio.yml")$sharing_non_hs
+        )
+      }
   } else {
     sharing_chunk_temp <- sharing_chunk_temp
   }
@@ -118,20 +128,26 @@ sharing_chunk <- function(input) {
     sharing_chunk_temp <-
       if (yaml.load_file("template/eh_polaris.yml")$sharing_non_hs %in% sharing_chunk_temp) {
         sharing_chunk_temp
-        } else {
-          c(sharing_chunk_temp, yaml.load_file("template/eh_polaris.yml")$sharing_non_hs)
-        }
+      } else {
+        c(
+          sharing_chunk_temp,
+          yaml.load_file("template/eh_polaris.yml")$sharing_non_hs
+        )
+      }
   } else {
     sharing_chunk_temp <- sharing_chunk_temp
   }
   if (determine_cores(input)$eh_vectra_flag) {
     #####
     sharing_chunk_temp <-
-        if (yaml.load_file("template/eh_vectra.yml")$sharing_non_hs %in% sharing_chunk_temp) {
-          sharing_chunk_temp
-        } else {
-          c(sharing_chunk_temp, yaml.load_file("template/eh_vectra.yml")$sharing_non_hs)
-        }
+      if (yaml.load_file("template/eh_vectra.yml")$sharing_non_hs %in% sharing_chunk_temp) {
+        sharing_chunk_temp
+      } else {
+        c(
+          sharing_chunk_temp,
+          yaml.load_file("template/eh_vectra.yml")$sharing_non_hs
+        )
+      }
   } else {
     sharing_chunk_temp <- sharing_chunk_temp
   }
@@ -223,7 +239,9 @@ sharing_chunk <- function(input) {
   } else {
     sharing_chunk_temp <- c(sharing_chunk_temp, "")
   }
-  if (determine_cores(input)$pi_ivis_flag | determine_cores(input)$pi_microct_flag | determine_cores(input)$pi_mri_flag) {
+  if (determine_cores(input)$pi_ivis_flag |
+      determine_cores(input)$pi_microct_flag |
+      determine_cores(input)$pi_mri_flag) {
     sharing_chunk_temp <-
       c(
         sharing_chunk_temp,
@@ -237,33 +255,38 @@ sharing_chunk <- function(input) {
   if (determine_cores(input)$pi_ivis_flag) {
     #####
     sharing_chunk_temp <-
-        if (yaml.load_file("template/pi_ivis.yml")$sharing_non_hs %in% sharing_chunk_temp) {
-          sharing_chunk_temp
-        } else {
-          c(sharing_chunk_temp, yaml.load_file("template/pi_ivis.yml")$sharing_non_hs)
-        }
+      if (yaml.load_file("template/pi_ivis.yml")$sharing_non_hs %in% sharing_chunk_temp) {
+        sharing_chunk_temp
+      } else {
+        c(sharing_chunk_temp,
+          yaml.load_file("template/pi_ivis.yml")$sharing_non_hs)
+      }
   } else {
     sharing_chunk_temp <- sharing_chunk_temp
   }
   if (determine_cores(input)$pi_microct_flag) {
     #####
     sharing_chunk_temp <-
-        if (yaml.load_file("template/pi_microct.yml")$sharing_non_hs %in% sharing_chunk_temp) {
-          sharing_chunk_temp
-        } else {
-          c(sharing_chunk_temp, yaml.load_file("template/pi_microct.yml")$sharing_non_hs)
-        }
+      if (yaml.load_file("template/pi_microct.yml")$sharing_non_hs %in% sharing_chunk_temp) {
+        sharing_chunk_temp
+      } else {
+        c(
+          sharing_chunk_temp,
+          yaml.load_file("template/pi_microct.yml")$sharing_non_hs
+        )
+      }
   } else {
     sharing_chunk_temp <- sharing_chunk_temp
   }
   if (determine_cores(input)$pi_mri_flag) {
     #####
     sharing_chunk_temp <-
-        if (yaml.load_file("template/pi_mri.yml")$sharing_non_hs %in% sharing_chunk_temp) {
-          sharing_chunk_temp
-        } else {
-          c(sharing_chunk_temp, yaml.load_file("template/pi_mri.yml")$sharing_non_hs)
-        }
+      if (yaml.load_file("template/pi_mri.yml")$sharing_non_hs %in% sharing_chunk_temp) {
+        sharing_chunk_temp
+      } else {
+        c(sharing_chunk_temp,
+          yaml.load_file("template/pi_mri.yml")$sharing_non_hs)
+      }
   } else {
     sharing_chunk_temp <- sharing_chunk_temp
   }

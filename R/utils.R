@@ -57,3 +57,36 @@ check_numeric <- function(num_input, multiply = NULL) {
     }
   })
 }
+
+
+#' Title
+#'
+#' @param string_chain
+#' @param new_string
+#'
+#' @return
+#' @export
+#'
+#' @examples
+update_if_absent <- function(string_chain, new_string) {
+  return(c(string_chain,
+    if (new_string %in% string_chain) {
+      ""
+    } else {
+      new_string
+    }))
+}
+
+
+tally_strings <- function(df, string_chain, new_string) {
+
+  if (new_string %in% string_chain) {
+    df[(df$string == new_string), ]$count <-  df[(df$string == new_string), ]$count + 1
+  } else {
+    newrow <- nrow(df) + 1
+    df[newrow, 1] <- new_string
+    df[newrow, 2] <- 1
+  }
+
+  return(df)
+}

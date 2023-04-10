@@ -419,10 +419,14 @@ findable_chunk <- function(input) {
 #'
 #' @examples
 duration_chunk <- function(input) {
+
+  df <- data.frame(string = 'String here', count = 0)
+
   if (determine_cores(input)$antibody_tech_flag) {
     #####
     duration_chunk_temp <-
       c(yaml.load_file("template/antibody_tech.yml")$duration)
+    df <- tally_strings(df, duration_chunk_temp, yaml.load_file("template/antibody_tech.yml")$duration)
   } else {
     duration_chunk_temp <- c("")
   }
@@ -435,6 +439,7 @@ duration_chunk <- function(input) {
         } else {
           yaml.load_file("template/cell_img.yml")$duration
         })
+    df <- tally_strings(df, duration_chunk_temp, yaml.load_file("template/cell_img.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -447,6 +452,7 @@ duration_chunk <- function(input) {
         } else {
           yaml.load_file("template/em_tem.yml")$duration
         })
+    df <- tally_strings(df, duration_chunk_temp, yaml.load_file("template/em_tem.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -459,6 +465,7 @@ duration_chunk <- function(input) {
         } else {
           yaml.load_file("template/em_sem.yml")$duration
         })
+    df <- tally_strings(df, duration_chunk_temp, yaml.load_file("template/em_sem.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -471,6 +478,7 @@ duration_chunk <- function(input) {
         } else {
           yaml.load_file("template/em_cryo.yml")$duration
         })
+    df <- tally_strings(df, duration_chunk_temp, yaml.load_file("template/em_cryo.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -483,6 +491,7 @@ duration_chunk <- function(input) {
         } else {
           yaml.load_file("template/eh_aperio.yml")$duration
         })
+    df <- tally_strings(df, duration_chunk_temp, yaml.load_file("template/eh_aperio.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -626,6 +635,8 @@ duration_chunk <- function(input) {
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
+
+  print(df)
 
   return(duration_chunk_temp)
 }
