@@ -2,6 +2,7 @@
 library(shiny)
 library(shinydashboard)
 library(yaml)
+library(googlesheets4)
 library(dmshelper)
 
 # devtools::document()
