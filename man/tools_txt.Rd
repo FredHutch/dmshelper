@@ -4,10 +4,10 @@
 \alias{tools_txt}
 \title{Title}
 \usage{
-tools_txt(tools_code_part)
+tools_txt(input)
 }
 \arguments{
-\item{manipulation_part}{}
+\item{tools_code_part}{}
 }
 \description{
 Title

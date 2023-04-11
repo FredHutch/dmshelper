@@ -4,7 +4,7 @@
 \alias{preservation_txt}
 \title{Title}
 \usage{
-preservation_txt(repository_part, fair_description, duration_description)
+preservation_txt(input)
 }
 \arguments{
 \item{duration_description}{}

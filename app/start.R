@@ -1,6 +1,7 @@
 # not run
 library(shiny)
 library(shinydashboard)
+library(yaml)
 library(dmshelper)
 
 # devtools::document()

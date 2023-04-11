@@ -1,51 +1,43 @@
 #' Title
 #'
-#' @param metadata_part
 #' @param input
 #'
 #' @return
 #' @export
 #'
 #' @examples
-datatype_txt <- function(input, raw_data_part, processed_data_part, shared_data_part, not_shared_data_part, metadata_part){
-  return(c(
-    "## Data Management and Sharing Plan",
-    "### Data Type",
-    "#### Types and amount of scientific data expected to be generated in the project",
-    raw_data_part,
-    processed_data_part,
-    datatype_comment(input),
-    datatype_comment_summary(input),
-    "",
-
-    "#### Scientific data that will be preserved and shared, and the rationale for doing so",
-    shared_data_part,
-    not_shared_data_part,
-    "",
-
-    "#### Metadata, other relevant data, and associated documentation",
-    metadata_part
-  ))
+datatype_txt <- function(input) {
+  return(
+    c(
+      "## Data Management and Sharing Plan",
+      "### Data Type",
+      "#### Types and amount of scientific data expected to be generated in the project",
+      raw_processed_data_chunk(input),
+      "",
+      "#### Scientific data that will be preserved and shared, and the rationale for doing so",
+      sharing_chunk(input),
+      "",
+      "#### Metadata, other relevant data, and associated documentation",
+      metadata_chunk(input)
+    )
+  )
 }
 
 
 #' Title
 #'
 #' @param tools_code_part
-#' @param manipulation_part
 #'
 #' @return
 #' @export
 #'
 #' @examples
-tools_txt <- function(
-    tools_code_part
-){
+tools_txt <- function(input) {
   return(c(
     "",
     "### Related Tools, Software and/or Code",
     "",
-    tools_code_part,
+    tools_chunk(input),
     ""
   ))
 }
@@ -60,19 +52,11 @@ tools_txt <- function(
 #'
 #' @examples
 standards_txt <- function(input) {
-  return(c(
-    "",
-    "### Standards",
-    "",
-    paste0(
-      "The data produced in this project will be collected using <font color='OA799A'>",
-      if (input$standards_description == "") {" ___ "} else {input$standards_description},
-      ". ",
-      input$standards_comment,
-      "</font> "
-    ),
-    ""
-  ))
+  return(c("",
+           "### Standards",
+           "",
+           standards_chunk(input),
+           ""))
 }
 
 
@@ -86,28 +70,26 @@ standards_txt <- function(input) {
 #' @export
 #'
 #' @examples
-preservation_txt <- function(
-  repository_part,
-  fair_description,
-  duration_description
-){
-  return(c(
-    "",
-    "### Data Preservation, Access, and Associated Timelines",
-    "",
-    "#### Repository where scientific data and metadata will be archived",
-    "",
-    repository_part,
-    "",
-    "#### How scientific data will be findable and identifiable",
-    "",
-    fair_description,
-    "",
-    "#### When and how long the scientific data will be made available",
-    "",
-    duration_description,
-    ""
-  ))
+preservation_txt <- function(input) {
+  return(
+    c(
+      "",
+      "### Data Preservation, Access, and Associated Timelines",
+      "",
+      "#### Repository where scientific data and metadata will be archived",
+      "",
+      repository_chunk(input),
+      "",
+      "#### How scientific data will be findable and identifiable",
+      "",
+      findable_chunk(input),
+      "",
+      "#### When and how long the scientific data will be made available",
+      "",
+      duration_chunk(input),
+      ""
+    )
+  )
 }
 
 
@@ -121,7 +103,7 @@ preservation_txt <- function(
 #' @export
 #'
 #' @examples
-access_txt <- function(reuse_part, control_part, hs_part) {
+access_txt <- function(input) {
   return(
     c(
       "",
@@ -129,15 +111,15 @@ access_txt <- function(reuse_part, control_part, hs_part) {
       "",
       "#### Factors affecting subsequent access, distribution, or reuse of scientific data",
       "",
-      reuse_part,
+      access_reuse_chunk(input),
       "",
       "#### Whether access to scientific data will be controlled",
       "",
-      control_part,
+      control_chunk(input),
       "",
       "#### Protections for privacy, rights, and confidentiality of human research participants",
       "",
-      hs_part,
+      privacy_hs_chunk(input),
       ""
     )
   )
@@ -152,12 +134,12 @@ access_txt <- function(reuse_part, control_part, hs_part) {
 #' @export
 #'
 #' @examples
-oversight_txt <- function(oversight_part){
+oversight_txt <- function(input) {
   return(c(
     "",
     "### Oversight of Data Management and Sharing",
     "",
-    oversight_part,
+    oversight_chunk(input),
     ""
   ))
 }
