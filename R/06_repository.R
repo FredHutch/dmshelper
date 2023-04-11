@@ -636,7 +636,5 @@ duration_chunk <- function(input) {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
 
-  print(df)
-
   return(duration_chunk_temp)
 }
