@@ -38,6 +38,11 @@ shiny_server <- function(input, output, session) {
         sheet = "log"
       )
 
+      # Thank you message
+      output$thanks <- renderUI({
+        renderText("Thank you!")
+      })
+
       # Reveal buttons
       output$downloaddocx_button <- renderUI({
         downloadButton("downloaddocx", label = "Download .docx")

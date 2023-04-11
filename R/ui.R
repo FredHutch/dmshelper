@@ -251,16 +251,20 @@ shiny_ui <- function() {
         '),
 
         # Download buttons
-          textInput(
-            "user_email",
-            "Please provide your email to download. This helps us understand who is using the tool. We don't collect any other information.",
-            value = ""
-          ),
-        actionButton("submit_button", "submit"),
-        HTML('<br><br>'),
-        uiOutput("downloaddocx_button"),
-        uiOutput("downloadmd_button"),
-        HTML('<br><br>'),
+        # Box to provide email
+        HTML(
+          "
+          Please provide your email to download. This helps us understand who is using the tool. We don't collect any other information.
+          <br>
+          "
+        ),
+        fluidRow(
+          column(3, textInput("user_email", value = "", label = "")),
+          column(3, HTML('<br>'), actionButton("submit_button", "submit")),
+          column(3, HTML('<br>'), uiOutput("downloaddocx_button")),
+          column(3, HTML('<br>'), uiOutput("downloadmd_button"))
+        ),
+        uiOutput("thanks"),
 
         # HTML preview
         box(htmlOutput("html_preview"), width = NULL),
