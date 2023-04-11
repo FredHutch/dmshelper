@@ -18,7 +18,7 @@ build:
   script:
     - mkdir -p .secrets
     - echo $GOOGLE_TOKEN | base64 -d > .secrets/$GOOGLE_TOKEN_NAME
-    - sudo chown -R shiny:shiny .secrets
+    - chown -R shiny:shiny .secrets
     - docker build -t sc-registry.fredhutch.org/dmshelper:test .
     - docker push sc-registry.fredhutch.org/dmshelper:test
 
