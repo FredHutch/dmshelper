@@ -30,4 +30,7 @@ COPY template /srv/shiny-server/template/
 RUN chown -R shiny:shiny /srv/shiny-server/
 EXPOSE 3838
 WORKDIR /srv/shiny-server/
+
+ADD .secrets /srv/shiny-server/.secrets
+
 CMD /usr/bin/shiny-server
