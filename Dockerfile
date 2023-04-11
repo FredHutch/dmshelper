@@ -32,5 +32,6 @@ EXPOSE 3838
 WORKDIR /srv/shiny-server/
 
 ADD .secrets /srv/shiny-server/.secrets
+RUN chown -R shiny:shiny .secrets
 
 CMD /usr/bin/shiny-server
