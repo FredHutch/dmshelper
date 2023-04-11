@@ -507,23 +507,27 @@ shiny_ui <- function() {
         # ),
         #####
 
-        HTML('<br>'),
+        #HTML('<br>'),
+        h4("How to Use"),
+        HTML(
+          'Populate text by selecting a discipline from the first dropdown above.
+           Use the expandable fill-in-the blanks and dropdowns to further customize your text.
+           <b>Download</b> your plan using the buttons at the top of the preview.
+           <br>
+             '
+        ),
         h4("About this Tool"),
         HTML(
           '
-             This tool was created by the <a href="https://hutchdatascience.org/">Fred Hutch Data Science Lab</a> to be an evolving warehouse of template text that can help you develop your NIH Data Sharing and Management Plan (DMS).
-             Choose from existing examples by selecting a core discipline from the first dropdown above.
-             Use the expandable fill-in-the blanks and dropdowns to further customize your text.
-             A preview of your plan will to the right with customized text appearing in <font color="OA799A"><b>blue text</b></font>.
-             You can also <b>download</b> your plan using the buttons at the top of the preview. <br><br>
-
+             This tool was created by the <a href="https://hutchdatascience.org/">Fred Hutch Data Science Lab</a> to help you develop your NIH Data Management & Sharing (DMS) Plan.
+             Many thanks to the groups at Fred Hutch, including Shared Resources, OSR, and others, for collecting language.
              Please see our <a href="https://hutchdatascience.org/NIH_Data_Sharing/">NIH Data Sharing Course</a> to learn more about new requirements from the NIH.<br><br>
-
-             Comments? We welcome feedback <a href="https://forms.gle/g28hBcNXJBn6tyzz8/">here</a>.<br><br>
-
-             This material has been collected and consolidated from many groups at Fred Hutch including Shared Resources, OSR, and other partners.<br><br>
              '
         ),
+        actionButton(inputId='ab1', label="NIH Data Sharing Course", icon = icon("graduation-cap"), onclick ="window.open('https://hutchdatascience.org/NIH_Data_Sharing/', '_blank')"),
+        HTML('<br><br>'),
+        actionButton(inputId='ab1', label="Give Us Feedback", icon = icon("comments"), onclick ="window.open('https://forms.gle/g28hBcNXJBn6tyzz8/', '_blank')"),
+        HTML('<br>'),
         # Hutch logo
         HTML(
           '
