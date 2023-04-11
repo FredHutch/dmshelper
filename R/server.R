@@ -23,6 +23,56 @@ shiny_server <- function(input, output, session) {
     contentType = "text/md"
   )
 
+  # ------- Email submission handling reveals the download buttons
+  observeEvent(input$submit_button, {
+    pattern <- "\\<[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\>"
+    # Check if value is actually an email
+    if (grepl(pattern, input$user_email, ignore.case = TRUE)) {
+      # Collect data
+
+      library(googlesheets4)
+      gs4_auth(cache = ".secrets", email = "hutchdasl@gmail.com")
+      sheet_url <-
+        "https://docs.google.com/spreadsheets/d/1TprAUklx70D2eaGxpoNHm7Ve1bHfnGwX20h8taDJAAI/edit?usp=sharing"
+      sheet_append(
+        sheet_url,
+        data = data.frame(email = input$user_email, time = Sys.time()),
+        sheet = "log"
+      )
+
+      print(data.frame(email = input$user_email, time = Sys.time()))
+
+
+      # Reveal buttons
+      output$downloaddocx_button <- renderUI({
+        downloadButton("downloaddocx", label = "Download .docx")
+      })
+      output$downloadmd_button <- renderUI({
+        downloadButton("downloadmd", label = "Download .md")
+      })
+    } else {
+      print("NOOOO")
+    }
+  })
+
+  # values <- reactiveValues()
+  # values$df <- data.frame(email = NA, time = NA)
+  # addData <- observe({
+  #
+  #   # your action button condition
+  #   if(input$submit_button > 0) {
+  #     # create the new line to be added from your inputs
+  #     email_value <- data.frame(email = isolate(input$user_email), time = starttime)
+  #     print(email_value)
+  #     # update your data
+  #     # note the unlist of newLine, this prevents a bothersome warning message that the rbind will return regarding rownames because of using isolate.
+  #     #isolate(values$df <- rbind(as.matrix(values$df), unlist(newLine)))
+  #     values$df <- rbind(values$df, email_value)
+  #     write.csv(values$df, file = "ConcentradoR.csv")
+  #   }
+  # })
+
+
   # ------- Render the preview and the files for download
   output$html_preview <- renderUI({
 

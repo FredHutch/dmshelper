@@ -11,6 +11,7 @@ RUN Rscript -e "install.packages('ragg')"
 # Devtools and custom package
 RUN Rscript -e "install.packages('devtools', dependencies=T)"
 RUN Rscript -e "install.packages(c('shinydashboard', 'yaml'))"
+RUN Rscript -e "install.packages('googlesheets4', dependencies=T)"
 # RUN Rscript -e "library(devtools);install_github('FredHutch/dmshelper')"
 
 # install dmshelper package
