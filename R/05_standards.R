@@ -195,6 +195,9 @@ standards_chunk <- function(input) {
     standards_chunk_temp <- c(standards_chunk_temp, "")
   }
 
+  # Get rid of empty space so this is all one paragraph
+  standards_chunk_temp <- standards_chunk_temp[standards_chunk_temp != ""]
+
   return(standards_chunk_temp)
 
 }
