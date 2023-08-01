@@ -9,7 +9,13 @@
 tools_chunk <- function(input) {
   if (determine_cores(input)$antibody_tech_flag) {
     #####
-    tools_chunk_temp <- c(yaml.load_file("template/antibody_tech.yml")$tools)
+    tools_chunk_temp <-
+      c(yaml.load_file("template/antibody_tech.yml")$tools)
+    if (any(stringr::str_detect(tools_chunk_temp, "%1%"))) {
+      tools_cat <- c("antibody technology data")
+    } else {
+      tools_cat <- c("")
+    }
   } else {
     tools_chunk_temp <- c("")
   }
@@ -98,6 +104,11 @@ tools_chunk <- function(input) {
     tools_chunk_temp <-
       c(tools_chunk_temp,
         yaml.load_file("template/large_animal.yml")$tools[!(yaml.load_file("template/large_animal.yml")$tools %in% tools_chunk_temp)])
+    if (any(stringr::str_detect(tools_chunk_temp, "%1%"))) {
+      tools_cat <- c(tools_cat, "large animal facility data")
+    } else {
+      tools_cat <- c(tools_cat, "")
+    }
   } else {
     tools_chunk_temp <- c(tools_chunk_temp, "")
   }
@@ -146,6 +157,11 @@ tools_chunk <- function(input) {
     tools_chunk_temp <-
       c(tools_chunk_temp,
         yaml.load_file("template/small_animal.yml")$tools[!(yaml.load_file("template/small_animal.yml")$tools %in% tools_chunk_temp)])
+    if (any(stringr::str_detect(tools_chunk_temp, "%1%"))) {
+      tools_cat <- c(tools_cat, "small animal facility data")
+    } else {
+      tools_cat <- c(tools_cat, "")
+    }
   } else {
     tools_chunk_temp <- c(tools_chunk_temp, "")
   }
@@ -154,9 +170,19 @@ tools_chunk <- function(input) {
     tools_chunk_temp <-
       c(tools_chunk_temp,
         yaml.load_file("template/therapeutic.yml")$tools[!(yaml.load_file("template/therapeutic.yml")$tools %in% tools_chunk_temp)])
+    if (any(stringr::str_detect(tools_chunk_temp, "%1%"))) {
+      tools_cat <- c(tools_cat, "therapeutic products data")
+    } else {
+      tools_cat <- c(tools_cat, "")
+    }
   } else {
     tools_chunk_temp <- c(tools_chunk_temp, "")
   }
+
+  tools_chunk_temp <- unique(tools_chunk_temp)
+  tools_cat <- remove_last_comma(tools_cat)
+  tools_chunk_temp <-
+    stringr::str_replace(tools_chunk_temp, "%1%", tools_cat)
 
   return(tools_chunk_temp)
 
