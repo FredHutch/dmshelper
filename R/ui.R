@@ -78,7 +78,7 @@ shiny_ui <- function() {
         checkboxInput(
           "anvil",
           label = HTML(
-            'Use <a href="https://anvilproject.org/">AnVIL</a>!'
+            'Use <a href="https://anvilproject.org/">AnVIL</a>! (<a href="https://terra.bio/nih-dms-individual-researchers-faqs/">learn more</a>)'
           ),
           value = FALSE,
           width = NULL
