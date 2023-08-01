@@ -75,6 +75,14 @@ shiny_ui <- function() {
           ),
           multiple = TRUE
         ),
+        checkboxInput(
+          "anvil",
+          label = HTML(
+            'Use <a href="https://anvilproject.org/">AnVIL</a>!'
+          ),
+          value = FALSE,
+          width = NULL
+        ),
 
         #####
         # I
@@ -221,6 +229,12 @@ shiny_ui <- function() {
         # Hutch logo
         HTML(
           '
+          <br>
+          <div style="text-align: center;">
+            <a href="https://anvilproject.org/">
+              <img src="https://anvilproject.org/static/logo-anvil-7dbfbc420748c4a0917f57f515f60816.png" margin-left = "auto" margin-right = "auto" width = "65%">
+            </a>
+          </div>
           <br>
           <div style="text-align: center;">
             <a href="https://hutchdatascience.org/">

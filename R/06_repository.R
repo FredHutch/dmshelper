@@ -121,8 +121,10 @@ repository_chunk <- function(input) {
   if (determine_cores(input)$large_animal_flag) {
     #####
     repository_chunk_temp <-
-      c(repository_chunk_temp,
-        yaml.load_file("template/large_animal.yml")$repository)
+      c(
+        repository_chunk_temp,
+        yaml.load_file("template/large_animal.yml")$repository
+      )
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
@@ -165,8 +167,10 @@ repository_chunk <- function(input) {
   if (determine_cores(input)$preclinical_model_flag) {
     #####
     repository_chunk_temp <-
-      c(repository_chunk_temp,
-        yaml.load_file("template/preclinical_model.yml")$repository)
+      c(
+        repository_chunk_temp,
+        yaml.load_file("template/preclinical_model.yml")$repository
+      )
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
@@ -181,16 +185,27 @@ repository_chunk <- function(input) {
   if (determine_cores(input)$small_animal_flag) {
     #####
     repository_chunk_temp <-
-      c(repository_chunk_temp,
-        yaml.load_file("template/small_animal.yml")$repository)
+      c(
+        repository_chunk_temp,
+        yaml.load_file("template/small_animal.yml")$repository
+      )
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
   if (determine_cores(input)$therapeutic_flag) {
     #####
     repository_chunk_temp <-
-      c(repository_chunk_temp,
-        yaml.load_file("template/therapeutic.yml")$repository)
+      c(
+        repository_chunk_temp,
+        yaml.load_file("template/therapeutic.yml")$repository
+      )
+  } else {
+    repository_chunk_temp <- c(repository_chunk_temp, "")
+  }
+  if (input$anvil) {
+    #####
+    repository_chunk_temp <-
+      yaml.load_file("template/anvil.yml")$repository_if_anvil
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
@@ -376,8 +391,10 @@ findable_chunk <- function(input) {
   if (determine_cores(input)$preclinical_model_flag) {
     #####
     findable_chunk_temp <-
-      c(findable_chunk_temp,
-        yaml.load_file("template/preclinical_model.yml")$findable)
+      c(
+        findable_chunk_temp,
+        yaml.load_file("template/preclinical_model.yml")$findable
+      )
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -405,6 +422,13 @@ findable_chunk <- function(input) {
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
+  if (input$anvil) {
+    #####
+    findable_chunk_temp <-
+      yaml.load_file("template/anvil.yml")$findable_if_anvil
+  } else {
+    findable_chunk_temp <- c(findable_chunk_temp, "")
+  }
 
   return(findable_chunk_temp)
 }
@@ -419,14 +443,18 @@ findable_chunk <- function(input) {
 #'
 #' @examples
 duration_chunk <- function(input) {
-
   df <- data.frame(string = 'String here', count = 0)
 
   if (determine_cores(input)$antibody_tech_flag) {
     #####
     duration_chunk_temp <-
       c(yaml.load_file("template/antibody_tech.yml")$duration)
-    df <- tally_strings(df, duration_chunk_temp, yaml.load_file("template/antibody_tech.yml")$duration)
+    df <-
+      tally_strings(
+        df,
+        duration_chunk_temp,
+        yaml.load_file("template/antibody_tech.yml")$duration
+      )
   } else {
     duration_chunk_temp <- c("")
   }
@@ -439,7 +467,10 @@ duration_chunk <- function(input) {
         } else {
           yaml.load_file("template/cell_img.yml")$duration
         })
-    df <- tally_strings(df, duration_chunk_temp, yaml.load_file("template/cell_img.yml")$duration)
+    df <-
+      tally_strings(df,
+                    duration_chunk_temp,
+                    yaml.load_file("template/cell_img.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -452,7 +483,10 @@ duration_chunk <- function(input) {
         } else {
           yaml.load_file("template/em_tem.yml")$duration
         })
-    df <- tally_strings(df, duration_chunk_temp, yaml.load_file("template/em_tem.yml")$duration)
+    df <-
+      tally_strings(df,
+                    duration_chunk_temp,
+                    yaml.load_file("template/em_tem.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -465,7 +499,10 @@ duration_chunk <- function(input) {
         } else {
           yaml.load_file("template/em_sem.yml")$duration
         })
-    df <- tally_strings(df, duration_chunk_temp, yaml.load_file("template/em_sem.yml")$duration)
+    df <-
+      tally_strings(df,
+                    duration_chunk_temp,
+                    yaml.load_file("template/em_sem.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -478,7 +515,10 @@ duration_chunk <- function(input) {
         } else {
           yaml.load_file("template/em_cryo.yml")$duration
         })
-    df <- tally_strings(df, duration_chunk_temp, yaml.load_file("template/em_cryo.yml")$duration)
+    df <-
+      tally_strings(df,
+                    duration_chunk_temp,
+                    yaml.load_file("template/em_cryo.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -491,7 +531,10 @@ duration_chunk <- function(input) {
         } else {
           yaml.load_file("template/eh_aperio.yml")$duration
         })
-    df <- tally_strings(df, duration_chunk_temp, yaml.load_file("template/eh_aperio.yml")$duration)
+    df <-
+      tally_strings(df,
+                    duration_chunk_temp,
+                    yaml.load_file("template/eh_aperio.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -606,8 +649,10 @@ duration_chunk <- function(input) {
   if (determine_cores(input)$preclinical_model_flag) {
     #####
     duration_chunk_temp <-
-      c(duration_chunk_temp,
-        yaml.load_file("template/preclinical_model.yml")$duration)
+      c(
+        duration_chunk_temp,
+        yaml.load_file("template/preclinical_model.yml")$duration
+      )
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
