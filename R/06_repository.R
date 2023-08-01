@@ -243,11 +243,7 @@ findable_chunk <- function(input) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
-        if (yaml.load_file("template/em_tem.yml")$findable %in% findable_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/em_tem.yml")$findable
-        })
+        yaml.load_file("template/em_tem.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -255,11 +251,7 @@ findable_chunk <- function(input) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
-        if (yaml.load_file("template/em_sem.yml")$findable %in% findable_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/em_sem.yml")$findable
-        })
+        yaml.load_file("template/em_sem.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -267,11 +259,7 @@ findable_chunk <- function(input) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
-        if (yaml.load_file("template/em_cryo.yml")$findable %in% findable_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/em_cryo.yml")$findable
-        })
+        yaml.load_file("template/em_cryo.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -279,11 +267,7 @@ findable_chunk <- function(input) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
-        if (yaml.load_file("template/eh_aperio.yml")$findable %in% findable_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/eh_aperio.yml")$findable
-        })
+        yaml.load_file("template/eh_aperio.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -291,11 +275,7 @@ findable_chunk <- function(input) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
-        if (yaml.load_file("template/eh_polaris.yml")$findable %in% findable_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/eh_polaris.yml")$findable
-        })
+        yaml.load_file("template/eh_polaris.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -303,11 +283,7 @@ findable_chunk <- function(input) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
-        if (yaml.load_file("template/eh_vectra.yml")$findable %in% findable_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/eh_vectra.yml")$findable
-        })
+        yaml.load_file("template/eh_vectra.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -322,8 +298,9 @@ findable_chunk <- function(input) {
   if (determine_cores(input)$genomics_flag) {
     #####
     if (input$human_subjects) {
-      findable_chunk_temp <- c(findable_chunk_temp,
-                               yaml.load_file("template/genomics.yml")$findable)
+      findable_chunk_temp <-
+        c(findable_chunk_temp,
+          yaml.load_file("template/genomics.yml")$findable)
     } else {
       findable_chunk_temp <-
         c(findable_chunk_temp,
@@ -336,11 +313,7 @@ findable_chunk <- function(input) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
-        if (yaml.load_file("template/immune.yml")$findable %in% findable_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/immune.yml")$findable
-        })
+        yaml.load_file("template/immune.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -356,11 +329,7 @@ findable_chunk <- function(input) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
-        if (yaml.load_file("template/pi_ivis.yml")$findable %in% findable_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/pi_ivis.yml")$findable
-        })
+        yaml.load_file("template/pi_ivis.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -368,11 +337,7 @@ findable_chunk <- function(input) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
-        if (yaml.load_file("template/pi_microct.yml")$findable %in% findable_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/pi_microct.yml")$findable
-        })
+        yaml.load_file("template/pi_microct.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -380,11 +345,7 @@ findable_chunk <- function(input) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
-        if (yaml.load_file("template/pi_mri.yml")$findable %in% findable_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/pi_mri.yml")$findable
-        })
+        yaml.load_file("template/pi_mri.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -429,6 +390,9 @@ findable_chunk <- function(input) {
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
+
+  ##### Remove any duplicates
+  findable_chunk_temp <- unique(findable_chunk_temp)
 
   return(findable_chunk_temp)
 }
