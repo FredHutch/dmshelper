@@ -50,11 +50,7 @@ repository_chunk <- function(input) {
     #####
     repository_chunk_temp <-
       c(repository_chunk_temp,
-        if (yaml.load_file("template/eh_aperio.yml")$repository %in% repository_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/eh_aperio.yml")$repository
-        })
+        yaml.load_file("template/eh_aperio.yml")$repository)
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
@@ -62,11 +58,7 @@ repository_chunk <- function(input) {
     #####
     repository_chunk_temp <-
       c(repository_chunk_temp,
-        if (yaml.load_file("template/eh_polaris.yml")$repository %in% repository_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/eh_polaris.yml")$repository
-        })
+        yaml.load_file("template/eh_polaris.yml")$repository)
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
@@ -74,11 +66,7 @@ repository_chunk <- function(input) {
     #####
     repository_chunk_temp <-
       c(repository_chunk_temp,
-        if (yaml.load_file("template/eh_vectra.yml")$repository %in% repository_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/eh_vectra.yml")$repository
-        })
+        yaml.load_file("template/eh_vectra.yml")$repository)
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
@@ -121,8 +109,10 @@ repository_chunk <- function(input) {
   if (determine_cores(input)$large_animal_flag) {
     #####
     repository_chunk_temp <-
-      c(repository_chunk_temp,
-        yaml.load_file("template/large_animal.yml")$repository)
+      c(
+        repository_chunk_temp,
+        yaml.load_file("template/large_animal.yml")$repository
+      )
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
@@ -130,11 +120,7 @@ repository_chunk <- function(input) {
     #####
     repository_chunk_temp <-
       c(repository_chunk_temp,
-        if (yaml.load_file("template/pi_ivis.yml")$repository %in% repository_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/pi_ivis.yml")$repository
-        })
+        yaml.load_file("template/pi_ivis.yml")$repository)
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
@@ -142,11 +128,7 @@ repository_chunk <- function(input) {
     #####
     repository_chunk_temp <-
       c(repository_chunk_temp,
-        if (yaml.load_file("template/pi_microct.yml")$repository %in% repository_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/pi_microct.yml")$repository
-        })
+        yaml.load_file("template/pi_microct.yml")$repository)
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
@@ -154,19 +136,17 @@ repository_chunk <- function(input) {
     #####
     repository_chunk_temp <-
       c(repository_chunk_temp,
-        if (yaml.load_file("template/pi_mri.yml")$repository %in% repository_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/pi_mri.yml")$repository
-        })
+        yaml.load_file("template/pi_mri.yml")$repository)
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
   if (determine_cores(input)$preclinical_model_flag) {
     #####
     repository_chunk_temp <-
-      c(repository_chunk_temp,
-        yaml.load_file("template/preclinical_model.yml")$repository)
+      c(
+        repository_chunk_temp,
+        yaml.load_file("template/preclinical_model.yml")$repository
+      )
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
@@ -181,19 +161,33 @@ repository_chunk <- function(input) {
   if (determine_cores(input)$small_animal_flag) {
     #####
     repository_chunk_temp <-
-      c(repository_chunk_temp,
-        yaml.load_file("template/small_animal.yml")$repository)
+      c(
+        repository_chunk_temp,
+        yaml.load_file("template/small_animal.yml")$repository
+      )
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
   if (determine_cores(input)$therapeutic_flag) {
     #####
     repository_chunk_temp <-
-      c(repository_chunk_temp,
-        yaml.load_file("template/therapeutic.yml")$repository)
+      c(
+        repository_chunk_temp,
+        yaml.load_file("template/therapeutic.yml")$repository
+      )
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
+  if (input$anvil) {
+    #####
+    repository_chunk_temp <-
+      yaml.load_file("template/anvil.yml")$repository_if_anvil
+  } else {
+    repository_chunk_temp <- c(repository_chunk_temp, "")
+  }
+
+  ##### Remove any duplicates
+  repository_chunk_temp <- unique(repository_chunk_temp)
 
   return(repository_chunk_temp)
 
@@ -228,11 +222,7 @@ findable_chunk <- function(input) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
-        if (yaml.load_file("template/em_tem.yml")$findable %in% findable_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/em_tem.yml")$findable
-        })
+        yaml.load_file("template/em_tem.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -240,11 +230,7 @@ findable_chunk <- function(input) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
-        if (yaml.load_file("template/em_sem.yml")$findable %in% findable_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/em_sem.yml")$findable
-        })
+        yaml.load_file("template/em_sem.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -252,11 +238,7 @@ findable_chunk <- function(input) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
-        if (yaml.load_file("template/em_cryo.yml")$findable %in% findable_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/em_cryo.yml")$findable
-        })
+        yaml.load_file("template/em_cryo.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -264,11 +246,7 @@ findable_chunk <- function(input) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
-        if (yaml.load_file("template/eh_aperio.yml")$findable %in% findable_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/eh_aperio.yml")$findable
-        })
+        yaml.load_file("template/eh_aperio.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -276,11 +254,7 @@ findable_chunk <- function(input) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
-        if (yaml.load_file("template/eh_polaris.yml")$findable %in% findable_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/eh_polaris.yml")$findable
-        })
+        yaml.load_file("template/eh_polaris.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -288,11 +262,7 @@ findable_chunk <- function(input) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
-        if (yaml.load_file("template/eh_vectra.yml")$findable %in% findable_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/eh_vectra.yml")$findable
-        })
+        yaml.load_file("template/eh_vectra.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -307,8 +277,9 @@ findable_chunk <- function(input) {
   if (determine_cores(input)$genomics_flag) {
     #####
     if (input$human_subjects) {
-      findable_chunk_temp <- c(findable_chunk_temp,
-                               yaml.load_file("template/genomics.yml")$findable)
+      findable_chunk_temp <-
+        c(findable_chunk_temp,
+          yaml.load_file("template/genomics.yml")$findable)
     } else {
       findable_chunk_temp <-
         c(findable_chunk_temp,
@@ -321,11 +292,7 @@ findable_chunk <- function(input) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
-        if (yaml.load_file("template/immune.yml")$findable %in% findable_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/immune.yml")$findable
-        })
+        yaml.load_file("template/immune.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -341,11 +308,7 @@ findable_chunk <- function(input) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
-        if (yaml.load_file("template/pi_ivis.yml")$findable %in% findable_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/pi_ivis.yml")$findable
-        })
+        yaml.load_file("template/pi_ivis.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -353,11 +316,7 @@ findable_chunk <- function(input) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
-        if (yaml.load_file("template/pi_microct.yml")$findable %in% findable_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/pi_microct.yml")$findable
-        })
+        yaml.load_file("template/pi_microct.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -365,19 +324,17 @@ findable_chunk <- function(input) {
     #####
     findable_chunk_temp <-
       c(findable_chunk_temp,
-        if (yaml.load_file("template/pi_mri.yml")$findable %in% findable_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/pi_mri.yml")$findable
-        })
+        yaml.load_file("template/pi_mri.yml")$findable)
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
   if (determine_cores(input)$preclinical_model_flag) {
     #####
     findable_chunk_temp <-
-      c(findable_chunk_temp,
-        yaml.load_file("template/preclinical_model.yml")$findable)
+      c(
+        findable_chunk_temp,
+        yaml.load_file("template/preclinical_model.yml")$findable
+      )
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
@@ -405,6 +362,16 @@ findable_chunk <- function(input) {
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
+  if (input$anvil) {
+    #####
+    findable_chunk_temp <-
+      yaml.load_file("template/anvil.yml")$findable_if_anvil
+  } else {
+    findable_chunk_temp <- c(findable_chunk_temp, "")
+  }
+
+  ##### Remove any duplicates
+  findable_chunk_temp <- unique(findable_chunk_temp)
 
   return(findable_chunk_temp)
 }
@@ -419,14 +386,10 @@ findable_chunk <- function(input) {
 #'
 #' @examples
 duration_chunk <- function(input) {
-
-  df <- data.frame(string = 'String here', count = 0)
-
   if (determine_cores(input)$antibody_tech_flag) {
     #####
     duration_chunk_temp <-
       c(yaml.load_file("template/antibody_tech.yml")$duration)
-    df <- tally_strings(df, duration_chunk_temp, yaml.load_file("template/antibody_tech.yml")$duration)
   } else {
     duration_chunk_temp <- c("")
   }
@@ -434,12 +397,7 @@ duration_chunk <- function(input) {
     #####
     duration_chunk_temp <-
       c(duration_chunk_temp,
-        if (yaml.load_file("template/cell_img.yml")$duration %in% duration_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/cell_img.yml")$duration
-        })
-    df <- tally_strings(df, duration_chunk_temp, yaml.load_file("template/cell_img.yml")$duration)
+        yaml.load_file("template/cell_img.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -447,12 +405,7 @@ duration_chunk <- function(input) {
     #####
     duration_chunk_temp <-
       c(duration_chunk_temp,
-        if (yaml.load_file("template/em_tem.yml")$duration %in% duration_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/em_tem.yml")$duration
-        })
-    df <- tally_strings(df, duration_chunk_temp, yaml.load_file("template/em_tem.yml")$duration)
+        yaml.load_file("template/em_tem.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -460,12 +413,7 @@ duration_chunk <- function(input) {
     #####
     duration_chunk_temp <-
       c(duration_chunk_temp,
-        if (yaml.load_file("template/em_sem.yml")$duration %in% duration_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/em_sem.yml")$duration
-        })
-    df <- tally_strings(df, duration_chunk_temp, yaml.load_file("template/em_sem.yml")$duration)
+        yaml.load_file("template/em_sem.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -473,12 +421,7 @@ duration_chunk <- function(input) {
     #####
     duration_chunk_temp <-
       c(duration_chunk_temp,
-        if (yaml.load_file("template/em_cryo.yml")$duration %in% duration_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/em_cryo.yml")$duration
-        })
-    df <- tally_strings(df, duration_chunk_temp, yaml.load_file("template/em_cryo.yml")$duration)
+        yaml.load_file("template/em_cryo.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -486,12 +429,7 @@ duration_chunk <- function(input) {
     #####
     duration_chunk_temp <-
       c(duration_chunk_temp,
-        if (yaml.load_file("template/eh_aperio.yml")$duration %in% duration_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/eh_aperio.yml")$duration
-        })
-    df <- tally_strings(df, duration_chunk_temp, yaml.load_file("template/eh_aperio.yml")$duration)
+        yaml.load_file("template/eh_aperio.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -499,11 +437,7 @@ duration_chunk <- function(input) {
     #####
     duration_chunk_temp <-
       c(duration_chunk_temp,
-        if (yaml.load_file("template/eh_polaris.yml")$duration %in% duration_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/eh_polaris.yml")$duration
-        })
+        yaml.load_file("template/eh_polaris.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -511,11 +445,7 @@ duration_chunk <- function(input) {
     #####
     duration_chunk_temp <-
       c(duration_chunk_temp,
-        if (yaml.load_file("template/eh_vectra.yml")$duration %in% duration_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/eh_vectra.yml")$duration
-        })
+        yaml.load_file("template/eh_vectra.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -523,11 +453,7 @@ duration_chunk <- function(input) {
     #####
     duration_chunk_temp <-
       c(duration_chunk_temp,
-        if (yaml.load_file("template/flow_cytometry.yml")$duration %in% duration_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/flow_cytometry.yml")$duration
-        })
+        yaml.load_file("template/flow_cytometry.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -551,11 +477,7 @@ duration_chunk <- function(input) {
     #####
     duration_chunk_temp <-
       c(duration_chunk_temp,
-        if (yaml.load_file("template/immune.yml")$duration %in% duration_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/immune.yml")$duration
-        })
+        yaml.load_file("template/immune.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -571,11 +493,7 @@ duration_chunk <- function(input) {
     #####
     duration_chunk_temp <-
       c(duration_chunk_temp,
-        if (yaml.load_file("template/pi_ivis.yml")$duration %in% duration_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/pi_ivis.yml")$duration
-        })
+        yaml.load_file("template/pi_ivis.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -583,11 +501,7 @@ duration_chunk <- function(input) {
     #####
     duration_chunk_temp <-
       c(duration_chunk_temp,
-        if (yaml.load_file("template/pi_microct.yml")$duration %in% duration_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/pi_microct.yml")$duration
-        })
+        yaml.load_file("template/pi_microct.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -595,19 +509,17 @@ duration_chunk <- function(input) {
     #####
     duration_chunk_temp <-
       c(duration_chunk_temp,
-        if (yaml.load_file("template/pi_mri.yml")$duration %in% duration_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/pi_mri.yml")$duration
-        })
+        yaml.load_file("template/pi_mri.yml")$duration)
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
   if (determine_cores(input)$preclinical_model_flag) {
     #####
     duration_chunk_temp <-
-      c(duration_chunk_temp,
-        yaml.load_file("template/preclinical_model.yml")$duration)
+      c(
+        duration_chunk_temp,
+        yaml.load_file("template/preclinical_model.yml")$duration
+      )
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
@@ -635,6 +547,10 @@ duration_chunk <- function(input) {
   } else {
     duration_chunk_temp <- c(duration_chunk_temp, "")
   }
+
+  ##### Remove any duplicates
+  duration_chunk_temp <- unique(duration_chunk_temp)
+
 
   return(duration_chunk_temp)
 }
