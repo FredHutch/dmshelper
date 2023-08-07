@@ -6,7 +6,7 @@
 #' @export
 #'
 #' @examples
-standards_chunk <- function(input, genomics = FALSE) {
+standards_chunk <- function(input) {
   # Pull out all templates and make a named list with file path
   all_templates <- yaml.load_file("template/all.yml")$all
   flag_yaml_paths  <- list()
@@ -31,13 +31,7 @@ standards_chunk <- function(input, genomics = FALSE) {
       if (any(stringr::str_detect(stands_, "%1%"))) {
         standards_cat <- c(standards_cat, switch(
           flag,
-          eh_aperio_flag = "experimental hisopathology",
-          eh_polaris_flag = "experimental hisopathology",
-          eh_vectra_flag = "experimental hisopathology",
-          immune_flag = "immune monitoring",
-          pi_ivis_flag = "preclinical imaging",
-          preclinical_model_flag = "preclinical modeling",
-          therapeutic_flag = "therapeutic products"
+          pi_ivis_flag = "preclinical imaging"
         ))
       }
       standards_chunk_temp <- c(standards_chunk_temp, stands_)
