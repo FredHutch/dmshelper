@@ -17,7 +17,7 @@ standards_chunk <- function(input, genomics = FALSE) {
   standards_chunk_temp <- character(0)
   standards_cat <- character(0)
 
-  # Go through all flags but genomics
+  # Go through flags, which reflect cores
   for (flag in names(flag_yaml_paths)) {
     # Determine if the specific core has been selected
     if (determine_cores(input)[[flag]]) {
