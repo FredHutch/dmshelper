@@ -13,7 +13,7 @@ metadata: "Metadata will be collected and submitted in accordance with FAIR data
 tools: "All code developed as a part of this proposal will be deposited on GitHub at publication and released open source with an MIT license."
 
 # Standards for collection, etc.
-standards: "Data will be deposited following [Electron Microscopy Public Image Archive (EMPIAR)](https://www.ebi.ac.uk/empiar/policies/#_w95koontmqn) requirements, including full raw data in a compatible file format deposited with each image set in a separate directory and uploaded with associated metadata."
+standards: "Microscopy data will follow [Electron Microscopy Public Image Archive (EMPIAR)](https://www.ebi.ac.uk/empiar/policies/#_w95koontmqn) requirements, including finalizing raw data in a compatible file format with associated metadata."
 
 # Repository where scientific data and metadata will be archived
 repository: "Primary repositories for SEM data will be the [Electron Microscopy Public Image Archive (EMPIAR)](https://www.ebi.ac.uk/empiar/)."

@@ -14,7 +14,7 @@ metadata: "Metadata will be collected and submitted in accordance with FAIR data
 tools: "All code developed as a part of this proposal will be deposited on GitHub at publication and released open source with an MIT license."
 
 # Standards for collection, etc.
-standards: "Data will be deposited following [Electron Microscopy Data Bank (EMDB)](https://www.ebi.ac.uk/emdb/documentation/policies#3) requirements, including depositing EM maps (primary map, masks, half-maps and any other additional maps) in either CCP4 or MRC format and providing representative figures for each entry."
+standards: "CryoEM data collection will follow [Electron Microscopy Data Bank (EMDB)](https://www.ebi.ac.uk/emdb/documentation/policies#3) requirements, including finalizing EM maps (primary map, masks, half-maps and any other additional maps) in either CCP4 or MRC format and providing representative figures for each entry upon submission."
 
 # Repository where scientific data and metadata will be archived
 repository: "CryoEM data will be deposited in [Electron Microscopy Data Bank (EMDB)](https://www.ebi.ac.uk/emdb/)."
