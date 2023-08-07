@@ -14,13 +14,13 @@ metadata: "Metadata will be collected and submitted in accordance with FAIR data
 tools: "All code developed as a part of this proposal will be deposited on GitHub at publication and released open source with an MIT license."
 
 # Standards for collection, etc.
-standards: "There are no specific widely adopted standards exclusively for %1% data/metadata. However, where possible, we will use standardized and commonly used data formats, data dictionaries, unique identifiers, and data documentation."
+standards: "Data will be deposited following [Electron Microscopy Data Bank (EMDB)](https://www.ebi.ac.uk/emdb/documentation/policies#3) requirements, including depositing EM maps (primary map, masks, half-maps and any other additional maps) in either CCP4 or MRC format and providing representative figures for each entry."
 
 # Repository where scientific data and metadata will be archived
-repository: "CryoEM data will be deposited in Electron Microscopy Data Bank (EMDB; https://www.ebi.ac.uk/emdb/)."
+repository: "CryoEM data will be deposited in [Electron Microscopy Data Bank (EMDB)](https://www.ebi.ac.uk/emdb/)."
 
 # How scientific data will be findable and identifiable
-findable: "EMPIAR and EMDB provide stable IDs to EM datasets and derived molecular structures. Primary references would be to an EMD or EMPIAR dataset accession. The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project."
+findable: ["An EMDB accession code is issued upon submission of a OneDep deposition. It consists of the string “EMD-” followed by a number with at least four digits. The accession code is automatically issued and sent in an email to the contact author(s) of the entry and can be used to refer to the entry publicly (e.g., in publications).", "The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project."]
 
 # When and how long the scientific data will be made available
 duration: "Data will be deposited at the time of publication and preserved for the duration of the grant funding."
