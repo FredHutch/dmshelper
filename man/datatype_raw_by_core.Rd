@@ -2,8 +2,9 @@
 % Please edit documentation in R/01_datatype.R
 \name{datatype_raw_by_core}
 \alias{datatype_raw_by_core}
-\title{Title
-Reactively updates "raw_file_description" in server.R}
+\title{Helps reactively update "raw_file_description" in server.R
+Populates example text but allows user changes as long as the selected core
+(core_datatype) is not changed.}
 \usage{
 datatype_raw_by_core(toggle_example_txt)
 }
@@ -11,6 +12,7 @@ datatype_raw_by_core(toggle_example_txt)
 \item{toggle_example_txt}{}
 }
 \description{
-Title
-Reactively updates "raw_file_description" in server.R
+Helps reactively update "raw_file_description" in server.R
+Populates example text but allows user changes as long as the selected core
+(core_datatype) is not changed.
 }

@@ -14,7 +14,7 @@ metadata: "Metadata will be collected and submitted in accordance with FAIR data
 tools: "All code developed as a part of this proposal will be deposited on GitHub at publication and released open source with an MIT license."
 
 # Standards for collection, etc.
-standards: "The electron microscopy data produced in this project will be collected using the standards established by ___ ."
+standards: "There are no specific widely adopted standards exclusively for %1% data/metadata. However, where possible, we will use standardized and commonly used data formats, data dictionaries, unique identifiers, and data documentation."
 
 # Repository where scientific data and metadata will be archived
 repository: "CryoEM data will be deposited in Electron Microscopy Data Bank (EMDB; https://www.ebi.ac.uk/emdb/)."

@@ -8,13 +8,21 @@
 #' @export
 #'
 #' @examples
-remove_last_comma <- function(string_vect) {
+remove_last_comma <- function(string_vect, conj = "and") {
   if (length(string_vect) == 2) {
     string_ <- paste(string_vect, collapse = ", ")
-    out <- sub(",([^,]*)$", " and\\1", string_)
+    if (conj != "or") {
+      out <- sub(",([^,]*)$", " and\\1", string_)
+    } else {
+      out <- sub(",([^,]*)$", " or\\1", string_)
+    }
   } else {
     string_ <- paste(string_vect, collapse = ", ")
-    out <- sub(",([^,]*)$", ", and\\1", string_)
+    if (conj != "or") {
+      out <- sub(",([^,]*)$", ", and\\1", string_)
+    } else {
+      out <- sub(",([^,]*)$", ", or\\1", string_)
+    }
   }
 
   return(out)

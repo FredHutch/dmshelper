@@ -56,6 +56,8 @@ standards_txt <- function(input) {
            "### Standards",
            "",
            standards_chunk(input),
+           "",
+           standards_chunk(input, genomics = TRUE),
            ""))
 }
 
