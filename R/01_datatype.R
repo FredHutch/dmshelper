@@ -7,83 +7,18 @@
 #'
 #' @examples
 raw_processed_data_chunk <- function(input) {
-  antibody_tech_file_types <-
-    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/antibody_tech.yml")$raw_file_types]
-  cell_img_file_types <-
-    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/cell_img.yml")$raw_file_types]
-  em_tem_file_types <-
-    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/em_tem.yml")$raw_file_types]
-  em_sem_file_types <-
-    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/em_sem.yml")$raw_file_types]
-  em_cryo_file_types <-
-    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/em_cryo.yml")$raw_file_types]
-  eh_aperio_file_types <-
-    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/eh_aperio.yml")$raw_file_types]
-  eh_polaris_file_types <-
-    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/eh_polaris.yml")$raw_file_types]
-  eh_vectra_file_types <-
-    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/eh_vectra.yml")$raw_file_types]
-  flow_cytometry_file_types <-
-    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/flow_cytometry.yml")$raw_file_types]
-  genomics_file_types <-
-    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/genomics.yml")$raw_file_types]
-  immune_file_types <-
-    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/immune.yml")$raw_file_types]
-  large_animal_file_types <-
-    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/large_animal.yml")$raw_file_types]
-  pi_ivis_file_types <-
-    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/pi_ivis.yml")$raw_file_types]
-  pi_microct_file_types <-
-    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/pi_microct.yml")$raw_file_types]
-  pi_mri_file_types <-
-    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/pi_mri.yml")$raw_file_types]
-  preclinical_model_file_types <-
-    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/preclinical_model.yml")$raw_file_types]
-  proteomics_file_types <-
-    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/proteomics.yml")$raw_file_types]
-  small_animal_file_types <-
-    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/small_animal.yml")$raw_file_types]
-  therapeutic_file_types <-
-    input$raw_file_description[input$raw_file_description %in% yaml.load_file("template/therapeutic.yml")$raw_file_types]
+  # Pull out all templates
+  all_templates <- yaml.load_file("template/all.yml")$all
 
-  antibody_tech_tech_types <-
-    input$technology_description[input$technology_description %in% yaml.load_file("template/antibody_tech.yml")$tech_types]
-  cell_img_tech_types <-
-    input$technology_description[input$technology_description %in% yaml.load_file("template/cell_img.yml")$tech_types]
-  em_tem_tech_types <-
-    input$technology_description[input$technology_description %in% yaml.load_file("template/em_tem.yml")$tech_types]
-  em_sem_tech_types <-
-    input$technology_description[input$technology_description %in% yaml.load_file("template/em_sem.yml")$tech_types]
-  em_cryo_tech_types <-
-    input$technology_description[input$technology_description %in% yaml.load_file("template/em_cryo.yml")$tech_types]
-  eh_aperio_tech_types <-
-    input$technology_description[input$technology_description %in% yaml.load_file("template/eh_aperio.yml")$tech_types]
-  eh_polaris_tech_types <-
-    input$technology_description[input$technology_description %in% yaml.load_file("template/eh_polaris.yml")$tech_types]
-  eh_vectra_tech_types <-
-    input$technology_description[input$technology_description %in% yaml.load_file("template/eh_vectra.yml")$tech_types]
-  flow_cytometry_tech_types <-
-    input$technology_description[input$technology_description %in% yaml.load_file("template/flow_cytometry.yml")$tech_types]
-  genomics_tech_types <-
-    input$technology_description[input$technology_description %in% yaml.load_file("template/genomics.yml")$tech_types]
-  immune_tech_types <-
-    input$technology_description[input$technology_description %in% yaml.load_file("template/immune.yml")$tech_types]
-  large_animal_tech_types <-
-    input$technology_description[input$technology_description %in% yaml.load_file("template/large_animal.yml")$tech_types]
-  pi_ivis_tech_types <-
-    input$technology_description[input$technology_description %in% yaml.load_file("template/pi_ivis.yml")$tech_types]
-  pi_microct_tech_types <-
-    input$technology_description[input$technology_description %in% yaml.load_file("template/pi_microct.yml")$tech_types]
-  pi_mri_tech_types <-
-    input$technology_description[input$technology_description %in% yaml.load_file("template/pi_mri.yml")$tech_types]
-  preclinical_model_tech_types <-
-    input$technology_description[input$technology_description %in% yaml.load_file("template/preclinical_model.yml")$tech_types]
-  proteomics_tech_types <-
-    input$technology_description[input$technology_description %in% yaml.load_file("template/proteomics.yml")$tech_types]
-  small_animal_tech_types <-
-    input$technology_description[input$technology_description %in% yaml.load_file("template/small_animal.yml")$tech_types]
-  therapeutic_tech_types <-
-    input$technology_description[input$technology_description %in% yaml.load_file("template/therapeutic.yml")$tech_types]
+  for (template in all_templates) {
+    assign(paste0(template, "_file_types"),
+           input$raw_file_description[input$raw_file_description %in% yaml.load_file(paste0("template/", template, ".yml"))$raw_file_types])
+  }
+
+  for (template in all_templates) {
+    assign(paste0(template, "_tech_types"),
+           input$technology_description[input$technology_description %in% yaml.load_file(paste0("template/", template, ".yml"))$tech_types])
+  }
 
   if (determine_cores(input)$antibody_tech_flag) {
     #####
@@ -615,30 +550,28 @@ raw_processed_data_chunk <- function(input) {
 #' @export
 #'
 #' @examples
+get_options <- function(yaml_var) {
+  all_templates <- yaml.load_file("template/all.yml")$all
+
+  description_temp <- character(0)
+  for (template in all_templates) {
+    description_temp <-
+      c(description_temp,
+        yaml.load_file(paste0("template/", template, ".yml"))[[yaml_var]])
+  }
+
+  return(description_temp)
+}
+
+
+#' Title
+#'
+#' @return
+#' @export
+#'
+#' @examples
 datatype_raw_file_description_options <- function() {
-  return(
-    c(
-      yaml.load_file("template/antibody_tech.yml")$raw_file_types,
-      yaml.load_file("template/cell_img.yml")$raw_file_types,
-      yaml.load_file("template/em_tem.yml")$raw_file_types,
-      yaml.load_file("template/em_sem.yml")$raw_file_types,
-      yaml.load_file("template/em_cryo.yml")$raw_file_types,
-      yaml.load_file("template/eh_aperio.yml")$raw_file_types,
-      yaml.load_file("template/eh_polaris.yml")$raw_file_types,
-      yaml.load_file("template/eh_vectra.yml")$raw_file_types,
-      yaml.load_file("template/flow_cytometry.yml")$raw_file_types,
-      yaml.load_file("template/genomics.yml")$raw_file_types,
-      yaml.load_file("template/immune.yml")$raw_file_types,
-      yaml.load_file("template/large_animal.yml")$raw_file_types,
-      yaml.load_file("template/pi_ivis.yml")$raw_file_types,
-      yaml.load_file("template/pi_microct.yml")$raw_file_types,
-      yaml.load_file("template/pi_mri.yml")$raw_file_types,
-      yaml.load_file("template/preclinical_model.yml")$raw_file_types,
-      yaml.load_file("template/proteomics.yml")$raw_file_types,
-      yaml.load_file("template/small_animal.yml")$raw_file_types,
-      yaml.load_file("template/therapeutic.yml")$raw_file_types
-    )
-  )
+  return(get_options(yaml_var = "raw_file_types"))
 }
 
 
@@ -649,33 +582,13 @@ datatype_raw_file_description_options <- function() {
 #'
 #' @examples
 datatype_technology_description_options <- function() {
-  return(
-    c(
-      yaml.load_file("template/antibody_tech.yml")$tech_types,
-      yaml.load_file("template/cell_img.yml")$tech_types,
-      yaml.load_file("template/em_tem.yml")$tech_types,
-      yaml.load_file("template/em_sem.yml")$tech_types,
-      yaml.load_file("template/em_cryo.yml")$tech_types,
-      yaml.load_file("template/eh_aperio.yml")$tech_types,
-      yaml.load_file("template/eh_polaris.yml")$tech_types,
-      yaml.load_file("template/eh_vectra.yml")$tech_types,
-      yaml.load_file("template/flow_cytometry.yml")$tech_types,
-      yaml.load_file("template/genomics.yml")$tech_types,
-      yaml.load_file("template/immune.yml")$tech_types,
-      yaml.load_file("template/large_animal.yml")$tech_types,
-      yaml.load_file("template/pi_ivis.yml")$tech_types,
-      yaml.load_file("template/pi_microct.yml")$tech_types,
-      yaml.load_file("template/pi_mri.yml")$tech_types,
-      yaml.load_file("template/preclinical_model.yml")$tech_types,
-      yaml.load_file("template/proteomics.yml")$tech_types,
-      yaml.load_file("template/small_animal.yml")$tech_types,
-      yaml.load_file("template/therapeutic.yml")$tech_types
-    )
-  )
+  return(get_options(yaml_var = "tech_types"))
 }
 
 
-#' Title
+#' Helps reactively update "raw_file_description" in server.R
+#' Populates example text but allows user changes as long as the selected core
+#' (core_datatype) is not changed.
 #'
 #' @param toggle_example_txt
 #'
@@ -684,109 +597,28 @@ datatype_technology_description_options <- function() {
 #'
 #' @examples
 datatype_raw_by_core <- function(toggle_example_txt) {
-  datatype_raw_ <- ""
-  if ("antibody_tech" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <-
-      c(datatype_raw_,
-        yaml.load_file("template/antibody_tech.yml")$raw_file_types)
+  all_templates <- yaml.load_file("template/all.yml")$all
+  flag_yaml_paths <- list()
+  for (template in all_templates) {
+    flag_yaml_paths[[paste0(template)]] = paste0("template/", template, ".yml")
   }
-  if ("cellular_imaging" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <-
-      c(datatype_raw_,
-        yaml.load_file("template/cell_img.yml")$raw_file_types)
+
+  datatype_raw_ <- character(0)
+
+  for (flag in names(flag_yaml_paths)) {
+    if (flag %in% toggle_example_txt$core_datatype) {
+      datatype_ <- yaml.load_file(flag_yaml_paths[[flag]])$raw_file_types
+      datatype_raw_ <- c(datatype_raw_, datatype_)
+    }
   }
-  if ("em_tem" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <-
-      c(datatype_raw_,
-        yaml.load_file("template/em_tem.yml")$raw_file_types)
-  }
-  if ("em_sem" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <-
-      c(datatype_raw_,
-        yaml.load_file("template/em_sem.yml")$raw_file_types)
-  }
-  if ("em_cryo" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <-
-      c(datatype_raw_,
-        yaml.load_file("template/em_cryo.yml")$raw_file_types)
-  }
-  if ("eh_aperio" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <-
-      c(datatype_raw_,
-        yaml.load_file("template/eh_aperio.yml")$raw_file_types)
-  }
-  if ("eh_polaris" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <-
-      c(datatype_raw_,
-        yaml.load_file("template/eh_polaris.yml")$raw_file_types)
-  }
-  if ("eh_vectra" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <-
-      c(datatype_raw_,
-        yaml.load_file("template/eh_vectra.yml")$raw_file_types)
-  }
-  if ("flow_cytometry" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <-
-      c(datatype_raw_,
-        yaml.load_file("template/flow_cytometry.yml")$raw_file_types)
-  }
-  if ("genomics" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <-
-      c(datatype_raw_,
-        yaml.load_file("template/genomics.yml")$raw_file_types)
-  }
-  if ("immune" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <-
-      c(datatype_raw_,
-        yaml.load_file("template/immune.yml")$raw_file_types)
-  }
-  if ("large_animal" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <-
-      c(datatype_raw_,
-        yaml.load_file("template/large_animal.yml")$raw_file_types)
-  }
-  if ("pi_ivis" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <-
-      c(datatype_raw_,
-        yaml.load_file("template/pi_ivis.yml")$raw_file_types)
-  }
-  if ("pi_microct" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <-
-      c(datatype_raw_,
-        yaml.load_file("template/pi_microct.yml")$raw_file_types)
-  }
-  if ("pi_mri" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <-
-      c(datatype_raw_,
-        yaml.load_file("template/pi_mri.yml")$raw_file_types)
-  }
-  if ("preclinical_model" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <-
-      c(
-        datatype_raw_,
-        yaml.load_file("template/preclinical_model.yml")$raw_file_types
-      )
-  }
-  if ("proteomics" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <-
-      c(datatype_raw_,
-        yaml.load_file("template/proteomics.yml")$raw_file_types)
-  }
-  if ("small_animal" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <-
-      c(datatype_raw_,
-        yaml.load_file("template/small_animal.yml")$raw_file_types)
-  }
-  if ("therapeutic" %in% toggle_example_txt$core_datatype) {
-    datatype_raw_ <-
-      c(datatype_raw_,
-        yaml.load_file("template/therapeutic.yml")$raw_file_types)
-  }
+
   return(datatype_raw_)
 }
 
 
-#' Title
+#' Helps reactively update "technology_description" in server.R
+#' Populates example text but allows user changes as long as the selected core
+#' (core_datatype) is not changed.
 #'
 #' @param toggle_example_txt
 #'
@@ -795,101 +627,20 @@ datatype_raw_by_core <- function(toggle_example_txt) {
 #'
 #' @examples
 datatype_tech_by_core <- function(toggle_example_txt) {
-  datatype_tech_ <- ""
-  if ("antibody_tech" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <-
-      c(datatype_tech_,
-        yaml.load_file("template/antibody_tech.yml")$tech_types)
+  all_templates <- yaml.load_file("template/all.yml")$all
+  flag_yaml_paths <- list()
+  for (template in all_templates) {
+    flag_yaml_paths[[paste0(template)]] = paste0("template/", template, ".yml")
   }
-  if ("cellular_imaging" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <-
-      c(datatype_tech_,
-        yaml.load_file("template/cell_img.yml")$tech_types)
+
+  datatype_tech_ <- character(0)
+
+  for (flag in names(flag_yaml_paths)) {
+    if (flag %in% toggle_example_txt$core_datatype) {
+      datatype_ <- yaml.load_file(flag_yaml_paths[[flag]])$tech_types
+      datatype_tech_ <- c(datatype_tech_, datatype_)
+    }
   }
-  if ("em_tem" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <-
-      c(datatype_tech_,
-        yaml.load_file("template/em_tem.yml")$tech_types)
-  }
-  if ("em_sem" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <-
-      c(datatype_tech_,
-        yaml.load_file("template/em_sem.yml")$tech_types)
-  }
-  if ("em_cryo" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <-
-      c(datatype_tech_,
-        yaml.load_file("template/em_cryo.yml")$tech_types)
-  }
-  if ("eh_aperio" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <-
-      c(datatype_tech_,
-        yaml.load_file("template/eh_aperio.yml")$tech_types)
-  }
-  if ("eh_polaris" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <-
-      c(datatype_tech_,
-        yaml.load_file("template/eh_polaris.yml")$tech_types)
-  }
-  if ("eh_vectra" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <-
-      c(datatype_tech_,
-        yaml.load_file("template/eh_vectra.yml")$tech_types)
-  }
-  if ("flow_cytometry" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <-
-      c(datatype_tech_,
-        yaml.load_file("template/flow_cytometry.yml")$tech_types)
-  }
-  if ("genomics" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <-
-      c(datatype_tech_,
-        yaml.load_file("template/genomics.yml")$tech_types)
-  }
-  if ("immune" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <-
-      c(datatype_tech_,
-        yaml.load_file("template/immune.yml")$tech_types)
-  }
-  if ("large_animal" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <-
-      c(datatype_tech_,
-        yaml.load_file("template/large_animal.yml")$tech_types)
-  }
-  if ("pi_ivis" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <-
-      c(datatype_tech_,
-        yaml.load_file("template/pi_ivis.yml")$tech_types)
-  }
-  if ("pi_microct" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <-
-      c(datatype_tech_,
-        yaml.load_file("template/pi_microct.yml")$tech_types)
-  }
-  if ("pi_mri" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <-
-      c(datatype_tech_,
-        yaml.load_file("template/pi_mri.yml")$tech_types)
-  }
-  if ("preclinical_model" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <-
-      c(datatype_tech_,
-        yaml.load_file("template/preclinical_model.yml")$tech_types)
-  }
-  if ("proteomics" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <-
-      c(datatype_tech_,
-        yaml.load_file("template/proteomics.yml")$tech_types)
-  }
-  if ("small_animal" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <-
-      c(datatype_tech_,
-        yaml.load_file("template/small_animal.yml")$tech_types)
-  }
-  if ("therapeutic" %in% toggle_example_txt$core_datatype) {
-    datatype_tech_ <-
-      c(datatype_tech_,
-        yaml.load_file("template/therapeutic.yml")$tech_types)
-  }
+
   return(datatype_tech_)
 }

@@ -4,7 +4,7 @@
 \alias{remove_last_comma}
 \title{Fix list grammar}
 \usage{
-remove_last_comma(string_vect)
+remove_last_comma(string_vect, conj = "and")
 }
 \arguments{
 \item{string_vect}{}

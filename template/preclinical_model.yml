@@ -7,13 +7,13 @@ file_sizes: "samples consisting of __ GB each"
 sharing_non_hs: "Preclinical modeling data will be preserved and shared to facilitate re-analysis and re-use of the data by other investigators."
 
 # Metadata, other relevant data, and associated documentation
-metadata: "Metadata will be collected and submitted in accordance with FAIR data principles in the form of a spreadsheet with consistent sample labels, dates in ISO 8601 format, without empty cells, with one data item per cell, organized as a single rectangle (with subjects as rows and variables as columns, and with a single header row), with a corresponding data dictionary. Metadata will be released in raw form without calculations on the raw data files, font color or highlighting as data, with human- and machine-readable variable names, links to raw data URLs, saved as a plain text file and uploaded with sequence data."
+metadata: "Metadata will be collected and submitted in accordance with FAIR data principles in the form of a spreadsheet with consistent sample labels, dates in ISO 8601 format, without empty cells, with one data item per cell, organized as a single rectangle (with subjects as rows and variables as columns, and with a single header row), with a corresponding data dictionary. Metadata will be released in raw form without calculations on the raw data files, font color or highlighting as data, with human- and machine-readable variable names, links to raw data URLs, and saved as a plain text file."
 
 # Related Tools, Software and/or Code
 tools: ["All code developed as a part of this proposal will be deposited on GitHub at publication and released open source with an MIT license."]
 
 # Standards for collection, etc.
-standards: "The immune monitoring data produced in this project will be collected using the standards established by ___ ."
+standards: "There are no specific widely adopted standards exclusively for %1% data/metadata. However, where possible, we will use standardized and commonly used data formats, data dictionaries, unique identifiers, and data documentation."
 
 # Repository where scientific data and metadata will be archived
 repository: "Primary repositories for immune monitoring files will be [insert repositories] for data that can be made publicly available and [insert repositories] for data that require access controls."

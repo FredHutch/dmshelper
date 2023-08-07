@@ -4,7 +4,7 @@
 \alias{standards_chunk}
 \title{Title}
 \usage{
-standards_chunk(input)
+standards_chunk(input, genomics = FALSE)
 }
 \arguments{
 \item{input}{}

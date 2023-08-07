@@ -2,7 +2,9 @@
 % Please edit documentation in R/01_datatype.R
 \name{datatype_tech_by_core}
 \alias{datatype_tech_by_core}
-\title{Title}
+\title{Helps reactively update "technology_description" in server.R
+Populates example text but allows user changes as long as the selected core
+(core_datatype) is not changed.}
 \usage{
 datatype_tech_by_core(toggle_example_txt)
 }
@@ -10,5 +12,7 @@ datatype_tech_by_core(toggle_example_txt)
 \item{toggle_example_txt}{}
 }
 \description{
-Title
+Helps reactively update "technology_description" in server.R
+Populates example text but allows user changes as long as the selected core
+(core_datatype) is not changed.
 }
