@@ -26,7 +26,7 @@ findable: ["MassIVE and PRIDE provide stable IDs to proteomics experiment collec
 duration: "Raw spectra as well as processed peptide and protein data will be deposited in MassIVE or PRIDE at the time of publication and preserved for the duration of the grant funding."
 
 # Factors affecting subsequent access, distribution, or reuse of scientific data
-access_reuse: "We do not anticipate any significant factors limiting the access, distribution, or reuse of proteomic data."
+access_reuse: "We do not anticipate any significant factors limiting the access, distribution, or reuse of %1% data."
 
 # Whether access to scientific data will be controlled
 control_approvals: "All proteomics datasets stored in MassIVE or PRIDE will be available to requesting researchers without the need for approval."

@@ -27,7 +27,7 @@ findable: ["Both TCIA and the IDC provide stable IDs to imaging dataset collecti
 duration: "Data will be deposited at the time of publication and preserved for the duration of the grant funding."
 
 # Factors affecting subsequent access, distribution, or reuse of scientific data
-access_reuse: "We do not anticipate any significant factors limiting the access, distribution, or reuse of preclinical imaging data."
+access_reuse: "We do not anticipate any significant factors limiting the access, distribution, or reuse of %1% data."
 
 # Whether access to scientific data will be controlled
 control_approvals: ""

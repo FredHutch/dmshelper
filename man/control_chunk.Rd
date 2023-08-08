@@ -2,7 +2,212 @@
 % Please edit documentation in R/07_access.R
 \name{control_chunk}
 \alias{control_chunk}
-\title{Title}
+\title{#' Title
+#'
+#' @param input
+#'
+#' @return
+#' @export
+#'
+#' @examples
+access_reuse_chunk <- function(input) {
+if (determine_cores(input)$antibody_tech_flag) {
+#####
+access_reuse_chunk_temp <-
+yaml.load_file("template/antibody_tech.yml")$access_reuse
+} else {
+access_reuse_chunk_temp <- c("")
+}
+if (determine_cores(input)$cell_img_flag) {
+#####
+access_reuse_chunk_temp <-
+c(
+access_reuse_chunk_temp,
+yaml.load_file("template/cell_img.yml")$access_reuse
+)
+} else {
+access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+}
+if (determine_cores(input)$em_tem_flag) {
+#####
+access_reuse_chunk_temp <-
+c(
+access_reuse_chunk_temp,
+yaml.load_file("template/em_tem.yml")$access_reuse
+)
+} else {
+access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+}
+if (determine_cores(input)$em_sem_flag) {
+#####
+access_reuse_chunk_temp <-
+c(
+access_reuse_chunk_temp,
+yaml.load_file("template/em_sem.yml")$access_reuse
+)
+} else {
+access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+}
+if (determine_cores(input)$em_cryo_flag) {
+#####
+access_reuse_chunk_temp <-
+c(
+access_reuse_chunk_temp,
+yaml.load_file("template/em_cryo.yml")$access_reuse
+)
+} else {
+access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+}
+if (determine_cores(input)$eh_aperio_flag) {
+#####
+access_reuse_chunk_temp <-
+c(
+access_reuse_chunk_temp,
+yaml.load_file("template/eh_aperio.yml")$access_reuse
+)
+} else {
+access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+}
+if (determine_cores(input)$eh_polaris_flag) {
+#####
+access_reuse_chunk_temp <-
+c(
+access_reuse_chunk_temp,
+yaml.load_file("template/eh_polaris.yml")$access_reuse
+)
+} else {
+access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+}
+if (determine_cores(input)$eh_vectra_flag) {
+#####
+access_reuse_chunk_temp <-
+c(
+access_reuse_chunk_temp,
+yaml.load_file("template/eh_vectra.yml")$access_reuse
+)
+} else {
+access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+}
+if (determine_cores(input)$flow_cytometry_flag) {
+#####
+access_reuse_chunk_temp <- c(
+access_reuse_chunk_temp,
+yaml.load_file("template/flow_cytometry.yml")$access_reuse
+)
+} else {
+access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+}
+if (determine_cores(input)$genomics_flag) {
+#####
+access_reuse_chunk_temp <- c(
+access_reuse_chunk_temp,
+yaml.load_file("template/genomics.yml")$access_reuse
+)
+} else {
+access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+}
+if (determine_cores(input)$immune_flag) {
+#####
+access_reuse_chunk_temp <-
+c(
+access_reuse_chunk_temp,
+yaml.load_file("template/immune.yml")$access_reuse
+)
+} else {
+access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+}
+if (determine_cores(input)$large_animal_flag) {
+#####
+access_reuse_chunk_temp <-
+c(
+access_reuse_chunk_temp,
+yaml.load_file("template/large_animal.yml")$access_reuse
+)
+} else {
+access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+}
+if (determine_cores(input)$pi_ivis_flag) {
+#####
+access_reuse_chunk_temp <-
+c( access_reuse_chunk_temp,
+if (yaml.load_file("template/pi_ivis.yml")$access_reuse \%in\% access_reuse_chunk_temp) {
+""
+} else {
+yaml.load_file("template/pi_ivis.yml")$access_reuse
+})
+} else {
+access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+}
+if (determine_cores(input)$pi_microct_flag) {
+#####
+access_reuse_chunk_temp <-
+c( access_reuse_chunk_temp,
+if (yaml.load_file("template/pi_microct.yml")$access_reuse \%in\% access_reuse_chunk_temp) {
+""
+} else {
+yaml.load_file("template/pi_microct.yml")$access_reuse
+})
+} else {
+access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+}
+if (determine_cores(input)$pi_mri_flag) {
+#####
+access_reuse_chunk_temp <-
+c( access_reuse_chunk_temp,
+if (yaml.load_file("template/pi_mri.yml")$access_reuse \%in\% access_reuse_chunk_temp) {
+""
+} else {
+yaml.load_file("template/pi_mri.yml")$access_reuse
+})
+} else {
+access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+}
+if (determine_cores(input)$preclinical_model_flag) {
+#####
+access_reuse_chunk_temp <-
+c( access_reuse_chunk_temp,
+if (yaml.load_file("template/preclinical_model.yml")$access_reuse \%in\% access_reuse_chunk_temp) {
+""
+} else {
+yaml.load_file("template/preclinical_model.yml")$access_reuse
+})
+} else {
+access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+}
+if (determine_cores(input)$proteomics_flag) {
+#####
+access_reuse_chunk_temp <-
+c(
+access_reuse_chunk_temp,
+yaml.load_file("template/proteomics.yml")$access_reuse
+)
+} else {
+access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+}
+if (determine_cores(input)$small_animal_flag) {
+#####
+access_reuse_chunk_temp <-
+c( access_reuse_chunk_temp,
+if (yaml.load_file("template/small_animal.yml")$access_reuse \%in\% access_reuse_chunk_temp) {
+""
+} else {
+yaml.load_file("template/small_animal.yml")$access_reuse
+})
+} else {
+access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+}
+if (determine_cores(input)$therapeutic_flag) {
+#####
+access_reuse_chunk_temp <-
+c( access_reuse_chunk_temp,
+if (yaml.load_file("template/therapeutic.yml")$access_reuse \%in\% access_reuse_chunk_temp) {
+""
+} else {
+yaml.load_file("template/therapeutic.yml")$access_reuse
+})
+} else {
+access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+}}
 \usage{
 control_chunk(input)
 }
@@ -10,5 +215,8 @@ control_chunk(input)
 \item{input}{}
 }
 \description{
+
+}
+\details{
 Title
 }

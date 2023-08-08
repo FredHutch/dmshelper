@@ -26,7 +26,7 @@ findable: ["Each published TCIA Collection has an associated data citation to ai
 duration: "Data will be deposited at the time of publication and preserved for the duration of the grant funding."
 
 # Factors affecting subsequent access, distribution, or reuse of scientific data
-access_reuse: ["We do not anticipate any significant factors limiting the access, distribution, or reuse of experimental hisopathology data", "Once the full analysis and de-identification is complete, data is moved to a public repository and made available to the research community."]
+access_reuse: ["We do not anticipate any significant factors limiting the access, distribution, or reuse of %1% data.", "Once the full analysis and de-identification is complete, experimental hisopathology data is moved to a public repository and made available to the research community."]
 
 # Whether access to scientific data will be controlled
 control_approvals: ""

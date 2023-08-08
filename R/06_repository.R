@@ -117,11 +117,11 @@ duration_chunk <- function(input) {
       # Check for human subjects duration, must also have the duration_hs yml entry
       if (input$human_subjects &
           !(is.null(yaml.load_file(flag_yaml_paths[[flag]])$duration_hs))) {
-        repos_ <- yaml.load_file(flag_yaml_paths[[flag]])$duration_hs
+        durs_ <- yaml.load_file(flag_yaml_paths[[flag]])$duration_hs
       } else {
-        repos_ <- yaml.load_file(flag_yaml_paths[[flag]])$duration
+        durs_ <- yaml.load_file(flag_yaml_paths[[flag]])$duration
       }
-      duration_chunk_temp <- c(duration_chunk_temp, repos_)
+      duration_chunk_temp <- c(duration_chunk_temp, durs_)
     }
   }
 

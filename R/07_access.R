@@ -7,207 +7,261 @@
 #'
 #' @examples
 access_reuse_chunk <- function(input) {
-  if (determine_cores(input)$antibody_tech_flag) {
-    #####
-    access_reuse_chunk_temp <-
-      yaml.load_file("template/antibody_tech.yml")$access_reuse
-  } else {
-    access_reuse_chunk_temp <- c("")
+  # Pull out all templates and make a named list with file path
+  all_templates <- yaml.load_file("template/all.yml")$all
+  flag_yaml_paths  <- list()
+  for (template in all_templates) {
+    flag_yaml_paths[[paste0(template, "_flag")]] = paste0("template/", template, ".yml")
   }
-  if (determine_cores(input)$cell_img_flag) {
-    #####
-    access_reuse_chunk_temp <-
-      c(
-        access_reuse_chunk_temp,
-        yaml.load_file("template/cell_img.yml")$access_reuse
-      )
-  } else {
-    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+
+  access_reuse_chunk_temp <- character(0)
+  access_reuse_cat <- character(0)
+
+  for (flag in names(flag_yaml_paths)) {
+    if (determine_cores(input)[[flag]]) {
+      access_reuse <- yaml.load_file(flag_yaml_paths[[flag]])$access_reuse
+      if (any(stringr::str_detect(access_reuse, "%1%"))) {
+        access_reuse_cat <- c(access_reuse_cat, switch(
+          flag,
+          antibody_tech_flag = "antibody technology",
+          cell_img_flag = "cellular imaging",
+          eh_aperio_flag = "experimental hisopathology",
+          eh_polaris_flag = "experimental hisopathology",
+          eh_vectra_flag = "experimental hisopathology",
+          em_cryo_flag = "cellular imaging",
+          em_sem_flag = "cellular imaging",
+          em_tem_flag = "cellular imaging",
+          flow_cytometry_flag = "flow cytometry",
+          pi_ivs_flag = "preclinical imaging",
+          pi_mri_flag = "preclinical imaging",
+          pi_microct_flag = "preclinical imaging",
+          proteomics_flag = "proteomic",
+          small_animal_flag = "small animal facility"
+        ))
+      }
+      access_reuse_chunk_temp <- c(access_reuse_chunk_temp, access_reuse)
+    }
   }
-  if (determine_cores(input)$em_tem_flag) {
-    #####
-    access_reuse_chunk_temp <-
-      c(
-        access_reuse_chunk_temp,
-        yaml.load_file("template/em_tem.yml")$access_reuse
-      )
-  } else {
-    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
-  }
-  if (determine_cores(input)$em_sem_flag) {
-    #####
-    access_reuse_chunk_temp <-
-      c(
-        access_reuse_chunk_temp,
-        yaml.load_file("template/em_sem.yml")$access_reuse
-      )
-  } else {
-    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
-  }
-  if (determine_cores(input)$em_cryo_flag) {
-    #####
-    access_reuse_chunk_temp <-
-      c(
-        access_reuse_chunk_temp,
-        yaml.load_file("template/em_cryo.yml")$access_reuse
-      )
-  } else {
-    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
-  }
-  if (determine_cores(input)$eh_aperio_flag) {
-    #####
-    access_reuse_chunk_temp <-
-      c(
-        access_reuse_chunk_temp,
-        yaml.load_file("template/eh_aperio.yml")$access_reuse
-      )
-  } else {
-    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
-  }
-  if (determine_cores(input)$eh_polaris_flag) {
-    #####
-    access_reuse_chunk_temp <-
-      c(
-        access_reuse_chunk_temp,
-        yaml.load_file("template/eh_polaris.yml")$access_reuse
-      )
-  } else {
-    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
-  }
-  if (determine_cores(input)$eh_vectra_flag) {
-    #####
-    access_reuse_chunk_temp <-
-      c(
-        access_reuse_chunk_temp,
-        yaml.load_file("template/eh_vectra.yml")$access_reuse
-      )
-  } else {
-    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
-  }
-  if (determine_cores(input)$flow_cytometry_flag) {
-    #####
-    access_reuse_chunk_temp <- c(
-      access_reuse_chunk_temp,
-      yaml.load_file("template/flow_cytometry.yml")$access_reuse
-    )
-  } else {
-    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
-  }
-  if (determine_cores(input)$genomics_flag) {
-    #####
-    access_reuse_chunk_temp <- c(
-      access_reuse_chunk_temp,
-      yaml.load_file("template/genomics.yml")$access_reuse
-    )
-  } else {
-    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
-  }
-  if (determine_cores(input)$immune_flag) {
-    #####
-    access_reuse_chunk_temp <-
-      c(
-        access_reuse_chunk_temp,
-        yaml.load_file("template/immune.yml")$access_reuse
-      )
-  } else {
-    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
-  }
-  if (determine_cores(input)$large_animal_flag) {
-    #####
-    access_reuse_chunk_temp <-
-      c(
-        access_reuse_chunk_temp,
-        yaml.load_file("template/large_animal.yml")$access_reuse
-      )
-  } else {
-    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
-  }
-  if (determine_cores(input)$pi_ivis_flag) {
-    #####
-    access_reuse_chunk_temp <-
-      c( access_reuse_chunk_temp,
-        if (yaml.load_file("template/pi_ivis.yml")$access_reuse %in% access_reuse_chunk_temp) {
-          ""
-        } else {
-          yaml.load_file("template/pi_ivis.yml")$access_reuse
-        })
-  } else {
-    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
-  }
-  if (determine_cores(input)$pi_microct_flag) {
-    #####
-    access_reuse_chunk_temp <-
-      c( access_reuse_chunk_temp,
-         if (yaml.load_file("template/pi_microct.yml")$access_reuse %in% access_reuse_chunk_temp) {
-           ""
-         } else {
-           yaml.load_file("template/pi_microct.yml")$access_reuse
-         })
-  } else {
-    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
-  }
-  if (determine_cores(input)$pi_mri_flag) {
-    #####
-    access_reuse_chunk_temp <-
-      c( access_reuse_chunk_temp,
-         if (yaml.load_file("template/pi_mri.yml")$access_reuse %in% access_reuse_chunk_temp) {
-           ""
-         } else {
-           yaml.load_file("template/pi_mri.yml")$access_reuse
-         })
-  } else {
-    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
-  }
-  if (determine_cores(input)$preclinical_model_flag) {
-    #####
-    access_reuse_chunk_temp <-
-      c( access_reuse_chunk_temp,
-         if (yaml.load_file("template/preclinical_model.yml")$access_reuse %in% access_reuse_chunk_temp) {
-           ""
-         } else {
-           yaml.load_file("template/preclinical_model.yml")$access_reuse
-         })
-  } else {
-    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
-  }
-  if (determine_cores(input)$proteomics_flag) {
-    #####
-    access_reuse_chunk_temp <-
-      c(
-        access_reuse_chunk_temp,
-        yaml.load_file("template/proteomics.yml")$access_reuse
-      )
-  } else {
-    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
-  }
-  if (determine_cores(input)$small_animal_flag) {
-    #####
-    access_reuse_chunk_temp <-
-      c( access_reuse_chunk_temp,
-         if (yaml.load_file("template/small_animal.yml")$access_reuse %in% access_reuse_chunk_temp) {
-           ""
-         } else {
-           yaml.load_file("template/small_animal.yml")$access_reuse
-         })
-  } else {
-    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
-  }
-  if (determine_cores(input)$therapeutic_flag) {
-    #####
-    access_reuse_chunk_temp <-
-      c( access_reuse_chunk_temp,
-         if (yaml.load_file("template/therapeutic.yml")$access_reuse %in% access_reuse_chunk_temp) {
-           ""
-         } else {
-           yaml.load_file("template/therapeutic.yml")$access_reuse
-         })
-  } else {
-    access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
-  }
+  access_reuse_chunk_temp <- unique(access_reuse_chunk_temp)
+  access_reuse_cat <- remove_last_comma(unique(access_reuse_cat), conj = "or")
+  access_reuse_chunk_temp <-
+    stringr::str_replace(access_reuse_chunk_temp, "%1%", access_reuse_cat)
 
   return(access_reuse_chunk_temp)
 }
 
+
+#'
+#' #' Title
+#' #'
+#' #' @param input
+#' #'
+#' #' @return
+#' #' @export
+#' #'
+#' #' @examples
+#' access_reuse_chunk <- function(input) {
+#'   if (determine_cores(input)$antibody_tech_flag) {
+#'     #####
+#'     access_reuse_chunk_temp <-
+#'       yaml.load_file("template/antibody_tech.yml")$access_reuse
+#'   } else {
+#'     access_reuse_chunk_temp <- c("")
+#'   }
+#'   if (determine_cores(input)$cell_img_flag) {
+#'     #####
+#'     access_reuse_chunk_temp <-
+#'       c(
+#'         access_reuse_chunk_temp,
+#'         yaml.load_file("template/cell_img.yml")$access_reuse
+#'       )
+#'   } else {
+#'     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+#'   }
+#'   if (determine_cores(input)$em_tem_flag) {
+#'     #####
+#'     access_reuse_chunk_temp <-
+#'       c(
+#'         access_reuse_chunk_temp,
+#'         yaml.load_file("template/em_tem.yml")$access_reuse
+#'       )
+#'   } else {
+#'     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+#'   }
+#'   if (determine_cores(input)$em_sem_flag) {
+#'     #####
+#'     access_reuse_chunk_temp <-
+#'       c(
+#'         access_reuse_chunk_temp,
+#'         yaml.load_file("template/em_sem.yml")$access_reuse
+#'       )
+#'   } else {
+#'     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+#'   }
+#'   if (determine_cores(input)$em_cryo_flag) {
+#'     #####
+#'     access_reuse_chunk_temp <-
+#'       c(
+#'         access_reuse_chunk_temp,
+#'         yaml.load_file("template/em_cryo.yml")$access_reuse
+#'       )
+#'   } else {
+#'     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+#'   }
+#'   if (determine_cores(input)$eh_aperio_flag) {
+#'     #####
+#'     access_reuse_chunk_temp <-
+#'       c(
+#'         access_reuse_chunk_temp,
+#'         yaml.load_file("template/eh_aperio.yml")$access_reuse
+#'       )
+#'   } else {
+#'     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+#'   }
+#'   if (determine_cores(input)$eh_polaris_flag) {
+#'     #####
+#'     access_reuse_chunk_temp <-
+#'       c(
+#'         access_reuse_chunk_temp,
+#'         yaml.load_file("template/eh_polaris.yml")$access_reuse
+#'       )
+#'   } else {
+#'     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+#'   }
+#'   if (determine_cores(input)$eh_vectra_flag) {
+#'     #####
+#'     access_reuse_chunk_temp <-
+#'       c(
+#'         access_reuse_chunk_temp,
+#'         yaml.load_file("template/eh_vectra.yml")$access_reuse
+#'       )
+#'   } else {
+#'     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+#'   }
+#'   if (determine_cores(input)$flow_cytometry_flag) {
+#'     #####
+#'     access_reuse_chunk_temp <- c(
+#'       access_reuse_chunk_temp,
+#'       yaml.load_file("template/flow_cytometry.yml")$access_reuse
+#'     )
+#'   } else {
+#'     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+#'   }
+#'   if (determine_cores(input)$genomics_flag) {
+#'     #####
+#'     access_reuse_chunk_temp <- c(
+#'       access_reuse_chunk_temp,
+#'       yaml.load_file("template/genomics.yml")$access_reuse
+#'     )
+#'   } else {
+#'     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+#'   }
+#'   if (determine_cores(input)$immune_flag) {
+#'     #####
+#'     access_reuse_chunk_temp <-
+#'       c(
+#'         access_reuse_chunk_temp,
+#'         yaml.load_file("template/immune.yml")$access_reuse
+#'       )
+#'   } else {
+#'     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+#'   }
+#'   if (determine_cores(input)$large_animal_flag) {
+#'     #####
+#'     access_reuse_chunk_temp <-
+#'       c(
+#'         access_reuse_chunk_temp,
+#'         yaml.load_file("template/large_animal.yml")$access_reuse
+#'       )
+#'   } else {
+#'     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+#'   }
+#'   if (determine_cores(input)$pi_ivis_flag) {
+#'     #####
+#'     access_reuse_chunk_temp <-
+#'       c( access_reuse_chunk_temp,
+#'         if (yaml.load_file("template/pi_ivis.yml")$access_reuse %in% access_reuse_chunk_temp) {
+#'           ""
+#'         } else {
+#'           yaml.load_file("template/pi_ivis.yml")$access_reuse
+#'         })
+#'   } else {
+#'     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+#'   }
+#'   if (determine_cores(input)$pi_microct_flag) {
+#'     #####
+#'     access_reuse_chunk_temp <-
+#'       c( access_reuse_chunk_temp,
+#'          if (yaml.load_file("template/pi_microct.yml")$access_reuse %in% access_reuse_chunk_temp) {
+#'            ""
+#'          } else {
+#'            yaml.load_file("template/pi_microct.yml")$access_reuse
+#'          })
+#'   } else {
+#'     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+#'   }
+#'   if (determine_cores(input)$pi_mri_flag) {
+#'     #####
+#'     access_reuse_chunk_temp <-
+#'       c( access_reuse_chunk_temp,
+#'          if (yaml.load_file("template/pi_mri.yml")$access_reuse %in% access_reuse_chunk_temp) {
+#'            ""
+#'          } else {
+#'            yaml.load_file("template/pi_mri.yml")$access_reuse
+#'          })
+#'   } else {
+#'     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+#'   }
+#'   if (determine_cores(input)$preclinical_model_flag) {
+#'     #####
+#'     access_reuse_chunk_temp <-
+#'       c( access_reuse_chunk_temp,
+#'          if (yaml.load_file("template/preclinical_model.yml")$access_reuse %in% access_reuse_chunk_temp) {
+#'            ""
+#'          } else {
+#'            yaml.load_file("template/preclinical_model.yml")$access_reuse
+#'          })
+#'   } else {
+#'     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+#'   }
+#'   if (determine_cores(input)$proteomics_flag) {
+#'     #####
+#'     access_reuse_chunk_temp <-
+#'       c(
+#'         access_reuse_chunk_temp,
+#'         yaml.load_file("template/proteomics.yml")$access_reuse
+#'       )
+#'   } else {
+#'     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+#'   }
+#'   if (determine_cores(input)$small_animal_flag) {
+#'     #####
+#'     access_reuse_chunk_temp <-
+#'       c( access_reuse_chunk_temp,
+#'          if (yaml.load_file("template/small_animal.yml")$access_reuse %in% access_reuse_chunk_temp) {
+#'            ""
+#'          } else {
+#'            yaml.load_file("template/small_animal.yml")$access_reuse
+#'          })
+#'   } else {
+#'     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+#'   }
+#'   if (determine_cores(input)$therapeutic_flag) {
+#'     #####
+#'     access_reuse_chunk_temp <-
+#'       c( access_reuse_chunk_temp,
+#'          if (yaml.load_file("template/therapeutic.yml")$access_reuse %in% access_reuse_chunk_temp) {
+#'            ""
+#'          } else {
+#'            yaml.load_file("template/therapeutic.yml")$access_reuse
+#'          })
+#'   } else {
+#'     access_reuse_chunk_temp <- c(access_reuse_chunk_temp, "")
+#'   }
+#'
+#'   return(access_reuse_chunk_temp)
+#' }
+#'
 
 #' Title
 #'
