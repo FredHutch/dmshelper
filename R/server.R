@@ -95,7 +95,7 @@ shiny_server <- function(input, output, session) {
     # Render preview
     rmarkdown::render(
       "outtext.md",
-      output_format = rmarkdown::html_document(css = system.file("extra.css", package = "dmshelper")),
+      output_format = rmarkdown::html_document(),
       output_file = paste0(getwd(), "/outtext.html"),
       quiet = TRUE
     )
