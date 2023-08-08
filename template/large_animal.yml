@@ -19,7 +19,7 @@ standards: "The large animal data produced in this project will be collected usi
 repository: "Primary repositories for medical records will be web-based software and internal server backups for raw data that require access controls."
 
 # How scientific data will be findable and identifiable
-findable: "Summaries of relevant large animal data will be published. The medical record datasets submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project."
+findable: ["Summaries of relevant large animal data will be published and referred to where necessary in the Data Availability sections of all manuscripts."]
 
 # When and how long the scientific data will be made available
 duration: "Data will be deposited at the time of publication and preserved for the duration of the grant funding."

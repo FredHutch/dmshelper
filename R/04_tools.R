@@ -25,7 +25,6 @@ tools_chunk <- function(input) {
           flag,
           large_animal_flag = "large animal facility data",
           small_animal_flag = "small animal facility data",
-          therapeutic_flag = "therapeutic products data",
           antibody_tech_flag = "antibody technology data"
         ))
       }

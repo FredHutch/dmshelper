@@ -19,7 +19,7 @@ standards: "The small animal data produced in this project will be collected usi
 repository: "Primary repositories for breeding records and hematology results will be internal shared databases."
 
 # How scientific data will be findable and identifiable
-findable: "Summaries of relevant data will be published. The breeding and hematology datasets submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project. Both The Cancer Imaging Archive (TCIA) and the Imaging Data Commons (IDC) provide stable IDs to dataset collections representing the complete data collected for a particular publication. Primary references would be to a TCIA/IDC collection accession. The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project."
+findable: ["Summaries of relevant small animal breeding and hematology datasets submitted for this project will be published and listed in the Data Availability sections of all manuscripts published."]
 
 # When and how long the scientific data will be made available
 duration: "Data will be deposited at the time of publication and preserved for the duration of the grant funding."

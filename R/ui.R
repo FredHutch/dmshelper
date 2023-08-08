@@ -63,15 +63,12 @@ shiny_ui <- function() {
             "Experimental Histopathology - Vectra images" = "eh_vectra",
             "Flow Cytometry" = "flow_cytometry",
             "Genomics & Bioinformatics" = "genomics",
-            "Immune Monitoring" = "immune",
             "Large Animal Facilities" = "large_animal",
             "Preclinical Imaging (IVIS)" = "pi_ivis",
             "Preclinical Imaging (MicroCT)" = "pi_microct",
             "Preclinical Imaging (MRI)" = "pi_mri",
-            "Preclinical Modeling" = "preclinical_model",
             "Proteomics" = "proteomics",
-            "Small Animal Facilities" = "small_animal",
-            "Therapeutic Products" = "therapeutic"
+            "Small Animal Facilities" = "small_animal"
           ),
           multiple = TRUE
         ),
@@ -80,6 +77,12 @@ shiny_ui <- function() {
           label = HTML(
             'Use <a href="https://anvilproject.org/">AnVIL</a>! (<a href="https://terra.bio/nih-dms-individual-researchers-faqs/">learn more</a>)'
           ),
+          value = FALSE,
+          width = NULL
+        ),
+        checkboxInput(
+          "human_subjects",
+          label = "Human subjects data?",
           value = FALSE,
           width = NULL
         ),
@@ -94,12 +97,6 @@ shiny_ui <- function() {
           collapsed = TRUE,
           width = NULL,
 
-          checkboxInput(
-            "human_subjects",
-            label = "Human subjects data?",
-            value = FALSE,
-            width = NULL
-          ),
           selectInput(
             "raw_file_description",
             label = "Raw data file type",
@@ -162,11 +159,6 @@ shiny_ui <- function() {
             value = NA
           ),
           numericInput(
-            "num_immune_files",
-            label = "Immune monitoring sample count",
-            value = NA
-          ),
-          numericInput(
             "num_pi_ivis_files",
             label = "Preclinical imaging (IVIS) sample count",
             value = NA
@@ -179,11 +171,6 @@ shiny_ui <- function() {
           numericInput(
             "num_pi_mri_files",
             label = "Preclinical imaging (MRI) sample count",
-            value = NA
-          ),
-          numericInput(
-            "num_preclinical_model_files",
-            label = "Preclinical modeling sample count",
             value = NA
           ),
           numericInput(

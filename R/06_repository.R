@@ -7,190 +7,41 @@
 #'
 #' @examples
 repository_chunk <- function(input) {
-  if (determine_cores(input)$antibody_tech_flag) {
-    #####
-    repository_chunk_temp <-
-      c(yaml.load_file("template/antibody_tech.yml")$repository)
-  } else {
-    repository_chunk_temp <- c("")
+  # Pull out all templates and make a named list with file path
+  all_templates <- yaml.load_file("template/all.yml")$all
+  flag_yaml_paths  <- list()
+  for (template in all_templates) {
+    flag_yaml_paths[[paste0(template, "_flag")]] = paste0("template/", template, ".yml")
   }
-  if (determine_cores(input)$cell_img_flag) {
-    #####
-    repository_chunk_temp <-
-      c(repository_chunk_temp,
-        yaml.load_file("template/cell_img.yml")$repository)
-  } else {
-    repository_chunk_temp <- c(repository_chunk_temp, "")
-  }
-  if (determine_cores(input)$em_tem_flag) {
-    #####
-    repository_chunk_temp <-
-      c(repository_chunk_temp,
-        yaml.load_file("template/em_tem.yml")$repository)
-  } else {
-    repository_chunk_temp <- c(repository_chunk_temp, "")
-  }
-  if (determine_cores(input)$em_sem_flag) {
-    #####
-    repository_chunk_temp <-
-      c(repository_chunk_temp,
-        yaml.load_file("template/em_sem.yml")$repository)
-  } else {
-    repository_chunk_temp <- c(repository_chunk_temp, "")
-  }
-  if (determine_cores(input)$em_cryo_flag) {
-    #####
-    repository_chunk_temp <-
-      c(repository_chunk_temp,
-        yaml.load_file("template/em_cryo.yml")$repository)
-  } else {
-    repository_chunk_temp <- c(repository_chunk_temp, "")
-  }
-  if (determine_cores(input)$eh_aperio_flag) {
-    #####
-    repository_chunk_temp <-
-      c(repository_chunk_temp,
-        yaml.load_file("template/eh_aperio.yml")$repository)
-  } else {
-    repository_chunk_temp <- c(repository_chunk_temp, "")
-  }
-  if (determine_cores(input)$eh_polaris_flag) {
-    #####
-    repository_chunk_temp <-
-      c(repository_chunk_temp,
-        yaml.load_file("template/eh_polaris.yml")$repository)
-  } else {
-    repository_chunk_temp <- c(repository_chunk_temp, "")
-  }
-  if (determine_cores(input)$eh_vectra_flag) {
-    #####
-    repository_chunk_temp <-
-      c(repository_chunk_temp,
-        yaml.load_file("template/eh_vectra.yml")$repository)
-  } else {
-    repository_chunk_temp <- c(repository_chunk_temp, "")
-  }
-  if (determine_cores(input)$flow_cytometry_flag) {
-    #####
-    repository_chunk_temp <-
-      c(
-        repository_chunk_temp,
-        yaml.load_file("template/flow_cytometry.yml")$repository
-      )
-  } else {
-    repository_chunk_temp <- c(repository_chunk_temp, "")
-  }
-  if (determine_cores(input)$genomics_flag) {
-    #####
-    if (input$human_subjects) {
-      repository_chunk_temp <-
-        c(
-          repository_chunk_temp,
-          yaml.load_file("template/genomics.yml")$repository_hs
-        )
-    } else {
-      repository_chunk_temp <-
-        c(
-          repository_chunk_temp,
-          yaml.load_file("template/genomics.yml")$repository_non_hs
-        )
+
+  repository_chunk_temp <- character(0)
+
+  # Go through flags, which reflect cores
+  for (flag in names(flag_yaml_paths)) {
+    # Determine if the specific core has been selected
+    if (determine_cores(input)[[flag]]) {
+      # Check for human subjects repository, must also have the repository_hs yml entry
+      if (input$human_subjects &
+          !(is.null(yaml.load_file(flag_yaml_paths[[flag]])$repository_hs))) {
+        repos_ <- yaml.load_file(flag_yaml_paths[[flag]])$repository_hs
+      } else {
+        repos_ <- yaml.load_file(flag_yaml_paths[[flag]])$repository
+      }
+      repository_chunk_temp <- c(repository_chunk_temp, repos_)
     }
-  } else {
-    repository_chunk_temp <- c(repository_chunk_temp, "")
   }
-  if (determine_cores(input)$immune_flag) {
-    #####
-    repository_chunk_temp <-
-      c(repository_chunk_temp,
-        yaml.load_file("template/immune.yml")$repository)
-  } else {
-    repository_chunk_temp <- c(repository_chunk_temp, "")
-  }
-  if (determine_cores(input)$large_animal_flag) {
-    #####
-    repository_chunk_temp <-
-      c(
-        repository_chunk_temp,
-        yaml.load_file("template/large_animal.yml")$repository
-      )
-  } else {
-    repository_chunk_temp <- c(repository_chunk_temp, "")
-  }
-  if (determine_cores(input)$pi_ivis_flag) {
-    #####
-    repository_chunk_temp <-
-      c(repository_chunk_temp,
-        yaml.load_file("template/pi_ivis.yml")$repository)
-  } else {
-    repository_chunk_temp <- c(repository_chunk_temp, "")
-  }
-  if (determine_cores(input)$pi_microct_flag) {
-    #####
-    repository_chunk_temp <-
-      c(repository_chunk_temp,
-        yaml.load_file("template/pi_microct.yml")$repository)
-  } else {
-    repository_chunk_temp <- c(repository_chunk_temp, "")
-  }
-  if (determine_cores(input)$pi_mri_flag) {
-    #####
-    repository_chunk_temp <-
-      c(repository_chunk_temp,
-        yaml.load_file("template/pi_mri.yml")$repository)
-  } else {
-    repository_chunk_temp <- c(repository_chunk_temp, "")
-  }
-  if (determine_cores(input)$preclinical_model_flag) {
-    #####
-    repository_chunk_temp <-
-      c(
-        repository_chunk_temp,
-        yaml.load_file("template/preclinical_model.yml")$repository
-      )
-  } else {
-    repository_chunk_temp <- c(repository_chunk_temp, "")
-  }
-  if (determine_cores(input)$proteomics_flag) {
-    #####
-    repository_chunk_temp <-
-      c(repository_chunk_temp,
-        yaml.load_file("template/proteomics.yml")$repository)
-  } else {
-    repository_chunk_temp <- c(repository_chunk_temp, "")
-  }
-  if (determine_cores(input)$small_animal_flag) {
-    #####
-    repository_chunk_temp <-
-      c(
-        repository_chunk_temp,
-        yaml.load_file("template/small_animal.yml")$repository
-      )
-  } else {
-    repository_chunk_temp <- c(repository_chunk_temp, "")
-  }
-  if (determine_cores(input)$therapeutic_flag) {
-    #####
-    repository_chunk_temp <-
-      c(
-        repository_chunk_temp,
-        yaml.load_file("template/therapeutic.yml")$repository
-      )
-  } else {
-    repository_chunk_temp <- c(repository_chunk_temp, "")
-  }
+
+  # Overwrite previous if AnVIL selected
   if (input$anvil) {
-    #####
     repository_chunk_temp <-
       yaml.load_file("template/anvil.yml")$repository_if_anvil
   } else {
     repository_chunk_temp <- c(repository_chunk_temp, "")
   }
 
-  ##### Remove any duplicates
   repository_chunk_temp <- unique(repository_chunk_temp)
 
   return(repository_chunk_temp)
-
 }
 
 
@@ -203,175 +54,39 @@ repository_chunk <- function(input) {
 #'
 #' @examples
 findable_chunk <- function(input) {
-  if (determine_cores(input)$antibody_tech_flag) {
-    #####
-    findable_chunk_temp <-
-      c(yaml.load_file("template/antibody_tech.yml")$findable)
-  } else {
-    findable_chunk_temp <- c("")
+  # Pull out all templates and make a named list with file path
+  all_templates <- yaml.load_file("template/all.yml")$all
+  flag_yaml_paths  <- list()
+  for (template in all_templates) {
+    flag_yaml_paths[[paste0(template, "_flag")]] = paste0("template/", template, ".yml")
   }
-  if (determine_cores(input)$cell_img_flag) {
-    #####
-    findable_chunk_temp <-
-      c(findable_chunk_temp,
-        yaml.load_file("template/cell_img.yml")$findable)
-  } else {
-    findable_chunk_temp <- c(findable_chunk_temp, "")
-  }
-  if (determine_cores(input)$em_tem_flag) {
-    #####
-    findable_chunk_temp <-
-      c(findable_chunk_temp,
-        yaml.load_file("template/em_tem.yml")$findable)
-  } else {
-    findable_chunk_temp <- c(findable_chunk_temp, "")
-  }
-  if (determine_cores(input)$em_sem_flag) {
-    #####
-    findable_chunk_temp <-
-      c(findable_chunk_temp,
-        yaml.load_file("template/em_sem.yml")$findable)
-  } else {
-    findable_chunk_temp <- c(findable_chunk_temp, "")
-  }
-  if (determine_cores(input)$em_cryo_flag) {
-    #####
-    findable_chunk_temp <-
-      c(findable_chunk_temp,
-        yaml.load_file("template/em_cryo.yml")$findable)
-  } else {
-    findable_chunk_temp <- c(findable_chunk_temp, "")
-  }
-  if (determine_cores(input)$eh_aperio_flag) {
-    #####
-    findable_chunk_temp <-
-      c(findable_chunk_temp,
-        yaml.load_file("template/eh_aperio.yml")$findable)
-  } else {
-    findable_chunk_temp <- c(findable_chunk_temp, "")
-  }
-  if (determine_cores(input)$eh_polaris_flag) {
-    #####
-    findable_chunk_temp <-
-      c(findable_chunk_temp,
-        yaml.load_file("template/eh_polaris.yml")$findable)
-  } else {
-    findable_chunk_temp <- c(findable_chunk_temp, "")
-  }
-  if (determine_cores(input)$eh_vectra_flag) {
-    #####
-    findable_chunk_temp <-
-      c(findable_chunk_temp,
-        yaml.load_file("template/eh_vectra.yml")$findable)
-  } else {
-    findable_chunk_temp <- c(findable_chunk_temp, "")
-  }
-  if (determine_cores(input)$flow_cytometry_flag) {
-    #####
-    findable_chunk_temp <-
-      c(findable_chunk_temp,
-        yaml.load_file("template/flow_cytometry.yml")$findable)
-  } else {
-    findable_chunk_temp <- c(findable_chunk_temp, "")
-  }
-  if (determine_cores(input)$genomics_flag) {
-    #####
-    if (input$human_subjects) {
-      findable_chunk_temp <-
-        c(findable_chunk_temp,
-          yaml.load_file("template/genomics.yml")$findable)
-    } else {
-      findable_chunk_temp <-
-        c(findable_chunk_temp,
-          yaml.load_file("template/genomics.yml")$findable)
+
+  findable_chunk_temp <- character(0)
+
+  # Go through flags, which reflect cores
+  for (flag in names(flag_yaml_paths)) {
+    # Determine if the specific core has been selected
+    if (determine_cores(input)[[flag]]) {
+      # Load the yaml and append it
+      findable_ <- yaml.load_file(flag_yaml_paths[[flag]])$findable
+      findable_chunk_temp <- c(findable_chunk_temp, findable_)
     }
-  } else {
-    findable_chunk_temp <- c(findable_chunk_temp, "")
   }
-  if (determine_cores(input)$immune_flag) {
-    #####
-    findable_chunk_temp <-
-      c(findable_chunk_temp,
-        yaml.load_file("template/immune.yml")$findable)
-  } else {
-    findable_chunk_temp <- c(findable_chunk_temp, "")
-  }
-  if (determine_cores(input)$large_animal_flag) {
-    #####
-    findable_chunk_temp <-
-      c(findable_chunk_temp,
-        yaml.load_file("template/large_animal.yml")$findable)
-  } else {
-    findable_chunk_temp <- c(findable_chunk_temp, "")
-  }
-  if (determine_cores(input)$pi_ivis_flag) {
-    #####
-    findable_chunk_temp <-
-      c(findable_chunk_temp,
-        yaml.load_file("template/pi_ivis.yml")$findable)
-  } else {
-    findable_chunk_temp <- c(findable_chunk_temp, "")
-  }
-  if (determine_cores(input)$pi_microct_flag) {
-    #####
-    findable_chunk_temp <-
-      c(findable_chunk_temp,
-        yaml.load_file("template/pi_microct.yml")$findable)
-  } else {
-    findable_chunk_temp <- c(findable_chunk_temp, "")
-  }
-  if (determine_cores(input)$pi_mri_flag) {
-    #####
-    findable_chunk_temp <-
-      c(findable_chunk_temp,
-        yaml.load_file("template/pi_mri.yml")$findable)
-  } else {
-    findable_chunk_temp <- c(findable_chunk_temp, "")
-  }
-  if (determine_cores(input)$preclinical_model_flag) {
-    #####
-    findable_chunk_temp <-
-      c(
-        findable_chunk_temp,
-        yaml.load_file("template/preclinical_model.yml")$findable
-      )
-  } else {
-    findable_chunk_temp <- c(findable_chunk_temp, "")
-  }
-  if (determine_cores(input)$proteomics_flag) {
-    #####
-    findable_chunk_temp <-
-      c(findable_chunk_temp,
-        yaml.load_file("template/proteomics.yml")$findable)
-  } else {
-    findable_chunk_temp <- c(findable_chunk_temp, "")
-  }
-  if (determine_cores(input)$small_animal_flag) {
-    #####
-    findable_chunk_temp <-
-      c(findable_chunk_temp,
-        yaml.load_file("template/small_animal.yml")$findable)
-  } else {
-    findable_chunk_temp <- c(findable_chunk_temp, "")
-  }
-  if (determine_cores(input)$therapeutic_flag) {
-    #####
-    findable_chunk_temp <-
-      c(findable_chunk_temp,
-        yaml.load_file("template/therapeutic.yml")$findable)
-  } else {
-    findable_chunk_temp <- c(findable_chunk_temp, "")
-  }
+
+  # Overwrite previous if AnVIL selected
   if (input$anvil) {
-    #####
     findable_chunk_temp <-
       yaml.load_file("template/anvil.yml")$findable_if_anvil
   } else {
     findable_chunk_temp <- c(findable_chunk_temp, "")
   }
 
-  ##### Remove any duplicates
+  # Remove any duplicated text
   findable_chunk_temp <- unique(findable_chunk_temp)
+
+  # Place the "Identifiers.." sentence last in the section.
+  findable_chunk_temp <-
+    findable_chunk_temp[order(stringr::str_detect(findable_chunk_temp, "Identifiers"))]
 
   return(findable_chunk_temp)
 }
