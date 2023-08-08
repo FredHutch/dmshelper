@@ -173,11 +173,11 @@ shiny_ui <- function() {
             label = "Preclinical imaging (MRI) sample count",
             value = NA
           ),
-          numericInput(
-            "num_not_used",
-            label = "Test sample count",
-            value = NA
-          ),
+          # numericInput(
+          #   "num_not_used",
+          #   label = "Test sample count",
+          #   value = NA
+          # ),
           # selectInput(
           #   "num_genomics_files",
           #   label = "Genomic sample count",
