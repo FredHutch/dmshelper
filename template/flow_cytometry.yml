@@ -20,7 +20,7 @@ standards: "The flow cytometry data produced in this project will be collected u
 repository: "The primary repository for FCS data will be the [FlowRepository](https://flowrepository.org/)."
 
 # How scientific data will be findable and identifiable
-findable: "The FlowRepository provides stable IDs to data collections associated with individual experiments or publications. Primary references would be to a Repository ID. The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project."
+findable: ["The FlowRepository provides stable IDs to data collections associated with individual experiments or publications. Primary references would be to a Repository ID.", "Identifiers will also be listed in the Data Availability sections of all manuscripts published as part of this project."]
 
 # When and how long the scientific data will be made available
 duration: "Data will be deposited at the time of publication and preserved for the duration of the grant funding."

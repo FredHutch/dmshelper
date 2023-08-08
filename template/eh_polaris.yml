@@ -20,7 +20,7 @@ standards: "We will follow guidelines for [The Cancer Imaging Archive (TCIA)](ht
 repository: "Primary repositories for experimental histopathology files will be [The Cancer Imaging Archive (TCIA)](https://www.cancerimagingarchive.net/)."
 
 # How scientific data will be findable and identifiable
-findable: ["Each published TCIA Collection has an associated data citation to aid in findability.", "The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project."]
+findable: ["Each published TCIA Collection has an associated data citation to aid in findability.", "Identifiers will also be listed in the Data Availability sections of all manuscripts published as part of this project."]
 
 # When and how long the scientific data will be made available
 duration: "Data will be deposited at the time of publication and preserved for the duration of the grant funding."

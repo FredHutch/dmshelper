@@ -19,7 +19,7 @@ standards: "Microscopy data will follow [Electron Microscopy Public Image Archiv
 repository: "Primary repositories for SEM data will be the [Electron Microscopy Public Image Archive (EMPIAR)](https://www.ebi.ac.uk/empiar/)."
 
 # How scientific data will be findable and identifiable
-findable: ["A public EMPIAR accession code is assigned immediately after the user submits the deposition. The accession code is sent in an automatic email to the depositor and the owner(s).", "The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project."]
+findable: ["For microscopy data, a public EMPIAR accession code is assigned immediately after the user submits the deposition. The accession code is sent in an automatic email to the depositor and the owner(s).", "Identifiers will also be listed in the Data Availability sections of all manuscripts published as part of this project."]
 
 # When and how long the scientific data will be made available
 duration: "Data will be deposited at the time of publication and preserved for the duration of the grant funding."

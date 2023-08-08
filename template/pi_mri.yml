@@ -19,7 +19,7 @@ standards: "The preclinical imaging data produced in this project will be collec
 repository: "Primary repositories for preclinical imaging and associated metadata will be [The Cancer Imaging Archive (TCIA)](https://www.cancerimagingarchive.net/), as well as the [Imaging Data Commons (IDC)](https://datacommons.cancer.gov/repository/imaging-data-commons), both maintained by the NIH/NCI."
 
 # How scientific data will be findable and identifiable
-findable: "Both TCIA and the IDC provide stable IDs to dataset collections representing the complete data collected for a particular publication. Primary references would be to a TCIA/IDC collection accession. The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project."
+findable: ["Both TCIA and the IDC provide stable IDs to imaging dataset collections representing the complete data collected for a particular publication. Primary references would be to a TCIA/IDC collection accession.", "Identifiers will also be listed in the Data Availability sections of all manuscripts published as part of this project."]
 
 # When and how long the scientific data will be made available
 duration: "Data will be deposited at the time of publication and preserved for the duration of the grant funding."

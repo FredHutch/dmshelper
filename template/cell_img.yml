@@ -18,7 +18,7 @@ standards: "[Image Data Resource (IDR)](http://idr.openmicroscopy.org/about/subm
 repository: "Primary repositories for cellular imaging data will be the [Image Data Resource (IDR)](https://idr.openmicroscopy.org/) or [Cell Image Library](http://www.cellimagelibrary.org/)."
 
 # How scientific data will be findable and identifiable
-findable: ["The Image Data Resource (IDR) provides stable IDs to individual studies. Primary references would be to a IDR study accession.", "The dataset records submitted for this project will be listed in the Data Availability sections of all manuscripts published as part of this project."]
+findable: ["The Image Data Resource (IDR) provides stable IDs to individual imaging studies. Primary references would be to a IDR study accession.", "Identifiers will also be listed in the Data Availability sections of all manuscripts published as part of this project."]
 
 # When and how long the scientific data will be made available
 duration: "Data will be deposited at the time of publication and preserved for the duration of the grant funding."
