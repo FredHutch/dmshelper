@@ -216,7 +216,7 @@ shiny_ui <- function() {
         ),
         actionButton(inputId='ab1', label="NIH Data Sharing Course", icon = icon("graduation-cap"), onclick ="window.open('https://hutchdatascience.org/NIH_Data_Sharing/', '_blank')"),
         HTML('<br><br>'),
-        actionButton(inputId='ab1', label="Give Us Feedback", icon = icon("comments"), onclick ="window.open('https://forms.gle/g28hBcNXJBn6tyzz8/', '_blank')"),
+        actionButton(inputId='ab1', label="Give Us Feedback", icon = icon("comments"), onclick ="window.open('https://docs.google.com/forms/d/e/1FAIpQLScrDVb_utm55pmb_SHx-RgELTEbCCWdLea0T3IzS0Oj00GE4w/viewform?usp=pp_url&entry.1565230805=DMS+Helper+App', '_blank')"),
         HTML('<br>'),
         # Hutch logo
         HTML(
