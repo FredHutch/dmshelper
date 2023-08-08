@@ -141,7 +141,6 @@ control_chunk <- function(input) {
 }
 
 
-
 #' Title
 #'
 #' @param input
@@ -151,344 +150,31 @@ control_chunk <- function(input) {
 #'
 #' @examples
 privacy_hs_chunk <- function(input) {
-  if (determine_cores(input)$antibody_tech_flag) {
-    #####
-    if (input$human_subjects) {
-      privacy_hs_chunk_temp <-
-        yaml.load_file("template/antibody_tech.yml")$privacy_hs
-    } else {
-      privacy_hs_chunk_temp <-
-        "Data will not be collected from human research participants."
+  # Pull out all templates and make a named list with file path
+  all_templates <- yaml.load_file("template/all.yml")$all
+  flag_yaml_paths  <- list()
+  for (template in all_templates) {
+    flag_yaml_paths[[paste0(template, "_flag")]] = paste0("template/", template, ".yml")
+  }
+
+  privacy_hs_chunk_temp <- character(0)
+
+  # Go through flags, which reflect cores
+  for (flag in names(flag_yaml_paths)) {
+    # Determine if the specific core has been selected
+    if (determine_cores(input)[[flag]]) {
+      # Check for human subjects privacy_hs, must also have the privacy_hs_hs yml entry
+      if (input$human_subjects &
+          !(is.null(yaml.load_file(flag_yaml_paths[[flag]])$privacy_hs))) {
+        hs_ <- yaml.load_file(flag_yaml_paths[[flag]])$privacy_hs
+      } else {
+        hs_ <- "Data will not be collected from human research participants."
+      }
+      privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, hs_)
     }
-  } else {
-    privacy_hs_chunk_temp <- c("")
   }
-  if (determine_cores(input)$cell_img_flag) {
-    #####
-    privacy_hs_chunk_temp <-
-      c(privacy_hs_chunk_temp,
-        if (input$human_subjects) {
-          privacy_hs_chunk_temp <-
-            if (yaml.load_file("template/cell_img.yml")$privacy_hs %in% privacy_hs_chunk_temp) {
-              ""
-            } else {
-              yaml.load_file("template/cell_img.yml")$privacy_hs
-            }
-        } else {
-          privacy_hs_chunk_temp <-
-            if ("Data will not be collected from human research participants." %in%  privacy_hs_chunk_temp) {
-              ""
-            } else {
-              "Data will not be collected from human research participants."
-            }
-        })
-  } else {
-    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
-  }
-  if (determine_cores(input)$em_tem_flag) {
-    #####
-    if (input$human_subjects) {
-      privacy_hs_chunk_temp <-
-        yaml.load_file("template/em_tem.yml")$privacy_hs
-    } else {
-      privacy_hs_chunk_temp <-
-        "Data will not be collected from human research participants."
-    }
-  } else {
-    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
-  }
-  if (determine_cores(input)$em_sem_flag) {
-    #####
-    if (input$human_subjects) {
-      privacy_hs_chunk_temp <-
-        yaml.load_file("template/em_sem.yml")$privacy_hs
-    } else {
-      privacy_hs_chunk_temp <-
-        "Data will not be collected from human research participants."
-    }
-  } else {
-    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
-  }
-  if (determine_cores(input)$em_cryo_flag) {
-    #####
-    if (input$human_subjects) {
-      privacy_hs_chunk_temp <-
-        yaml.load_file("template/em_cryo.yml")$privacy_hs
-    } else {
-      privacy_hs_chunk_temp <-
-        "Data will not be collected from human research participants."
-    }
-  } else {
-    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
-  }
-  if (determine_cores(input)$eh_aperio_flag) {
-    #####
-    if (input$human_subjects) {
-      privacy_hs_chunk_temp <-
-        yaml.load_file("template/eh_aperio.yml")$privacy_hs
-    } else {
-      privacy_hs_chunk_temp <-
-        "Data will not be collected from human research participants."
-    }
-  } else {
-    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
-  }
-  if (determine_cores(input)$eh_polaris_flag) {
-    #####
-    if (input$human_subjects) {
-      privacy_hs_chunk_temp <-
-        yaml.load_file("template/eh_polaris.yml")$privacy_hs
-    } else {
-      privacy_hs_chunk_temp <-
-        "Data will not be collected from human research participants."
-    }
-  } else {
-    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
-  }
-  if (determine_cores(input)$eh_vectra_flag) {
-    #####
-    if (input$human_subjects) {
-      privacy_hs_chunk_temp <-
-        yaml.load_file("template/eh_vectra.yml")$privacy_hs
-    } else {
-      privacy_hs_chunk_temp <-
-        "Data will not be collected from human research participants."
-    }
-  } else {
-    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
-  }
-  if (determine_cores(input)$flow_cytometry_flag) {
-    #####
-    if (input$human_subjects) {
-      privacy_hs_chunk_temp <-
-        yaml.load_file("template/flow_cytometry.yml")$privacy_hs
-    } else {
-      privacy_hs_chunk_temp <-
-        "Data will not be collected from human research participants."
-    }
-  } else {
-    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
-  }
-  if (determine_cores(input)$genomics_flag) {
-    #####
-    privacy_hs_chunk_temp <-
-      c(privacy_hs_chunk_temp,
-        if (input$human_subjects) {
-          privacy_hs_chunk_temp <-
-            if (yaml.load_file("template/genomics.yml")$privacy_hs %in% privacy_hs_chunk_temp) {
-              ""
-            } else {
-              yaml.load_file("template/genomics.yml")$privacy_hs
-            }
-        } else {
-          privacy_hs_chunk_temp <-
-            if ("Data will not be collected from human research participants." %in%  privacy_hs_chunk_temp) {
-              ""
-            } else {
-              "Data will not be collected from human research participants."
-            }
-        })
-  } else {
-    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
-  }
-  if (determine_cores(input)$immune_flag) {
-    #####
-    privacy_hs_chunk_temp <-
-      c(privacy_hs_chunk_temp,
-        if (input$human_subjects) {
-          privacy_hs_chunk_temp <-
-            if (yaml.load_file("template/immune.yml")$privacy_hs %in% privacy_hs_chunk_temp) {
-              ""
-            } else {
-              yaml.load_file("template/immune.yml")$privacy_hs
-            }
-        } else {
-          privacy_hs_chunk_temp <-
-            if ("Data will not be collected from human research participants." %in%  privacy_hs_chunk_temp) {
-              ""
-            } else {
-              "Data will not be collected from human research participants."
-            }
-        })
-  } else {
-    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
-  }
-  if (determine_cores(input)$large_animal_flag) {
-    #####
-    privacy_hs_chunk_temp <-
-      c(privacy_hs_chunk_temp,
-        if (input$human_subjects) {
-          privacy_hs_chunk_temp <-
-            if (yaml.load_file("template/large_animal.yml")$privacy_hs %in% privacy_hs_chunk_temp) {
-              ""
-            } else {
-              yaml.load_file("template/large_animal.yml")$privacy_hs
-            }
-        } else {
-          privacy_hs_chunk_temp <-
-            if ("Data will not be collected from human research participants." %in%  privacy_hs_chunk_temp) {
-              ""
-            } else {
-              "Data will not be collected from human research participants."
-            }
-        })
-  } else {
-    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
-  }
-  if (determine_cores(input)$pi_ivis_flag) {
-    #####
-    privacy_hs_chunk_temp <-
-      c(privacy_hs_chunk_temp,
-        if (input$human_subjects) {
-          privacy_hs_chunk_temp <-
-            if (yaml.load_file("template/pi_ivis.yml")$privacy_hs %in% privacy_hs_chunk_temp) {
-              ""
-            } else {
-              yaml.load_file("template/pi_ivis.yml")$privacy_hs
-            }
-        } else {
-          privacy_hs_chunk_temp <-
-            if ("Data will not be collected from human research participants." %in%  privacy_hs_chunk_temp) {
-              ""
-            } else {
-              "Data will not be collected from human research participants."
-            }
-        })
-  } else {
-    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
-  }
-  if (determine_cores(input)$pi_microct_flag) {
-    #####
-    privacy_hs_chunk_temp <-
-      c(privacy_hs_chunk_temp,
-        if (input$human_subjects) {
-          privacy_hs_chunk_temp <-
-            if (yaml.load_file("template/pi_microct.yml")$privacy_hs %in% privacy_hs_chunk_temp) {
-              ""
-            } else {
-              yaml.load_file("template/pi_microct.yml")$privacy_hs
-            }
-        } else {
-          privacy_hs_chunk_temp <-
-            if ("Data will not be collected from human research participants." %in%  privacy_hs_chunk_temp) {
-              ""
-            } else {
-              "Data will not be collected from human research participants."
-            }
-        })
-  } else {
-    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
-  }
-  if (determine_cores(input)$pi_mri_flag) {
-    #####
-    privacy_hs_chunk_temp <-
-      c(privacy_hs_chunk_temp,
-        if (input$human_subjects) {
-          privacy_hs_chunk_temp <-
-            if (yaml.load_file("template/pi_mri.yml")$privacy_hs %in% privacy_hs_chunk_temp) {
-              ""
-            } else {
-              yaml.load_file("template/pi_mri.yml")$privacy_hs
-            }
-        } else {
-          privacy_hs_chunk_temp <-
-            if ("Data will not be collected from human research participants." %in%  privacy_hs_chunk_temp) {
-              ""
-            } else {
-              "Data will not be collected from human research participants."
-            }
-        })
-  } else {
-    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
-  }
-  if (determine_cores(input)$preclinical_model_flag) {
-    #####
-    privacy_hs_chunk_temp <-
-      c(privacy_hs_chunk_temp,
-        if (input$human_subjects) {
-          privacy_hs_chunk_temp <-
-            if (yaml.load_file("template/preclinical_model.yml")$privacy_hs %in% privacy_hs_chunk_temp) {
-              ""
-            } else {
-              yaml.load_file("template/preclinical_model.yml")$privacy_hs
-            }
-        } else {
-          privacy_hs_chunk_temp <-
-            if ("Data will not be collected from human research participants." %in%  privacy_hs_chunk_temp) {
-              ""
-            } else {
-              "Data will not be collected from human research participants."
-            }
-        })
-  } else {
-    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
-  }
-  if (determine_cores(input)$proteomics_flag) {
-    #####
-    privacy_hs_chunk_temp <-
-      c(privacy_hs_chunk_temp,
-        if (input$human_subjects) {
-          privacy_hs_chunk_temp <-
-            if (yaml.load_file("template/proteomics.yml")$privacy_hs %in% privacy_hs_chunk_temp) {
-              ""
-            } else {
-              yaml.load_file("template/proteomics.yml")$privacy_hs
-            }
-        } else {
-          privacy_hs_chunk_temp <-
-            if ("Data will not be collected from human research participants." %in%  privacy_hs_chunk_temp) {
-              ""
-            } else {
-              "Data will not be collected from human research participants."
-            }
-        })
-  } else {
-    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
-  }
-  if (determine_cores(input)$small_animal_flag) {
-    #####
-    privacy_hs_chunk_temp <-
-      c(privacy_hs_chunk_temp,
-        if (input$human_subjects) {
-          privacy_hs_chunk_temp <-
-            if (yaml.load_file("template/small_animal.yml")$privacy_hs %in% privacy_hs_chunk_temp) {
-              ""
-            } else {
-              yaml.load_file("template/small_animal.yml")$privacy_hs
-            }
-        } else {
-          privacy_hs_chunk_temp <-
-            if ("Data will not be collected from human research participants." %in%  privacy_hs_chunk_temp) {
-              ""
-            } else {
-              "Data will not be collected from human research participants."
-            }
-        })
-  } else {
-    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
-  }
-  if (determine_cores(input)$therapeutic_flag) {
-    #####
-    privacy_hs_chunk_temp <-
-      c(privacy_hs_chunk_temp,
-        if (input$human_subjects) {
-          privacy_hs_chunk_temp <-
-            if (yaml.load_file("template/therapeutic.yml")$privacy_hs %in% privacy_hs_chunk_temp) {
-              ""
-            } else {
-              yaml.load_file("template/therapeutic.yml")$privacy_hs
-            }
-        } else {
-          privacy_hs_chunk_temp <-
-            if ("Data will not be collected from human research participants." %in%  privacy_hs_chunk_temp) {
-              ""
-            } else {
-              "Data will not be collected from human research participants."
-            }
-        })
-  } else {
-    privacy_hs_chunk_temp <- c(privacy_hs_chunk_temp, "")
-  }
+
+  privacy_hs_chunk_temp <- unique(privacy_hs_chunk_temp)
 
   return(privacy_hs_chunk_temp)
 }
