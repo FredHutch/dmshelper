@@ -29,7 +29,7 @@ duration: "Data will be deposited at the time of publication and preserved for t
 access_reuse: ["We do not anticipate any significant factors limiting the access, distribution, or reuse of %1% data.", "Once the full analysis and de-identification is complete, experimental hisopathology data is moved to a public repository and made available to the research community."]
 
 # Whether access to scientific data will be controlled
-control_approvals: ""
+control_approvals: "Data related to %1% will be open-access and available publicly."
 
 # Protections for privacy, rights, and confidentiality of human research participants (IF APPLICABLE)
 privacy_hs: "All data is fully de-identified by TCIA in accordance with international standards, US laws and University of Arkansas for Medical Sciences (UAMS) IRB protocol requirements.All data is anonymized to the fullest extent possible at the submitting site, and then encrypted prior to transmission to UAMS. All incoming data is captured in a quarantine system and treated as if it contains PHI. All TCIA personnel are trained in HIPAA regulations and procedures. TCIA servers are managed by UAMS IT as if they were UAMS clinical systems."

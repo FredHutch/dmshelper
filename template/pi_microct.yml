@@ -30,7 +30,7 @@ duration: "Data will be deposited at the time of publication and preserved for t
 access_reuse: "We do not anticipate any significant factors limiting the access, distribution, or reuse of %1% data."
 
 # Whether access to scientific data will be controlled
-control_approvals: ""
+control_approvals: "Data related to %1% will be open-access and available publicly."
 
 # Protections for privacy, rights, and confidentiality of human research participants (IF APPLICABLE)
 privacy_hs: ""
