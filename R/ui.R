@@ -16,7 +16,7 @@ shiny_ui <- function() {
 
     tags$head(
       tags$link(rel = "shortcut icon",
-                href = "https://raw.githubusercontent.com/jhudsl/OTTR_Template/main/style-sets/fhdasl/copy_to_assets/favicon.ico")
+                href = "https://raw.githubusercontent.com/jhudsl/AnVIL_Template/main/assets/AnVIL_style/anvil_favicon.ico")
     ),
 
     # Google Analytics
