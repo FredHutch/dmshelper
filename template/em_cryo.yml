@@ -26,13 +26,13 @@ findable: ["For microscopy data, an EMDB accession code is issued upon submissio
 duration: "Data will be deposited at the time of publication and preserved for the duration of the grant funding."
 
 # Factors affecting subsequent access, distribution, or reuse of scientific data
-access_reuse: "We do not anticipate any significant factors limiting the access, distribution, or reuse of cellular imaging data."
+access_reuse: "We do not anticipate any significant factors limiting the access, distribution, or reuse of %1% data."
 
 # Whether access to scientific data will be controlled
-control_approvals: ""
+control_approvals: "Data related to %1% will be open-access and available publicly."
 
 # Protections for privacy, rights, and confidentiality of human research participants (IF APPLICABLE)
-privacy_hs: ""
+privacy_hs: "Data will be de-identified according to HIPAA and the Common Rule. All direct respondent identifiers (e.g., names, residence, email addresses) will be removed. Deidentification will be completed prior to the finalization of shared data files. Participants will have the opportunity to opt out of sharing during informed consent procedures. Once personally identifying information are removed from the data set and deleted, we will not be able to identify data associated with a specific research participant for removal from the dataset. Limited provisions for participants’ withdrawal of data from sharing protocols will be outlined in informed consent. Upon receipt of an NIH Award, the data for this study will be protected by a Certificate of Confidentiality."
 
 # Oversight of Data Management and Sharing
 oversight: "Oversight for, management of and compliance with this data management and sharing plan will be performed by the PI for this project. We will review our plan and identify any datasets that need to be shared, processed for sharing or updated twice annually. Additionally, we will implement aspects of our plan when manuscripts are published."

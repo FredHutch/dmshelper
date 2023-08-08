@@ -27,13 +27,15 @@ findable: ["The SRA, GEO, and dbGaP repositories provide stable IDs to genomic e
 
 # When and how long the scientific data will be made available
 duration_hs: "Alignment data will be submitted after data cleaning and quality control, aiming for within 3 months after data have been generated. Data will then be released on dbGaP 6 months after data submission. Any data linking genomic data to phenotype or other biological states will be submitted at publication. All data will be preserved for the duration of the grant funding."
-duration_non_hs: "Data will be released no later than the time of initial publication and preserved for the duration of the grant funding."
+duration: "Data will be released no later than the time of initial publication and preserved for the duration of the grant funding."
 
 # Factors affecting subsequent access, distribution, or reuse of scientific data
-access_reuse: "[text about IRB...]"
+access_reuse_hs: "For genomic applications, research participants will be consented for data sharing of their individual genomic and clinical data via controlled access. Our institution will provide an Institutional Certification upon registering the study in dbGAP. Participants will be consented in a manner that allows for any research question to be explored (i.e., the General Research Uses (GRU) data use limitation). Genomic Summary Results from this study can be shared through unrestricted access."
+access_reuse: "For genomic applications, we will be using BIOBANK X cell lines that are consented for unrestricted data sharing. Our institution will provide an Institutional Certification upon registering the study in dbGaP, indicating that both individual-level genomic data and Genomic Summary Results from this study can be shared through unrestricted access."
 
 # Whether access to scientific data will be controlled
-control_approvals: ""
+control_approvals: "For genomic applications, we are using human samples for which genomic data can be shared via unrestricted access."
+control_approvals_hs: "Individual-level genomic and clinical data will be shared via controlled-access. The NIH funding agency, e.g. the NHGRI Data Access Committee (DAC), will manage access to the dataset once it is released. Metadata, and associated documentation (such as study protocols) will be openly available."
 
 # Protections for privacy, rights, and confidentiality of human research participants (IF APPLICABLE)
 privacy_hs: "In order to achieve our goal of genomic data sharing with the research community while not violating assurances and rights of study participants, we will create a dataset for sharing that (1) excludes participants whose consent forms specifically state that their data will not be shared outside of the study team, and (2) incorporates standard blurring or masking techniques for demographic, phenotypic, and descriptive variables so as to reduce risks of identifiability and/or confidentiality violation."
