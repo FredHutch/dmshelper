@@ -1,3 +1,22 @@
+#' Does Google Sheets authentication using a Google Service Account. It looks
+#' for a `.json` service account key in the ".secrets" directory.
+#'
+#' @return Provides authentication analagous to gs4_auth()
+#' @export
+#'
+#' @examples
+#' # Run before read_sheet() functions
+#' do_gs4_auth()
+do_gs4_auth <- function() {
+  gs4_auth(
+    token = gargle::credentials_service_account(path = paste0(
+      ".secrets/", grep(".json$", list.files(".secrets"), value = TRUE)
+    ),
+    scopes = "https://www.googleapis.com/auth/spreadsheets")
+  )
+}
+
+
 #' Title
 #'
 #' @param input
@@ -29,7 +48,7 @@ shiny_server <- function(input, output, session) {
     # Check if value is actually an email
     if (grepl(pattern, input$user_email, ignore.case = TRUE)) {
       # Collect data and append
-      gs4_auth(cache = ".secrets", email = "hutchdasl@gmail.com")
+      do_gs4_auth()
       sheet_url <-
         "https://docs.google.com/spreadsheets/d/1TprAUklx70D2eaGxpoNHm7Ve1bHfnGwX20h8taDJAAI/edit?usp=sharing"
       sheet_append(
