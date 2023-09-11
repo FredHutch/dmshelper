@@ -82,12 +82,22 @@ shiny_server <- function(input, output, session) {
       req(input$core_datatype != toggle_example_txt$core_datatype)
       toggle_example_txt$core_datatype <- input$core_datatype
 
-      # Freeze selected items
+      #  ------- Freeze selected items
       toggle_example_txt$raw_file_description <- input$raw_file_description
       toggle_example_txt$technology_description <- input$technology_description
 
       shiny::updateTextInput(session, "raw_file_description", value = datatype_raw_by_core(toggle_example_txt))
       shiny::updateTextInput(session, "technology_description", value = datatype_tech_by_core(toggle_example_txt))
+
+      # ------- Observe discipline and open appropriate sample size UI boxes
+      for (core_name in colnames(determine_cores(toggle_example_txt))){
+        # as.list?
+        if (determine_cores(toggle_example_txt)[[core_name]]) {
+          updateTabsetPanel(inputId = paste0("sample_size_wizard_", core_name), selected = core_name)
+        } else {
+          updateTabsetPanel(inputId = paste0("sample_size_wizard_", core_name), selected = "null_page")
+        }
+      }
 
     },ignoreInit = TRUE)
 

@@ -20,8 +20,9 @@ shiny_ui <- function() {
     ),
 
     # Google Analytics
-    tags$head(HTML(
-      "
+    tags$head(
+      HTML(
+        "
       <!-- Google tag (gtag.js) -->
       <script async src='https://www.googletagmanager.com/gtag/js?id=G-5LZT89N4CE'></script>
       <script>
@@ -32,7 +33,8 @@ shiny_ui <- function() {
         gtag('config', 'G-5LZT89N4CE');
       </script>
       "
-    )),
+      )
+    ),
 
     titlePanel(title = div(
       img(
@@ -108,7 +110,8 @@ shiny_ui <- function() {
             label = "Data generating technology",
             choices = datatype_technology_description_options(),
             multiple = TRUE
-          )),
+          )
+        ),
 
         #####
         # Num samples
@@ -118,84 +121,142 @@ shiny_ui <- function() {
           collapsed = TRUE,
           width = NULL,
 
-          numericInput(
-            "num_em_tem_files",
-            label = "Electron microscopy (TEM) sample count",
-            value = NA
+          tabsetPanel(
+            id = "sample_size_wizard_em_tem_flag",
+            type = "hidden",
+            tabPanel("null_page"),
+            tabPanel(
+              "em_tem_flag",
+              numericInput("num_em_tem_files",
+                           label = "Electron microscopy (TEM) sample count",
+                           value = NA)
+            )
           ),
-          numericInput(
-            "num_em_sem_files",
-            label = "Electron microscopy (SEM) sample count",
-            value = NA
+          tabsetPanel(
+            id = "sample_size_wizard_em_sem_flag",
+            type = "hidden",
+            tabPanel("null_page"),
+            tabPanel(
+              "em_sem_flag",
+              numericInput("num_em_sem_files",
+                           label = "Electron microscopy (SEM) sample count",
+                           value = NA)
+            )
           ),
-          numericInput(
-            "num_em_cryo_files",
-            label = "Electron microscopy (cryoEM) sample count",
-            value = NA
+          tabsetPanel(
+            id = "sample_size_wizard_em_cryo_flag",
+            type = "hidden",
+            tabPanel("null_page"),
+            tabPanel(
+              "em_cryo_flag",
+              numericInput("num_em_cryo_files",
+                           label = "Electron microscopy (cryoEM) sample count",
+                           value = NA)
+            )
           ),
-          numericInput(
-            "num_eh_aperio_files",
-            label = "Experimental histopathology (Aperio) sample count",
-            value = NA
+          tabsetPanel(
+            id = "sample_size_wizard_eh_aperio_flag",
+            type = "hidden",
+            tabPanel("null_page"),
+            tabPanel(
+              "eh_aperio_flag",
+              numericInput("num_eh_aperio_files",
+                           label = "Experimental histopathology (Aperio) sample count",
+                           value = NA)
+            )
           ),
-          numericInput(
-            "num_eh_polaris_files",
-            label = "Experimental histopathology (Polaris) sample count",
-            value = NA
+          tabsetPanel(
+            id = "sample_size_wizard_eh_polaris_flag",
+            type = "hidden",
+            tabPanel("null_page"),
+            tabPanel(
+              "eh_polaris_flag",
+              numericInput("num_eh_polaris_files",
+                           label = "Experimental histopathology (Polaris) sample count",
+                           value = NA)
+            )
           ),
-          numericInput(
-            "num_eh_vectra_files",
-            label = "Experimental histopathology (Vectra) sample count",
-            value = NA
+          tabsetPanel(
+            id = "sample_size_wizard_eh_vectra_flag",
+            type = "hidden",
+            tabPanel("null_page"),
+            tabPanel(
+              "eh_vectra_flag",
+              numericInput("num_eh_vectra_files",
+                           label = "Experimental histopathology (Vectra) sample count",
+                           value = NA)
+            )
           ),
-          numericInput(
-            "num_flow_cytometry_files",
-            label = "Flow cytometry sample count",
-            value = NA
+          tabsetPanel(
+            id = "sample_size_wizard_flow_cytometry_flag",
+            type = "hidden",
+            tabPanel("null_page"),
+            tabPanel(
+              "flow_cytometry_flag",
+              numericInput(
+                "num_flow_cytometry_files",
+                label = "Flow cytometry sample count",
+                value = NA
+              )
+            )
           ),
-          numericInput(
-            "num_genomics_files",
-            label = "Genomic sample count",
-            value = NA
+          tabsetPanel(
+            id = "sample_size_wizard_genomics_flag",
+            type = "hidden",
+            tabPanel("null_page"),
+            tabPanel(
+              "genomics_flag",
+              numericInput("num_genomics_files",
+                           label = "Genomic sample count",
+                           value = NA)
+            )
           ),
-          numericInput(
-            "num_pi_ivis_files",
-            label = "Preclinical imaging (IVIS) sample count",
-            value = NA
+          tabsetPanel(
+            id = "sample_size_wizard_pi_ivis_flag",
+            type = "hidden",
+            tabPanel("null_page"),
+            tabPanel(
+              "pi_ivis_flag",
+              numericInput("num_pi_ivis_files",
+                           label = "Preclinical imaging (IVIS) sample count",
+                           value = NA)
+            )
           ),
-          numericInput(
-            "num_pi_microct_files",
-            label = "Preclinical imaging (MicroCT) sample count",
-            value = NA
+          tabsetPanel(
+            id = "sample_size_wizard_pi_microct_flag",
+            type = "hidden",
+            tabPanel("null_page"),
+            tabPanel(
+              "pi_microct_flag",
+              numericInput("num_pi_microct_files",
+                           label = "Preclinical imaging (MicroCT) sample count",
+                           value = NA)
+            )
           ),
-          numericInput(
-            "num_pi_mri_files",
-            label = "Preclinical imaging (MRI) sample count",
-            value = NA
+          tabsetPanel(
+            id = "sample_size_wizard_pi_mri_flag",
+            type = "hidden",
+            tabPanel("null_page"),
+            tabPanel(
+              "pi_mri_flag",
+              numericInput("num_pi_mri_files",
+                           label = "Preclinical imaging (MRI) sample count",
+                           value = NA)
+            )
           ),
-          # numericInput(
-          #   "num_not_used",
-          #   label = "Test sample count",
-          #   value = NA
-          # ),
-          # selectInput(
-          #   "num_genomics_files",
-          #   label = "Genomic sample count",
-          #   choices =
-          #     c(
-          #       "1 - 10",
-          #       "11 - 50",
-          #       "51 - 200",
-          #       "200 - 500"
-          #     ),
-          #   multiple = FALSE
-          # ),
-          numericInput(
-            "num_proteomics_files",
-            label = "Proteomic sample count",
-            value = NA
+          tabsetPanel(
+            id = "sample_size_wizard_proteomics_flag",
+            type = "hidden",
+            tabPanel("null_page"),
+            tabPanel(
+              "proteomics_flag",
+              numericInput("num_proteomics_files",
+                           label = "Proteomic sample count",
+                           value = NA)
+            )
           )
         ),
+        # End of "Number of Samples" box
 
         #HTML('<br>'),
         h4("How to Use"),
@@ -214,9 +275,19 @@ shiny_ui <- function() {
              Please see our <a href="https://hutchdatascience.org/NIH_Data_Sharing/">NIH Data Sharing Course</a> to learn more about new requirements from the NIH.<br><br>
              '
         ),
-        actionButton(inputId='ab1', label="NIH Data Sharing Course", icon = icon("graduation-cap"), onclick ="window.open('https://hutchdatascience.org/NIH_Data_Sharing/', '_blank')"),
+        actionButton(
+          inputId = 'ab1',
+          label = "NIH Data Sharing Course",
+          icon = icon("graduation-cap"),
+          onclick = "window.open('https://hutchdatascience.org/NIH_Data_Sharing/', '_blank')"
+        ),
         HTML('<br><br>'),
-        actionButton(inputId='ab1', label="Give Us Feedback", icon = icon("comments"), onclick ="window.open('https://docs.google.com/forms/d/e/1FAIpQLScrDVb_utm55pmb_SHx-RgELTEbCCWdLea0T3IzS0Oj00GE4w/viewform?usp=pp_url&entry.1565230805=DMS+Helper+App', '_blank')"),
+        actionButton(
+          inputId = 'ab1',
+          label = "Give Us Feedback",
+          icon = icon("comments"),
+          onclick = "window.open('https://docs.google.com/forms/d/e/1FAIpQLScrDVb_utm55pmb_SHx-RgELTEbCCWdLea0T3IzS0Oj00GE4w/viewform?usp=pp_url&entry.1565230805=DMS+Helper+App', '_blank')"
+        ),
         HTML('<br>'),
         # Hutch logo
         HTML(
@@ -243,7 +314,8 @@ shiny_ui <- function() {
       mainPanel(
         #####
 
-        HTML('
+        HTML(
+          '
           <style>
             div.container {
             background-color: #ffffff;
@@ -254,7 +326,8 @@ shiny_ui <- function() {
             color: #b8331e;
             }
           </style>
-        '),
+        '
+        ),
 
         # Download buttons
         # Box to provide email
@@ -265,7 +338,9 @@ shiny_ui <- function() {
           "
         ),
         fluidRow(
-          column(3, textInput("user_email", value = "", label = "")),
+          column(3, textInput(
+            "user_email", value = "", label = ""
+          )),
           column(3, HTML('<br>'), actionButton("submit_button", "submit")),
           column(3, HTML('<br>'), uiOutput("downloaddocx_button")),
           column(3, HTML('<br>'), uiOutput("downloadmd_button"))
