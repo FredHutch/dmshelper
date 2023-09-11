@@ -16,7 +16,7 @@ shiny_ui <- function() {
 
     tags$head(
       tags$link(rel = "shortcut icon",
-                href = "https://raw.githubusercontent.com/jhudsl/OTTR_Template/main/style-sets/fhdasl/copy_to_assets/favicon.ico")
+                href = "https://raw.githubusercontent.com/jhudsl/AnVIL_Template/main/assets/AnVIL_style/anvil_favicon.ico")
     ),
 
     # Google Analytics
@@ -63,17 +63,28 @@ shiny_ui <- function() {
             "Experimental Histopathology - Vectra images" = "eh_vectra",
             "Flow Cytometry" = "flow_cytometry",
             "Genomics & Bioinformatics" = "genomics",
-            "Immune Monitoring" = "immune",
             "Large Animal Facilities" = "large_animal",
             "Preclinical Imaging (IVIS)" = "pi_ivis",
             "Preclinical Imaging (MicroCT)" = "pi_microct",
             "Preclinical Imaging (MRI)" = "pi_mri",
-            "Preclinical Modeling" = "preclinical_model",
             "Proteomics" = "proteomics",
-            "Small Animal Facilities" = "small_animal",
-            "Therapeutic Products" = "therapeutic"
+            "Small Animal Facilities" = "small_animal"
           ),
           multiple = TRUE
+        ),
+        checkboxInput(
+          "anvil",
+          label = HTML(
+            'Use <a href="https://anvilproject.org/">AnVIL</a>! (<a href="https://terra.bio/nih-dms-individual-researchers-faqs/">learn more</a>)'
+          ),
+          value = FALSE,
+          width = NULL
+        ),
+        checkboxInput(
+          "human_subjects",
+          label = "Human subjects data?",
+          value = FALSE,
+          width = NULL
         ),
 
         #####
@@ -86,12 +97,6 @@ shiny_ui <- function() {
           collapsed = TRUE,
           width = NULL,
 
-          checkboxInput(
-            "human_subjects",
-            label = "Human subjects data?",
-            value = FALSE,
-            width = NULL
-          ),
           selectInput(
             "raw_file_description",
             label = "Raw data file type",
@@ -105,6 +110,7 @@ shiny_ui <- function() {
             multiple = TRUE
           )),
 
+        #####
         # Num samples
         box(
           title = "Number of Samples",
@@ -153,11 +159,6 @@ shiny_ui <- function() {
             value = NA
           ),
           numericInput(
-            "num_immune_files",
-            label = "Immune monitoring sample count",
-            value = NA
-          ),
-          numericInput(
             "num_pi_ivis_files",
             label = "Preclinical imaging (IVIS) sample count",
             value = NA
@@ -172,11 +173,11 @@ shiny_ui <- function() {
             label = "Preclinical imaging (MRI) sample count",
             value = NA
           ),
-          numericInput(
-            "num_preclinical_model_files",
-            label = "Preclinical modeling sample count",
-            value = NA
-          ),
+          # numericInput(
+          #   "num_not_used",
+          #   label = "Test sample count",
+          #   value = NA
+          # ),
           # selectInput(
           #   "num_genomics_files",
           #   label = "Genomic sample count",
@@ -196,337 +197,36 @@ shiny_ui <- function() {
           )
         ),
 
-        # Sharing
-        # box(
-        #   title = "Data Sharing",
-        #   collapsible = TRUE,
-        #   collapsed = TRUE,
-        #   width = NULL,
-        #
-        # ),
-
-
-        # # Sharing
-        # box(
-        #   title = "Sharing",
-        #   collapsible = TRUE,
-        #   collapsed = TRUE,
-        #   width = NULL,
-        #
-        #   checkboxInput(
-        #     "shared_data_present",
-        #     label = "Add Shared Data section?",
-        #     value = TRUE,
-        #     width = NULL
-        #   ),
-        #   textInput(
-        #     "shared_technologies",
-        #     "Technologies and processed data to be shared",
-        #     value = ""
-        #   ),
-        #   textInput("shared_comment", label = "Optional: add additional text about data sharing", value = ""),
-        #
-        #   checkboxInput(
-        #     "not_shared_data_present",
-        #     label = "Add Data Not Shared section?",
-        #     value = TRUE,
-        #     width = NULL
-        #   ),
-        #   selectInput(
-        #     "notshared",
-        #     label = "Select: justifications if not sharing data",
-        #     choices = data_not_shared(),
-        #     selected = "\nWe anticipate all data will be able to be preserved and shared.",
-        #     multiple = TRUE
-        #   ),
-        #   textInput("not_shared_comment", label = "Optional: add additional text about data not shared", value = ""),
-        # ),
-        #
-        #
-        # # Metadata
-        # box(
-        #   title = "Metadata",
-        #   collapsible = TRUE,
-        #   collapsed = TRUE,
-        #   width = NULL,
-        #
-        #   selectInput(
-        #     "metadata_desc",
-        #     label = "Select: short and/or long metadata description",
-        #     choices =
-        #       c(
-        #         "Short Description" = "short",
-        #         "Long Description" = "long"
-        #       ),
-        #     selected = "short",
-        #     multiple = TRUE
-        #   ),
-        #   textInput(
-        #     "metadata_descriptors",
-        #     "Metadata descriptor(s) (e.g., instrument output, medical records information",
-        #     value = ""
-        #   ),
-        #   textInput(
-        #     "metadata_collection",
-        #     "Process/guidelines for collecting metadata",
-        #     value = ""
-        #   ),
-        #   textInput(
-        #     "fair_standards",
-        #     "if it exists, FAIR standards for data type",
-        #     value = ""
-        #   ),
-        #   HTML(
-        #     '<a href="https://www.nature.com/articles/sdata201618">More about FAIR standards here</a><br><br>'
-        #   ),
-        #   textInput(
-        #     "metadata_location",
-        #     "Location where metadata will be deposited",
-        #     value = ""
-        #   )
-        # ),
-        #
-        # # II
-        # # TOOLS / SOFTWARE / CODE
-        # box(
-        #   title = "Tools/Code",
-        #   collapsible = TRUE,
-        #   collapsed = TRUE,
-        #   width = NULL,
-        #
-        #   selectInput(
-        #     "tools_code_desc",
-        #     label = "Tools/Code description (select any)",
-        #     choices =
-        #       c(
-        #         "Custom" = "custom",
-        #         "Open Source" = "opensource",
-        #         "Open post-publication" = "semiopen",
-        #         "Proprietary" = "proprietary"
-        #       ),
-        #     selected = c("custom", "opensource"),
-        #     multiple = TRUE
-        #   ),
-        #   textInput(
-        #     "data_manipulation_tool",
-        #     "Tool used for data manipulation",
-        #     value = "standard office suite spreadsheet software"
-        #   ),
-        #   selectInput(
-        #     "version_control",
-        #     label = "Select: version control method",
-        #     choices = c("GitHub", "GitLab", "BitBucket"),
-        #     selected = "GitHub",
-        #     multiple = FALSE
-        #   ),
-        #   selectInput(
-        #     "tool",
-        #     label = "Select: code type (all that apply)",
-        #     choices = list_of_tools(),
-        #     selected = "R scripts",
-        #     multiple = TRUE
-        #   ),
-        #   selectInput(
-        #     "platform",
-        #     label = "Select: platform (all that apply)",
-        #     choices = list_of_platforms(),
-        #     selected = "CRAN",
-        #     multiple = TRUE
-        #   )
-        # ),
-        #
-        # # III
-        # # STANDARDS
-        # box(
-        #   title = "Standards",
-        #   collapsible = TRUE,
-        #   collapsed = TRUE,
-        #   width = NULL,
-        #
-        #   textInput(
-        #     "standards_description",
-        #     "Standard creator/organization and description",
-        #     value = ""
-        #   ),
-        #   textInput(
-        #     "standards_comment",
-        #     "Optional: additional details as appropriate",
-        #     value = ""
-        #   )
-        # ),
-        #
-        # # IV
-        # # PRESERVATION
-        # box(
-        #   title = "Repositories",
-        #   collapsible = TRUE,
-        #   collapsed = TRUE,
-        #   width = NULL,
-        #
-        #   # Repository
-        #   selectInput(
-        #     "repository",
-        #     label = "Repository description (select any)",
-        #     choices = repository_choices(),
-        #     selected = c("custom"),
-        #     multiple = TRUE
-        #   ),
-        #   checkboxInput(
-        #     "add_open_repo",
-        #     label = "Custom: Open data repository?",
-        #     value = TRUE,
-        #     width = NULL
-        #   ),
-        #   textInput("repository_data_type", "Custom: Data type", value = ""),
-        #   textInput("chosen_repositories", "Custom: Open repository name", value = ""),
-        #   checkboxInput(
-        #     "add_controlled_repo",
-        #     label = "Custom: Controlled data repository?",
-        #     value = TRUE,
-        #     width = NULL
-        #   ),
-        #   textInput(
-        #     "controlled_repositories",
-        #     "Custom: Controlled repository name",
-        #     value = ""
-        #   ),
-        #   textInput("sensitive_data_type",
-        #             "None: Sensitive data types",
-        #             value = ""),
-        #   textInput("repo_comment", label = "Optional: add additional text about the repository", value = "")
-        # ),
-        #
-        # # FAIR
-        # box(
-        #   title = "Findability",
-        #   collapsible = TRUE,
-        #   collapsed = TRUE,
-        #   width = NULL,
-        #
-        #   textInput("fair_repositories",
-        #             "FAIR repositories",
-        #             value = ""),
-        #   textInput("fair_comment", "Description of level of findability", value = "")
-        # ),
-        #
-        # # Timeframe
-        # box(
-        #   title = "Timeframe",
-        #   collapsible = TRUE,
-        #   collapsed = TRUE,
-        #   width = NULL,
-        #
-        #   textInput(
-        #     "timeframe_data_type",
-        #     "Data type",
-        #     value = ""
-        #   ),
-        #   textInput(
-        #     "timeframe_to_pub",
-        #     "Timeframe for depositing (e.g., within X months of data generation / at the time of publication)",
-        #     value = ""
-        #   ),
-        #   textInput(
-        #     "timeframe_longevity",
-        #     "Timeframe for availability (e.g., duration of the grant funding)",
-        #     value = ""
-        #   )
-        # ),
-        #
-        # # V
-        # # ACCESS
-        # box(
-        #   title = "Access",
-        #   collapsible = TRUE,
-        #   collapsed = TRUE,
-        #   width = NULL,
-        #
-        #   # Reuse
-        #   h4("Data Reuse"),
-        #   selectInput(
-        #     "reuse",
-        #     label = "Select: plan for subsequent data access, distribution, or reuse",
-        #     choices = reuse_choices(),
-        #     selected = c("no_restrictions"),
-        #     multiple = TRUE
-        #   ),
-        #   textInput("reuse_raw_file_type", "Data type(s)", value = ""),
-        #   selectInput(
-        #     "reuse_level",
-        #     label = "Select: data level",
-        #     choices = c("None", "Level 0", "Level 1"),
-        #     selected = "Level 0",
-        #     multiple = FALSE
-        #   ),
-        #
-        #   # Controls
-        #   h4("Data Controls"),
-        #   checkboxInput(
-        #     "controls",
-        #     label = "Are access controls needed?",
-        #     value = TRUE,
-        #     width = NULL
-        #   ),
-        #
-        #   textInput("controlled_data_type", "Controlled data type(s)", value = ""),
-        #   textInput("access_repositories",
-        #             "Controlled repositories",
-        #             value = ""),
-        #   textInput("control_comment",
-        #             label = "Optional: add additional control details",
-        #             value = "submitted to and processed by the NIH-designated data repository under their 'controlled access' process"),
-        #
-        #   # Human subjects
-        #   h4("Human Subjects"),
-        #   checkboxInput(
-        #     "human_subjects",
-        #     label = "Are human subjects involved?",
-        #     value = FALSE,
-        #     width = NULL
-        #   )
-        # ),
-        #
-        # # VI
-        # # OVERSIGHT
-        # box(
-        #   title = "Oversight",
-        #   collapsible = TRUE,
-        #   collapsed = TRUE,
-        #   width = NULL,
-        #
-        #   selectInput(
-        #     "oversight_method",
-        #     label = "Select: who will conduct the oversight?",
-        #     choices = c("Proposal Team", "Laboratory Staff", "External Collaborator"),
-        #     selected = "Proposal Team",
-        #     multiple = FALSE
-        #   ),
-        #   textInput("name_role", label = "Oversight lead (e.g., Name and role)", value = ""),
-        #   textInput("review_frequency", label = "Review frequency (e.g., twice annually)", value = ""),
-        #   textInput("review_addtnl", label = "Additional review points (e.g., when publications are accepted)", value = "")
-        # ),
-        #####
-
-        HTML('<br>'),
+        #HTML('<br>'),
+        h4("How to Use"),
+        HTML(
+          'Populate text by selecting a discipline from the first dropdown above.
+           Use the expandable fill-in-the blanks and dropdowns to further customize your text.
+           <b>Download</b> your plan using the buttons at the top of the preview.
+           <br>
+             '
+        ),
         h4("About this Tool"),
         HTML(
           '
-             This tool was created by the <a href="https://hutchdatascience.org/">Fred Hutch Data Science Lab</a> to be an evolving warehouse of template text that can help you develop your NIH Data Sharing and Management Plan (DMS).
-             Choose from existing examples by selecting a core discipline from the first dropdown above.
-             Use the expandable fill-in-the blanks and dropdowns to further customize your text.
-             A preview of your plan will to the right with customized text appearing in <font color="OA799A"><b>blue text</b></font>.
-             You can also <b>download</b> your plan using the buttons at the top of the preview. <br><br>
-
+             This tool was created by the <a href="https://hutchdatascience.org/">Fred Hutch Data Science Lab</a> to help you develop your NIH Data Management & Sharing (DMS) Plan.
+             Many thanks to the groups at Fred Hutch, including Shared Resources, OSR, and others, for collecting language.
              Please see our <a href="https://hutchdatascience.org/NIH_Data_Sharing/">NIH Data Sharing Course</a> to learn more about new requirements from the NIH.<br><br>
-
-             Comments? We welcome feedback <a href="https://forms.gle/g28hBcNXJBn6tyzz8/">here</a>.<br><br>
-
-             This material has been collected and consolidated from many groups at Fred Hutch including Shared Resources, OSR, and other partners.<br><br>
              '
         ),
+        actionButton(inputId='ab1', label="NIH Data Sharing Course", icon = icon("graduation-cap"), onclick ="window.open('https://hutchdatascience.org/NIH_Data_Sharing/', '_blank')"),
+        HTML('<br><br>'),
+        actionButton(inputId='ab1', label="Give Us Feedback", icon = icon("comments"), onclick ="window.open('https://docs.google.com/forms/d/e/1FAIpQLScrDVb_utm55pmb_SHx-RgELTEbCCWdLea0T3IzS0Oj00GE4w/viewform?usp=pp_url&entry.1565230805=DMS+Helper+App', '_blank')"),
+        HTML('<br>'),
         # Hutch logo
         HTML(
           '
+          <br>
+          <div style="text-align: center;">
+            <a href="https://anvilproject.org/">
+              <img src="https://anvilproject.org/static/logo-anvil-7dbfbc420748c4a0917f57f515f60816.png" margin-left = "auto" margin-right = "auto" width = "65%">
+            </a>
+          </div>
           <br>
           <div style="text-align: center;">
             <a href="https://hutchdatascience.org/">
@@ -557,9 +257,20 @@ shiny_ui <- function() {
         '),
 
         # Download buttons
-        downloadButton("downloaddocx", label = "Download .docx"),
-        downloadButton("downloadmd", label = "Download .md"),
-        HTML('<br><br>'),
+        # Box to provide email
+        HTML(
+          "
+          Please provide your email to download. This helps us understand who is using the tool. We don't collect any other information.
+          <br>
+          "
+        ),
+        fluidRow(
+          column(3, textInput("user_email", value = "", label = "")),
+          column(3, HTML('<br>'), actionButton("submit_button", "submit")),
+          column(3, HTML('<br>'), uiOutput("downloaddocx_button")),
+          column(3, HTML('<br>'), uiOutput("downloadmd_button"))
+        ),
+        uiOutput("thanks"),
 
         # HTML preview
         box(htmlOutput("html_preview"), width = NULL),

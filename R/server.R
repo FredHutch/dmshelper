@@ -1,3 +1,22 @@
+#' Does Google Sheets authentication using a Google Service Account. It looks
+#' for a `.json` service account key in the ".secrets" directory.
+#'
+#' @return Provides authentication analagous to gs4_auth()
+#' @export
+#'
+#' @examples
+#' # Run before read_sheet() functions
+#' do_gs4_auth()
+do_gs4_auth <- function() {
+  gs4_auth(
+    token = gargle::credentials_service_account(path = paste0(
+      ".secrets/", grep(".json$", list.files(".secrets"), value = TRUE)
+    ),
+    scopes = "https://www.googleapis.com/auth/spreadsheets")
+  )
+}
+
+
 #' Title
 #'
 #' @param input
@@ -22,6 +41,36 @@ shiny_server <- function(input, output, session) {
     content <- function(file) { file.copy("outtext.md", file) },
     contentType = "text/md"
   )
+
+  # ------- Email submission handling reveals the download buttons
+  observeEvent(input$submit_button, {
+    pattern <- "\\<[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\>"
+    # Check if value is actually an email
+    if (grepl(pattern, input$user_email, ignore.case = TRUE)) {
+      # Collect data and append
+      do_gs4_auth()
+      sheet_url <-
+        "https://docs.google.com/spreadsheets/d/1TprAUklx70D2eaGxpoNHm7Ve1bHfnGwX20h8taDJAAI/edit?usp=sharing"
+      sheet_append(
+        sheet_url,
+        data = data.frame(email = input$user_email, time = Sys.time()),
+        sheet = "log"
+      )
+
+      # Thank you message
+      output$thanks <- renderUI({
+        renderText("Thank you!")
+      })
+
+      # Reveal buttons
+      output$downloaddocx_button <- renderUI({
+        downloadButton("downloaddocx", label = "Download .docx")
+      })
+      output$downloadmd_button <- renderUI({
+        downloadButton("downloadmd", label = "Download .md")
+      })
+    }
+  })
 
   # ------- Render the preview and the files for download
   output$html_preview <- renderUI({

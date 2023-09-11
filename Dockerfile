@@ -11,6 +11,7 @@ RUN Rscript -e "install.packages('ragg')"
 # Devtools and custom package
 RUN Rscript -e "install.packages('devtools', dependencies=T)"
 RUN Rscript -e "install.packages(c('shinydashboard', 'yaml'))"
+RUN Rscript -e "install.packages('googlesheets4', dependencies=T)"
 # RUN Rscript -e "library(devtools);install_github('FredHutch/dmshelper')"
 
 # install dmshelper package
@@ -29,4 +30,8 @@ COPY template /srv/shiny-server/template/
 RUN chown -R shiny:shiny /srv/shiny-server/
 EXPOSE 3838
 WORKDIR /srv/shiny-server/
+
+ADD .secrets /srv/shiny-server/.secrets
+RUN chown -R shiny:shiny .secrets
+
 CMD /usr/bin/shiny-server

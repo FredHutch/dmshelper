@@ -8,31 +8,31 @@ processing_file_type: ".mrc"
 sharing_non_hs: "Raw and processed EM images will be preserved and shared to facilitate re-analysis and re-use of the data by other investigators."
 
 # Metadata, other relevant data, and associated documentation
-metadata: "Metadata will be collected and submitted in accordance with FAIR data principles in the form of a spreadsheet with consistent sample labels, dates in ISO 8601 format, without empty cells, with one data item per cell, organized as a single rectangle (with subjects as rows and variables as columns, and with a single header row), with a corresponding data dictionary. Metadata will be released in raw form without calculations on the raw data files, font color or highlighting as data, with human- and machine-readable variable names, links to raw data URLs, saved as a plain text file and uploaded with sequence data."
+metadata: "Metadata will be collected and submitted in accordance with FAIR data principles in the form of a spreadsheet with consistent sample labels, dates in ISO 8601 format, without empty cells, with one data item per cell, organized as a single rectangle (with subjects as rows and variables as columns, and with a single header row), with a corresponding data dictionary. Metadata will be released in raw form without calculations on the raw data files, font color or highlighting as data, with human- and machine-readable variable names, links to raw data URLs, and saved as a plain text file."
 
 # Related Tools, Software and/or Code
 tools: "All code developed as a part of this proposal will be deposited on GitHub at publication and released open source with an MIT license."
 
 # Standards for collection, etc.
-standards: "The electron microscopy data produced in this project will be collected using the standards established by ___ ."
+standards: "CryoEM data collection will follow [Electron Microscopy Data Bank (EMDB)](https://www.ebi.ac.uk/emdb/documentation/policies#3) requirements, including finalizing EM maps (primary map, masks, half-maps and any other additional maps) in either CCP4 or MRC format and providing representative figures for each entry upon submission."
 
 # Repository where scientific data and metadata will be archived
-repository: "CryoEM data will be deposited in Electron Microscopy Data Bank (EMDB; https://www.ebi.ac.uk/emdb/)."
+repository: "CryoEM data will be deposited in [Electron Microscopy Data Bank (EMDB)](https://www.ebi.ac.uk/emdb/)."
 
 # How scientific data will be findable and identifiable
-findable: "EMPIAR and EMDB provide stable IDs to EM datasets and derived molecular structures. Primary references would be to an EMD or EMPIAR dataset accession. The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project."
+findable: ["For microscopy data, an EMDB accession code is issued upon submission of a OneDep deposition. It consists of the string “EMD-” followed by a number with at least four digits. The accession code is automatically issued and sent in an email to the contact author(s) of the entry and can be used to refer to the entry publicly (e.g., in publications).", "Identifiers will also be listed in the Data Availability sections of all manuscripts published as part of this project."]
 
 # When and how long the scientific data will be made available
 duration: "Data will be deposited at the time of publication and preserved for the duration of the grant funding."
 
 # Factors affecting subsequent access, distribution, or reuse of scientific data
-access_reuse: "We do not anticipate any significant factors limiting the access, distribution, or reuse of cellular imaging data."
+access_reuse: "We do not anticipate any significant factors limiting the access, distribution, or reuse of %1% data."
 
 # Whether access to scientific data will be controlled
-control_approvals: ""
+control_approvals: "Data related to %1% will be open-access and available publicly."
 
 # Protections for privacy, rights, and confidentiality of human research participants (IF APPLICABLE)
-privacy_hs: ""
+privacy_hs: "Data will be de-identified according to HIPAA and the Common Rule. All direct respondent identifiers (e.g., names, residence, email addresses) will be removed. Deidentification will be completed prior to the finalization of shared data files. Participants will have the opportunity to opt out of sharing during informed consent procedures. Once personally identifying information are removed from the data set and deleted, we will not be able to identify data associated with a specific research participant for removal from the dataset. Limited provisions for participants’ withdrawal of data from sharing protocols will be outlined in informed consent. Upon receipt of an NIH Award, the data for this study will be protected by a Certificate of Confidentiality."
 
 # Oversight of Data Management and Sharing
 oversight: "Oversight for, management of and compliance with this data management and sharing plan will be performed by the PI for this project. We will review our plan and identify any datasets that need to be shared, processed for sharing or updated twice annually. Additionally, we will implement aspects of our plan when manuscripts are published."
