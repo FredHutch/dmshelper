@@ -2,13 +2,20 @@
 % Please edit documentation in R/template.R
 \name{oversight_txt}
 \alias{oversight_txt}
-\title{Title}
+\title{Add markdown to text logic chunks for "Oversight" section}
 \usage{
 oversight_txt(input)
 }
 \arguments{
-\item{oversight_part}{}
+\item{input}{Shiny input}
+}
+\value{
+a character vector containing the text for this section
 }
 \description{
-Title
+Add markdown to text logic chunks for "Oversight" section
+}
+\examples{
+# Not run
+oversight_txt(input)
 }

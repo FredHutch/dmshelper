@@ -2,10 +2,20 @@
 % Please edit documentation in R/template.R
 \name{reference_txt}
 \alias{reference_txt}
-\title{Title}
+\title{Add markdown to text logic chunks for "Notes".}
 \usage{
 reference_txt(input)
 }
+\arguments{
+\item{input}{Shiny input}
+}
+\value{
+a character vector containing the text for the footnote
+}
 \description{
-Title
+This is not part of the DMS plan but is intended for user reference.
+}
+\examples{
+# Not run
+reference_txt(input)
 }

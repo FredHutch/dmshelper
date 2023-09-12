@@ -2,13 +2,20 @@
 % Please edit documentation in R/template.R
 \name{preservation_txt}
 \alias{preservation_txt}
-\title{Title}
+\title{Add markdown to text logic chunks for "Preservation" section}
 \usage{
 preservation_txt(input)
 }
 \arguments{
-\item{duration_description}{}
+\item{input}{Shiny input}
+}
+\value{
+a character vector containing the text for this section
 }
 \description{
-Title
+Add markdown to text logic chunks for "Preservation" section
+}
+\examples{
+# Not run
+preservation_txt(input)
 }

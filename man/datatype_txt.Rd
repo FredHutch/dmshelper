@@ -2,13 +2,20 @@
 % Please edit documentation in R/template.R
 \name{datatype_txt}
 \alias{datatype_txt}
-\title{Title}
+\title{Add markdown to text logic chunks for "Datatype" section}
 \usage{
 datatype_txt(input)
 }
 \arguments{
-\item{input}{}
+\item{input}{Shiny input}
+}
+\value{
+a character vector containing the text for this section
 }
 \description{
-Title
+Add markdown to text logic chunks for "Datatype" section
+}
+\examples{
+# Not run
+datatype_txt(input)
 }

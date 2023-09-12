@@ -2,13 +2,20 @@
 % Please edit documentation in R/template.R
 \name{tools_txt}
 \alias{tools_txt}
-\title{Title}
+\title{Add markdown to text logic chunks for "Tools" section}
 \usage{
 tools_txt(input)
 }
 \arguments{
-\item{tools_code_part}{}
+\item{input}{Shiny input}
+}
+\value{
+a character vector containing the text for this section
 }
 \description{
-Title
+Add markdown to text logic chunks for "Tools" section
+}
+\examples{
+# Not run
+tools_txt(input)
 }

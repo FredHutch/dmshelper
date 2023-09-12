@@ -1,3 +1,18 @@
+#' For a given core (research discipline), check whether its data types are
+#' selected by the user in `input`
+#'
+#' @param input Shiny input
+#' @param core core discipline, e.g., "genomics" or "em_tem"
+#'
+#' @return logical, is this core represented by the datatypes selected by the user?
+#' @export
+#'
+#' @examples
+#' # Not run:
+#' # Has the user selected antibody tech datatypes?
+#' check_files_tech(input, "antibody_tech")
+#' # Has the user selected genomics datatypes?
+#' check_files_tech(input, "genomics")
 check_files_tech <- function(input, core) {
   core_yaml <- yaml.load_file(paste0("template/", core, ".yml"))
   return(
@@ -6,18 +21,23 @@ check_files_tech <- function(input, core) {
   )
 }
 
-#' Title
+#' Create a dataframe of logicals for whether to display text from each core.
 #'
-#' @param input
+#' Found in many of the section logic "chunk" functions, eg.,
+#' `raw_processed_data_chunk`, `sharing_chunk`, etc.
 #'
-#' @return
+#' @param input Shiny input
+#'
+#' @return wide dataframe with number of columns equal to number of cores.
+#' One row indicates whether a logical for whther that core should be printed.
 #' @export
 #'
 #' @examples
+#' # Not run
+#' # The following checks whether to do antibody tech or not. What follows
+#' # is logic of how the text should look.
+#' if (determine_cores(input)$antibody_tech_flag) { ... }
 determine_cores <- function(input) {
-  # Determine which raw data types belong to genomics..
-  # TODO : do we want cores to appear with datatypes or vice versa?
-  #       Example of what an alternative would be commented below..
   antibody_tech_flag <-
     #"antibody_tech" %in% input$core_datatype
     check_files_tech(input, "antibody_tech")
@@ -101,6 +121,21 @@ determine_cores <- function(input) {
 }
 
 
+#' Get a vector of core names (not flags)
+#'
+#' Not sure if this function is really needed. But gets the names of the cores
+#' as indicated by the users instead of the dataframe of logical flags (above in
+#' `determine_cores`)
+#'
+#' @param input Shiny input
+#'
+#' @return character vector of cores (research domains, e.g., "genomics",
+#' "cell_img", etc.)
+#' @export
+#'
+#' @examples
+#' # Not run
+#' flags_to_cores(input)
 flags_to_cores <- function(input) {
   flags <- as.logical(determine_cores(input)[1,])
   all_templates <- yaml.load_file("template/all.yml")$all

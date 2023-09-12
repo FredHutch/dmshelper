@@ -2,13 +2,24 @@
 % Please edit documentation in R/choose_cores.R
 \name{determine_cores}
 \alias{determine_cores}
-\title{Title}
+\title{Create a dataframe of logicals for whether to display text from each core.}
 \usage{
 determine_cores(input)
 }
 \arguments{
-\item{input}{}
+\item{input}{Shiny input}
+}
+\value{
+wide dataframe with number of columns equal to number of cores.
+One row indicates whether a logical for whther that core should be printed.
 }
 \description{
-Title
+Found in many of the section logic "chunk" functions, eg.,
+\code{raw_processed_data_chunk}, \code{sharing_chunk}, etc.
+}
+\examples{
+# Not run
+# The following checks whether to do antibody tech or not. What follows
+# is logic of how the text should look.
+if (determine_cores(input)$antibody_tech_flag) { ... }
 }

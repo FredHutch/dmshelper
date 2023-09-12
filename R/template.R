@@ -1,11 +1,13 @@
-#' Title
+#' Add markdown to text logic chunks for "Datatype" section
 #'
-#' @param input
+#' @param input Shiny input
 #'
-#' @return
+#' @return a character vector containing the text for this section
 #' @export
 #'
 #' @examples
+#' # Not run
+#' datatype_txt(input)
 datatype_txt <- function(input) {
   return(
     c(
@@ -28,14 +30,16 @@ datatype_txt <- function(input) {
 }
 
 
-#' Title
+#' Add markdown to text logic chunks for "Tools" section
 #'
-#' @param tools_code_part
+#' @param input Shiny input
 #'
-#' @return
+#' @return a character vector containing the text for this section
 #' @export
 #'
 #' @examples
+#' # Not run
+#' tools_txt(input)
 tools_txt <- function(input) {
   return(c(
     "",
@@ -47,14 +51,16 @@ tools_txt <- function(input) {
 }
 
 
-#' Title
+#' Add markdown to text logic chunks for "Standards" section
 #'
-#' @param input
+#' @param input Shiny input
 #'
-#' @return
+#' @return a character vector containing the text for this section
 #' @export
 #'
 #' @examples
+#' # Not run
+#' standards_txt(input)
 standards_txt <- function(input) {
   return(c("",
            "### Standards",
@@ -64,16 +70,16 @@ standards_txt <- function(input) {
 }
 
 
-#' Title
+#' Add markdown to text logic chunks for "Preservation" section
 #'
-#' @param repository_part
-#' @param fair_description
-#' @param duration_description
+#' @param input Shiny input
 #'
-#' @return
+#' @return a character vector containing the text for this section
 #' @export
 #'
 #' @examples
+#' # Not run
+#' preservation_txt(input)
 preservation_txt <- function(input) {
   return(
     c(
@@ -97,16 +103,16 @@ preservation_txt <- function(input) {
 }
 
 
-#' Title
+#' Add markdown to text logic chunks for "Access" section
 #'
-#' @param reuse_part
-#' @param control_part
-#' @param hs_part
+#' @param input Shiny input
 #'
-#' @return
+#' @return a character vector containing the text for this section
 #' @export
 #'
 #' @examples
+#' # Not run
+#' access_txt(input)
 access_txt <- function(input) {
   return(
     c(
@@ -130,14 +136,16 @@ access_txt <- function(input) {
 }
 
 
-#' Title
+#' Add markdown to text logic chunks for "Oversight" section
 #'
-#' @param oversight_part
+#' @param input Shiny input
 #'
-#' @return
+#' @return a character vector containing the text for this section
 #' @export
 #'
 #' @examples
+#' # Not run
+#' oversight_txt(input)
 oversight_txt <- function(input) {
   return(c(
     "",
@@ -149,12 +157,18 @@ oversight_txt <- function(input) {
 }
 
 
-#' Title
+#' Add markdown to text logic chunks for "Notes".
 #'
-#' @return
+#' This is not part of the DMS plan but is intended for user reference.
+#'
+#' @param input Shiny input
+#'
+#' @return a character vector containing the text for the footnote
 #' @export
 #'
 #' @examples
+#' # Not run
+#' reference_txt(input)
 reference_txt <- function(input) {
   return(c(
     "---",
