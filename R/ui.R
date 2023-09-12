@@ -257,7 +257,7 @@ shiny_ui <- function() {
             choices = c(
               # "None Selected (Custom)" = "none",
               "Antibody Technology" = "antibody_tech",
-              "Cellular Imaging" = "cellular_imaging",
+              "Cellular Imaging" = "cell_img",
               "Electron Microscopy (TEM)" = "em_tem",
               "Electron Microscopy (SEM)" = "em_sem",
               "Electron Microscopy (CryoEM)" = "em_cryo",
@@ -360,6 +360,8 @@ shiny_ui <- function() {
 
         # HTML preview
         box(htmlOutput("html_preview"), width = NULL),
+
+        htmlOutput("html_notes"),
 
       )
     )

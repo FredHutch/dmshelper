@@ -11,7 +11,7 @@ datatype_txt <- function(input) {
     c(
       # Don't love this huge title, but it prevents pandoc warnings.
       "---",
-      "title: Data Management and Sharing Plan",
+      "title: <h2>Data Management and Sharing Plan</h2>",
       "---",
       "",
       "### Data Type",
@@ -145,5 +145,22 @@ oversight_txt <- function(input) {
     "",
     oversight_chunk(input),
     ""
+  ))
+}
+
+
+#' Title
+#'
+#' @return
+#' @export
+#'
+#' @examples
+reference_txt <- function(input) {
+  return(c(
+    "---",
+    "title: <h4>NOTES:</h4>",
+    "---",
+    "",
+    reference_chunk(input)
   ))
 }
