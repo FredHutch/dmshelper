@@ -49,31 +49,17 @@ shiny_ui <- function() {
     #------- User Inputs
     sidebarLayout(
       sidebarPanel(
-        # Select from template/example text
-        selectInput(
-          "core_datatype",
-          label = "Choose your discipline(s) to get started with some suggested text!",
-          choices = c(
-            # "None Selected (Custom)" = "none",
-            "Antibody Technology" = "antibody_tech",
-            "Cellular Imaging" = "cellular_imaging",
-            "Electron Microscopy (TEM)" = "em_tem",
-            "Electron Microscopy (SEM)" = "em_sem",
-            "Electron Microscopy (CryoEM)" = "em_cryo",
-            "Experimental Histopathology - Aperio Platform" = "eh_aperio",
-            "Experimental Histopathology - Polaris Platform" = "eh_polaris",
-            "Experimental Histopathology - Vectra images" = "eh_vectra",
-            "Flow Cytometry" = "flow_cytometry",
-            "Genomics & Bioinformatics" = "genomics",
-            "Large Animal Facilities" = "large_animal",
-            "Preclinical Imaging (IVIS)" = "pi_ivis",
-            "Preclinical Imaging (MicroCT)" = "pi_microct",
-            "Preclinical Imaging (MRI)" = "pi_mri",
-            "Proteomics" = "proteomics",
-            "Small Animal Facilities" = "small_animal"
-          ),
-          multiple = TRUE
+
+        #HTML('<br>'),
+        h4("How to Use"),
+        HTML(
+          'Start populating text by selecting a <b>Data Type</b> below.
+           Use the expandable fill-in-the blanks and dropdowns to further customize your text.
+           <b>Download</b> your plan using the buttons at the top of the preview.
+           <br>
+             '
         ),
+
         checkboxInput(
           "anvil",
           label = HTML(
@@ -259,14 +245,39 @@ shiny_ui <- function() {
         # End of "Number of Samples" box
 
         #HTML('<br>'),
-        h4("How to Use"),
-        HTML(
-          'Populate text by selecting a discipline from the first dropdown above.
-           Use the expandable fill-in-the blanks and dropdowns to further customize your text.
-           <b>Download</b> your plan using the buttons at the top of the preview.
-           <br>
-             '
-        ),
+        h4("Aren't Sure About Data Type?"),
+        box(
+          title = "Text by Discipline",
+          collapsible = TRUE,
+          collapsed = TRUE,
+          width = NULL,
+          # Select from template/example text
+          selectInput(
+            "core_datatype",
+            label = "Choose your discipline(s) to get started with some suggested text!",
+            choices = c(
+              # "None Selected (Custom)" = "none",
+              "Antibody Technology" = "antibody_tech",
+              "Cellular Imaging" = "cellular_imaging",
+              "Electron Microscopy (TEM)" = "em_tem",
+              "Electron Microscopy (SEM)" = "em_sem",
+              "Electron Microscopy (CryoEM)" = "em_cryo",
+              "Experimental Histopathology - Aperio Platform" = "eh_aperio",
+              "Experimental Histopathology - Polaris Platform" = "eh_polaris",
+              "Experimental Histopathology - Vectra images" = "eh_vectra",
+              "Flow Cytometry" = "flow_cytometry",
+              "Genomics & Bioinformatics" = "genomics",
+              "Large Animal Facilities" = "large_animal",
+              "Preclinical Imaging (IVIS)" = "pi_ivis",
+              "Preclinical Imaging (MicroCT)" = "pi_microct",
+              "Preclinical Imaging (MRI)" = "pi_mri",
+              "Proteomics" = "proteomics",
+              "Small Animal Facilities" = "small_animal"
+            ),
+            multiple = TRUE
+          ) # End core type input
+        ), # End Discipline box
+
         h4("About this Tool"),
         HTML(
           '
