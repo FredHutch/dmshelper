@@ -13,10 +13,10 @@ metadata: "Metadata will be collected and submitted in accordance with FAIR data
 tools: "All code developed as a part of this proposal will be deposited on GitHub at publication and released open source with an MIT license."
 
 # Standards for collection, etc.
-standards: "Microscopy data will follow [Electron Microscopy Public Image Archive (EMPIAR)](https://www.ebi.ac.uk/empiar/policies/#_w95koontmqn) requirements, including finalizing raw data in a compatible file format with associated metadata."
+standards: "Microscopy data will follow Electron Microscopy Public Image Archive (EMPIAR) requirements, including finalizing raw data in a compatible file format with associated metadata."
 
 # Repository where scientific data and metadata will be archived
-repository: "Primary repositories for SEM data will be the [Electron Microscopy Public Image Archive (EMPIAR)](https://www.ebi.ac.uk/empiar/)."
+repository: "Primary repositories for SEM data will be the Electron Microscopy Public Image Archive (EMPIAR)."
 
 # How scientific data will be findable and identifiable
 findable: ["For microscopy data, a public EMPIAR accession code is assigned immediately after the user submits the deposition. The accession code is sent in an automatic email to the depositor and the owner(s).", "Identifiers will also be listed in the Data Availability sections of all manuscripts published as part of this project."]
@@ -36,3 +36,7 @@ privacy_hs: "Data will be de-identified according to HIPAA and the Common Rule. 
 # Oversight of Data Management and Sharing
 oversight: "Oversight for, management of and compliance with this data management and sharing plan will be performed by the PI for this project. We will review our plan and identify any datasets that need to be shared, processed for sharing or updated twice annually. Additionally, we will implement aspects of our plan when manuscripts are published."
 oversight_execution: "Lab Staff"
+
+reference: ["Electron Microscopy Public Image Archive (EMPIAR): https://www.ebi.ac.uk/empiar/", "Electron Microscopy Public Image Archive (EMPIAR) requirements: https://www.ebi.ac.uk/empiar/policies/#_w95koontmqn"]
+
+

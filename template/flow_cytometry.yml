@@ -14,10 +14,10 @@ metadata: "Metadata will be collected and submitted in accordance with FAIR data
 tools: "All code developed as a part of this proposal will be deposited on GitHub at publication and released open source with an MIT license."
 
 # Standards for collection, etc.
-standards: "The flow cytometry data produced in this project will be collected using the [Minimum Information about a Flow Cytometry Experiment (MIFlowCyt)](https://doi.org/10.1002%2Fcyto.a.20623) standard established by the International Society for Analytical Cytology Data Standards Task Force."
+standards: "The flow cytometry data produced in this project will be collected using the Minimum Information about a Flow Cytometry Experiment (MIFlowCyt) standard established by the International Society for Analytical Cytology Data Standards Task Force."
 
 # Repository where scientific data and metadata will be archived
-repository: "The primary repository for FCS data will be the [FlowRepository](https://flowrepository.org/)."
+repository: "The primary repository for FCS data will be the FlowRepository."
 
 # How scientific data will be findable and identifiable
 findable: ["The FlowRepository provides stable IDs to data collections associated with individual experiments or publications. Primary references would be to a Repository ID.", "Identifiers will also be listed in the Data Availability sections of all manuscripts published as part of this project."]
@@ -37,3 +37,5 @@ privacy_hs: "Data will be de-identified according to HIPAA and the Common Rule. 
 # Oversight of Data Management and Sharing
 oversight: "Oversight for, management of and compliance with this data management and sharing plan will be performed by the PI for this project. We will review our plan and identify any datasets that need to be shared, processed for sharing or updated twice annually. Additionally, we will implement aspects of our plan when manuscripts are published."
 oversight_execution: "Lab Staff"
+
+reference: ["Minimum Information about a Flow Cytometry Experiment (MIFlowCyt): https://doi.org/10.1002%2Fcyto.a.20623", "FlowRepository: https://flowrepository.org/"]
