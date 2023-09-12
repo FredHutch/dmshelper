@@ -245,7 +245,6 @@ shiny_ui <- function() {
         # End of "Number of Samples" box
 
         #HTML('<br>'),
-        h4("Aren't Sure About Data Type?"),
         box(
           title = "Text by Discipline",
           collapsible = TRUE,
@@ -254,7 +253,7 @@ shiny_ui <- function() {
           # Select from template/example text
           selectInput(
             "core_datatype",
-            label = "Choose your discipline(s) to get started with some suggested text!",
+            label = "Aren't Sure About Data Type? Choose your discipline(s) to get started with some suggested text!",
             choices = c(
               # "None Selected (Custom)" = "none",
               "Antibody Technology" = "antibody_tech",
