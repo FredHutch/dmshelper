@@ -2,13 +2,24 @@
 % Please edit documentation in R/server.R
 \name{shiny_server}
 \alias{shiny_server}
-\title{Create the server side for the app}
+\title{Create the server side for the Shiny app}
 \usage{
 shiny_server(input, output, session)
 }
 \arguments{
-\item{output}{}
+\item{input}{access to user input values and interactions}
+
+\item{output}{define the reactive outputs}
+
+\item{session}{app start, stop, or disconnection}
+}
+\value{
+server side of Shiny for use in shinyApp(). Also writes html files
+and md/docx files for rendering on the site/downloading, respectively.
 }
 \description{
-Create the server side for the app
+Create the server side for the Shiny app
+}
+\examples{
+shinyApp(shiny_ui, shiny_server)
 }

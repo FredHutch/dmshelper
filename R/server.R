@@ -2,6 +2,7 @@
 #' for a `.json` service account key in the ".secrets" directory.
 #'
 #' @return Provides authentication analagous to gs4_auth()
+#' @export
 #'
 #' @examples
 #' # Run before read_sheet() functions
@@ -24,6 +25,7 @@ do_gs4_auth <- function() {
 #'
 #' @return server side of Shiny for use in shinyApp(). Also writes html files
 #' and md/docx files for rendering on the site/downloading, respectively.
+#' @export
 #'
 #' @examples shinyApp(shiny_ui, shiny_server)
 shiny_server <- function(input, output, session) {
