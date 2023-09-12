@@ -283,7 +283,8 @@ shiny_ui <- function() {
           '
              This tool was created by the <a href="https://hutchdatascience.org/">Fred Hutch Data Science Lab</a> to help you develop your NIH Data Management & Sharing (DMS) Plan.
              Many thanks to the groups at Fred Hutch, including Shared Resources, OSR, and others, for collecting language.
-             Please see our <a href="https://hutchdatascience.org/NIH_Data_Sharing/">NIH Data Sharing Course</a> to learn more about new requirements from the NIH.<br><br>
+             Please see our <a href="https://hutchdatascience.org/NIH_Data_Sharing/">NIH Data Sharing Course</a> to learn more about new requirements from the NIH.
+             Source code for this app can be found on <a href="https://github.com/FredHutch/dmshelper">Github</a>.<br><br>
              '
         ),
         actionButton(
