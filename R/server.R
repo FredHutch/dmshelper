@@ -90,11 +90,11 @@ shiny_server <- function(input, output, session) {
         input$technology_description
 
       ## ------- Limit choices for data generating tech dropdown
-      # updateSelectInput(
-      #   session = session,
-      #   inputId = "technology_description",
-      #   choices = datatype_technology_description_options(only = flags_to_cores(toggle_file_types))
-      # )
+      updateSelectInput(
+        session = session,
+        inputId = "technology_description",
+        choices = datatype_technology_description_options(only = flags_to_cores(toggle_file_types))
+      )
 
       # ------- Observe discipline associated with the raw file type and
       #         open appropriate sample size UI boxes

@@ -4,6 +4,8 @@
 .httr-oauth
 .DS_Store
 # Rendered files
+notes.html
+notes.md
 outtext.docx
 outtext.html
 outtext.md

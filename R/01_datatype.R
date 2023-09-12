@@ -551,15 +551,13 @@ raw_processed_data_chunk <- function(input) {
 #'
 #' @examples
 get_options <- function(yaml_var, only = "all") {
-
   # Allow subsetting of options in some scenarios.
   # For example, only want data generating tech for corresponding core
   # templates, otherwise too many options are provided in the dropdown.
-  if (only == "all") {
+  if (any(only == "all")) {
     all_templates <- yaml.load_file("template/all.yml")$all
   } else {
     all_templates <- only
-
   }
 
   description_temp <- character(0)
