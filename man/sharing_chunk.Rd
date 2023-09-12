@@ -2,13 +2,20 @@
 % Please edit documentation in R/02_sharing.R
 \name{sharing_chunk}
 \alias{sharing_chunk}
-\title{Title}
+\title{Primary logic for the "Sharing" section of the plan}
 \usage{
 sharing_chunk(input)
 }
 \arguments{
-\item{input}{}
+\item{input}{Shiny input}
+}
+\value{
+a character vector containing the text for this section
 }
 \description{
-Title
+Primary logic for the "Sharing" section of the plan
+}
+\examples{
+# Not run
+sharing_chunk(input)
 }

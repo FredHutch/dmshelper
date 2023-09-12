@@ -1,11 +1,13 @@
-#' Title
+#' Primary logic for the "Metadata" section of the plan
 #'
-#' @param input
+#' @param input Shiny input
 #'
-#' @return
+#' @return a character vector containing the text for this section
 #' @export
 #'
 #' @examples
+#' # Not run
+#' metadata_chunk(input)
 metadata_chunk <- function(input) {
   if (determine_cores(input)$antibody_tech_flag) {
     metadata_chunk_temp <-

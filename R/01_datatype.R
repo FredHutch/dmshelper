@@ -1,11 +1,13 @@
-#' Title
+#' Primary logic for the "Datatype" section of the plan
 #'
-#' @param input
+#' @param input Shiny input
 #'
-#' @return
+#' @return a character vector containing the text for this section
 #' @export
 #'
 #' @examples
+#' # Not run
+#' raw_processed_data_chunk(input)
 raw_processed_data_chunk <- function(input) {
   # Pull out all templates
   all_templates <- yaml.load_file("template/all.yml")$all
@@ -544,12 +546,20 @@ raw_processed_data_chunk <- function(input) {
 }
 
 
-#' Title
+#' Pull out possible values for a particular yaml variable.
 #'
-#' @return
+#' Note that this will work without an active Shiny session.
+#'
+#' @param yaml_var character object, the yaml variable in question
+#' @param only character object or vector. Can be used if you are only interested
+#' in one or a few core types (e.g., genomics, cell_img, etc)
+#'
+#' @return character vector of possible values
 #' @export
 #'
 #' @examples
+#' get_options(yaml_var = "raw_file_types")
+#' get_options(yaml_var = "raw_file_types", only = "genomics")
 get_options <- function(yaml_var, only = "all") {
   # Allow subsetting of options in some scenarios.
   # For example, only want data generating tech for corresponding core
@@ -571,23 +581,37 @@ get_options <- function(yaml_var, only = "all") {
 }
 
 
-#' Title
+#' Pull all raw_file_types.
 #'
-#' @return
+#' This pulls all possible values for raw_file_types from the several cores'
+#' template yaml text.
+#'
+#' @return character vector of possible values
 #' @export
 #'
 #' @examples
+#' datatype_raw_file_description_options()
 datatype_raw_file_description_options <- function() {
   return(get_options(yaml_var = "raw_file_types"))
 }
 
 
-#' Title
+#' Pull tech_types.
 #'
-#' @return
+#' This pulls all possible values for raw_file_types from the several cores'
+#' template yaml text. Option to specify the cores with `only` parameter.
+#'
+#' @param only character object or vector. Can be used if you are only interested
+#' in one or a few core types (e.g., genomics, cell_img, etc)
+#'
+#' @return character vector of possible values
 #' @export
 #'
 #' @examples
+#' # Return all possible options
+#' datatype_technology_description_options()
+#' # Return only those for genomics
+#' datatype_technology_description_options(only = "genomics")
 datatype_technology_description_options <- function(only = "all") {
   return(get_options(yaml_var = "tech_types", only = only))
 }
@@ -597,12 +621,15 @@ datatype_technology_description_options <- function(only = "all") {
 #' Populates example text but allows user changes as long as the selected core
 #' (core_datatype) is not changed.
 #'
-#' @param toggle_example_txt
+#' @param toggle_example_txt frozen version of Shiny `input`
 #'
-#' @return
+#' @return character vector of possible values
 #' @export
 #'
 #' @examples
+#' # Not run
+#' # Pulls out the datatypes based on cores specified by the user
+#' shiny::updateTextInput(session, "raw_file_description", value = datatype_raw_by_core(toggle_example_txt))
 datatype_raw_by_core <- function(toggle_example_txt) {
   all_templates <- yaml.load_file("template/all.yml")$all
   flag_yaml_paths <- list()
@@ -627,12 +654,15 @@ datatype_raw_by_core <- function(toggle_example_txt) {
 #' Populates example text but allows user changes as long as the selected core
 #' (core_datatype) is not changed.
 #'
-#' @param toggle_example_txt
+#' @param toggle_example_txt frozen version of Shiny `input`
 #'
-#' @return
+#' @return character vector of possible values
 #' @export
 #'
 #' @examples
+#' # Not run
+#' # Pulls out the tech descriptions based on cores specified by the user
+#' shiny::updateTextInput(session, "technology_description", value = datatype_tech_by_core(toggle_example_txt))
 datatype_tech_by_core <- function(toggle_example_txt) {
   all_templates <- yaml.load_file("template/all.yml")$all
   flag_yaml_paths <- list()

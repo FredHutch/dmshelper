@@ -1,11 +1,13 @@
-#' Title
+#' Primary logic for the "Repository" section of the plan
 #'
-#' @param input
+#' @param input Shiny input
 #'
-#' @return
+#' @return a character vector containing the text for this section
 #' @export
 #'
 #' @examples
+#' # Not run
+#' repository_chunk(input)
 repository_chunk <- function(input) {
   # Pull out all templates and make a named list with file path
   all_templates <- yaml.load_file("template/all.yml")$all
@@ -45,14 +47,16 @@ repository_chunk <- function(input) {
 }
 
 
-#' Title
+#' Primary logic for the "Findable" section of the plan
 #'
-#' @param input
+#' @param input Shiny input
 #'
-#' @return
+#' @return a character vector containing the text for this section
 #' @export
 #'
 #' @examples
+#' # Not run
+#' findable_chunk(input)
 findable_chunk <- function(input) {
   # Pull out all templates and make a named list with file path
   all_templates <- yaml.load_file("template/all.yml")$all
@@ -92,14 +96,16 @@ findable_chunk <- function(input) {
 }
 
 
-#' Title
+#' Primary logic for the "Duration" section of the plan
 #'
-#' @param input
+#' @param input Shiny input
 #'
-#' @return
+#' @return a character vector containing the text for this section
 #' @export
 #'
 #' @examples
+#' # Not run
+#' duration_chunk(input)
 duration_chunk <- function(input) {
   # Pull out all templates and make a named list with file path
   all_templates <- yaml.load_file("template/all.yml")$all

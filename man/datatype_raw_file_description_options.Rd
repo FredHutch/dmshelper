@@ -2,10 +2,17 @@
 % Please edit documentation in R/01_datatype.R
 \name{datatype_raw_file_description_options}
 \alias{datatype_raw_file_description_options}
-\title{Title}
+\title{Pull all raw_file_types.}
 \usage{
 datatype_raw_file_description_options()
 }
+\value{
+character vector of possible values
+}
 \description{
-Title
+This pulls all possible values for raw_file_types from the several cores'
+template yaml text.
+}
+\examples{
+datatype_raw_file_description_options()
 }
