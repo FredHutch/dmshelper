@@ -550,8 +550,17 @@ raw_processed_data_chunk <- function(input) {
 #' @export
 #'
 #' @examples
-get_options <- function(yaml_var) {
-  all_templates <- yaml.load_file("template/all.yml")$all
+get_options <- function(yaml_var, only = "all") {
+
+  # Allow subsetting of options in some scenarios.
+  # For example, only want data generating tech for corresponding core
+  # templates, otherwise too many options are provided in the dropdown.
+  if (only == "all") {
+    all_templates <- yaml.load_file("template/all.yml")$all
+  } else {
+    all_templates <- only
+
+  }
 
   description_temp <- character(0)
   for (template in all_templates) {
@@ -581,8 +590,8 @@ datatype_raw_file_description_options <- function() {
 #' @export
 #'
 #' @examples
-datatype_technology_description_options <- function() {
-  return(get_options(yaml_var = "tech_types"))
+datatype_technology_description_options <- function(only = "all") {
+  return(get_options(yaml_var = "tech_types", only = only))
 }
 
 

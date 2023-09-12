@@ -4,7 +4,7 @@
 \alias{get_options}
 \title{Title}
 \usage{
-get_options(yaml_var)
+get_options(yaml_var, only = "all")
 }
 \description{
 Title

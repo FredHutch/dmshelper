@@ -2,7 +2,7 @@
 % Please edit documentation in R/server.R
 \name{shiny_server}
 \alias{shiny_server}
-\title{Title}
+\title{Create the server side for the app}
 \usage{
 shiny_server(input, output, session)
 }
@@ -10,5 +10,5 @@ shiny_server(input, output, session)
 \item{output}{}
 }
 \description{
-Title
+Create the server side for the app
 }

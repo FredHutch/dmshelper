@@ -4,7 +4,7 @@
 \alias{datatype_technology_description_options}
 \title{Title}
 \usage{
-datatype_technology_description_options()
+datatype_technology_description_options(only = "all")
 }
 \description{
 Title
