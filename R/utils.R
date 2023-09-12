@@ -60,14 +60,20 @@ multi_or_blank <- function(string_vect, conj = "and") {
 }
 
 
-#' Title
+#' Check if input is a number - if so, multiply!
 #'
-#' @param num_input
+#' @param num_input number supplied by user
+#' @param multiply a numeric multiplication factor for file size
 #'
-#' @return
+#' @return a character or numeric type, depending on what is supplied
 #' @export
 #'
 #' @examples
+#' # Not run
+#' # Check that user input is numeric
+#' check_numeric(input$num_em_tem_files)
+#' # If numeric, multiply
+#' check_numeric(input$num_em_tem_files, multiply = 1.6)
 check_numeric <- function(num_input, multiply = NULL) {
   return(if (!(is.numeric(num_input))) {
     " ___ "
@@ -81,15 +87,21 @@ check_numeric <- function(num_input, multiply = NULL) {
 }
 
 
-#' Title
+#' Return text only if it is not yet present
 #'
-#' @param string_chain
-#' @param new_string
+#' Prevents duplication but probably more efficient to replace with
+#' unique() ..
+#' Found in 03_metadata.R
 #'
-#' @return
+#' @param string_chain existing character vector
+#' @param new_string new characters to be added
+#'
+#' @return concatenated existing string plus new string if it is not yet present
 #' @export
 #'
 #' @examples
+#' # Not run
+#' update_if_absent(metadata_chunk_temp, yaml.load_file("template/cell_img.yml")$metadata)
 update_if_absent <- function(string_chain, new_string) {
   return(c(string_chain,
     if (new_string %in% string_chain) {
@@ -99,16 +111,17 @@ update_if_absent <- function(string_chain, new_string) {
     }))
 }
 
-
-tally_strings <- function(df, string_chain, new_string) {
-
-  if (new_string %in% string_chain) {
-    df[(df$string == new_string), ]$count <-  df[(df$string == new_string), ]$count + 1
-  } else {
-    newrow <- nrow(df) + 1
-    df[newrow, 1] <- new_string
-    df[newrow, 2] <- 1
-  }
-
-  return(df)
-}
+# I think this is safe to delete. TODO: Confirm :)
+#
+# tally_strings <- function(df, string_chain, new_string) {
+#
+#   if (new_string %in% string_chain) {
+#     df[(df$string == new_string), ]$count <-  df[(df$string == new_string), ]$count + 1
+#   } else {
+#     newrow <- nrow(df) + 1
+#     df[newrow, 1] <- new_string
+#     df[newrow, 2] <- 1
+#   }
+#
+#   return(df)
+# }
