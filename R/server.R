@@ -2,7 +2,6 @@
 #' for a `.json` service account key in the ".secrets" directory.
 #'
 #' @return Provides authentication analagous to gs4_auth()
-#' @export
 #'
 #' @examples
 #' # Run before read_sheet() functions
@@ -17,17 +16,18 @@ do_gs4_auth <- function() {
 }
 
 
-#' Create the server side for the app
+#' Create the server side for the Shiny app
 #'
-#' @param input
-#' @param output
+#' @param input access to user input values and interactions
+#' @param output define the reactive outputs
+#' @param session app start, stop, or disconnection
 #'
-#' @return
-#' @export
+#' @return server side of Shiny for use in shinyApp(). Also writes html files
+#' and md/docx files for rendering on the site/downloading, respectively.
 #'
-#' @examples
+#' @examples shinyApp(shiny_ui, shiny_server)
 shiny_server <- function(input, output, session) {
-  # ------- Create a Word docx output
+  # ------- Create a Word docx output that can be downloaded
   output$downloaddocx <- downloadHandler(filename <-
                                            function() {
                                              paste0(getwd(), "/outtext.docx")
@@ -37,7 +37,7 @@ shiny_server <- function(input, output, session) {
                                          },
                                          contentType = "text/docx")
 
-  # ------- Create a markdown output
+  # ------- Create a markdown output that can be downloaded
   output$downloadmd <- downloadHandler(filename <-
                                          function() {
                                            paste0(getwd(), "/outtext.md")
@@ -75,10 +75,11 @@ shiny_server <- function(input, output, session) {
         downloadButton("downloadmd", label = "Download .md")
       })
     }
-  })
+  }) # End email prompted download buttons
 
-  # ------- Render the preview and the files for download
+  # ------- Render the DMS plan preview and the files for download
   output$html_preview <- renderUI({
+
     toggle_file_types <- reactiveValues(raw_file_description = "none")
     observeEvent(input$raw_file_description, {
       req(input$raw_file_description != toggle_file_types$raw_file_description)
@@ -99,7 +100,6 @@ shiny_server <- function(input, output, session) {
       # ------- Observe discipline associated with the raw file type and
       #         open appropriate sample size UI boxes
       for (core_name in colnames(determine_cores(toggle_file_types))) {
-        # as.list?
         if (determine_cores(toggle_file_types)[[core_name]]) {
           updateTabsetPanel(
             inputId = paste0("sample_size_wizard_", core_name),
@@ -112,8 +112,7 @@ shiny_server <- function(input, output, session) {
           )
         }
       }
-
-    }, ignoreInit = TRUE)
+    }, ignoreInit = TRUE) # End observeEvent(input$raw_file_description...
 
     # The following populates template text by discipline but allows user changes as long
     # as the selected core (core_datatype) is not changed.
@@ -134,8 +133,7 @@ shiny_server <- function(input, output, session) {
       shiny::updateTextInput(session,
                              "technology_description",
                              value = datatype_tech_by_core(toggle_example_txt))
-
-    }, ignoreInit = TRUE)
+    }, ignoreInit = TRUE) # End observeEvent(input$core_datatype...
 
     # Combine each section into one vector to be written
     book <-
