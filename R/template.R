@@ -9,7 +9,11 @@
 datatype_txt <- function(input) {
   return(
     c(
-      "## Data Management and Sharing Plan",
+      # Don't love this huge title, but it prevents pandoc warnings.
+      "---",
+      "title: Data Management and Sharing Plan",
+      "---",
+      "",
       "### Data Type",
       "#### Types and amount of scientific data expected to be generated in the project",
       raw_processed_data_chunk(input),
