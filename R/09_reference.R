@@ -1,11 +1,20 @@
-#' Title
+#' Primary logic for the "Notes" section.
 #'
-#' @param input
+#' These urls are generated for the user's reference and should not be
+#' included in the final plan, as links to websites are not allowed in the
+#' submitted plan.
 #'
-#' @return
+#' This text appears below the rendered HTML of the plan itself and is not
+#' downloaded with the plan.
+#'
+#' @param input Shiny input
+#'
+#' @return a character vector containing the text for this section
 #' @export
 #'
 #' @examples
+#' # Not run
+#' reference_chunk(input)
 reference_chunk <- function(input) {
   # Pull out all templates and make a named list with file path
   all_templates <- yaml.load_file("template/all.yml")$all

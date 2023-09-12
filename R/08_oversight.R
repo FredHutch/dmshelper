@@ -1,11 +1,13 @@
-#' Title
+#' Primary logic for the "Oversight" section of the plan
 #'
-#' @param input
+#' @param input Shiny input
 #'
-#' @return
+#' @return a character vector containing the text for this section
 #' @export
 #'
 #' @examples
+#' # Not run
+#' oversight_chunk(input)
 oversight_chunk <- function(input) {
   # Pull out all templates and make a named list with file path
   all_templates <- yaml.load_file("template/all.yml")$all
