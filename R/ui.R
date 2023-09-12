@@ -1,9 +1,11 @@
-#' Title
+#' Create the UI side for the Shiny app
 #'
-#' @return
+#' @return UI side of Shiny for use in shinyApp(). Includes some static text.
 #' @export
 #'
 #' @examples
+#' # Not run
+#' shinyApp(shiny_ui, shiny_server)
 shiny_ui <- function() {
   fluidPage(
     # Styling stuff

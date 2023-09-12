@@ -27,7 +27,9 @@ do_gs4_auth <- function() {
 #' and md/docx files for rendering on the site/downloading, respectively.
 #' @export
 #'
-#' @examples shinyApp(shiny_ui, shiny_server)
+#' @examples
+#' # Not run
+#' shinyApp(shiny_ui, shiny_server)
 shiny_server <- function(input, output, session) {
   # ------- Create a Word docx output that can be downloaded
   output$downloaddocx <- downloadHandler(filename <-

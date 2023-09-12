@@ -21,5 +21,6 @@ and md/docx files for rendering on the site/downloading, respectively.
 Create the server side for the Shiny app
 }
 \examples{
+# Not run
 shinyApp(shiny_ui, shiny_server)
 }

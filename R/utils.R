@@ -1,13 +1,18 @@
-#' Fix list grammar
+#' Fix comma-separated character grammar
 #'
 #' Goal of this function is to take a string like a, b, c and return a, b, and c.
 #'
-#' @param string_vect
+#' @param string_vect a character type with commas
+#' @param conj character indicating the conjunction: "or" or "and"
 #'
-#' @return
+#' @return cleaned up character object
 #' @export
 #'
 #' @examples
+#' # Print "a, b, and c"
+#' remove_last_comma(c("a, b, c"))
+#' # "a, b, or c"
+#' remove_last_comma(c("a, b, c"), conj = "or")
 remove_last_comma <- function(string_vect, conj = "and") {
   if (length(string_vect) == 2) {
     string_ <- paste(string_vect, collapse = ", ")
@@ -29,19 +34,28 @@ remove_last_comma <- function(string_vect, conj = "and") {
 }
 
 
-#' Title
+#' Fill null character object with blanks.
 #'
-#' @param string_vect
+#' Checks if there is actually a value, then runs `remove_last_comma`. Else,
+#' creates a physical blank ("___").
 #'
-#' @return
+#' @param string_vect a character type, including one of length zero.
+#' @param conj character indicating the conjunction: "or" or "and"
+#'
+#' @return a character object
 #' @export
 #'
 #' @examples
-multi_or_blank <- function(string_vect) {
+#' # Print a blank if of length zero, for when the user doesn't specify
+#' # something
+#' multi_or_blank(character(0))
+#' # Or, go ahead and run the remove_last_comma() function
+#' multi_or_blank(c("a, b, c"))
+multi_or_blank <- function(string_vect, conj = "and") {
   return(if (length(string_vect) == 0) {
     " ___ "
   } else {
-    remove_last_comma(string_vect)
+    remove_last_comma(string_vect, conj = conj)
   })
 }
 
