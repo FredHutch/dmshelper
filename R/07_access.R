@@ -27,6 +27,14 @@ access_reuse_chunk <- function(input) {
       if (input$human_subjects &
           !(is.null(yaml.load_file(flag_yaml_paths[[flag]])$access_reuse_hs))) {
         access_ <- yaml.load_file(flag_yaml_paths[[flag]])$access_reuse_hs
+        if (input$gru_hmb == "gru" &
+            !(is.null(yaml.load_file(flag_yaml_paths[[flag]])$access_reuse_hs_gru))) {
+          access_ <- c(access_,  yaml.load_file(flag_yaml_paths[[flag]])$access_reuse_hs_gru )
+        }
+        if (input$gru_hmb == "hmb" &
+            !(is.null(yaml.load_file(flag_yaml_paths[[flag]])$access_reuse_hs_hmb))) {
+          access_ <- c(access_,  yaml.load_file(flag_yaml_paths[[flag]])$access_reuse_hs_hmb )
+        }
       } else {
         access_ <- yaml.load_file(flag_yaml_paths[[flag]])$access_reuse
       }
@@ -59,6 +67,21 @@ access_reuse_chunk <- function(input) {
     stringr::str_replace(access_reuse_chunk_temp, "%1%", access_reuse_cat)
 
   return(access_reuse_chunk_temp)
+}
+
+
+#' Provide options for GRU vs HMB data use limitations
+#'
+#' @return a named vector
+#' @export
+#'
+#' @examples
+#' gru_hmb_options()
+gru_hmb_options <- function() {
+  return(
+    c("Any General Research Use - GRU" = "gru",
+      "Health/Medical/Biomedical use only - HMB" = "hmb")
+  )
 }
 
 

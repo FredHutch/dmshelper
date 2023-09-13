@@ -77,6 +77,7 @@ shiny_ui <- function() {
           width = NULL
         ),
 
+
         #####
         # I
         # DATA TYPE
@@ -98,7 +99,14 @@ shiny_ui <- function() {
             label = "Data generating technology",
             choices = datatype_technology_description_options(),
             multiple = TRUE
-          )
+          ),
+          selectInput(
+            "gru_hmb",
+            label = "Data Use Limitations",
+            choices = gru_hmb_options(),
+            multiple = FALSE,
+            selected = "gru"
+          ),
         ),
 
         #####
