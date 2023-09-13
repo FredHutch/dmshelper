@@ -30,7 +30,9 @@ duration_hs: "Alignment data will be submitted after data cleaning and quality c
 duration: "Data will be released no later than the time of initial publication and preserved for the duration of the grant funding."
 
 # Factors affecting subsequent access, distribution, or reuse of scientific data
-access_reuse_hs: "For genomic applications, research participants will be consented for data sharing of their individual genomic and clinical data via controlled access. Our institution will provide an Institutional Certification upon registering the study in dbGAP. Participants will be consented in a manner that allows for any research question to be explored (i.e., the General Research Uses (GRU) data use limitation). Genomic Summary Results from this study can be shared through unrestricted access."
+access_reuse_hs: "For genomic applications, research participants will be consented for data sharing of their individual genomic and clinical data via controlled access. Our institution will provide an Institutional Certification upon registering the study in dbGAP."
+access_reuse_hs_gru: "Participants will be consented in a manner that allows for any research question to be explored (i.e., the General Research Uses - GRU -  term in the NIH Data Use Limitations and GA4GH Data Use Ontology). Genomic Summary Results from this study can be shared through unrestricted access."
+access_reuse_hs_hmb: "Participants will be consented in a manner that allows for any health, medical, or biomedical research question to be explored (i.e., the Health/Medical/Biomedical - HMB - term in the NIH Data Use Limitations and GA4GH Data Use Ontology)."
 access_reuse: "For genomic applications, we will be using BIOBANK X cell lines that are consented for unrestricted data sharing. Our institution will provide an Institutional Certification upon registering the study in dbGaP, indicating that both individual-level genomic data and Genomic Summary Results from this study can be shared through unrestricted access."
 
 # Whether access to scientific data will be controlled
@@ -44,4 +46,4 @@ privacy_hs: "In order to achieve our goal of genomic data sharing with the resea
 oversight: "Oversight for, management of and compliance with this data management and sharing plan will be performed by the PI for this project. We will review our plan and identify any datasets that need to be shared, processed for sharing or updated twice annually. Additionally, we will implement aspects of our plan when manuscripts are published."
 oversight_execution: "Lab Staff"
 
-reference: ["MINSEQE (Minimum Information About a Next-generation Sequencing Experiment) guidelines: https://www.fged.org/projects/minseqe/"]
+reference: ["MINSEQE (Minimum Information About a Next-generation Sequencing Experiment) guidelines: https://www.fged.org/projects/minseqe/", "Developing Effective Data Use Limitation Statements: https://sharing.nih.gov/sites/default/files/flmngr/NIH_PTC_in_Developing_DUL_Statements.pdf", "GA4GH: https://www.ga4gh.org/"]
