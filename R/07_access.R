@@ -70,6 +70,13 @@ access_reuse_chunk <- function(input) {
 }
 
 
+#' Provide options for GRU vs HMB data use limitations
+#'
+#' @return a named vector
+#' @export
+#'
+#' @examples
+#' gru_hmb_options()
 gru_hmb_options <- function() {
   return(
     c("Any General Research Use - GRU" = "gru",
