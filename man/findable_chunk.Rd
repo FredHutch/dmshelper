@@ -2,13 +2,20 @@
 % Please edit documentation in R/06_repository.R
 \name{findable_chunk}
 \alias{findable_chunk}
-\title{Title}
+\title{Primary logic for the "Findable" section of the plan}
 \usage{
 findable_chunk(input)
 }
 \arguments{
-\item{input}{}
+\item{input}{Shiny input}
+}
+\value{
+a character vector containing the text for this section
 }
 \description{
-Title
+Primary logic for the "Findable" section of the plan
+}
+\examples{
+# Not run
+findable_chunk(input)
 }

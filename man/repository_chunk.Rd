@@ -2,13 +2,20 @@
 % Please edit documentation in R/06_repository.R
 \name{repository_chunk}
 \alias{repository_chunk}
-\title{Title}
+\title{Primary logic for the "Repository" section of the plan}
 \usage{
 repository_chunk(input)
 }
 \arguments{
-\item{input}{}
+\item{input}{Shiny input}
+}
+\value{
+a character vector containing the text for this section
 }
 \description{
-Title
+Primary logic for the "Repository" section of the plan
+}
+\examples{
+# Not run
+repository_chunk(input)
 }

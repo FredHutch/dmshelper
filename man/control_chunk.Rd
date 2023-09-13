@@ -2,13 +2,20 @@
 % Please edit documentation in R/07_access.R
 \name{control_chunk}
 \alias{control_chunk}
-\title{Title}
+\title{Primary logic for the "Access Control" section of the plan}
 \usage{
 control_chunk(input)
 }
 \arguments{
-\item{input}{}
+\item{input}{Shiny input}
+}
+\value{
+a character vector containing the text for this section
 }
 \description{
-Title
+Primary logic for the "Access Control" section of the plan
+}
+\examples{
+# Not run
+control_chunk(input)
 }

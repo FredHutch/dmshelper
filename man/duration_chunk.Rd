@@ -2,13 +2,20 @@
 % Please edit documentation in R/06_repository.R
 \name{duration_chunk}
 \alias{duration_chunk}
-\title{Title}
+\title{Primary logic for the "Duration" section of the plan}
 \usage{
 duration_chunk(input)
 }
 \arguments{
-\item{input}{}
+\item{input}{Shiny input}
+}
+\value{
+a character vector containing the text for this section
 }
 \description{
-Title
+Primary logic for the "Duration" section of the plan
+}
+\examples{
+# Not run
+duration_chunk(input)
 }

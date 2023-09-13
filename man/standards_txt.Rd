@@ -2,13 +2,20 @@
 % Please edit documentation in R/template.R
 \name{standards_txt}
 \alias{standards_txt}
-\title{Title}
+\title{Add markdown to text logic chunks for "Standards" section}
 \usage{
 standards_txt(input)
 }
 \arguments{
-\item{input}{}
+\item{input}{Shiny input}
+}
+\value{
+a character vector containing the text for this section
 }
 \description{
-Title
+Add markdown to text logic chunks for "Standards" section
+}
+\examples{
+# Not run
+standards_txt(input)
 }

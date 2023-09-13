@@ -2,13 +2,24 @@
 % Please edit documentation in R/utils.R
 \name{update_if_absent}
 \alias{update_if_absent}
-\title{Title}
+\title{Return text only if it is not yet present}
 \usage{
 update_if_absent(string_chain, new_string)
 }
 \arguments{
-\item{new_string}{}
+\item{string_chain}{existing character vector}
+
+\item{new_string}{new characters to be added}
+}
+\value{
+concatenated existing string plus new string if it is not yet present
 }
 \description{
-Title
+Prevents duplication but probably more efficient to replace with
+unique() ..
+Found in 03_metadata.R
+}
+\examples{
+# Not run
+update_if_absent(metadata_chunk_temp, yaml.load_file("template/cell_img.yml")$metadata)
 }

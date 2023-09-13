@@ -2,13 +2,25 @@
 % Please edit documentation in R/utils.R
 \name{check_numeric}
 \alias{check_numeric}
-\title{Title}
+\title{Check if input is a number - if so, multiply!}
 \usage{
 check_numeric(num_input, multiply = NULL)
 }
 \arguments{
-\item{num_input}{}
+\item{num_input}{number supplied by user}
+
+\item{multiply}{a numeric multiplication factor for file size}
+}
+\value{
+a character or numeric type, depending on what is supplied
 }
 \description{
-Title
+Check if input is a number - if so, multiply!
+}
+\examples{
+# Not run
+# Check that user input is numeric
+check_numeric(input$num_em_tem_files)
+# If numeric, multiply
+check_numeric(input$num_em_tem_files, multiply = 1.6)
 }

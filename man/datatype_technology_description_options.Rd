@@ -2,10 +2,24 @@
 % Please edit documentation in R/01_datatype.R
 \name{datatype_technology_description_options}
 \alias{datatype_technology_description_options}
-\title{Title}
+\title{Pull tech_types.}
 \usage{
 datatype_technology_description_options(only = "all")
 }
+\arguments{
+\item{only}{character object or vector. Can be used if you are only interested
+in one or a few core types (e.g., genomics, cell_img, etc)}
+}
+\value{
+character vector of possible values
+}
 \description{
-Title
+This pulls all possible values for raw_file_types from the several cores'
+template yaml text. Option to specify the cores with \code{only} parameter.
+}
+\examples{
+# Return all possible options
+datatype_technology_description_options()
+# Return only those for genomics
+datatype_technology_description_options(only = "genomics")
 }

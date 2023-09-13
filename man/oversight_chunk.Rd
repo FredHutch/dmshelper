@@ -2,13 +2,20 @@
 % Please edit documentation in R/08_oversight.R
 \name{oversight_chunk}
 \alias{oversight_chunk}
-\title{Title}
+\title{Primary logic for the "Oversight" section of the plan}
 \usage{
 oversight_chunk(input)
 }
 \arguments{
-\item{input}{}
+\item{input}{Shiny input}
+}
+\value{
+a character vector containing the text for this section
 }
 \description{
-Title
+Primary logic for the "Oversight" section of the plan
+}
+\examples{
+# Not run
+oversight_chunk(input)
 }

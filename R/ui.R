@@ -1,9 +1,11 @@
-#' Title
+#' Create the UI side for the Shiny app
 #'
-#' @return
+#' @return UI side of Shiny for use in shinyApp(). Includes some static text.
 #' @export
 #'
 #' @examples
+#' # Not run
+#' shinyApp(shiny_ui, shiny_server)
 shiny_ui <- function() {
   fluidPage(
     # Styling stuff
@@ -245,7 +247,6 @@ shiny_ui <- function() {
         # End of "Number of Samples" box
 
         #HTML('<br>'),
-        h4("Aren't Sure About Data Type?"),
         box(
           title = "Text by Discipline",
           collapsible = TRUE,
@@ -254,11 +255,11 @@ shiny_ui <- function() {
           # Select from template/example text
           selectInput(
             "core_datatype",
-            label = "Choose your discipline(s) to get started with some suggested text!",
+            label = "Aren't Sure About Data Type? Choose your discipline(s) to get started with some suggested text!",
             choices = c(
               # "None Selected (Custom)" = "none",
               "Antibody Technology" = "antibody_tech",
-              "Cellular Imaging" = "cellular_imaging",
+              "Cellular Imaging" = "cell_img",
               "Electron Microscopy (TEM)" = "em_tem",
               "Electron Microscopy (SEM)" = "em_sem",
               "Electron Microscopy (CryoEM)" = "em_cryo",
@@ -283,7 +284,8 @@ shiny_ui <- function() {
           '
              This tool was created by the <a href="https://hutchdatascience.org/">Fred Hutch Data Science Lab</a> to help you develop your NIH Data Management & Sharing (DMS) Plan.
              Many thanks to the groups at Fred Hutch, including Shared Resources, OSR, and others, for collecting language.
-             Please see our <a href="https://hutchdatascience.org/NIH_Data_Sharing/">NIH Data Sharing Course</a> to learn more about new requirements from the NIH.<br><br>
+             Please see our <a href="https://hutchdatascience.org/NIH_Data_Sharing/">NIH Data Sharing Course</a> to learn more about new requirements from the NIH.
+             Source code for this app can be found on <a href="https://github.com/FredHutch/dmshelper">Github</a>.<br><br>
              '
         ),
         actionButton(
@@ -360,6 +362,8 @@ shiny_ui <- function() {
 
         # HTML preview
         box(htmlOutput("html_preview"), width = NULL),
+
+        htmlOutput("html_notes"),
 
       )
     )

@@ -2,13 +2,20 @@
 % Please edit documentation in R/05_standards.R
 \name{standards_chunk}
 \alias{standards_chunk}
-\title{Title}
+\title{Primary logic for the "Standards" section of the plan}
 \usage{
 standards_chunk(input)
 }
 \arguments{
-\item{input}{}
+\item{input}{Shiny input}
+}
+\value{
+a character vector containing the text for this section
 }
 \description{
-Title
+Primary logic for the "Standards" section of the plan
+}
+\examples{
+# Not run
+standards_chunk(input)
 }

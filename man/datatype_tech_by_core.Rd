@@ -9,10 +9,18 @@ Populates example text but allows user changes as long as the selected core
 datatype_tech_by_core(toggle_example_txt)
 }
 \arguments{
-\item{toggle_example_txt}{}
+\item{toggle_example_txt}{frozen version of Shiny \code{input}}
+}
+\value{
+character vector of possible values
 }
 \description{
 Helps reactively update "technology_description" in server.R
 Populates example text but allows user changes as long as the selected core
 (core_datatype) is not changed.
+}
+\examples{
+# Not run
+# Pulls out the tech descriptions based on cores specified by the user
+shiny::updateTextInput(session, "technology_description", value = datatype_tech_by_core(toggle_example_txt))
 }

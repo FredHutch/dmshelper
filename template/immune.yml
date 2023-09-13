@@ -16,7 +16,7 @@ tools: ["All code developed as a part of this proposal will be deposited on GitH
 standards: "There are no specific widely adopted standards exclusively for %1% data/metadata. However, where possible, we will use standardized and commonly used data formats, data dictionaries, unique identifiers, and data documentation."
 
 # Repository where scientific data and metadata will be archived
-repository: "Primary repositories for immune monitoring data will be the [Immune Epitope Database and Analysis Resource (IEDB)](https://www.iedb.org/)."
+repository: "Primary repositories for immune monitoring data will be the Immune Epitope Database and Analysis Resource (IEDB)."
 
 # How scientific data will be findable and identifiable
 findable: "[Insert repository names] provide stable IDs to [insert levels such as project accession, SRA read accession, sequencing platform, etc.]. Primary references would be to a GEO series accession or SRA run accession. The dataset records submitted for this project will additionally be listed in the Data Availability sections of all manuscripts published as part of this project."
@@ -37,3 +37,4 @@ privacy_hs: ""
 oversight: "Oversight for, management of and compliance with this data management and sharing plan will be performed by the PI for this project. We will review our plan and identify any datasets that need to be shared, processed for sharing or updated twice annually. Additionally, we will implement aspects of our plan when manuscripts are published."
 oversight_execution: "Lab Staff"
 
+reference: ["Immune Epitope Database and Analysis Resource (IEDB): https://www.iedb.org/"]

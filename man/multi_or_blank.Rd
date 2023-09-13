@@ -2,13 +2,26 @@
 % Please edit documentation in R/utils.R
 \name{multi_or_blank}
 \alias{multi_or_blank}
-\title{Title}
+\title{Fill null character object with blanks.}
 \usage{
-multi_or_blank(string_vect)
+multi_or_blank(string_vect, conj = "and")
 }
 \arguments{
-\item{string_vect}{}
+\item{string_vect}{a character type, including one of length zero.}
+
+\item{conj}{character indicating the conjunction: "or" or "and"}
+}
+\value{
+a character object
 }
 \description{
-Title
+Checks if there is actually a value, then runs \code{remove_last_comma}. Else,
+creates a physical blank ("___").
+}
+\examples{
+# Print a blank if of length zero, for when the user doesn't specify
+# something
+multi_or_blank(character(0))
+# Or, go ahead and run the remove_last_comma() function
+multi_or_blank(c("a, b, c"))
 }

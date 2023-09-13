@@ -2,13 +2,20 @@
 % Please edit documentation in R/07_access.R
 \name{privacy_hs_chunk}
 \alias{privacy_hs_chunk}
-\title{Title}
+\title{Primary logic for the "Human subjects / privacy" section of the plan}
 \usage{
 privacy_hs_chunk(input)
 }
 \arguments{
-\item{input}{}
+\item{input}{Shiny input}
+}
+\value{
+a character vector containing the text for this section
 }
 \description{
-Title
+Primary logic for the "Human subjects / privacy" section of the plan
+}
+\examples{
+# Not run
+privacy_hs_chunk(input)
 }

@@ -2,10 +2,23 @@
 % Please edit documentation in R/01_datatype.R
 \name{get_options}
 \alias{get_options}
-\title{Title}
+\title{Pull out possible values for a particular yaml variable.}
 \usage{
 get_options(yaml_var, only = "all")
 }
+\arguments{
+\item{yaml_var}{character object, the yaml variable in question}
+
+\item{only}{character object or vector. Can be used if you are only interested
+in one or a few core types (e.g., genomics, cell_img, etc)}
+}
+\value{
+character vector of possible values
+}
 \description{
-Title
+Note that this will work without an active Shiny session.
+}
+\examples{
+get_options(yaml_var = "raw_file_types")
+get_options(yaml_var = "raw_file_types", only = "genomics")
 }

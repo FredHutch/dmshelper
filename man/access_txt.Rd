@@ -2,13 +2,20 @@
 % Please edit documentation in R/template.R
 \name{access_txt}
 \alias{access_txt}
-\title{Title}
+\title{Add markdown to text logic chunks for "Access" section}
 \usage{
 access_txt(input)
 }
 \arguments{
-\item{hs_part}{}
+\item{input}{Shiny input}
+}
+\value{
+a character vector containing the text for this section
 }
 \description{
-Title
+Add markdown to text logic chunks for "Access" section
+}
+\examples{
+# Not run
+access_txt(input)
 }

@@ -1,11 +1,13 @@
-#' Title
+#' Primary logic for the "Access" section of the plan
 #'
-#' @param input
+#' @param input Shiny input
 #'
-#' @return
+#' @return a character vector containing the text for this section
 #' @export
 #'
 #' @examples
+#' # Not run
+#' access_reuse_chunk(input)
 access_reuse_chunk <- function(input) {
   # Pull out all templates and make a named list with file path
   all_templates <- yaml.load_file("template/all.yml")$all
@@ -60,14 +62,16 @@ access_reuse_chunk <- function(input) {
 }
 
 
-#' Title
+#' Primary logic for the "Access Control" section of the plan
 #'
-#' @param input
+#' @param input Shiny input
 #'
-#' @return
+#' @return a character vector containing the text for this section
 #' @export
 #'
 #' @examples
+#' # Not run
+#' control_chunk(input)
 control_chunk <- function(input) {
   # Pull out all templates and make a named list with file path
   all_templates <- yaml.load_file("template/all.yml")$all
@@ -141,14 +145,16 @@ control_chunk <- function(input) {
 }
 
 
-#' Title
+#' Primary logic for the "Human subjects / privacy" section of the plan
 #'
-#' @param input
+#' @param input Shiny input
 #'
-#' @return
+#' @return a character vector containing the text for this section
 #' @export
 #'
 #' @examples
+#' # Not run
+#' privacy_hs_chunk(input)
 privacy_hs_chunk <- function(input) {
   # Pull out all templates and make a named list with file path
   all_templates <- yaml.load_file("template/all.yml")$all

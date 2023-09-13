@@ -2,13 +2,20 @@
 % Please edit documentation in R/04_tools.R
 \name{tools_chunk}
 \alias{tools_chunk}
-\title{Title}
+\title{Primary logic for the "Tools" section of the plan}
 \usage{
 tools_chunk(input)
 }
 \arguments{
-\item{input}{}
+\item{input}{Shiny input}
+}
+\value{
+a character vector containing the text for this section
 }
 \description{
-Title
+Primary logic for the "Tools" section of the plan
+}
+\examples{
+# Not run
+tools_chunk(input)
 }

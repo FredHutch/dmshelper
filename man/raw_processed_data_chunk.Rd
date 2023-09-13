@@ -2,13 +2,20 @@
 % Please edit documentation in R/01_datatype.R
 \name{raw_processed_data_chunk}
 \alias{raw_processed_data_chunk}
-\title{Title}
+\title{Primary logic for the "Datatype" section of the plan}
 \usage{
 raw_processed_data_chunk(input)
 }
 \arguments{
-\item{input}{}
+\item{input}{Shiny input}
+}
+\value{
+a character vector containing the text for this section
 }
 \description{
-Title
+Primary logic for the "Datatype" section of the plan
+}
+\examples{
+# Not run
+raw_processed_data_chunk(input)
 }

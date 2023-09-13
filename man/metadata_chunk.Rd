@@ -2,13 +2,20 @@
 % Please edit documentation in R/03_metadata.R
 \name{metadata_chunk}
 \alias{metadata_chunk}
-\title{Title}
+\title{Primary logic for the "Metadata" section of the plan}
 \usage{
 metadata_chunk(input)
 }
 \arguments{
-\item{input}{}
+\item{input}{Shiny input}
+}
+\value{
+a character vector containing the text for this section
 }
 \description{
-Title
+Primary logic for the "Metadata" section of the plan
+}
+\examples{
+# Not run
+metadata_chunk(input)
 }
