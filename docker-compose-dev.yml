@@ -3,7 +3,7 @@ services:
   dmshelper-dev:
     image: sc-registry.fredhutch.org/dmshelper:dev
     networks:
-      - proxy
+      - proxytemp
     deploy:
       restart_policy:
         condition: on-failure
@@ -16,5 +16,5 @@ services:
         - "traefik.http.routers.dmshelper-dev.tls=true"
 
 networks:
-  proxy:
+  proxytemp:
     external: true
