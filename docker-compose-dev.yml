@@ -9,8 +9,8 @@ services:
         condition: on-failure
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.dmshelper-dev.rule=Host(`dmshelper_dev.fredhutch.org`)"
-        - "traefik.http.routers.dmshelper-dev-secured.rule=Host(`dmshelper_dev.fredhutch.org`)"
+        - "traefik.http.routers.dmshelper-dev.rule=Host(`dmshelper-dev.fredhutch.org`)"
+        - "traefik.http.routers.dmshelper-dev-secured.rule=Host(`dmshelper-dev.fredhutch.org`)"
         - "traefik.http.routers.dmshelper-dev.entrypoints=web,web-secured"
         - "traefik.http.services.dmshelper-dev.loadbalancer.server.port=3838" # it seems you always need to give traefik a port so it 'notices' the service
         - "traefik.http.routers.dmshelper-dev.tls=true"
