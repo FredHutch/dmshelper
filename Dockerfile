@@ -1,4 +1,4 @@
-FROM fredhutch/r-shiny-server-base:4.4.2
+FROM fredhutch/r-shiny-server-base:4.4.1
 RUN apt-get update
 RUN apt-get install -y pandoc
 
