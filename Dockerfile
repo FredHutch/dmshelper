@@ -1,18 +1,11 @@
-FROM fredhutch/r-shiny-server-base:4.4.1
+FROM fredhutch/r-shiny-server-base:4.5.1
 RUN apt-get update
 RUN apt-get install -y pandoc
 
 # Devtools dependencies
 RUN apt-get install -y libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev curl libxml2 libxml2-dev libcurl4-openssl-dev libssl-dev r-cran-openssl  libgit2-dev
-RUN Rscript -e "install.packages('systemfonts')"
-RUN Rscript -e "install.packages('textshaping')"
-RUN Rscript -e "install.packages('ragg')"
+RUN Rscript -e "install.packages(c('systemfonts', 'textshaping',  'ragg', 'devtools', 'shinydashboard', 'yaml', 'googlesheets4'))"
 
-# Devtools and custom package
-RUN Rscript -e "install.packages('devtools', dependencies=T)"
-RUN Rscript -e "install.packages(c('shinydashboard', 'yaml'))"
-RUN Rscript -e "install.packages('googlesheets4', dependencies=T)"
-# RUN Rscript -e "library(devtools);install_github('FredHutch/dmshelper')"
 
 # install dmshelper package
 ADD . /src/dmshelper
